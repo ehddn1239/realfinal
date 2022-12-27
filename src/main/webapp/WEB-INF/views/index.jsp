@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/index.css">
 </head>
 <body>
-
+<div id="Container">
+	<div id="menu">메뉴</div>
+</div>
 </body>
 </html>
