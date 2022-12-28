@@ -16,7 +16,7 @@
 	<c:forEach items="${pants}" var="p">
 	<div class="item">
 	<div class="itemImgDiv">
-	<img class="productImg" src="resources/imgs/bottom/${p.p_img}">
+	<img class="productImg" src="resources/imgs/${p.p_img}">
 	</div>
 	<div class="itemspan1">
 	<span>${p.p_name}</span>

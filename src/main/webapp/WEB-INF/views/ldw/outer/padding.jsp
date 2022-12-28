@@ -7,28 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/productPage.css">
 </head>
-<body>
-	<div class="Container">
-		<c:forEach items="${padding }" var="p">
-			<div class="">
-				<div>
-					<img class="poster" src="resources/imgs/${p.p_img }">
-				</div>
-				<div class="">
-
-					${p.p_name} ${p.p_size}
-					<fmt:formatNumber value="${p.p_price }" type="currency"
-						currencySymbol="\\" />
-
-					${p.p_color} ${p.p_stock}
-
-				</div>
-			</div>
-
-		</c:forEach>
-
+<div class="contentWrap">
+	<div class="content">
+	<c:forEach items="${padding }" var="p">
+	<div class="item">
+	<div class="itemImgDiv">
+	<img class="productImg" src="resources/imgs/${p.p_img}">
 	</div>
+	<div class="itemspan1">
+	<span>${p.p_name}</span>
+	</div>
+	<div class="itemspan2">
+	<span>${p.p_price}</span>
+	</div>
+	</div>
+	</c:forEach>
+	</div>
+
+
+
+</div>
+
 
 </body>
 </html>
