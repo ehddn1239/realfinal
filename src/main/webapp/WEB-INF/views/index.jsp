@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="resources/css/productPage.css">
 <link rel="stylesheet" href="resources/css/index.css">
 </head>
 <body>
@@ -25,10 +25,10 @@
 				<ul class="detail">셔츠</ul>
 			</ul>
 			<ul>Bottom
-				<ul class="detail">슬렉스</ul>
-				<ul class="detail">청바지</ul>
-				<ul class="detail">치마</ul>
-				<ul class="detail">츄리닝</ul>
+				<a href="bottom.pants.go"><ul class="detail">팬츠</ul></a>
+				<a href="bottom.denim.go"><ul class="detail">청바지</ul></a>
+				<a href="bottom.skirt.go"><ul class="detail">치마</ul></a>
+				<a href="bottom.shorts.go"><ul class="detail">쇼츠</ul></a>
 			</ul>
 			<ul>ETC.
 				<ul class="detail">액세서리</ul>
