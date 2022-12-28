@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/productPage.css">
 <link rel="stylesheet" href="resources/css/index.css">
+
 </head>
 <body>
 	<div id="whole-wrap-div">
