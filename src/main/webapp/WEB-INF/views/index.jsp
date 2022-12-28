@@ -11,12 +11,12 @@
 <body>
 	<div id="whole-wrap-div">
 		<div id="menu-bar-div">
-			<ul>All</ul>
+			<ul><a href="allProduct.go">All</a></ul>
 			<ul>Outer
-				<ul class="detail">패딩</ul>
-				<ul class="detail">자켓</ul>
-				<ul class="detail">코트</ul>
-				<ul class="detail">야상</ul>
+				<ul class="detail"><a href="padding.go">패딩</a></ul>
+				<ul class="detail"><a href="jacket.go">자켓</a></ul>
+				<ul class="detail"><a href="coat.go">코트</a></ul>
+				<ul class="detail"><a href="fieldjJacket.go">야상</a></ul>
 			</ul>
 			<ul>Top
 				<ul class="detail">니트</ul>
@@ -39,6 +39,8 @@
 		<div id="search-bar-div">
 				검색창<input id="search-bar">
 				<button id="login-btn">로그인</button>
+				<button onclick="location.href='productReg.go'" id="login-btn">상품 등록</button>
+				
 		</div>
 		
 	</div>
