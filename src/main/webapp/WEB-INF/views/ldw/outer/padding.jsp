@@ -9,6 +9,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/productPage.css">
 </head>
+<body>
+<div class="MenuBarTop">
+		<jsp:include page="../../sh/header.jsp"></jsp:include>
+	</div>
+<div class="MenuBarTop">
+		<jsp:include page="../../sh/topMenu.jsp"></jsp:include>
+	</div>
 <div class="contentWrap">
 	<div class="content">
 	<c:forEach items="${padding }" var="p">

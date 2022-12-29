@@ -23,6 +23,29 @@ public class BottomDAO {
 		
 	}
 
+	public void getAllDenim(HttpServletRequest req) {
+		
+		BottomMapper bm = ss.getMapper(BottomMapper.class);
+		List<BottomDTO> denim = bm.showAllDenim();
+		req.setAttribute("denim", denim);
+	}
+
+	public void getAllSkirt(HttpServletRequest req) {
+		
+		BottomMapper bm = ss.getMapper(BottomMapper.class);
+		List<BottomDTO> skirt = bm.showAllSkirt();
+		req.setAttribute("skirt", skirt);
+		
+	}
+
+	public void getAllShorts(HttpServletRequest req) {
+		
+		BottomMapper bm = ss.getMapper(BottomMapper.class);
+		List<BottomDTO> shorts = bm.showAllShorts();
+		req.setAttribute("shorts", shorts);
+		
+	}
+
 	
 	
 

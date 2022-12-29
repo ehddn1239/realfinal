@@ -6,4 +6,10 @@ public interface BottomMapper {
 
 	List<BottomDTO> showAllPants();
 
+	List<BottomDTO> showAllDenim();
+
+	List<BottomDTO> showAllSkirt();
+
+	List<BottomDTO> showAllShorts();
+
 }

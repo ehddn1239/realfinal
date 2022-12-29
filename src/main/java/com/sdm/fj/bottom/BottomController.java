@@ -24,18 +24,24 @@ public class BottomController {
 	@RequestMapping(value = "/bottom.denim.go", method = RequestMethod.GET)
 	public String denimGo(HttpServletRequest req) {
 		 
+		bDAO.getAllDenim(req);
+		
 		return "sh/bottom/denim";
 	}
 	
 	@RequestMapping(value = "/bottom.skirt.go", method = RequestMethod.GET)
 	public String skirtGo(HttpServletRequest req) {
-		 
+	
+		bDAO.getAllSkirt(req); 
+		
 		return "sh/bottom/skirt";
 	}
 	
 	@RequestMapping(value = "/bottom.shorts.go", method = RequestMethod.GET)
 	public String shortsGo(HttpServletRequest req) {
 		 
+		bDAO.getAllShorts(req); 
+		
 		return "sh/bottom/shorts";
 	}
 	

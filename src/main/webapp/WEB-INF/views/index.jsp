@@ -42,6 +42,7 @@
 				<ul class="detail">셔츠
 				</ul>
 			</ul>
+
 			<ul>
 				Bottom
 				<a href="bottom.pants.go"><ul class="detail">팬츠
@@ -53,14 +54,11 @@
 				<a href="bottom.shorts.go"><ul class="detail">쇼츠
 					</ul></a>
 			</ul>
-			<ul>
-				ETC.
-				<ul class="detail">액세서리
-				</ul>
-				<ul class="detail">신발
-				</ul>
-				<ul class="detail">시계
-				</ul>
+			<ul>ETC.
+				<a href="etc.accessory.go"><ul class="detail">액세서리</ul></a>
+				<a href="etc.shoes.go"><ul class="detail">신발</ul></a>
+				<a href="etc.bag.go"><ul class="detail">가방</ul></a>
+
 			</ul>
 		</div>
 		<div id="search-bar-div">
