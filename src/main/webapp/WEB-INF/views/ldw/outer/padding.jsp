@@ -32,9 +32,6 @@
 	</div>
 	</c:forEach>
 	</div>
-
-
-
 </div>
 
 
