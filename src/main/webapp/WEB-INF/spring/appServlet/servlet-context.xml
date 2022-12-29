@@ -35,18 +35,9 @@
 		<beans:property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-		
-
-		 value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" /> 
-
-			<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/ldw/Wallet_DB202204301707"
-			/> -->
-
-			
-
-
-			<beans:property name="username" value="SHMAC" />
-			<beans:property name="password" value="SHsoldesk802" />
+			value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Users/moon/Desktop/Study/Wallet_DB202204301707" />
+		<beans:property name="username" value="SHMAC" />
+		<beans:property name="password" value="SHsoldesk802" />
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
@@ -61,13 +52,11 @@
 			value="com.sdm.fj" />
 		<beans:property name="mapperLocations">
 			<beans:list>
-
-				<!-- 새로운 mapper만들기 -->
+				<!-- 새로운 mapper만들기  -->
+				<beans:value>classpath:accountMapper.xml</beans:value>
 				<beans:value>classpath:bottomMapper.xml</beans:value>
-
 				<beans:value>classpath:productMapper.xml</beans:value>
 				<beans:value>classpath:outerMapper.xml</beans:value>
-
 			</beans:list>
 		</beans:property>
 	</beans:bean>
