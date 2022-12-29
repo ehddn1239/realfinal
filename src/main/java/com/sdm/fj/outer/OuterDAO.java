@@ -19,4 +19,20 @@ public class OuterDAO {
 		List<OuterDTO> outers = om.showAllOuterPadding();
 		req.setAttribute("padding", outers);	
 	}
+
+
+	public void getAllOuterCoat(HttpServletRequest req) {
+		OuterMapper om = ss.getMapper(OuterMapper.class);
+		List<OuterDTO> outers = om.showAllOuterCoat();
+		req.setAttribute("coat", outers);
+		
+	}
+
+
+	public void getAllOuterFieldJacket(HttpServletRequest req) {
+		OuterMapper om = ss.getMapper(OuterMapper.class);
+		List<OuterDTO> outers = om.showAllOuterFieldJacket();
+		req.setAttribute("fieldJacket", outers);
+		
+	}
 }

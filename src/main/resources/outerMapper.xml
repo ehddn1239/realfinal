@@ -4,4 +4,12 @@
 	<select id="showAllOuterPadding" resultType="com.sdm.fj.outer.OuterDTO">
 	select * from final_product where p_category = 1
 	</select>
+	
+	<select id="showAllOuterCoat" resultType="com.sdm.fj.outer.OuterDTO">
+	select * from final_product where p_category = 2
+	</select>
+	
+	<select id="showAllOuterFieldJacket" resultType="com.sdm.fj.outer.OuterDTO">
+	select * from final_product where p_category = 3
+	</select>
 </mapper>
