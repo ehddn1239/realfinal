@@ -14,7 +14,7 @@ public class AccountController {
 	AccountDAO aDAO;
 	
 	@RequestMapping(value = "/loginPage.go", method = RequestMethod.GET)
-	public String home() {
+	public String viewLogin() {
 		
 		return "kmj/login";
 	}
@@ -24,6 +24,21 @@ public class AccountController {
 		aDAO.register(a, req);
 		
 		return "kmj/login";
+	}
+	@RequestMapping(value = "/account.login.do", method = RequestMethod.POST)
+	public String login(Account a, HttpServletRequest req) {
+		
+		aDAO.login(a, req);
+		aDAO.loginCheck(req);
+		return "index";
+	}
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public String logout(HttpServletRequest req) {
+		
+		aDAO.logout(req);
+		
+		aDAO.loginCheck(req);
+		return "index";
 	}
 	
 }

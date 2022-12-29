@@ -26,7 +26,7 @@
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
-			<form action="#">
+			<form action="account.login.do" method="post">
 				<h1>Sign in</h1>
 				<div class="social-container">
 					<!-- 여기는 카카오 간편 로그인 기능 -->
@@ -35,8 +35,8 @@
 						href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div>
 				<span>or use your account</span>
-				<input type="text" placeholder="UserID" /> 
-				<input type="password" placeholder="Password" />
+				<input name="a_id" type="text" placeholder="UserID" /> 
+				<input name="a_pw" type="password" placeholder="Password" />
 				<!-- 비밀번호찾기 기능 -->
 				<a href="#">Forgot your password?</a>
 				<button>Sign In</button>
