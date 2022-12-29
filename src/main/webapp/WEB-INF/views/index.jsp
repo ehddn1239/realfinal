@@ -38,7 +38,7 @@
 		</div>
 		<div id="search-bar-div">
 				검색창<input id="search-bar">
-				<button id="login-btn">로그인</button>
+				<button id="login-btn" onclick="location.href='loginPage.go'">Sign In</button>
 		</div>
 		
 	</div>
