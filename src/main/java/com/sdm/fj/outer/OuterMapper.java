@@ -6,4 +6,8 @@ public interface OuterMapper {
 
 	List<OuterDTO> showAllOuterPadding();
 
+	List<OuterDTO> showAllOuterCoat();
+
+	List<OuterDTO> showAllOuterFieldJacket();
+
 }

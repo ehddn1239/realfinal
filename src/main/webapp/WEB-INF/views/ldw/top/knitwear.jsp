@@ -12,21 +12,20 @@
 <body>
 <div class="contentWrap">
 	<div class="content">
-	<c:forEach items="${coat }" var="c">
+	<c:forEach items="${Knit }" var="k">
 	<div class="item">
 	<div class="itemImgDiv">
-	<img class="productImg" src="resources/imgs/${c.p_img}">
+	<img class="productImg" src="resources/imgs/${k.p_img}">
 	</div>
 	<div class="itemspan1">
-	<span>${c.p_name}</span>
+	<span>${k.p_name}</span>
 	</div>
 	<div class="itemspan2">
-	<span>${c.p_price}</span>
+	<span>${k.p_price}</span>
 	</div>
 	</div>
 	</c:forEach>
 	</div>
 </div>
-
 </body>
 </html>

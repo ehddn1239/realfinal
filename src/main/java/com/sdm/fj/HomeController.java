@@ -13,13 +13,13 @@ public class HomeController {
 	private ProductDAO pDAO;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Product p, HttpServletRequest req) {
-		return "index";
+		return "index1";
 	}
 	
 	@RequestMapping(value = "allProduct.go", method = RequestMethod.GET)
 	public String allProduct(Product p, HttpServletRequest req) {
 		pDAO.getAllProducts(p, req);
-		return "ldw/allProduct";
+		return "ldw/All/allProduct";
 	}
 	
 	@RequestMapping(value = "/productReg.go", method = RequestMethod.GET)
