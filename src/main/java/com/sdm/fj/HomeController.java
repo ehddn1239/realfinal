@@ -19,7 +19,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Product p, HttpServletRequest req) {
-		return "index1";
+		aDAO.loginCheck(req);
+		return "index";
 	}
 	
 	@RequestMapping(value = "allProduct.go", method = RequestMethod.GET)
