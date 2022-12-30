@@ -1,17 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.6.2.js"
-	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
-	crossorigin="anonymous"></script>
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/productPage.css">
+<link rel="stylesheet" href="resources/css/index1.css">
 <link rel="stylesheet" href="resources/css/index.css">
 <link rel="stylesheet" href="resources/css/login.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+	crossorigin="anonymous">
+	
+</script>
+
 <script type="text/javascript">
 $(function() {
 	
@@ -30,6 +37,8 @@ $(function() {
 	
 	$(".login-btn").click(function() {
 		$(".modal").fadeIn();
+		$('.left_sub_menu').fadeOut();
+		$('.hide_sidemenu').fadeIn();
 	});
 	
 /* 	$(".remove-modal").click(function() {
@@ -38,66 +47,91 @@ $(function() {
  	$(".modal").click(function(e) {
  		if($(e.target).parents('.container').length < 1){
  			$(".modal").fadeOut();
+ 			
  		}
 	});
+ 	/* $(".whole-wrap-div").click(function(e) {
+ 		if($(e.target).parents('.left_sub_menu').length < 1){
+ 			$(".left_sub_menu").fadeOut();
+ 		}
+	}); */
 })
-
+	$(function() {
+		$(".left_sub_menu").hide();
+		$(".has_sub").click(function() {
+			$(".left_sub_menu").fadeToggle(300);
+		});
+		$(".sub_menu ul.small_menu").hide();
+		$(".sub_menu ul.big_menu").click(function() {
+			$("ul", this).slideToggle(300);
+		});
+		
+		$(".over").on('click', function() {
+			$('.left_sub_menu').fadeOut();
+			$('.hide_sidemenu').fadeIn();
+		});
+	});
 </script>
 </head>
 <body>
 	<div id="whole-wrap-div">
-		<div id="menu-bar-div">
-			<ul>
-				<a href="allProduct.go">All</a>
-			</ul>
-			<ul>
-				Outer
-				<li class="detail">
-					<a href="padding.go">패딩</a>
-				</li>
-				<li class="detail">
-					<a href="jacket.go">자켓</a>
-				</li>
-				<li class="detail">
-					<a href="coat.go">코트</a>
-				</li>
-				<li class="detail">
-					<a href="fieldjJacket.go">야상</a>
-				</li>
-			</ul>
-			<ul>
-				Top
-				<li class="detail">니트
-				</li>
-				<li class="detail">후드
-				</li>
-				<li class="detail">맨투맨
-				</li>
-				<li class="detail">셔츠
-				</li>
-			</ul>
-
-			<ul>
-				Bottom
-				<a href="bottom.pants.go"><li class="detail">팬츠
-					</li></a>
-				<a href="bottom.denim.go"><li class="detail">청바지
-					</li></a>
-				<a href="bottom.skirt.go"><li class="detail">치마
-					</li></a>
-				<a href="bottom.shorts.go"><li class="detail">쇼츠
-					</li></a>
-			</ul>
-			<ul>ETC.
-				<a href="etc.accessory.go"><ul class="detail">액세서리</ul></a>
-				<a href="etc.shoes.go"><ul class="detail">신발</ul></a>
-				<a href="etc.bag.go"><ul class="detail">가방</ul></a>
-
-			</ul>
+		<!-- 왼쪽 메뉴 -->
+		<div class="left side-menu">
+			<div class="sidebar-inner">
+				<div id="sidebar-menu">
+					<ul>
+						<li class="has_sub"><a href="javascript:void(0);"
+							class="waves-effect"> <i class="fas fa-bars"></i>
+						</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<div id="search-bar-div">
-			검색창<input id="search-bar">
-			<c:choose>
+		<!-- 왼쪽 서브 메뉴 -->
+		<div id="over">
+			<div class="left_sub_menu">
+				<div class="sub_menu">
+					<input type="search" name="SEARCH" placeholder="SEARCH">
+					<h2>쇼핑몰 제목</h2>
+					<ul class="big_menu">
+						<a href="allProduct.go"><li>ALL</li></a>
+					</ul>
+					<ul class="big_menu">
+
+						<li>Outer<i class="arrow fas fa-angle-right"></i></li>
+						<ul class="small_menu">
+							<a href="padding.go"><li>Padding & Jacekt</li></a>
+							<a href="coat.go"><li>Coat</li></a>
+							<a href="fieldjJacket.go"><li>Field Jacket</li></a>
+						</ul>
+					</ul>
+					<ul class="big_menu">
+						<li>Top<i class="arrow fas fa-angle-right"></i></li>
+						<ul class="small_menu">
+							<a href="knitwear.go"><li>Kniet & Cardigan</li></a>
+							<a href="shirt.go"><li>Shirt & Blouse</li></a>
+							<a href="tShirt.go"><li>T-shirt</li></a>
+							<a href="dress.go"><li>Onepiece</li></a>
+						</ul>
+					</ul>
+					<ul class="big_menu">
+						<li>Bottom<i class="arrow fas fa-angle-right"></i></li>
+						<ul class="small_menu">
+							<a href="bottom.pants.go"><li>팬츠</li></a>
+							<a href="bottom.denim.go"><li>청바지</li></a>
+							<a href="bottom.skirt.go"><li>치마</li></a>
+							<a href="bottom.shorts.go"><li>쇼츠</li></a>
+						</ul>
+					</ul>
+					<ul class="big_menu">
+						<li>ETC.<i class="arrow fas fa-angle-right"></i></li>
+						<ul class="small_menu">
+							<a href="etc.accessory.go"><li>액세서리</li></a>
+							<a href="etc.shoes.go"><li>가방</li></a>
+							<a href="etc.bag.go"><li>신발</li></a>
+						</ul>
+					</ul>
+						<c:choose>
 				<c:when test="${loginCheck == 1 }">
 					<button class="login-btn">Sign In</button>
 				</c:when>
@@ -105,13 +139,14 @@ $(function() {
 					<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
 				</c:when>
 			</c:choose>
-			<button onclick="location.href='productReg.go'" id="login-btn">상품
-				등록</button>
+				</div>
+				
+			</div>
 		</div>
-
-	</div>
-	
-	<!-- 여기는 모달창 부분 -->
+		
+		  <div class="over"></div>
+		</div>
+		<!-- 여기는 모달창 부분 -->
 	<div class="modal">
 		<div class="modal_content" title="클릭하면 창이 닫힙니다.">
 			<!-- <div class="remove-modal"><h2 class="modal-h2">[쇼핑몰이름]에 오신것을 환영합니다!<button class="remove-modal">x</button></h2></div>
@@ -168,17 +203,4 @@ $(function() {
 		</div>
 		</div>
 </body>
-<!-- <script type="text/javascript">
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
-
-signUpButton.addEventListener('click', () => {
-  container.classList.add("right-panel-active");
-});
-
-signInButton.addEventListener('click', () => {
-  container.classList.remove("right-panel-active");
-});
-</script> -->
 </html>
