@@ -1,4 +1,4 @@
-package com.sdm.fj;
+package com.sdm.fj.product;
 
 import java.util.List;
 
@@ -23,7 +23,14 @@ public class ProductDAO {
 		req.setAttribute("products", products);
 		
 	}
-
+	
+	public void getProductByCategory(HttpServletRequest req, Product p) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.getProductByCategory(p.getP_category());
+		req.setAttribute("products", products);
+		
+	}
+	
 	public void regProducts(Product p, HttpServletRequest req) {
 		try {
 			String path = req.getSession().getServletContext().getRealPath("resources/imgs");
@@ -66,6 +73,7 @@ public class ProductDAO {
 			e.printStackTrace();
 		}
 	}
+
 
 
 }

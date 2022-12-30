@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/productPage.css">
 </head>
 <body>
 <div class="header">
@@ -17,7 +18,7 @@
 <div class="contentWrap">
 		<h1>쇼츠</h1>
 		<div class="content">
-			<c:forEach items="${shorts}" var="s">
+			<c:forEach items="${products}" var="s">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${s.p_img}">
