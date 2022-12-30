@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,21 +14,24 @@
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 
+<script type="text/javascript" src="resources/js/login.js"></script>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
 	crossorigin="anonymous">
-	
 </script>
-
 <script type="text/javascript">
 $(function() {
 	
 	const signUpButton = document.getElementById('signUp');
 	const signInButton = document.getElementById('signIn');
 	const container = document.getElementById('container');
+	const span = document.getElementById('span');
 
 	signUpButton.addEventListener('click', () => {
 	  container.classList.add("right-panel-active");
+	  span.style.visibility = "hidden";
 	});
 
 	signInButton.addEventListener('click', () => {
@@ -41,36 +45,28 @@ $(function() {
 		$('.hide_sidemenu').fadeIn();
 	});
 	
-/* 	$(".remove-modal").click(function() {
-	 	
- 	}); */
  	$(".modal").click(function(e) {
  		if($(e.target).parents('.container').length < 1){
  			$(".modal").fadeOut();
- 			
+ 			console.log(11)
  		}
 	});
- 	/* $(".whole-wrap-div").click(function(e) {
- 		if($(e.target).parents('.left_sub_menu').length < 1){
- 			$(".left_sub_menu").fadeOut();
- 		}
-	}); */
 })
-	$(function() {
-		$(".left_sub_menu").hide();
-		$(".has_sub").click(function() {
-			$(".left_sub_menu").fadeToggle(300);
-		});
-		$(".sub_menu ul.small_menu").hide();
-		$(".sub_menu ul.big_menu").click(function() {
-			$("ul", this).slideToggle(300);
-		});
-		
-		$(".over").on('click', function() {
-			$('.left_sub_menu').fadeOut();
-			$('.hide_sidemenu').fadeIn();
-		});
+$(function() {
+	$(".left_sub_menu").hide();
+	$(".has_sub").click(function() {
+		$(".left_sub_menu").fadeToggle(300);
 	});
+	$(".sub_menu ul.small_menu").hide();
+	$(".sub_menu ul.big_menu").click(function() {
+		$("ul", this).slideToggle(300);
+	});
+		
+	$(".over").on('click', function() {
+		$('.left_sub_menu').fadeOut();
+		$('.hide_sidemenu').fadeIn();
+	});
+});
 </script>
 </head>
 <body>
@@ -131,57 +127,63 @@ $(function() {
 							<a href="etc.bag.go"><li>신발</li></a>
 						</ul>
 					</ul>
-						<c:choose>
-				<c:when test="${loginCheck == 1 }">
-					<button class="login-btn">Sign In</button>
-				</c:when>
-				<c:when test="${loginCheck == 0 }">
-					<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
-				</c:when>
-			</c:choose>
+					<c:choose>
+						<c:when test="${loginCheck == 1 }">
+							<button class="login-btn">Sign In</button>
+						</c:when>
+						<c:when test="${loginCheck == 0 }">
+							<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+						</c:when>
+					</c:choose>
 				</div>
-				
+
 			</div>
 		</div>
-		
-		  <div class="over"></div>
-		</div>
-		<!-- 여기는 모달창 부분 -->
+
+		<div class="over"></div>
+	</div>
+	<!-- 여기는 모달창 부분 -->
 	<div class="modal">
 		<div class="modal_content" title="클릭하면 창이 닫힙니다.">
 			<!-- <div class="remove-modal"><h2 class="modal-h2">[쇼핑몰이름]에 오신것을 환영합니다!<button class="remove-modal">x</button></h2></div>
 			 -->
-			
+
 			<div class="container" id="container">
 				<div class="form-container sign-up-container">
 					<!-- 여기는 회원가입 페이지에용 -->
-					<form class="modal-form"action="account.reg.do" method="post">
+					<form class="modal-form" action="account.reg.do" method="post">
 						<h1 class="modal-h1">Create Account</h1>
-						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
-						<input class="modal-input" name="a_id" type="text"placeholder="UserID" /> 
-						<input class="modal-input" name="a_nickname" type="text" placeholder="사용하실 닉네임" /> 
-						<input class="modal-input" name="a_pw" type="password" placeholder="Password" /> 
-						<input class="modal-input" name="a_addr" type="text" placeholder="주소" /> 
-						<input class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
-						<input class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
+						<span class="modal-span">회원 가입을 시작하겠습니다!</span> <input
+							class="modal-input" name="a_id" type="text" placeholder="UserID" />
+						<input class="modal-input" name="a_nickname" type="text"
+							placeholder="사용하실 닉네임" /> <input class="modal-input" name="a_pw"
+							type="password" placeholder="Password" /> <input
+							class="modal-input" name="a_addr" type="text" placeholder="주소" />
+						<input class="modal-input" name="a_email" type="email"
+							placeholder="이메일" /> <input class="modal-input" name="a_phone"
+							type="tel" placeholder="전화번호" />
 						<button class="modal-button">Sign Up</button>
 					</form>
 				</div>
 				<div class="form-container sign-in-container">
-					<form class="modal-form" action="account.login.do" method="post">
+					<form class="modal-form" action="account.login.do" method="post"  onsubmit="return loginCheck()"
+						name="loginForm">
 						<h1 class="modal-h1">Sign in</h1>
 						<div class="social-container">
 							<!-- 여기는 카카오 간편 로그인 기능 -->
-							<a class="modal-a" href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-							<a class="modal-a" href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-							<a class="modal-a" href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+							<a class="modal-a" href="#" class="social"><i
+								class="fab fa-facebook-f"></i></a> <a class="modal-a" href="#"
+								class="social"><i class="fab fa-google-plus-g"></i></a> <a
+								class="modal-a" href="#" class="social"><i
+								class="fab fa-linkedin-in"></i></a>
 						</div>
 						<span>or use your account</span> 
 						<input class="modal-input" name="a_id" type="text" placeholder="UserID" />
 						<input class="modal-input" name="a_pw" type="password" placeholder="Password" />
+						<span id="span" style="visibility: hidden; margin-right: auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
 						<!-- 비밀번호찾기 기능 -->
 						<a class="modal-a" href="#">Forgot your password?</a>
-						<button class="modal-button">Sign In</button>
+						<button class="modal-button" >Sign In</button>
 					</form>
 				</div>
 				<div class="overlay-container">
@@ -201,6 +203,6 @@ $(function() {
 				</div>
 			</div>
 		</div>
-		</div>
+	</div>
 </body>
 </html>

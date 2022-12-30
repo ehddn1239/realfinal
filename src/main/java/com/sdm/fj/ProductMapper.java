@@ -9,3 +9,5 @@ public interface ProductMapper {
 	int regProducts(Product p);
 
 }
+
+

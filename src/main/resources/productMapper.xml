@@ -6,6 +6,6 @@
 	</select>
 	
 	<insert id="regProducts" parameterType="com.sdm.fj.Product">
-	insert into final_product values(final_product_seq.nextval, #{p_name},#{p_m_no}, #{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, #{p_stock})
+	insert into final_product values(final_product_seq.nextval, #{p_name}, #{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, #{p_stock})
 	</insert>
 </mapper>
