@@ -1,4 +1,4 @@
-package com.sdm.fj;
+package com.sdm.fj.product;
 
 public class Product {
 	private int p_no;

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sdm.fj.ProductMapper">
-	<select id="getAllProducts" resultType="com.sdm.fj.Product">
-		select * from final_product
+<mapper namespace="com.sdm.fj.product.ProductMapper">
+	<select id="getAllProducts" resultType="com.sdm.fj.product.Product">
+		select * from final_product 
+	</select>
+	<select id="getProductByCategory" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
+		select * from final_product where p_category = #{p_category}
 	</select>
 	
-	<insert id="regProducts" parameterType="com.sdm.fj.Product">
-	insert into final_product values(final_product_seq.nextval, #{p_name},#{p_m_no}, #{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, #{p_stock})
+	<insert id="regProducts" parameterType="com.sdm.fj.product.Product">
+	insert into final_product values(final_product_seq.nextval, #{p_name},#{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, #{p_stock})
 	</insert>
 </mapper>
