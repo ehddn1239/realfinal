@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,18 +15,18 @@
 		<jsp:include page="../topMenu.jsp"></jsp:include>
 	</div>
 <div class="contentWrap">
-		<h1>쇼츠</h1>
+		<h1>가방</h1>
 		<div class="content">
-			<c:forEach items="${shorts}" var="s">
+			<c:forEach items="${bag}" var="b">
 				<div class="item">
 					<div class="itemImgDiv">
-						<img class="productImg" src="resources/imgs/${s.p_img}">
+						<img class="productImg" src="resources/imgs/${b.p_img}">
 					</div>
 					<div class="itemspan1">
-						<span>${s.p_name}</span>
+						<span>${b.p_name}</span>
 					</div>
 					<div class="itemspan2">
-						<span>${s.p_price}</span>
+						<span>${b.p_price}</span>
 					</div>
 				</div>
 			</c:forEach>
