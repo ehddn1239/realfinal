@@ -29,6 +29,7 @@ body {
 }
 
 .detail {
+	list-style:none;
 	font-size: 15pt;
 	font-weight: normal;
 }
@@ -48,5 +49,33 @@ body {
 
 #search-bar:focus {
 	outline: none;
+}
 
+.modal {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 0;
+}
+
+.modal_content {
+	width: 1000px;
+  	height: 650px;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	top: 20%;
+	left: 30%;
+	margin-top: -100px;
+	margin-left: -200px;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 5px 0;
+	line-height: 23px;
+	cursor: pointer;
+	z-index: 5;
 }
