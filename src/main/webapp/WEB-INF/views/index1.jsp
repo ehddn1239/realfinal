@@ -89,9 +89,9 @@
 					<ul class="big_menu">
 						<li>ETC.<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<a href=""><li>액세서리</li></a>
-							<a href=""><li>가방</li></a>
-							<a href=""><li>신발</li></a>
+							<a href="etc.accessory.go"><li>액세서리</li></a>
+							<a href="etc.shoes.go"><li>가방</li></a>
+							<a href="etc.bag.go"><li>신발</li></a>
 						</ul>
 					</ul>
 				</div>
