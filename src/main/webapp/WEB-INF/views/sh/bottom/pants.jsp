@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="resources/css/productPage.css">
 </head>
 <body>
-<div class="header">
+	<div class="header">
 		<jsp:include page="../header.jsp"></jsp:include>
 	</div>
 	<div class="MenuBarTop">
