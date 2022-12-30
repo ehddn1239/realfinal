@@ -18,7 +18,7 @@
 <div class="contentWrap">
 		<h1>악세서리</h1>
 		<div class="content">
-			<c:forEach items="${acc}" var="a">
+			<c:forEach items="${products}" var="a">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${a.p_img}">

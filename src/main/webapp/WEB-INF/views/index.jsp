@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <link rel="stylesheet" href="resources/css/index1.css">
 <link rel="stylesheet" href="resources/css/index.css">
 <link rel="stylesheet" href="resources/css/login.css">
+<link rel="stylesheet" href="resources/css/productPage.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -96,45 +98,47 @@ $(function() {
 
 						<li>Outer<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<a href="padding.go"><li>Padding & Jacekt</li></a>
-							<a href="coat.go"><li>Coat</li></a>
-							<a href="fieldjJacket.go"><li>Field Jacket</li></a>
+							<li onclick="location.href='showByCategory?p_category=1'">Padding & Jacekt</li>
+							<li onclick="location.href='showByCategory?p_category=2'">Coat</li>
+							<li onclick="location.href='showByCategory?p_category=3'">Field Jacket</li>
 						</ul>
 					</ul>
 					<ul class="big_menu">
 						<li>Top<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<a href="knitwear.go"><li>Kniet & Cardigan</li></a>
-							<a href="shirt.go"><li>Shirt & Blouse</li></a>
-							<a href="tShirt.go"><li>T-shirt</li></a>
-							<a href="dress.go"><li>Onepiece</li></a>
+							<li onclick="location.href='showByCategory?p_category=4'">Kniet & Cardigan</li>
+							<li onclick="location.href='showByCategory?p_category=5'">Shirt & Blouse</li>
+							<li onclick="location.href='showByCategory?p_category=6'">Tee</li>
+							<li onclick="location.href='showByCategory?p_category=7'">Onepiece</li>
 						</ul>
 					</ul>
 					<ul class="big_menu">
 						<li>Bottom<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<a href="bottom.pants.go"><li>팬츠</li></a>
-							<a href="bottom.denim.go"><li>청바지</li></a>
-							<a href="bottom.skirt.go"><li>치마</li></a>
-							<a href="bottom.shorts.go"><li>쇼츠</li></a>
+							<li onclick="location.href='showByCategory?p_category=9'">팬츠</li>
+							<li onclick="location.href='showByCategory?p_category=10'">청바지</li>
+							<li onclick="location.href='showByCategory?p_category=11'">치마</li>
+							<li onclick="location.href='showByCategory?p_category=12'">쇼츠</li>
 						</ul>
 					</ul>
 					<ul class="big_menu">
 						<li>ETC.<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<a href="etc.accessory.go"><li>액세서리</li></a>
-							<a href="etc.shoes.go"><li>가방</li></a>
-							<a href="etc.bag.go"><li>신발</li></a>
+							<li onclick="location.href='showByCategory?p_category=13'">액세서리</li>
+							<li onclick="location.href='showByCategory?p_category=14'">가방</li>
+							<li onclick="location.href='showByCategory?p_category=15'">신발</li>
 						</ul>
 					</ul>
-					<c:choose>
-						<c:when test="${loginCheck == 1 }">
-							<button class="login-btn">Sign In</button>
-						</c:when>
-						<c:when test="${loginCheck == 0 }">
-							<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
-						</c:when>
-					</c:choose>
+
+						<c:choose>
+				<c:when test="${loginCheck == 1 }">
+					<button class="login-btn">Sign In</button>
+				</c:when>
+				<c:when test="${loginCheck == 0 }">
+					<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+				</c:when>
+			</c:choose>
+			<button onclick="location.href='productReg.go'">상품 등록</button>
 				</div>
 
 			</div>
