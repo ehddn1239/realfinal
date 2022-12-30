@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="resources/css/productPage.css">
 </head>
 <body>
-<div class="MenuBarTop">
+
+<div class="header">
 		<jsp:include page="../../sh/header.jsp"></jsp:include>
 	</div>
 <div class="MenuBarTop">
@@ -18,7 +19,7 @@
 	</div>
 <div class="contentWrap">
 	<div class="content">
-	<c:forEach items="${padding }" var="p">
+	<c:forEach items="${products }" var="p">
 	<div class="item">
 	<div class="itemImgDiv">
 	<img class="productImg" src="resources/imgs/${p.p_img}">

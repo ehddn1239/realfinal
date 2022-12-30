@@ -10,9 +10,15 @@
 <link rel="stylesheet" href="resources/css/productPage.css">
 </head>
 <body>
+<div class="header">
+		<jsp:include page="../../sh/header.jsp"></jsp:include>
+	</div>
+<div class="MenuBarTop">
+		<jsp:include page="../../sh/topMenu.jsp"></jsp:include>
+	</div>
 <div class="contentWrap">
 	<div class="content">
-	<c:forEach items="${fieldJacket }" var="j">
+	<c:forEach items="${products }" var="j">
 	<div class="item">
 	<div class="itemImgDiv">
 	<img class="productImg" src="resources/imgs/${j.p_img}">

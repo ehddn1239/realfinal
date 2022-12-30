@@ -23,9 +23,9 @@
 					<option value="7">onepiece</option>
 					<option disabled="disabled">Bottom</option>
 					<option value="9">pants</option>
-					<option value="10">blueJeans</option>
+					<option value="10">denim</option>
 					<option value="11">skirt</option>
-					<option value="12">short</option>
+					<option value="12">shorts</option>
 					<option disabled="disabled">ETC</option>
 					<option value="13">accessory</option>
 					<option value="14">bags</option>
@@ -42,12 +42,12 @@
 				색상 <input name="p_color">
 			</div>
 			<div>
-				사이즈 <select>
-					<option value="p_size">S</option>
-					<option value="p_size">M</option>
-					<option value="p_size">L</option>
-					<option value="p_size">XL</option>
-					<option value="p_size">XXL</option>
+				사이즈 <select name="p_size">
+					<option value="S">S</option>
+					<option value="M">M</option>
+					<option value="L">L</option>
+					<option value="XL">XL</option>
+					<option value="XXL">XXL</option>
 					</select>
 			</div>
 			<div>

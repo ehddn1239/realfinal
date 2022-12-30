@@ -9,9 +9,15 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/productPage.css">
 </head>
+<div class="header">
+		<jsp:include page="../../sh/header.jsp"></jsp:include>
+	</div>
+<div class="MenuBarTop">
+		<jsp:include page="../../sh/topMenu.jsp"></jsp:include>
+	</div>
 <body><div class="contentWrap">
 	<div class="content">
-	<c:forEach items="${Tshirt }" var="t">
+	<c:forEach items="${products }" var="t">
 	<div class="item">
 	<div class="itemImgDiv">
 	<img class="productImg" src="resources/imgs/${t.p_img}">

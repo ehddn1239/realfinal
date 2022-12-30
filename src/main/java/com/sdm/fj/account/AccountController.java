@@ -13,11 +13,6 @@ public class AccountController {
 	@Autowired
 	AccountDAO aDAO;
 	
-//	@RequestMapping(value = "/loginPage.go", method = RequestMethod.GET)
-//	public String viewLogin() {
-//		
-//		return "kmj/login";
-//	}
 	@RequestMapping(value = "/account.reg.do", method = RequestMethod.POST)
 	public String register(Account a, HttpServletRequest req) {
 		
