@@ -30,6 +30,7 @@
 	<span>${k.p_price}</span>
 	</div>
 	</div>
+	<button>삭제</button>
 	</c:forEach>
 	</div>
 </div>

@@ -45,6 +45,7 @@ public class ProductDAO {
 			String img = mr.getFilesystemName("p_img");
 			String color = mr.getParameter("p_color");
 
+			System.out.println(mr.getParameter("p_no"));
 			System.out.println(name);
 			System.out.println(size);
 			System.out.println(price);

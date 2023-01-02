@@ -58,7 +58,15 @@ $(function() {
  			$(".left_sub_menu").fadeOut();
  		}
 	}); */
-})
+	
+	// 등록(판매자 로그인) 예외 처리
+ 	$("#regButton").on('click', function() {
+ 		if (${loginCheck == 1 }) {
+		alert('판매자로 로그인 하세요')
+		}
+			
+	});
+});
 	$(function() {
 		$(".left_sub_menu").hide();
 		$(".has_sub").click(function() {
@@ -73,7 +81,10 @@ $(function() {
 			$('.left_sub_menu').fadeOut();
 			$('.hide_sidemenu').fadeIn();
 		});
+		
+		
 	});
+	
 </script>
 </head>
 <body>
@@ -142,7 +153,7 @@ $(function() {
 					<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
 				</c:when>
 			</c:choose>
-			<button onclick="location.href='productReg.go'">상품 등록</button>
+			<button id ="regButton" onclick="location.href='productReg.go'">상품 등록</button>
 				</div>
 				
 			</div>

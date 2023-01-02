@@ -19,7 +19,7 @@
 					<option disabled="disabled">Top</option>
 					<option value="4">knit&cardigan</option>
 					<option value="5">shirt&blouse</option>
-					<option value="6">Tshirt</option>
+					<option value="6">Tee</option>
 					<option value="7">onepiece</option>
 					<option disabled="disabled">Bottom</option>
 					<option value="9">pants</option>
@@ -44,10 +44,15 @@
 			<div>
 				사이즈 <select name="p_size">
 					<option value="S">S</option>
+					
 					<option value="M">M</option>
+					
 					<option value="L">L</option>
+					
 					<option value="XL">XL</option>
+					
 					<option value="XXL">XXL</option>
+					
 					</select>
 			</div>
 			<div>
@@ -55,6 +60,9 @@
 			</div>
 			<div>
 				재고 <input name="p_stock">
+			</div>
+			<div>
+				상품 설명 <input name="p_description">
 			</div>
 			<div>
 				<button>등록</button>
