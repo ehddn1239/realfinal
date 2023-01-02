@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.sdm.fj.account.AccountDAO;
+
+
 
 @Controller
 public class ProductController {
@@ -92,4 +93,13 @@ public class ProductController {
 		pDAO.regProducts(p,req);
 		return "productReg";
 	}
+	
+
+	@RequestMapping(value = "detail.go")
+	public String goDetail(Product p, HttpServletRequest req) {
+		pDAO.goDetail(p,req);
+	
+		return "sh/detail";
+	}
+	
 }

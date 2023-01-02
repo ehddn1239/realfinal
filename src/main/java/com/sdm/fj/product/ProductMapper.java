@@ -10,4 +10,8 @@ public interface ProductMapper {
 
 	List<Product> getProductByCategory(int p_category);
 
+	Product getProduct(Product p);
+
 }
+
+

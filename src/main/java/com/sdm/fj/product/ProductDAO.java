@@ -75,6 +75,14 @@ public class ProductDAO {
 		}
 	}
 
+	public void goDetail(Product p, HttpServletRequest req) {
+		
+		
+		
+		
+		req.setAttribute("p",ss.getMapper(ProductMapper.class).getProduct(p));
+	}
+
 
 
 }
