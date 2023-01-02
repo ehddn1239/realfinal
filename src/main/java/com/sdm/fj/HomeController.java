@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sdm.fj.account.AccountDAO;
 import com.sdm.fj.product.Product;
-import com.sdm.fj.product.ProductDAO;
 
 @Controller
 public class HomeController {
-	@Autowired
-	private ProductDAO pDAO;
+	
 	@Autowired
 	private AccountDAO aDAO;
 	

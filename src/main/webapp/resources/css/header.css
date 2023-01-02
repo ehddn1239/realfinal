@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+#headerWrapper{
+	display:flex;
+	justify-content:space-between;
+}
+
+#headerTitle{
+	padding-top:15px;
+}
+
+#headerTitle > a {
+	text-decoration:none;
+	color:black;
+	
+}
+
+.hTitleSpan{
+	
+	border:1px solid black;
+	font-size:20pt;
+}
