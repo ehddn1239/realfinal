@@ -21,7 +21,7 @@
 			<c:forEach items="${products}" var="p">
 				<div class="item">
 					<div class="itemImgDiv">
-						<img class="productImg" src="resources/imgs/${p.p_img}">
+						<img class="productImg" src="resources/imgs/${p.p_img}" onclick="location.href='detail.go?p_no=${p.p_no}'">
 					</div>
 					<div class="itemspan1">
 						<span>${p.p_name}</span>
