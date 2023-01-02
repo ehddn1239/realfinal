@@ -6,11 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import com.sdm.fj.account.AccountDAO;
+
+
 
 @Controller
 public class ProductController {
 	@Autowired
 	private ProductDAO pDAO;
+	@Autowired
+	private AccountDAO aDAO;
 	
 	@RequestMapping(value = "allProduct.go", method = RequestMethod.GET)
 	public String allProduct(Product p, HttpServletRequest req) {
@@ -19,7 +24,11 @@ public class ProductController {
 	}
 	@RequestMapping(value = "productReg.go", method = RequestMethod.GET)
 	public String goRegProduct(Product p, HttpServletRequest req) {
-		pDAO.getAllProducts(p, req);
+		if (aDAO.loginCheck(req) == false ) {
+			req.setAttribute("reg", "판매자로 로그인 하세요!");
+			return "index";
+		}
+		
 		return "productReg";
 	}
 	
@@ -80,8 +89,8 @@ public class ProductController {
 	
 	@RequestMapping(value = "reg.products.do", method = RequestMethod.POST)
 	public String regProduct(Product p, HttpServletRequest req) {
+		aDAO.loginCheck(req);
 		pDAO.regProducts(p,req);
-		pDAO.getAllProducts(p, req);
 		return "productReg";
 	}
 	
