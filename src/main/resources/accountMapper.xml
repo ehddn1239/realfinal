@@ -10,5 +10,4 @@
 		select * from final_account where a_id = #{a_id}
 	</select>
 
-
 </mapper>

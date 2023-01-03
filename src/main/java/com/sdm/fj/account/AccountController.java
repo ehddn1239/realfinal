@@ -35,5 +35,12 @@ public class AccountController {
 		aDAO.loginCheck(req);
 		return "index";
 	}
+	@RequestMapping(value = "/myPage.go", method = RequestMethod.POST)
+	public String myPage(Account a, HttpServletRequest req) {
+		
+		
+		aDAO.loginCheck(req);
+		return "kmj/myPage";
+	}
 	
 }

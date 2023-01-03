@@ -16,7 +16,7 @@
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 
-<script type="text/javascript" src="resources/js/login.js"></script>
+<script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"
@@ -69,6 +69,8 @@ $(function() {
 		$('.hide_sidemenu').fadeIn();
 	});
 });
+
+
 </script>
 </head>
 <body>
@@ -133,9 +135,14 @@ $(function() {
 						<c:choose>
 				<c:when test="${loginCheck == 1 }">
 					<button class="login-btn">Sign In</button>
+					
 				</c:when>
 				<c:when test="${loginCheck == 0 }">
-					<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+					<form action="myPage.go" method="post">
+					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+					<input type="hidden" value="${loginAccount.a_id }">
+					<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
+					</form>
 				</c:when>
 			</c:choose>
 			<button onclick="location.href='productReg.go'">상품 등록</button>
@@ -148,24 +155,24 @@ $(function() {
 	</div>
 	<!-- 여기는 모달창 부분 -->
 	<div class="modal">
-		<div class="modal_content" title="클릭하면 창이 닫힙니다.">
+		<div class="modal_content">
 			<!-- <div class="remove-modal"><h2 class="modal-h2">[쇼핑몰이름]에 오신것을 환영합니다!<button class="remove-modal">x</button></h2></div>
 			 -->
 
 			<div class="container" id="container">
 				<div class="form-container sign-up-container">
 					<!-- 여기는 회원가입 페이지에용 -->
-					<form class="modal-form" action="account.reg.do" method="post">
+					<form class="modal-form" action="account.reg.do" method="post" name="joinForm" onsubmit="return joinCheck()">
 						<h1 class="modal-h1">Create Account</h1>
-						<span class="modal-span">회원 가입을 시작하겠습니다!</span> <input
-							class="modal-input" name="a_id" type="text" placeholder="UserID" />
-						<input class="modal-input" name="a_nickname" type="text"
-							placeholder="사용하실 닉네임" /> <input class="modal-input" name="a_pw"
-							type="password" placeholder="Password" /> <input
-							class="modal-input" name="a_addr" type="text" placeholder="주소" />
-						<input class="modal-input" name="a_email" type="email"
-							placeholder="이메일" /> <input class="modal-input" name="a_phone"
-							type="tel" placeholder="전화번호" />
+						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
+						<input id="a_id" class="modal-input" name="a_id" type="text" placeholder="UserID" />
+						<input id="a_nickname" class="modal-input" name="a_nickname" type="text" placeholder="사용하실 닉네임"/> 
+						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
+						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 
+						<span id="pw2_span" style=" font-size: 8pt; color: red;">비밀번호가 일치하지않음</span>
+						<input id="a_addr" class="modal-input" name="a_addr" type="text" placeholder="주소" />
+						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
+						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
 						<button class="modal-button">Sign Up</button>
 					</form>
 				</div>

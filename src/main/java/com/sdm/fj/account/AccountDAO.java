@@ -70,6 +70,7 @@ public class AccountDAO {
 	public void logout(HttpServletRequest req) {
 		req.getSession().invalidate();
 	}
+
 	
 	
 }
