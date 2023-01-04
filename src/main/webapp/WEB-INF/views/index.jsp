@@ -59,7 +59,7 @@ $(function() {
 });
 $(function() {
 	$("#regBtn").on('click', function() {
-		if (${loginCheck == 1 }) {
+		if (${loginCheck == 1}) {
 			alert('판매자로 로그인 하세요');
 		}
 	});
