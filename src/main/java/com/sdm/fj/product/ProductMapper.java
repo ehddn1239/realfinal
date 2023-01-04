@@ -12,4 +12,8 @@ public interface ProductMapper {
 
 	Product getProduct(Product p);
 
+	int deleteProduct(Product p);
+
 }
+
+

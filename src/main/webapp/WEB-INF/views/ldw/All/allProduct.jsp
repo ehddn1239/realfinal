@@ -16,7 +16,6 @@
 <div class="MenuBarTop">
 		<jsp:include page="../../sh/topMenu.jsp"></jsp:include>
 	</div>
-			<button onclick="location.href='/fj'">메인</button>
 	<div class="contentWrap">
 		<div class="content">
 			<c:forEach items="${products }" var="p">
@@ -30,6 +29,7 @@
 					<div class="itemspan2">
 						<span>${p.p_price}</span>
 					</div>
+				
 				</div>
 			</c:forEach>
 		</div>
