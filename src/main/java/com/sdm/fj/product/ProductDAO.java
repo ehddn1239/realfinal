@@ -58,7 +58,7 @@ public class ProductDAO {
 			p.setP_size(size);
 			p.setP_price(price);
 			p.setP_category(category);
-			p.setP_stock(stock);
+		
 			p.setP_img(img);
 			p.setP_color(color);
 			
@@ -76,10 +76,8 @@ public class ProductDAO {
 
 	public void goDetail(Product p, HttpServletRequest req) {
 		
-		
-		
-		
 		req.setAttribute("p",ss.getMapper(ProductMapper.class).getProduct(p));
+	
 	}
 
 

@@ -9,13 +9,10 @@
 	</select>
 	
 	<insert id="regProducts" parameterType="com.sdm.fj.product.Product">
-	insert into final_product values(final_product_seq.nextval, #{p_name},#{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, #{p_stock})
+	insert into final_product values(final_product_seq.nextval, #{p_name},#{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, #{p_date},#{p_description})
 	</insert>
 	
 	<select id="getProduct" resultType="com.sdm.fj.product.Product">
-	
 	select * from final_product where p_no = #{p_no}
-	
-	
 	</select>
 </mapper>

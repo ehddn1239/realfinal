@@ -1,5 +1,7 @@
 package com.sdm.fj.product;
 
+import java.util.Date;
+
 public class Product {
 	private int p_no;
 	private String p_name;
@@ -8,15 +10,11 @@ public class Product {
 	private int p_category;
 	private String p_size;
 	private String p_color;
-	private int p_stock;
+	private Date p_date;
+	private String p_description;
 	
-	public Product() {
-		// TODO Auto-generated constructor stub
-	}
-	
-
 	public Product(int p_no, String p_name, int p_price, String p_img, int p_category, String p_size, String p_color,
-			int p_stock) {
+			Date p_date, String p_description) {
 		super();
 		this.p_no = p_no;
 		this.p_name = p_name;
@@ -25,9 +23,13 @@ public class Product {
 		this.p_category = p_category;
 		this.p_size = p_size;
 		this.p_color = p_color;
-		this.p_stock = p_stock;
+		this.p_date = p_date;
+		this.p_description = p_description;
 	}
 
+	public Product() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getP_no() {
 		return p_no;
@@ -85,11 +87,23 @@ public class Product {
 		this.p_color = p_color;
 	}
 
-	public int getP_stock() {
-		return p_stock;
+	public Date getP_date() {
+		return p_date;
 	}
 
-	public void setP_stock(int p_stock) {
-		this.p_stock = p_stock;
+	public void setP_date(Date p_date) {
+		this.p_date = p_date;
 	}
+
+	public String getP_description() {
+		return p_description;
+	}
+
+	public void setP_description(String p_description) {
+		this.p_description = p_description;
+	}
+	
+	
+
+	
 }
