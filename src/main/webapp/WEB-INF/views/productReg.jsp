@@ -55,7 +55,7 @@
 				상품 색상<input name="p_color">
 			</div>
  			<div>
-				사이즈 <input type="checkbox" name="p_size" value="XXL">XXL
+				사이즈 
 					<input type="checkbox" name="p_size" value="XL">XL
 					<input type="checkbox" name="p_size" value="L">L
 					<input type="checkbox" name="p_size" value="M">M

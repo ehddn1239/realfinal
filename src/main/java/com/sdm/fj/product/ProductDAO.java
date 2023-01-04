@@ -24,6 +24,7 @@ public class ProductDAO {
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getAllProducts();
 		List<Product> products2 = new ArrayList<Product>();
+		
 		for (Product pp : products) {
 		String imges[] = pp.getP_img().split("!");
 		pp.setP_img(imges[0]);
@@ -38,10 +39,10 @@ public class ProductDAO {
 		List<Product> products = pm.getProductByCategory(p.getP_category());
 		List<Product> products2 = new ArrayList<Product>();
 		for (Product pp : products) {
-			System.out.println(pp.getP_name());
+			/*System.out.println(pp.getP_name());*/
 			String imgs[] = pp.getP_img().split("!");
 			pp.setP_img(imgs[0]);
-			System.out.println(pp.getP_img());
+			/*System.out.println(pp.getP_img());*/
 			products2.add(pp);
 			}
 		req.setAttribute("products", products2);
@@ -57,10 +58,10 @@ public class ProductDAO {
 			UUID uuid = UUID.randomUUID();
 			String fileRealName = uuid+"_"+ list.get(i).getOriginalFilename();
 			long size = list.get(i).getSize();
-			System.out.println("파일명 :" + fileRealName);
-			System.out.println("사이즈" + size);
+			// System.out.println("파일명 :" + fileRealName);
+			// System.out.println("사이즈" + size);
 				
-			System.out.println(uuid.toString());
+			// System.out.println(uuid.toString());
 			String[] uuids = uuid.toString().split("-");
 			
 			File saveFile = new File(path + "\\" +fileRealName);
@@ -74,9 +75,9 @@ public class ProductDAO {
 				e.printStackTrace();
 			}
 			img += fileRealName + "!";
-			System.out.println(img);
+			// System.out.println(img);
 		}
-			System.out.println(path);
+			// System.out.println(path);
 			
 			/*String[] imgSplit = img.split("!");
 			ArrayList<String> imgs = new ArrayList<String>();
@@ -102,13 +103,13 @@ public class ProductDAO {
 			String color = req.getParameter("p_color");
 			String description = req.getParameter("p_description");
 			
-			System.out.println(req.getParameter("p_no"));
+		/*	System.out.println(req.getParameter("p_no"));
 			System.out.println(name);
 			System.out.println(sizes);
 			System.out.println(price);
 			System.out.println(category);
 			System.out.println(color);
-			System.out.println(description);
+			System.out.println(description);*/
 
 
 			p.setP_name(name);
@@ -156,22 +157,22 @@ public class ProductDAO {
 		Product pp = ss.getMapper(ProductMapper.class).getProduct(p);
 		
 		String[] imgSplit = pp.getP_img().split("!");
-		System.out.println(imgSplit);
+		// System.out.println(imgSplit);
 		
 		ArrayList<String> imgs = new ArrayList<String>();
 		for (String s : imgSplit) {
-			System.out.println(s);
+			// System.out.println(s);
 			imgs.add(s);
 		}
 		
 		p.setImgs(imgs);
-		System.out.println(imgs);
+		// System.out.println(imgs);
 	
 		String[] splitSizes = pp.getP_size().split("!");
 		
 		ArrayList<String> sizes = new ArrayList<String>();
 		for (String s : splitSizes) {
-			System.out.println(s);	
+			// System.out.println(s);	
 		}
 		req.setAttribute("imgs", imgs);
 		req.setAttribute("sizes", sizes);

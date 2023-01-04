@@ -38,7 +38,7 @@ public class ProductController {
 	public String goByCategory(HttpServletRequest req, Product p) {
 		
 		int p_category = Integer.parseInt(req.getParameter("p_category"));
-		System.out.println(p_category);
+		// System.out.println(p_category);
 		switch (p_category) {
 		case 1:
 			pDAO.getProductByCategory(req, p);
@@ -62,7 +62,6 @@ public class ProductController {
 			pDAO.getProductByCategory(req, p);
 			return "ldw/top/dress";
 		case 9:
-			System.out.println("=========================>");
 			pDAO.getProductByCategory(req, p);
 			return "sh/bottom/pants";
 		case 10:
