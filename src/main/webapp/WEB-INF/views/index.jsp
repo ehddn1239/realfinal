@@ -25,7 +25,7 @@
 </script>
 <script type="text/javascript">
 $(function() {
-	
+	/* 로그인화면 패널 움직이는 효과 처리 */
 	const signUpButton = document.getElementById('signUp');
 	const signInButton = document.getElementById('signIn');
 	const container = document.getElementById('container');
@@ -53,8 +53,8 @@ $(function() {
  			console.log(11)
  		}
 	});
-})
-$(function() {
+	
+	/* 사이드 메뉴 처리 */
 	$(".left_sub_menu").hide();
 	$(".has_sub").click(function() {
 		$(".left_sub_menu").fadeToggle(300);
@@ -68,8 +68,39 @@ $(function() {
 		$('.left_sub_menu').fadeOut();
 		$('.hide_sidemenu').fadeIn();
 	});
+	// 비밀번호 확인 비동기처리~
+	$("#a_pw2").keyup(function() {
+		if($("#a_pw2").val() == $("#a_pw").val()){
+			$("#pw2_span").text('비밀번호가 일치함').css("color", "green").css("font-weight","bold");
+		}else{
+			$("#pw2_span").text("비밀번호가 일치하지않음").css("color","red").css("font-weight","bold");
+		}
+	});
+	
+	/* 아이디 중복체크 */
+	$(function() {
+		$(".checkId").click(function() {
+			let a_id = $("#a_id").val();
+			$.ajax({
+				type:'GET',
+				url:'checkAccountId.go',
+				data: {
+					"a_id" : a_id
+				},
+				success: function(data) {
+					console.log(data);
+					if(data == "N"){
+						alert('불가능한 아이디입니다');
+					}else{
+						alert('굿');
+					}
+				}
+				
+			});
+		});
+	})
+	
 });
-
 
 </script>
 </head>
@@ -166,16 +197,18 @@ $(function() {
 						<h1 class="modal-h1">Create Account</h1>
 						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
 						<input id="a_id" class="modal-input" name="a_id" type="text" placeholder="UserID" />
-						<input id="a_nickname" class="modal-input" name="a_nickname" type="text" placeholder="사용하실 닉네임"/> 
+						<button type="button" class="checkId">중복검사</button>
+						<input id="a_nickname" class="modal-input" name="a_nickname" type="text" placeholder="사용하실 닉네임"/>
 						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
 						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 
 						<span id="pw2_span" style=" font-size: 8pt; color: red;">비밀번호가 일치하지않음</span>
 						<input id="a_addr" class="modal-input" name="a_addr" type="text" placeholder="주소" />
 						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
 						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
-						<button class="modal-button">Sign Up</button>
+						<button type="button" class="modal-button">Sign Up</button>
 					</form>
 				</div>
+				<!-- 로그인 폼 -->
 				<div class="form-container sign-in-container">
 					<form class="modal-form" action="account.login.do" method="post"  onsubmit="return loginCheck()"
 						name="loginForm">
@@ -191,7 +224,7 @@ $(function() {
 						<span>or use your account</span> 
 						<input class="modal-input" name="a_id" type="text" placeholder="UserID" />
 						<input class="modal-input" name="a_pw" type="password" placeholder="Password" />
-						<span id="span" style="visibility: hidden; margin-right: auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
+						<span id="span" style="visibility: hidden; margin-right:auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
 						<!-- 비밀번호찾기 기능 -->
 						<a class="modal-a" href="#">Forgot your password?</a>
 						<button class="modal-button" >Sign In</button>

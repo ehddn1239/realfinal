@@ -12,7 +12,6 @@ function loginCheck() {
 		idInput.focus();
 		return false;
 	}
-
 	return true;
 }
 
@@ -64,20 +63,3 @@ function joinCheck() {
 }
 
 
-$(function() {
-	
-	// 비밀번호 확인 비동기처리~
-	$("#a_pw2").keyup(function() {
-		if($("#a_pw2").val() == $("#a_pw").val()){
-			$("#pw2_span").text('비밀번호가 일치함').css("color", "green");
-		}else{
-			$("#pw2_span").text("비밀번호가 일치하지않음");
-		}
-	});
-	
-	
-	
-	
-	
-	
-})

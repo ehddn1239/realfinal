@@ -1,6 +1,10 @@
 package com.sdm.fj.account;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +42,12 @@ public class AccountDAO {
 		
 	}
 
-	public void login(Account a, HttpServletRequest req) {
+	public void login(Account a, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String id = req.getParameter("a_id");
 		String pw = req.getParameter("a_pw");
 		Account aa = ss.getMapper(AccountMapper.class).login(a);
+		res.setContentType("text/html; utf-8");
+		PrintWriter out = res.getWriter();
 		
 		if (aa != null) {
 			if (aa.getA_pw().equals(pw)) {
@@ -49,11 +55,22 @@ public class AccountDAO {
 				req.getSession().setMaxInactiveInterval(60 * 10);
 				System.out.println("로그인  성공");
 			} else {
+				out.println("<script language ='javascript'>");
+				out.println("alert('비밀번호가 틀렸습니다');");
+				out.println("location.href='gohome.go';");
+				out.println("</script>");
+				out.flush();
+				
 				System.out.println("로그인 실패(비밀번호 오류)");
 				req.setAttribute("result", "로그인 실패(PW오류)");
 			}
 		} else {
 			req.setAttribute("result", "로그인 실패(미가입ID)");
+			out.println("<script language ='javascript'>");
+			out.println("alert('아이디가 틀렸습니다');");
+			out.println("location.href='gohome.go';");
+			out.println("</script>");
+			out.flush();
 			System.out.println("로그인 실패(아이디 오류)");
 		}
 	}
@@ -69,6 +86,19 @@ public class AccountDAO {
 	}
 	public void logout(HttpServletRequest req) {
 		req.getSession().invalidate();
+	}
+
+	public String checkID(Account a, HttpServletRequest req) {
+		
+		String aaa = a.getA_id();
+		System.out.println("aaa는? "+aaa);
+		int aa = ss.getMapper(AccountMapper.class).checkId(a);
+		
+		if(aa == 0) {
+			return "N";
+		}
+		return "Y";
+		
 	}
 
 	

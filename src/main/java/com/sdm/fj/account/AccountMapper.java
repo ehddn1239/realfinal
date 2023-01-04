@@ -6,5 +6,7 @@ public interface AccountMapper {
 
 	Account login(Account a);
 
+	int checkId(Account a);
+
 
 }
