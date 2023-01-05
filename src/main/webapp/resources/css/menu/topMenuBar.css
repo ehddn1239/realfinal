@@ -5,6 +5,8 @@
 	position: relative;
 }
 
+
+
 .MenuDiv {
 	/* display: inline-block; */
 	/* border : 1px solid green; */
@@ -18,7 +20,12 @@
 	color: black;
 }
 
-.mainMenu1, .mainMenu2, .mainMenu3, .mainMenu4 {
+.mainMenu0 > a{
+	text-decoration: none;
+	color: black;
+}
+
+.mainMenu0, .mainMenu1, .mainMenu2, .mainMenu3, .mainMenu4 {
 	/* border: 1px dotted black; */
 	width: 70px;
 	font-weight: 500;

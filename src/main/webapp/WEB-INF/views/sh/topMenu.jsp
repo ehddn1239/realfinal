@@ -14,7 +14,7 @@
 		<div class="MenuDiv">
 		
 		<div class="Menu">
-				<div class="mainMenu0"><span>All</span></div>
+				<div class="mainMenu0"><a href="allProduct.go">All</a></div>
 				
 			</div>
 
