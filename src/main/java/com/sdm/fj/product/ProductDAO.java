@@ -35,6 +35,7 @@ public class ProductDAO {
 				
 	}
 	
+	
 	public void getProductByCategory(HttpServletRequest req, Product p) {
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getProductByCategory(p.getP_category());
