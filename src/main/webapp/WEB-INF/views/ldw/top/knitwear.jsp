@@ -13,9 +13,7 @@
 <div class="header">
 		<jsp:include page="../../sh/header.jsp"></jsp:include>
 	</div>
-<div class="MenuBarTop">
-		<jsp:include page="../../sh/topMenu.jsp"></jsp:include>
-	</div>
+
 <div class="contentWrap">
 	<div class="content">
 	<c:forEach items="${products }" var="k">

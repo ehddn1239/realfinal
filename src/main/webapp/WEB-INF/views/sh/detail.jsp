@@ -65,6 +65,7 @@
  <div class="scrolltop"><a id="back-to-top"><span>🡅</span></a></div>
   <div class="scrollbottom"><a id="back-to-bottom"><span>🡇</span></a> </div>
 </div>
+
 	<div id="detailWrapper">
 		<div id="detailWrap">
 			<div id="orderDiv">
@@ -89,7 +90,7 @@
 							<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
 								name="color">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
-								<option>화이트</option>
+								<option value="${p.p_color }">${p.p_color }</option>
 							</select>
 						</div>
 						<div class="sizeSelect">
@@ -97,7 +98,7 @@
 							<span>사이즈 </span><select class="selectbox" name="size">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<c:forEach items="${sizes}" var="i">
-									<option>${i }</option>
+									<option value="{i}">${i }</option>
 								</c:forEach>
 							</select>
 
