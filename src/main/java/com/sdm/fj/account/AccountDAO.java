@@ -2,15 +2,15 @@ package com.sdm.fj.account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.mail.Email;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -89,6 +89,8 @@ public class AccountDAO {
 		req.setAttribute("loginCheck", 1);
 		return false;
 	}
+	
+	
 	public void logout(HttpServletRequest req) {
 		req.getSession().invalidate();
 	}
@@ -112,8 +114,11 @@ public class AccountDAO {
 		Account ck = ss.getMapper(AccountMapper.class).findPW(a);
 		PrintWriter out = response.getWriter();
 		// 가입된 아이디와 이메일이 일치하는게 없다면 
-		if(ck.getA_id().isEmpty()) {
-			out.print("등록되지 않은 아이디 혹은 이메일 입니다.");
+		if(ck == null) {
+			out.println("<script language ='javascript'>");
+			out.println("alert('등록되지 않은 아이디 혹은 이메일 입니다.');");
+			out.println("location.href='findpw.go';");
+			out.println("</script>");
 			out.close();
 		}else {
 			// 임시 비밀번호 생성
@@ -126,10 +131,15 @@ public class AccountDAO {
 			if(ss.getMapper(AccountMapper.class).changePW(a)>0) {
 				// 비밀번호 변경 메일 발송
 				sendEmail(a, "findpw");
-				out.print("이메일로 임시 비밀번호를 발송하였습니다.");
+				out.println("<script language ='javascript'>");
+				out.println("alert('이메일로 임시 비밀번호를 발송하였습니다.');");
+				out.println("location.href='gohome.go';");
+				out.println("</script>");
 				out.close();
 			}else {
-				out.print("이메일로 임시 비밀번호를 발송을 실패 하였습니다.");
+				out.println("<script language ='javascript'>");
+				out.println("alert('이메일로 임시 비밀번호를 발송을 실패 하였습니다.');");
+				out.println("location.href='findpw.go';");
 				out.close();
 			}
 			
@@ -181,6 +191,29 @@ public class AccountDAO {
 		}
 	}
 
-	
+	public void changeInfo(Account a, HttpServletRequest req) {
+		
+		String pw = req.getParameter("pw");
+		String addr = req.getParameter("addr");
+		String nickname = req.getParameter("nickname");
+		
+		Map<String, String> value = new HashMap<String, String>();
+		
+		value.put("n_pw", pw);
+		value.put("n_addr", addr);
+		value.put("n_nickname", nickname);
+		value.put("n_nowID", a.getA_id());
+		
+		
+		if(ss.getMapper(AccountMapper.class).changeInfo(value) == 1) {
+			System.out.println("정보 수정 완료!");
+			Account info = ss.getMapper(AccountMapper.class).showAllInfo(value);
+			req.getSession().setAttribute("loginAccount", info);
+			req.getSession().setMaxInactiveInterval(60 * 10);
+		}else {
+			System.out.println("수정 실패!");
+		}
+	}
+
 	
 }

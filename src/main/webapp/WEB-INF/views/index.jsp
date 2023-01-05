@@ -68,6 +68,8 @@ $(function() {
 	$(".over").on('click', function() {
 		$('.left_sub_menu').fadeOut();
 		$('.hide_sidemenu').fadeIn();
+	});
+		
 });
 $(function() {
 	$("#regBtn").on('click', function() {

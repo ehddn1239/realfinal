@@ -58,6 +58,12 @@ public class AccountController {
 		return aDAO.checkID(a, req);
 	}
 	
+	
+	
+	/*
+	 * 비밀번호찾기 파트
+	 * 
+	 * */
 	@RequestMapping(value = "/findpw.go", method = RequestMethod.GET)
 	public String findPwGo(Account a, HttpServletResponse response, HttpServletRequest req) throws Exception{
 		
@@ -70,6 +76,27 @@ public class AccountController {
 		aDAO.findPw(response, a);
 		
 		return "kmj/findPW";
+	}
+	
+	/*
+	 * 정보수정 파트
+	 * 
+	 */
+	@RequestMapping(value = "/changeInfo.go", method = RequestMethod.GET)
+	public String changeInfoGo(Account a,HttpServletRequest req){
+		
+		aDAO.loginCheck(req);
+		return "kmj/changeInfo";
+	}
+	
+	@RequestMapping(value = "/changeInfo.do", method = RequestMethod.POST)
+	public String changeInfoDo(Account a,HttpServletRequest req){
+		
+		// 정보 바꿔주는 일
+		//	보여주는일도 같이합니다~
+		aDAO.changeInfo(a,req);
+		
+		return "kmj/myPage";
 	}
 	
 	

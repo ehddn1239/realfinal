@@ -1,5 +1,7 @@
 package com.sdm.fj.account;
 
+import java.util.Map;
+
 public interface AccountMapper {
 
 	int register(Account a);
@@ -11,6 +13,10 @@ public interface AccountMapper {
 	Account findPW(Account a);
 
 	int changePW(Account a);
+
+	int changeInfo(Map<String, String> value);
+
+	Account showAllInfo(Map<String, String> value);
 
 
 }

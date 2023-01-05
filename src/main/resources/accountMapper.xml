@@ -19,6 +19,15 @@
 	<update id="changePW" parameterType="com.sdm.fj.account.Account">
 		update final_account set a_pw = #{a_pw} where a_id = #{a_id}
 	</update>
+	<update id="changeInfo" parameterType="map">
+		update final_account
+		set a_pw = #{ n_pw }, a_addr = #{n_addr}, a_nickname = #{n_nickname}
+		where a_id = #{n_nowID}  
+	</update>
+	
+	<select id="showAllInfo" parameterType="map" resultType="com.sdm.fj.account.Account">
+		select * from final_account where a_id = #{n_nowID}
+	</select>
 	
 	
 </mapper>

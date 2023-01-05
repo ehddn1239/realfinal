@@ -45,7 +45,7 @@ $(function() {
 			<div class="my-info">
 				<h3>${loginAccount.a_nickname }님환영합니다!</h3>
 				<h4>당신의 회원 등급은 '${loginAccount.a_rank }'입니다!</h4>
-				<button>정보 수정</button>
+				<button onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
 			</div>
 			<div class="my-info2">
 				<h4>배송 주소 : ${loginAccount.a_addr }</h4>
