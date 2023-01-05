@@ -21,16 +21,16 @@
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${p.p_img}" onclick="location.href='detail.go?p_no=${p.p_no}'">
-			${p.p_img}
 					</div>
 					<div class="itemspan1">
 						<span>${p.p_name}</span>
 					</div>
 					<div class="itemspan2">
-						<span>${p.p_price}</span>
+						<fmt:formatNumber value="${p.p_price }" type="currency"
+							currencySymbol="\\" />
 					</div>
 					<fmt:formatDate var="resultRegDt" value="${p.p_date}" pattern="yyyy-MM-dd"/>
-	<span>${resultRegDt}</span>
+					<span>${resultRegDt}</span>
 				</div>
 			</c:forEach>
 		</div>

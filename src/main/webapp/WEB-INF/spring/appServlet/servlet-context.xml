@@ -36,9 +36,9 @@
 			value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
 
-		 value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" />
+		value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/ldw/Wallet_DB202204301707"/> 
+	<!-- 	 value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" /> -->
 
-		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/ldw/Wallet_DB202204301707"/> -->
 			
 
 
@@ -60,7 +60,6 @@
 			value="com.sdm.fj" />
 		<beans:property name="mapperLocations">
 			<beans:list>
-				<!-- 새로운 mapper만들기 -->
 				<beans:value>classpath:accountMapper.xml</beans:value>
 				<beans:value>classpath:productMapper.xml</beans:value>
 
