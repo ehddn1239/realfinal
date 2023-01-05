@@ -24,9 +24,6 @@
 	<div class="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
-	<div class="MenuBarTop">
-		<jsp:include page="topMenu.jsp"></jsp:include>
-	</div>
 
 
 	<div id="detailWrapper">
@@ -52,7 +49,7 @@
 							<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
 								name="color">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
-								<option>화이트</option>
+								<option value="${p.p_color }">${p.p_color }</option>
 							</select>
 						</div>
 						<div class="sizeSelect">
@@ -60,7 +57,7 @@
 							<span>사이즈 </span><select class="selectbox" name="size">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<c:forEach items="${sizes}" var="i">
-									<option>${i }</option>
+									<option value="{i}">${i }</option>
 								</c:forEach>
 							</select>
 
@@ -98,6 +95,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
 	<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
