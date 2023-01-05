@@ -82,17 +82,16 @@ $(function() {
 		$(".checkId").click(function() {
 			let a_id = $("#a_id").val();
 			$.ajax({
-				type:'GET',
-				url:'checkAccountId.go',
+				url:'checkId.go',
 				data: {
 					"a_id" : a_id
 				},
 				success: function(data) {
 					console.log(data);
 					if(data == "N"){
-						alert('불가능한 아이디입니다');
-					}else{
 						alert('굿');
+					}else{
+						alert('불가능한 아이디입니다');
 					}
 				}
 				
@@ -205,7 +204,7 @@ $(function() {
 						<input id="a_addr" class="modal-input" name="a_addr" type="text" placeholder="주소" />
 						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
 						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
-						<button type="button" class="modal-button">Sign Up</button>
+						<button class="modal-button">Sign Up</button>
 					</form>
 				</div>
 				<!-- 로그인 폼 -->
@@ -226,7 +225,7 @@ $(function() {
 						<input class="modal-input" name="a_pw" type="password" placeholder="Password" />
 						<span id="span" style="visibility: hidden; margin-right:auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
 						<!-- 비밀번호찾기 기능 -->
-						<a class="modal-a" href="#">Forgot your password?</a>
+						<a class="modal-a" href="findpw.go">Forgot your password?</a>
 						<button class="modal-button" >Sign In</button>
 					</form>
 				</div>

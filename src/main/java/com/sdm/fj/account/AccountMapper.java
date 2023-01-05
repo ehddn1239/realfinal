@@ -8,5 +8,9 @@ public interface AccountMapper {
 
 	int checkId(Account a);
 
+	Account findPW(Account a);
+
+	int changePW(Account a);
+
 
 }

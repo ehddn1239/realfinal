@@ -37,6 +37,7 @@ function joinCheck() {
 			return false;
 		}else if(lessThan(pwInput, 5)){
 			alert("5글자 이상 입력하세요")
+			return false;
 		}
 		alert("암호를 입력하지 않앗음")
 		return false;
