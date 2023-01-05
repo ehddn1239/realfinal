@@ -24,7 +24,13 @@
 	 align-content: stretch; */
 	
 }
-
+.itemspan1{
+	float: left;
+	
+}
+.itemspan2{
+	float: left;
+}
 .item {
 	flex-direction: column;
 	border: 1px solid black;
