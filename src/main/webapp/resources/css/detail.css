@@ -3,6 +3,7 @@
 #orderDiv {
 	display: flex;
 	text-align: center;
+	position:relative;
 }
 
 #detailWrapper {
@@ -16,23 +17,25 @@
 	/* position:absolute;
 	top:30%;
 	left:50%; */
-	width:300px;
+	width:45vw;
 	text-align: center;
 	margin-left: 50px;
-	
+	 display: table;
+
 }
 
-#detailBtns{
+.detailBtns{
 	position:absolute;
-	top:70%;
+	bottom:0;
 	
 }
 
 #orderOptionDiv{
 	
 	border: 1px solid red;
-	position:absolute;
-	top:50%;
+	
+	 position:absolute;
+	bottom:30%; 
 }
 
 #orderDiv {
@@ -51,6 +54,11 @@
 	font-weight: 600;
 	float: left;
 	padding: 20px 0;
+}
+
+.detailPrice{
+	position:absolute;
+	top:20%;
 }
 
 #detailImgs {
@@ -82,3 +90,25 @@
 #qnaDiv {
 	border: 1px solid blue;
 }
+
+.selectbox{
+	width:40vw;
+	height:6vh;
+	margin-bottom:30px;
+	background-color:#ececec;
+	border:none;
+	
+}
+
+.colorSelect > span{
+	font-size:11pt;
+	margin:0 20px;
+	
+}
+
+.sizeSelect > span{
+	font-size:11pt;
+	margin:0 20px;
+	
+}
+

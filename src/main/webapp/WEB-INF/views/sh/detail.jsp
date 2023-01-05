@@ -25,6 +25,7 @@
 		<jsp:include page="topMenu.jsp"></jsp:include>
 	</div>
 
+
 	<div id="detailWrapper">
 		<div id="detailWrap">
 			<div id="orderDiv">
@@ -40,21 +41,23 @@
 
 					<div class="detailTitle">
 						<span>${p.p_name }</span>
-						<div>정상가 ${p.p_price }</div>
 					</div>
+					<div class="detailPrice">정상가 ${p.p_price }</div>
 
 					<div id="orderOptionDiv">
 						<div class="colorSelect">
-							컬러 <select name="color">
-								<option>검정</option>
+							<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
+								name="color">
+								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<option>화이트</option>
 							</select>
 						</div>
 						<div class="sizeSelect">
-							사이즈 <select name="color">
+							<span>사이즈 </span><select class="selectbox" name="size">
+								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<c:forEach items="${sizes}" var="i">
-							<option>${i}</option>
-						</c:forEach>
+									<option>${i }</option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>
@@ -65,7 +68,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="productDescription">상품설명 좌르륵~~~~~</div>
+			<div class="productDescription">${p.p_description }</div>
 			<div id="detailImgs">
 				<div class="productImg">
 					<c:forEach items="${imgs }" var="i">
@@ -86,6 +89,7 @@
 		</div>
 	</div>
 	<button>삭제</button>
+	<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
 </body>
 
 
