@@ -29,6 +29,8 @@
 	<div class="itemspan2">
 	<span>${c.p_price}</span>
 	</div>
+	<fmt:formatDate var="resultRegDt" value="${c.p_date}" pattern="yyyy-MM-dd"/>
+	<span>${resultRegDt}</span>
 	</div>
 	</c:forEach>
 	</div>

@@ -22,20 +22,18 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
 	crossorigin="anonymous">
+	
 </script>
+
 <script type="text/javascript">
 $(function() {
 	/* 로그인화면 패널 움직이는 효과 처리 */
 	const signUpButton = document.getElementById('signUp');
 	const signInButton = document.getElementById('signIn');
 	const container = document.getElementById('container');
-	const span = document.getElementById('span');
-
 	signUpButton.addEventListener('click', () => {
 	  container.classList.add("right-panel-active");
-	  span.style.visibility = "hidden";
 	});
-
 	signInButton.addEventListener('click', () => {
 	  container.classList.remove("right-panel-active");
 	});
@@ -47,10 +45,13 @@ $(function() {
 		$('.hide_sidemenu').fadeIn();
 	});
 	
+/* 	$(".remove-modal").click(function() {
+	 	
+ 	}); */
  	$(".modal").click(function(e) {
  		if($(e.target).parents('.container').length < 1){
  			$(".modal").fadeOut();
- 			console.log(11)
+ 			
  		}
 	});
 	
@@ -67,6 +68,12 @@ $(function() {
 	$(".over").on('click', function() {
 		$('.left_sub_menu').fadeOut();
 		$('.hide_sidemenu').fadeIn();
+});
+$(function() {
+	$("#regBtn").on('click', function() {
+		if (${loginCheck == 1}) {
+			alert('판매자로 로그인 하세요');
+		}
 	});
 	// 비밀번호 확인 비동기처리~
 	$("#a_pw2").keyup(function() {
@@ -100,7 +107,6 @@ $(function() {
 	})
 	
 });
-
 </script>
 </head>
 <body>
@@ -161,7 +167,6 @@ $(function() {
 							<li onclick="location.href='showByCategory?p_category=15'">신발</li>
 						</ul>
 					</ul>
-
 						<c:choose>
 				<c:when test="${loginCheck == 1 }">
 					<button class="login-btn">Sign In</button>
@@ -175,20 +180,20 @@ $(function() {
 					</form>
 				</c:when>
 			</c:choose>
-			<button onclick="location.href='productReg.go'">상품 등록</button>
+			<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
 				</div>
-
+				
 			</div>
 		</div>
-
-		<div class="over"></div>
-	</div>
-	<!-- 여기는 모달창 부분 -->
+		
+		  <div class="over"></div>
+		</div>
+		<!-- 여기는 모달창 부분 -->
 	<div class="modal">
 		<div class="modal_content">
 			<!-- <div class="remove-modal"><h2 class="modal-h2">[쇼핑몰이름]에 오신것을 환영합니다!<button class="remove-modal">x</button></h2></div>
 			 -->
-
+			
 			<div class="container" id="container">
 				<div class="form-container sign-up-container">
 					<!-- 여기는 회원가입 페이지에용 -->
@@ -209,16 +214,13 @@ $(function() {
 				</div>
 				<!-- 로그인 폼 -->
 				<div class="form-container sign-in-container">
-					<form class="modal-form" action="account.login.do" method="post"  onsubmit="return loginCheck()"
-						name="loginForm">
+					<form class="modal-form" action="account.login.do" method="post">
 						<h1 class="modal-h1">Sign in</h1>
 						<div class="social-container">
 							<!-- 여기는 카카오 간편 로그인 기능 -->
-							<a class="modal-a" href="#" class="social"><i
-								class="fab fa-facebook-f"></i></a> <a class="modal-a" href="#"
-								class="social"><i class="fab fa-google-plus-g"></i></a> <a
-								class="modal-a" href="#" class="social"><i
-								class="fab fa-linkedin-in"></i></a>
+							<a class="modal-a" href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+							<a class="modal-a" href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+							<a class="modal-a" href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 						</div>
 						<span>or use your account</span> 
 						<input class="modal-input" name="a_id" type="text" placeholder="UserID" />
@@ -227,6 +229,7 @@ $(function() {
 						<!-- 비밀번호찾기 기능 -->
 						<a class="modal-a" href="findpw.go">Forgot your password?</a>
 						<button class="modal-button" >Sign In</button>
+
 					</form>
 				</div>
 				<div class="overlay-container">
@@ -246,6 +249,6 @@ $(function() {
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
 </body>
 </html>

@@ -35,10 +35,13 @@
 		<beans:property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-			 value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Users/moon/Desktop/Study/Wallet_DB202204301707" />
-			<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/ldw/Wallet_DB202204301707" /> -->
-		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" /> 
-    -->
+
+
+		value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Users/moon/Desktop/Study/Wallet_DB202204301707"/>
+			
+
+		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" /> -->
+
 		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Users/moon/Desktop/Study/Wallet_DB202204301707" 
 			/> -->
 		<beans:property name="username" value="SHMAC" />
@@ -59,8 +62,8 @@
 			<beans:list>
 				<!-- 새로운 mapper만들기 -->
 				<beans:value>classpath:accountMapper.xml</beans:value>
-
 				<beans:value>classpath:productMapper.xml</beans:value>
+
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -70,6 +73,10 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
-	
-
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      
+      <beans:property name="maxUploadSize" value="10485760" />
+      <beans:property name="defaultEncoding" value="utf-8" />
+   
+   </beans:bean>
 </beans:beans>
