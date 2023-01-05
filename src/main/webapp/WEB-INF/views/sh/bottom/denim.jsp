@@ -24,6 +24,7 @@
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${d.p_img}"
 							onclick="location.href='detail.go?p_no=${d.p_no}'">
+
 					</div>
 					<div class="itemspan1">
 						<span>${d.p_name}</span>
