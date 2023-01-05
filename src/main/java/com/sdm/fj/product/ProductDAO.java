@@ -34,6 +34,7 @@ public class ProductDAO {
 				
 	}
 	
+	
 	public void getProductByCategory(HttpServletRequest req, Product p) {
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getProductByCategory(p.getP_category());
@@ -64,7 +65,7 @@ public class ProductDAO {
 			// System.out.println(uuid.toString());
 			String[] uuids = uuid.toString().split("-");
 			
-			File saveFile = new File(path + "\\" +fileRealName);
+			File saveFile = new File(path + "/" +fileRealName);
 			try {
 				list.get(i).transferTo(saveFile);
 			} catch (IllegalStateException e) {
@@ -172,6 +173,7 @@ public class ProductDAO {
 		
 		ArrayList<String> sizes = new ArrayList<String>();
 		for (String s : splitSizes) {
+			sizes.add(s);
 			// System.out.println(s);	
 		}
 		req.setAttribute("imgs", imgs);

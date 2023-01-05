@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript">
 	function deleteProduct(n, c) {
 		let a = confirm('삭제하시겠습니까?')
@@ -51,21 +54,25 @@
 							</select>
 						</div>
 						<div class="sizeSelect">
-							사이즈 <select name="color">
-								<c:forEach items="${sizes}" var="i">
-							<option>${i}</option>
-						</c:forEach>
+							사이즈<select>
+								<c:forEach items="${sizes}" var="s">
+									<option>${s}</option>
+								</c:forEach>
 							</select>
+
 						</div>
 					</div>
 					<div class="detailBtns">
-						<button>바로 구매</button>
-						<button>쇼핑백 담기</button>
-						<button>찜하기</button>
+						<div>
+						<button id="buyBtn">바로 구매</button></div>
+						<div><button id="containBagBtn">쇼핑백 담기</button></div>
+						<div><button id="wantBtn">
+							<span class="material-symbols-outlined"> favorite </span>
+						</button></div>
 					</div>
 				</div>
 			</div>
-			<div class="productDescription">상품설명 좌르륵~~~~~</div>
+			<div class="productDescription">${p.p_description}</div>
 			<div id="detailImgs">
 				<div class="productImg">
 					<c:forEach items="${imgs }" var="i">
@@ -85,7 +92,7 @@
 			</div>
 		</div>
 	</div>
-	<button>삭제</button>
+	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
 </body>
 
 

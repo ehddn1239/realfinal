@@ -21,7 +21,7 @@
 	<c:forEach items="${products }" var="d">
 	<div class="item">
 	<div class="itemImgDiv">
-	<img class="productImg" src="resources/imgs/${d.p_img}">
+	<img class="productImg" src="resources/imgs/${d.p_img}" onclick="location.href='detail.go?p_no=${d.p_no}'">
 	</div>
 	<div class="itemspan1">
 	<span>${d.p_name}</span>
@@ -29,6 +29,8 @@
 	<div class="itemspan2">
 	<span>${d.p_price}</span>
 	</div>
+	<fmt:formatDate var="resultRegDt" value="${p.p_date}" pattern="yyyy-MM-dd"/>
+	<span>${resultRegDt}</span>
 	</div>
 	</c:forEach>
 	</div>
