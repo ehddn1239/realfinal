@@ -196,6 +196,7 @@ public class AccountDAO {
 		String pw = req.getParameter("pw");
 		String addr = req.getParameter("addr");
 		String nickname = req.getParameter("nickname");
+		String phone = req.getParameter("phone");
 		
 		Map<String, String> value = new HashMap<String, String>();
 		
@@ -203,6 +204,7 @@ public class AccountDAO {
 		value.put("n_addr", addr);
 		value.put("n_nickname", nickname);
 		value.put("n_nowID", a.getA_id());
+		value.put("n_phone", phone);
 		
 		
 		if(ss.getMapper(AccountMapper.class).changeInfo(value) == 1) {
@@ -213,6 +215,11 @@ public class AccountDAO {
 		}else {
 			System.out.println("수정 실패!");
 		}
+	}
+
+	public void changeToSeller(Account a) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -64,3 +64,39 @@ function joinCheck() {
 }
 
 
+function changeInfoCheck(){
+	var pwInput = document.getElementById("pw");
+	var pwInput2 = document.getElementById("pw2");
+	var nameInput = document.getElementById("nick");
+	var addrInput = document.getElementById("addr");
+	var phoneInput = document.getElementById("phone");
+	
+	if(isEmpty(pwInput) || notEquals(pwInput, pwInput2) || lessThan(pwInput, 5)){
+		if(notEquals(pwInput, pwInput2)){
+			alert("비밀번호랑 비밀번호 확인이랑 일치하지 않음");
+			pwInput2.value="";
+			pwInput2.focus();
+			return false;
+		}else if(lessThan(pwInput, 5)){
+			alert("5글자 이상 입력하세요")
+			return false;
+		}
+		alert("암호를 입력하지 않앗음")
+		return false;
+	}else if (isEmpty(nameInput)) {
+		alert("닉네임 입력해주십시요");
+		nameInput.value = "";
+		nameInput.focus();
+		return false;
+	} else if (isEmpty(addrInput)) {
+		alert("주소를 입력해주세요");
+		addrInput.value = "";
+		addrInput.focus();
+		return false;
+	}else if (isEmpty(phoneInput)) {
+		alert("전화번호 입력해주세요");
+		return false;
+	}
+	return true;
+}
+

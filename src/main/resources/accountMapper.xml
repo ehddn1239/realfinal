@@ -21,7 +21,7 @@
 	</update>
 	<update id="changeInfo" parameterType="map">
 		update final_account
-		set a_pw = #{ n_pw }, a_addr = #{n_addr}, a_nickname = #{n_nickname}
+		set a_pw = #{ n_pw }, a_addr = #{n_addr}, a_nickname = #{n_nickname}, a_phone = #{n_phone}
 		where a_id = #{n_nowID}  
 	</update>
 	

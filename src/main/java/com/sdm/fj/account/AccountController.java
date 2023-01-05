@@ -58,8 +58,6 @@ public class AccountController {
 		return aDAO.checkID(a, req);
 	}
 	
-	
-	
 	/*
 	 * 비밀번호찾기 파트
 	 * 
@@ -98,6 +96,24 @@ public class AccountController {
 		
 		return "kmj/myPage";
 	}
+	
+	/*
+	 * 		판매자로 요청하는 파트
+	 * 
+	 */
+	@RequestMapping(value = "/reg.seller.do", method = RequestMethod.GET)
+	public String wantSeller(Account a,HttpServletRequest req){
+		
+		// 판매자로 바꿔주는 역할
+		aDAO.changeToSeller(a);
+		
+		
+		return "kmj/myPage";
+	}
+	
+	
+	
+	
 	
 	
 }

@@ -22,7 +22,6 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
 	crossorigin="anonymous">
-	
 </script>
 
 <script type="text/javascript">
@@ -98,7 +97,7 @@ $(function() {
 				success: function(data) {
 					console.log(data);
 					if(data == "N"){
-						alert('굿');
+						alert('사용할 수 있는 아이디');
 					}else{
 						alert('불가능한 아이디입니다');
 					}
@@ -178,8 +177,13 @@ $(function() {
 					<form action="myPage.go" method="post">
 					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
 					<input type="hidden" value="${loginAccount.a_id }">
-					<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
+					<c:if test="${loginAccount.a_usertype }">
+						<button onclick="location.href = 'adminPage.go'" class="myPage-btn">관리자 페이지</button>
+					</c:if>
+						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
 					</form>
+					
+					
 				</c:when>
 			</c:choose>
 			<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
