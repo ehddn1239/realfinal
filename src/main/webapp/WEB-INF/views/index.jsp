@@ -16,14 +16,17 @@
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 
+<script type="text/javascript" src="resources/js/check.js"></script>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-	crossorigin="anonymous">	
+	crossorigin="anonymous">
 </script>
 
 <script type="text/javascript">
 $(function() {
-	
+	/* 로그인화면 패널 움직이는 효과 처리 */
 	const signUpButton = document.getElementById('signUp');
 	const signInButton = document.getElementById('signIn');
 	const container = document.getElementById('container');
@@ -50,11 +53,22 @@ $(function() {
  			
  		}
 	});
- 	/* $(".whole-wrap-div").click(function(e) {
- 		if($(e.target).parents('.left_sub_menu').length < 1){
- 			$(".left_sub_menu").fadeOut();
- 		}
-	}); */
+	
+	/* 사이드 메뉴 처리 */
+	$(".left_sub_menu").hide();
+	$(".has_sub").click(function() {
+		$(".left_sub_menu").fadeToggle(300);
+	});
+	$(".sub_menu ul.small_menu").hide();
+	$(".sub_menu ul.big_menu").click(function() {
+		$("ul", this).slideToggle(300);
+	});
+		
+	$(".over").on('click', function() {
+		$('.left_sub_menu').fadeOut();
+		$('.hide_sidemenu').fadeIn();
+	});
+		
 });
 $(function() {
 	$("#regBtn").on('click', function() {
@@ -62,22 +76,38 @@ $(function() {
 			alert('판매자로 로그인 하세요');
 		}
 	});
-});
+	// 비밀번호 확인 비동기처리~
+	$("#a_pw2").keyup(function() {
+		if($("#a_pw2").val() == $("#a_pw").val()){
+			$("#pw2_span").text('비밀번호가 일치함').css("color", "green").css("font-weight","bold");
+		}else{
+			$("#pw2_span").text("비밀번호가 일치하지않음").css("color","red").css("font-weight","bold");
+		}
+	});
+	
+	/* 아이디 중복체크 */
 	$(function() {
-		$(".left_sub_menu").hide();
-		$(".has_sub").click(function() {
-			$(".left_sub_menu").fadeToggle(300);
-		});
-		$(".sub_menu ul.small_menu").hide();
-		$(".sub_menu ul.big_menu").click(function() {
-			$("ul", this).slideToggle(300);
-		});
-		
-		$(".over").on('click', function() {
-			$('.left_sub_menu').fadeOut();
-			$('.hide_sidemenu').fadeIn();
+		$(".checkId").click(function() {
+			let a_id = $("#a_id").val();
+			$.ajax({
+				url:'checkId.go',
+				data: {
+					"a_id" : a_id
+				},
+				success: function(data) {
+					console.log(data);
+					if(data == "N"){
+						alert('사용할 수 있는 아이디');
+					}else{
+						alert('불가능한 아이디입니다');
+					}
+				}
+				
+			});
 		});
 	});
+	
+});
 </script>
 </head>
 <body>
@@ -141,9 +171,19 @@ $(function() {
 						<c:choose>
 				<c:when test="${loginCheck == 1 }">
 					<button class="login-btn">Sign In</button>
+					
 				</c:when>
 				<c:when test="${loginCheck == 0 }">
-					<button class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+					<form action="myPage.go" method="post">
+					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+					<input type="hidden" value="${loginAccount.a_id }">
+					<c:if test="${loginAccount.a_userType == 3 }">
+						<button onclick="location.href = 'adminPage.go'" class="myPage-btn">관리자 페이지</button>
+					</c:if>
+						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
+					</form>
+					
+					
 				</c:when>
 			</c:choose>
 			<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
@@ -156,25 +196,29 @@ $(function() {
 		</div>
 		<!-- 여기는 모달창 부분 -->
 	<div class="modal">
-		<div class="modal_content" title="클릭하면 창이 닫힙니다.">
+		<div class="modal_content">
 			<!-- <div class="remove-modal"><h2 class="modal-h2">[쇼핑몰이름]에 오신것을 환영합니다!<button class="remove-modal">x</button></h2></div>
 			 -->
 			
 			<div class="container" id="container">
 				<div class="form-container sign-up-container">
 					<!-- 여기는 회원가입 페이지에용 -->
-					<form class="modal-form"action="account.reg.do" method="post">
+					<form class="modal-form" action="account.reg.do" method="post" name="joinForm" onsubmit="return joinCheck()">
 						<h1 class="modal-h1">Create Account</h1>
 						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
-						<input class="modal-input" name="a_id" type="text"placeholder="UserID" /> 
-						<input class="modal-input" name="a_nickname" type="text" placeholder="사용하실 닉네임" /> 
-						<input class="modal-input" name="a_pw" type="password" placeholder="Password" /> 
-						<input class="modal-input" name="a_addr" type="text" placeholder="주소" /> 
-						<input class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
-						<input class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
+						<input id="a_id" class="modal-input" name="a_id" type="text" placeholder="UserID" />
+						<button type="button" class="checkId">중복검사</button>
+						<input id="a_nickname" class="modal-input" name="a_nickname" type="text" placeholder="사용하실 닉네임"/>
+						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
+						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 
+						<span id="pw2_span" style=" font-size: 8pt; color: red;">비밀번호가 일치하지않음</span>
+						<input id="a_addr" class="modal-input" name="a_addr" type="text" placeholder="주소" />
+						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
+						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
 						<button class="modal-button">Sign Up</button>
 					</form>
 				</div>
+				<!-- 로그인 폼 -->
 				<div class="form-container sign-in-container">
 					<form class="modal-form" action="account.login.do" method="post">
 						<h1 class="modal-h1">Sign in</h1>
@@ -187,9 +231,11 @@ $(function() {
 						<span>or use your account</span> 
 						<input class="modal-input" name="a_id" type="text" placeholder="UserID" />
 						<input class="modal-input" name="a_pw" type="password" placeholder="Password" />
+						<span id="span" style="visibility: hidden; margin-right:auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
 						<!-- 비밀번호찾기 기능 -->
-						<a class="modal-a" href="#">Forgot your password?</a>
-						<button class="modal-button">Sign In</button>
+						<a class="modal-a" href="findpw.go">Forgot your password?</a>
+						<button class="modal-button" >Sign In</button>
+
 					</form>
 				</div>
 				<div class="overlay-container">

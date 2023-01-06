@@ -3,12 +3,31 @@
 <mapper namespace="com.sdm.fj.account.AccountMapper">
 
 	<insert id="register" parameterType="com.sdm.fj.account.Account">
-		insert into final_account values(#{a_id}, #{a_nickname}, #{a_pw}, #{a_addr}, #{a_email}, #{a_phone},'브론즈',0, 1)
+		insert into final_account values(#{a_id}, #{a_nickname}, #{a_pw}, #{a_addr}, #{a_email}, #{a_phone},'브론즈', 0, 1, null)
 	</insert>
 	
 	<select id="login" resultType="com.sdm.fj.account.Account" parameterType="com.sdm.fj.account.Account">
 		select * from final_account where a_id = #{a_id}
 	</select>
 
-
+	<select id="checkId" parameterType="com.sdm.fj.account.Account" resultType="int">
+		select count(*) from final_account where a_id = #{a_id}
+	</select>
+	<select id="findPW" parameterType="com.sdm.fj.account.Account" resultType="com.sdm.fj.account.Account">
+		select * from final_account where a_id = #{a_id} and a_email = #{a_email}
+	</select>
+	<update id="changePW" parameterType="com.sdm.fj.account.Account">
+		update final_account set a_pw = #{a_pw} where a_id = #{a_id}
+	</update>
+	<update id="changeInfo" parameterType="map">
+		update final_account
+		set a_pw = #{ n_pw }, a_addr = #{n_addr}, a_nickname = #{n_nickname}, a_phone = #{n_phone}
+		where a_id = #{n_nowID}  
+	</update>
+	
+	<select id="showAllInfo" parameterType="map" resultType="com.sdm.fj.account.Account">
+		select * from final_account where a_id = #{n_nowID}
+	</select>
+	
+	
 </mapper>
