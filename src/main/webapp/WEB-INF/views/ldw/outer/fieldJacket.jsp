@@ -13,22 +13,23 @@
 <div class="header">
 		<jsp:include page="../../sh/header.jsp"></jsp:include>
 	</div>
-<div class="MenuBarTop">
-		<jsp:include page="../../sh/topMenu.jsp"></jsp:include>
-	</div>
+
 <div class="contentWrap">
 	<div class="content">
 	<c:forEach items="${products }" var="j">
 	<div class="item">
 	<div class="itemImgDiv">
-	<img class="productImg" src="resources/imgs/${j.p_img}">
+	<img class="productImg" src="resources/imgs/${j.p_img}" onclick="location.href='detail.go?p_no=${j.p_no}'">
 	</div>
 	<div class="itemspan1">
 	<span>${j.p_name}</span>
 	</div>
 	<div class="itemspan2">
-	<span>${j.p_price}</span>
+	<fmt:formatNumber value="${j.p_price }" type="currency"
+							currencySymbol="\\" />
 	</div>
+	<fmt:formatDate var="resultRegDt" value="${p.p_date}" pattern="yyyy-MM-dd"/>
+	<span>${resultRegDt}</span>
 	</div>
 	</c:forEach>
 	</div>

@@ -160,5 +160,24 @@ public class ProductController {
 		
 	}
 	
+	@RequestMapping(value = "product.update.go")
+	public String updateProductGo(Product p, HttpServletRequest req) {
+		pDAO.goDetail(p, req);
+		pDAO.getDetail(p, req);
+		
+//		pDAO.updateProduct(p,req);
+		
+		return "productUpdate";
+	}
+	
+	@RequestMapping(value = "product.update.do",method = RequestMethod.POST)
+	public String updateProductDo(Product p, HttpServletRequest req, MultipartHttpServletRequest file) {
+	 pDAO.updateProduct(p,req, file);
+	 pDAO.goDetail(p, req);
+		
+		return "sh/detail";
+	}
+	
+	
 	
 }

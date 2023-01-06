@@ -1,6 +1,7 @@
 package com.sdm.fj.product;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 
 public class Product {
@@ -15,6 +16,7 @@ public class Product {
 	private String p_description;
 	private ArrayList<String> imgs;
 	private ArrayList<String> sizes;
+
 	public int getP_no() {
 		return p_no;
 	}
