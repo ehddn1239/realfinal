@@ -28,8 +28,6 @@
 	<fmt:formatNumber value="${t.p_price }" type="currency"
 							currencySymbol="\\" />
 	</div>
-	<fmt:formatDate var="resultRegDt" value="${p.p_date}" pattern="yyyy-MM-dd"/>
-	<span>${resultRegDt}</span>
 	</div>
 	</c:forEach>
 	</div>
