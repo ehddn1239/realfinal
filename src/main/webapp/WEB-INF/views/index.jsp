@@ -177,7 +177,7 @@ $(function() {
 					<form action="myPage.go" method="post">
 					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
 					<input type="hidden" value="${loginAccount.a_id }">
-					<c:if test="${loginAccount.a_usertype }">
+					<c:if test="${loginAccount.a_userType == 3 }">
 						<button onclick="location.href = 'adminPage.go'" class="myPage-btn">관리자 페이지</button>
 					</c:if>
 						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
