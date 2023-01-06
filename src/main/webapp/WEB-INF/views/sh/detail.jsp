@@ -24,6 +24,7 @@
 		}
 	}
 	// scroll
+
 	$(function() {
 		$('#back-to-top').on('click',function(e){
 		      e.preventDefault();
@@ -57,9 +58,6 @@
 <body>
 	<div class="header">
 		<jsp:include page="header.jsp"></jsp:include>
-	</div>
-	<div class="MenuBarTop">
-		<jsp:include page="topMenu.jsp"></jsp:include>
 	</div>
 <div id="scrollBar">
  <div class="scrolltop"><a id="back-to-top"><span>🡅</span></a></div>

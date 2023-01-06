@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+.regRealContainer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	width: 100%;
+}
+
+#regtitle {
+	position: absolute;
+	left: 44%;
+	font-size: 25pt;
+	font-weight: 600;
+	top: -60px;
+}
+
+#regContainer {
+	width: 700px;
+	border: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 6px;
+	margin-top: 63px;
+}
+
+#regImg {
+	margin-top: 5px;
+	position: relative;
+	height: 200px;
+}
+
+#regImg>input {
+	position: absolute;
+	left: 250px;
+}
+
+#regCategory {
+	position: relative;
+	height: 50px;
+}
+
+.regSelect {
+	position: absolute;
+	left: 250px;
+	height: 20px;
+	width: 250px;
+	height: 30px;
+	font-size: 12pt;
+}
+
+.regProductName {
+	position: relative;
+	height: 50px;
+}
+
+.regProductName>input {
+	position: absolute;
+	left: 250px;
+	width: 250px;
+}
+
+.regProductColor {
+	position: relative;
+	height: 50px;
+}
+
+.regProductColor>input {
+	position: absolute;
+	left: 250px;
+	width: 250px;
+}
+
+.regSize {
+	position: relative;
+	height: 50px;
+}
+
+.regSizeCheckbox {
+	position: absolute;
+	left: 250px;
+	top: 0;
+}
+
+.regProductPrice {
+	position: relative;
+	height: 50px;
+}
+
+.regProductPrice>input {
+	position: absolute;
+	left: 250px;
+	width: 250px;
+}
+
+.regProductInfo {
+	position: relative;
+	height: 100px;
+}
+
+.regProductInfo>textarea {
+	position: absolute;
+	left: 250px;
+	width: 300px;
+	height: 80px;
+	font-size: 12pt;
+}
+
+.regBtn {
+	position: relative;
+	height: 50px;
+	text-align: center;
+	margin-top: 30px;
+}
+
+input {
+	font-size: 12pt;
+}
+
+span {
+	margin-right: 200px;
+}
+
+h1 {
+	text-align: center;
+}
+
+#productSpan {
+	position: absolute;
+	top: 0;
+}
+
+button {
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+	border-radius: 30px;
+	padding: 10px;
+	letter-spacing: 1px;
+	font-weight: 600;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:hover {
+	background-color: black;
+	color: white;
+}
+
+#imgforLabel {
+	display: none;
+}
+
+.imgLabel {
+	border: 1px solid gray;
+	background-color: #ececec;
+	border-radius: 4px;
+	color: black;
+	font-weight: 800;
+	cursor: pointer;
+	padding: 5px;
+}
+
+#images_container>img {
+	margin-top: 15px;
+	width: 120px;
+	height: 150px;
+	margin-left: 3px;
+}

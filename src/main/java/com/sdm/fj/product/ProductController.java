@@ -58,18 +58,12 @@ public class ProductController {
 		case 6:
 			pDAO.getProductByCategory(req, p);
 			return "ldw/top/tShirt";
-		case 7:
-			pDAO.getProductByCategory(req, p);
-			return "ldw/top/dress";
 		case 9:
 			pDAO.getProductByCategory(req, p);
 			return "sh/bottom/pants";
 		case 10:
 			pDAO.getProductByCategory(req, p);
 			return "sh/bottom/denim";
-		case 11:
-			pDAO.getProductByCategory(req, p);
-			return "sh/bottom/skirt";
 		case 12:
 			pDAO.getProductByCategory(req, p);
 			return "sh/bottom/shorts";
@@ -128,18 +122,12 @@ public class ProductController {
 		case 6:
 			pDAO.getProductByCategory(req, p);
 			return "ldw/top/tShirt";
-		case 7:
-			pDAO.getProductByCategory(req, p);
-			return "ldw/top/dress";
 		case 9:
 			pDAO.getProductByCategory(req, p);
 			return "sh/bottom/pants";
 		case 10:
 			pDAO.getProductByCategory(req, p);
 			return "sh/bottom/denim";
-		case 11:
-			pDAO.getProductByCategory(req, p);
-			return "sh/bottom/skirt";
 		case 12:
 			pDAO.getProductByCategory(req, p);
 			return "sh/bottom/shorts";

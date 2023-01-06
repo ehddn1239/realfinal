@@ -25,11 +25,8 @@
 	<span>${s.p_name}</span>
 	</div>
 	<div class="itemspan2">
-	<fmt:formatNumber value="${s.p_price }" type="currency"
-							currencySymbol="\\" />
+	<fmt:formatNumber value="${s.p_price }" type="currency"	currencySymbol="\\" />
 	</div>
-	<fmt:formatDate var="resultRegDt" value="${p.p_date}" pattern="yyyy-MM-dd"/>
-	<span>${resultRegDt}</span>
 	</div>
 	</c:forEach>
 	</div>
