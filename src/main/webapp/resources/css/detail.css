@@ -43,11 +43,11 @@
 	font-family: "ProximaNova-Semibold", "Noto Sans KR";
 	font-size: 20px;
 }
+#wantBtn{
+	margin-left:10px;
+	width: 130px;
+	border-color:black;
 
-#wantBtn {
-	margin-left: 10px;
-	width: 200px;
-	border-color: black;
 	height: 70px;
 	font-family: "ProximaNova-Semibold", "Noto Sans KR";
 	font-size: 20px;
@@ -66,7 +66,6 @@
 }
 
 #orderOptionDiv {
-	border: 1px solid red;
 	position: absolute;
 	bottom: 30%;
 }
@@ -95,10 +94,15 @@
 #detailImgs {
 	border: 1px solid red;
 	padding: 10px;
+	display: flex; 
+	justify-content:center;
 }
 
 .productImg>img {
-	width: 500px;
+	width: 50vw;
+	display: flex; 
+	justify-content:center;
+	margin-bottom: 30px;
 }
 
 #details {
@@ -112,6 +116,8 @@
 
 #mainImg>img {
 	width: 38vw;
+	height: 100vh;
+
 }
 
 #reviewDiv {
@@ -130,14 +136,53 @@
 	border: none;
 }
 
-.colorSelect>span {
-	font-size: 11pt;
-	margin: 0 20px;
+.colorSelect > span{
+	font-size:11pt;
+	
 }
 
-.sizeSelect>span {
-	font-size: 11pt;
-	margin: 0 20px;
+.sizeSelect > span{
+	font-size:11pt;
+
+}
+#scrollBar{
+	position:fixed;
+	right:8px;
+	bottom: 3%;
+	width: 30px;
+	text-align: center;
+/* 	display:block; */
+}
+
+.scrolltop{
+	border:1px solid black;
+	border-radius: 50px;
+	background-color: black;
+	opacity: 30%;
+}
+.scrolltop:hover{
+	opacity: inherit;
+}
+.scrollbottom:hover{
+	opacity: inherit;
+}
+
+.scrollbottom{
+	border:1px solid black;
+	border-radius: 50px;
+	background-color: black;
+	opacity: 30%;
+	margin-top: 5px;
+	}
+
+#back-to-top > span{
+	font-size:15pt;
+	color: white;
+}
+
+#back-to-bottom > span{
+	font-size:15pt;
+	color: white;
 }
 
 #detailImgs {

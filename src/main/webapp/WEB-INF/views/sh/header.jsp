@@ -11,14 +11,14 @@
 <div id="headerContainer">
 <div id="headerWrapper">
 <div id="headerLeft">
-	<input name="">
+<a href="\fj"><span class="hTitleSpan">쇼핑몰 이름</span></a>
 </div>
 <div id="headerTitle">
-<a href="\fj"><span class="hTitleSpan">쇼핑몰 이름</span></a>
+검색<input>
 </div>
 
 <div id="headerRight"> 
-
+	로그인,마이페이지,장바구니
 </div>
 
 </div>
@@ -44,9 +44,8 @@
 				<div class="mainMenu2">Top</div>
 				<div class="subMenuDiv2">
 					<div class="subMenu"><a href="showByCategory?p_category=4">KnitWear</a></div>
-					<div class="subMenu"><a href="showByCategory?p_category=5">Shirt/Blouse</a></div>
+					<div class="subMenu"><a href="showByCategory?p_category=5">Shirt</a></div>
 					<div class="subMenu"><a href="showByCategory?p_category=6">Tee</a></div>
-					<div class="subMenu"><a href="showByCategory?p_category=7">Dress</a></div>
 				</div>
 
 			</div>
@@ -58,7 +57,6 @@
 				<div class="subMenuDiv3">
 					<div class="subMenu"><a href="showByCategory?p_category=9">Pants</a></div>
 					<div class="subMenu"><a href="showByCategory?p_category=10">Denim</a></div>
-					<div class="subMenu"><a href="showByCategory?p_category=11">Skirt</a></div>
 					<div class="subMenu"><a href="showByCategory?p_category=12">Shorts</a></div>
 				</div>
 			</div>
