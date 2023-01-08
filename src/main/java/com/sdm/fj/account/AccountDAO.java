@@ -3,6 +3,7 @@ package com.sdm.fj.account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,6 @@ public class AccountDAO {
 	@Autowired
 	private SqlSession ss;
 	
-
 
 	public void register(Account a, HttpServletRequest req) {
 		
@@ -145,7 +145,15 @@ public class AccountDAO {
 			
 		}
 	}
-	
+	//특정 아이디 조회할떄 쓸라고 만듬
+		public void getAccount(Account a, HttpServletRequest req) {
+			Account aa = ss.getMapper(AccountMapper.class).getAccount(a);
+			if(aa != null) {
+				req.setAttribute("loginAccount", aa);
+			}else {
+				System.out.println("조회할 아이디가 없음");
+			}
+		}
 	
 	private void sendEmail(Account a, String div) {
 		// Mail Server 설정
@@ -216,11 +224,45 @@ public class AccountDAO {
 			System.out.println("수정 실패!");
 		}
 	}
+	
 
 	public void changeToSeller(Account a) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void showClient(HttpServletRequest req) {
+		List<Account> accounts = ss.getMapper(AccountMapper.class).getAllClient();
+		req.setAttribute("showAllClients", accounts);
+		
+	}
+
+	public void sendReq(Account a, RequestSeller r, HttpServletRequest req) {
+		
+		int rr = ss.getMapper(RequestMapper.class).regRequest(r);
+		
+		if(rr==1) {
+			System.out.println("판매자 권한 요청 성공");
+			if(ss.getMapper(AccountMapper.class).updateRequest(a)==1) {
+				System.out.println("account테이블 status 1로 변경 완료");
+			}else {
+				System.out.println("account테이블 status 1로 변경 실패..ㅠㅠ");
+			}
+		}else {
+			System.out.println("판매자 권한 요청 실패");
+		}
+		
+		
+	}
+
+	public void showRequest(HttpServletRequest req) {
+		List<RequestSeller> requests = ss.getMapper(RequestMapper.class).showAll();
+		req.setAttribute("requests", requests);
+		
+	}
+
+	
+	
 
 	
 }

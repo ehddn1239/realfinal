@@ -62,6 +62,7 @@
 				<!-- 새로운 mapper만들기 -->
 				<beans:value>classpath:accountMapper.xml</beans:value>
 				<beans:value>classpath:productMapper.xml</beans:value>
+				<beans:value>classpath:requestMapper.xml</beans:value>
 
 			</beans:list>
 		</beans:property>

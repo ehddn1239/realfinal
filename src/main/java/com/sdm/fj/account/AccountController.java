@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -98,15 +97,41 @@ public class AccountController {
 	}
 	
 	/*
-	 * 		판매자로 요청하는 파트
+	 * 		관리자 페이지로 이동
 	 * 
 	 */
-	@RequestMapping(value = "/reg.seller.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminPage.go", method = RequestMethod.GET)
 	public String wantSeller(Account a,HttpServletRequest req){
 		
-		// 판매자로 바꿔주는 역할
-		aDAO.changeToSeller(a);
+		//회원들 조회하는 일
+		aDAO.showClient(req);
 		
+		//신청서 조회하느 일
+		aDAO.showRequest(req);
+		
+		
+		return "kmj/adminPage";
+	}
+	
+	// 판매자 신청 양식 보여주는 곳
+	@RequestMapping(value = "/requestSeller.go", method = RequestMethod.GET)
+	public String reqSellerPage(Account a,HttpServletRequest req){
+		
+		//회원 정보 조회
+		aDAO.getAccount(a,req);
+		
+		return "kmj/requestSellerPage";
+	}
+	
+	// 판매자 양식 작성 후 요청 보내기
+	@RequestMapping(value = "/sendReq.do", method = RequestMethod.GET)
+	public String sendReq(Account a, RequestSeller r, HttpServletRequest req){
+		
+		//신청서 보내는 일(등록)
+		aDAO.sendReq(a,r,req);
+		
+		//회원 정보 보여주는 일
+		aDAO.getAccount(a,req);
 		
 		return "kmj/myPage";
 	}
