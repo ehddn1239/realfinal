@@ -146,9 +146,8 @@ $(function() {
 						<li>Top<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
 							<li onclick="location.href='showByCategory?p_category=4'">Kniet & Cardigan</li>
-							<li onclick="location.href='showByCategory?p_category=5'">Shirt & Blouse</li>
+							<li onclick="location.href='showByCategory?p_category=5'">Shirt</li>
 							<li onclick="location.href='showByCategory?p_category=6'">Tee</li>
-							<li onclick="location.href='showByCategory?p_category=7'">Onepiece</li>
 						</ul>
 					</ul>
 					<ul class="big_menu">
@@ -156,8 +155,7 @@ $(function() {
 						<ul class="small_menu">
 							<li onclick="location.href='showByCategory?p_category=9'">팬츠</li>
 							<li onclick="location.href='showByCategory?p_category=10'">청바지</li>
-							<li onclick="location.href='showByCategory?p_category=11'">치마</li>
-							<li onclick="location.href='showByCategory?p_category=12'">쇼츠</li>
+							<li onclick="location.href='showByCategory?p_category=12'">반바지</li>
 						</ul>
 					</ul>
 					<ul class="big_menu">
