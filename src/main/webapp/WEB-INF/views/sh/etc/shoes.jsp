@@ -13,9 +13,7 @@
 <div class="header">
 		<jsp:include page="../header.jsp"></jsp:include>
 	</div>
-<div class="MenuBarTop">
-		<jsp:include page="../topMenu.jsp"></jsp:include>
-	</div>
+
 <div class="contentWrap">
 		<h1>신발</h1>
 		<div class="content">
