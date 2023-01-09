@@ -174,29 +174,27 @@ $(function() {
 							<li onclick="location.href='showByCategory?p_category=15'">신발</li>
 						</ul>
 					</ul>
-					<c:choose>
-						<c:when test="${loginCheck == 1 }">
-							<button class="login-btn">Sign In</button>
 
-						</c:when>
-						<c:when test="${loginCheck == 0 }">
-							<form action="myPage.go" method="post">
-								<button type="button" class="logout-btn"
-									onclick="location.href='logout.do'">Logout</button>
-								<input type="hidden" value="${loginAccount.a_id }">
-								<c:if test="${loginAccount.a_userType == 3 }">
-									<button onclick="location.href = 'adminPage.go'"
-										class="myPage-btn">관리자 페이지</button>
-								</c:if>
-								<button class="myPage-btn">${loginAccount.a_nickname }님의
-									정보</button>
-							</form>
+						<c:choose>
+				<c:when test="${loginCheck == 1 }">
+					<button class="login-btn">Sign In</button>
+					
+				</c:when>
+				<c:when test="${loginCheck == 0 }">
+					<form action="myPage.go" method="post">
+					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+					<input type="hidden" value="${loginAccount.a_id }">
+					<c:if test="${loginAccount.a_userType == 3 }">
+						<button type="button" onclick="location.href ='adminPage.go'" class="myPage-btn">고객 관리</button>
+					</c:if>
+						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
+					</form>
+					
+					
+				</c:when>
+			</c:choose>
+			<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
 
-
-						</c:when>
-					</c:choose>
-					<button id="regBtn" onclick="location.href='productReg.go'">상품
-						등록</button>
 				</div>
 
 			</div>

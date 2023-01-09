@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdm.fj.account.RequestMapper">
+
+<insert id="regRequest" parameterType="com.sdm.fj.account.RequestSeller">
+	insert into final_requestseller values(final_reqeustSeller_seq.nextval, 
+	#{r_nickname}, #{r_marketname}, #{r_email}, #{r_rank}, #{r_description}, #{r_id}, sysdate )
+</insert>
+	<select id="showAll" resultType="com.sdm.fj.account.RequestSeller">
+		select * from final_requestseller order by r_date
+	</select>
+	
+	<delete id="deleteReq" parameterType="map">
+		delete from final_requestseller where r_id = #{id}
+	</delete>
+	
+</mapper>
