@@ -66,6 +66,14 @@ public class AccountController {
 		
 		return "kmj/findPW";
 	}
+	@RequestMapping(value = "/deleteInfo.do", method = RequestMethod.GET)
+	public String deleteDo(Account a, HttpServletResponse response, HttpServletRequest req) throws Exception{
+		
+		aDAO.deleteAccount(a);
+		aDAO.logout(req);
+		aDAO.loginCheck(req);
+		return "index";
+	}
 	
 	@RequestMapping(value = "/findpw.do", method = RequestMethod.POST)
 	public String findPwDo(Account a, HttpServletResponse response, HttpServletRequest req) throws Exception{
@@ -109,7 +117,6 @@ public class AccountController {
 		//신청서 조회하느 일
 		aDAO.showRequest(req);
 		
-		
 		return "kmj/adminPage";
 	}
 	
@@ -146,7 +153,6 @@ public class AccountController {
 		
 		//회원 정보 보여주는 일
 				aDAO.getAccount(a,req);
-		
 		return "kmj/adminPage";
 	}
 	

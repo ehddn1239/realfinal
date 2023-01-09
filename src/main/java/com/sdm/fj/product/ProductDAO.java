@@ -3,6 +3,7 @@ package com.sdm.fj.product;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.sdm.fj.account.Account;
+import com.sdm.fj.account.AccountMapper;
 
 @Service
 public class ProductDAO {
@@ -249,6 +253,31 @@ public class ProductDAO {
 			// TODO: handle exception
 		}
 
+	}
+
+	public void insertFavorite(Account a, Product p, HttpServletRequest req) {
+		
+		String p_no = req.getParameter("p_no");
+		String a_id = req.getParameter("a_id");
+		System.out.println("p_no = " + p_no);
+		System.out.println("a_id = " + a_id);
+		System.out.println("getA_favorite = " + a.getA_favorite());
+		String favors = "";
+		
+		if(a == null) {
+			favors = p_no;
+		}else {
+			favors = a.getA_favorite() + ", " + p_no;
+			
+		}
+		System.out.println("favors = "+favors);
+		HashMap<String, String> val = new HashMap<String, String>();
+		val.put("p_list", favors);
+		val.put("a_id", a_id);
+		
+		if(ss.getMapper(AccountMapper.class).updateFavorite(val) > 0) {
+			System.out.println("찜하기 등록");
+		}
 	}
 
 }
