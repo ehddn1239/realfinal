@@ -3,7 +3,7 @@
 <mapper namespace="com.sdm.fj.account.AccountMapper">
 
 	<insert id="register" parameterType="com.sdm.fj.account.Account">
-		insert into final_account values(#{a_id}, #{a_nickname}, #{a_pw}, #{a_addr}, #{a_email}, #{a_phone},'브론즈', 0, 1, null)
+		insert into final_account values(#{a_id}, #{a_nickname}, #{a_pw}, #{a_addr}, #{a_email}, #{a_phone},'브론즈', 0, 1, null, 0)
 	</insert>
 	
 	<select id="login" resultType="com.sdm.fj.account.Account" parameterType="com.sdm.fj.account.Account">
@@ -28,6 +28,21 @@
 	<select id="showAllInfo" parameterType="map" resultType="com.sdm.fj.account.Account">
 		select * from final_account where a_id = #{n_nowID}
 	</select>
-	
+	<select id="getAccount" parameterType="com.sdm.fj.account.Account" resultType="com.sdm.fj.account.Account">
+		select * from final_account where a_id =#{a_id}
+	</select>
+	<update id="updateRequest" parameterType="com.sdm.fj.account.Account">
+		update final_account
+		set a_reqstatus = 1
+		where a_id = #{a_id}
+	</update>
+	<select id="getAllClient" resultType="com.sdm.fj.account.Account">
+		select * from final_account order by a_rank
+	</select>	
+	<update id="updateReq" parameterType="map">
+		update final_account
+		set a_usertype = 2, a_reqstatus = 2, a_nickname = #{market}
+		where a_id = #{id}
+	</update>
 	
 </mapper>
