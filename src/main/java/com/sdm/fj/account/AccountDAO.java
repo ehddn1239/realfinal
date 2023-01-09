@@ -226,11 +226,6 @@ public class AccountDAO {
 	}
 	
 
-	public void changeToSeller(Account a) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void showClient(HttpServletRequest req) {
 		List<Account> accounts = ss.getMapper(AccountMapper.class).getAllClient();
 		req.setAttribute("showAllClients", accounts);
@@ -258,6 +253,30 @@ public class AccountDAO {
 	public void showRequest(HttpServletRequest req) {
 		List<RequestSeller> requests = ss.getMapper(RequestMapper.class).showAll();
 		req.setAttribute("requests", requests);
+	}
+
+	public void updateUserType(Account a, RequestSeller r, HttpServletRequest req) {
+		
+		String nickname = req.getParameter("r_nickname");
+		String marketname = req.getParameter("r_marketname");
+		String id = req.getParameter("r_id");
+		System.out.println("닉네임 : " + nickname + "marketname : " + marketname);
+		
+		HashMap<String, String> val = new HashMap<String, String>();
+		val.put("nick", nickname);
+		val.put("market", marketname);
+		val.put("id", id);
+		
+		if(ss.getMapper(AccountMapper.class).updateReq(val)>0) {
+			System.out.println("변경 완료");
+			if(ss.getMapper(RequestMapper.class).deleteReq(val)) {
+				System.out.println("신청서 삭제 완료");
+			}
+			
+		}else {
+			System.out.println("실패 ㅠㅠ");
+		}
+		
 		
 	}
 

@@ -12,6 +12,20 @@
 	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
+function checkReq(req, id) {
+	if(req == 0){
+		location.href="requestSeller.go?a_id="+ id;
+		return true;
+	}else if(req == 1){
+		alert('신청 진행 중 입니다.');
+		return false;
+	}else{
+		alert('이미 판매자 등록이 완료 되었습니다.')
+		return false;
+	}
+}
+</script>
+<script type="text/javascript">
 $(function() {
 	const indicator = document.querySelector('.nav-indicator');
 	const items = document.querySelectorAll('.nav-item');
@@ -43,7 +57,7 @@ $(function() {
 		<!-- 프로필 보여줄 리스트  -->
 		<div class="profile-div">
 			<div class="my-info">
-				<h3>${loginAccount.a_nickname }님환영합니다!</h3>
+				<h3>${loginAccount.a_nickname }님 환영합니다!</h3>
 				<h4>당신의 회원 등급은 '${loginAccount.a_rank }'입니다!</h4>
 				<button onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
 			</div>
@@ -57,7 +71,7 @@ $(function() {
 			<a href="#" class="nav-item is-active" active-color="orange">배송 조회</a> 
 			<a href="#" class="nav-item" active-color="green">찜한 목록</a> 
 			<a href="#" class="nav-item" active-color="red">장바구니</a> 
-			<a href="requestSeller.go?a_id=${loginAccount.a_id }" class="nav-item" active-color="blue">판매자 등록</a> 
+			<a onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" class="nav-item" active-color="blue">판매자 등록</a> 
 			<span class="nav-indicator"></span>
 		</nav>
 	</div>

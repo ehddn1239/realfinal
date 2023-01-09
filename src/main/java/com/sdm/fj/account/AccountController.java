@@ -136,6 +136,20 @@ public class AccountController {
 		return "kmj/myPage";
 	}
 	
+	// 관리자가 판매자로 변경하는거 수락
+	@RequestMapping(value = "/accept.do", method = RequestMethod.GET)
+	public String acceptChange(Account a, RequestSeller r, HttpServletRequest req){
+		
+		// 판매자로 바꾸기
+			//신청서 삭제도 같이
+		aDAO.updateUserType(a,r,req);
+		
+		//회원 정보 보여주는 일
+				aDAO.getAccount(a,req);
+		
+		return "kmj/adminPage";
+	}
+	
 	
 	
 	

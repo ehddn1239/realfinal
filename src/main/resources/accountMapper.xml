@@ -39,4 +39,10 @@
 	<select id="getAllClient" resultType="com.sdm.fj.account.Account">
 		select * from final_account order by a_rank
 	</select>	
+	<update id="updateReq" parameterType="map">
+		update final_account
+		set a_usertype = 2, a_reqstatus = 2, a_nickname = #{market}
+		where a_id = #{id}
+	</update>
+	
 </mapper>

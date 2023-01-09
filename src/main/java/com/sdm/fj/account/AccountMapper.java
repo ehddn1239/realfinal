@@ -1,5 +1,6 @@
 package com.sdm.fj.account;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,8 @@ public interface AccountMapper {
 	int updateRequest(Account a);
 
 	List<Account> getAllClient();
+
+	int updateReq(HashMap<String, String> val);
 
 
 }
