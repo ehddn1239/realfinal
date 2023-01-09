@@ -2,13 +2,13 @@
 
 #headerContainer {
 	border: 1px solid red;
-	height: 150px;
+	
 }
 
 #headerWrapper {
 	display: flex;
 	justify-content: space-between;
-	height: 5vh;
+/* 	height: 5vh; */
 }
 
 #headerTitle {
@@ -25,90 +25,137 @@
 	font-size: 20pt;
 }
 
-#topMenuWrapper {
-	flex-wrap: wrap;
-	position: relative;
-	margin-top: 50px;
+
+li{list-style:none}
+ul{padding-inline-start:0}
+a{text-decoration:none;font-size:14px}
+
+
+.menu {
+  
+  overflow: hidden;
+  margin: 30px auto;
 }
 
-.MenuDiv {
-	/* display: inline-block; */
-	/* border : 1px solid green; */
-	color: white;
-	background-color: black;
-	justify-content: space-around;
-	/* height: 100px; */
-	display: flex;
-	position: sticky;
-	top: 0;
-
-	align-items: center;
+.menu > li {
+  width: 20%; /*20*5=100%*/
+  float: left;
+  text-align: center;
+  line-height: 60px;
+  background-color: black;
+  letter-spacing:1px;
 }
 
-.subMenu>a {
-	text-decoration: none;
-	color: white;
+.menu a {
+  color: white;
 }
 
-.mainMenu0>a {
-	text-decoration: none;
-	color: white;
+.submenu > li {
+  line-height: 40px;
+  background-color:#dcdcdc;
+  color:black;
 }
 
-.mainMenu0, .mainMenu1, .mainMenu2, .mainMenu3, .mainMenu4 {
-	/* border: 1px dotted black; */
-	width: 70px;
-	font-weight: 500;
-	letter-spacing: 0.1em;
-	padding-bottom: 5px;
+.submenu {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+
 }
 
-.subMenuDiv1:hover {
-	display: block;
+.submenu > li a{
+	  color:black;
 }
 
-.mainMenu1:hover+.subMenuDiv1 {
-	display: block;
+
+.menu > li:hover {
+  /* background-color: ; */
+  transition-duration: 0.5s;
+  
 }
 
-.subMenuDiv2:hover {
-	display: block;
+.menu > li:hover .submenu {
+  height: 120px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 1s;
+  color:black;
+  
+  
 }
 
-.mainMenu2:hover+.subMenuDiv2 {
-	display: block;
+.headerSearch{
+	border:none;
+	border-bottom:2px solid black;
+	width:450px;
+	height:30px;
+	background-image: url("../imgs/search2.png");
+	background-size: 25px;
+	background-repeat: no-repeat;
+	background-position: right 0px;
+	font-size:11pt;
+}
+.headerSearch:focus{
+	outline:none;
 }
 
-.subMenuDiv3:hover {
-	display: block;
+#headerRight{
+	position:relative;
+	top:0px;
 }
 
-.mainMenu3:hover+.subMenuDiv3 {
-	display: block;
+
+.header_mypage{
+	background-image: url("https://static.wconcept.co.kr/web/images/icon/icon-user-dark.png");
+	background-size: 30px;
+	background-repeat: no-repeat;
+	background-position: top 0px;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	
 }
 
-.subMenuDiv4:hover {
-	display: block;
+.header_login{
+	background-image: url("https://static.wconcept.co.kr/web/images/icon/icon-sign-in-dark.png");
+	background-size: 30px;
+	background-repeat: no-repeat;
+	background-position: top 0px;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	
 }
 
-.mainMenu4:hover+.subMenuDiv4 {
-	display: block;
+.header_logout{
+	background-image: url("https://static.wconcept.co.kr/web/images/icon/icon-sign-out-dark.png");
+	background-size: 30px;
+	background-repeat: no-repeat;
+	background-position: top 0px;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	
 }
 
-.subMenuDiv1, .subMenuDiv2, .subMenuDiv3, .subMenuDiv4 {
-	display: none;
-	font-size: 10pt;
-	/* border: 1px solid orange; */
-	font-size: 10pt;
-	padding-left: 5px;
-	padding-top: 5px;
+.header_bag{
+	background-image: url("https://static.wconcept.co.kr/web/images/icon/icon-bag-dark.png");
+	background-size: 30px;
+	background-repeat: no-repeat;
+	background-position: top 0px;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	
+	
 }
 
-.Menu {
-	width: 50px;
+
+.use_info strong{
+display:block;
+text-align:center;
+color:black;
+	
 }
 
-.subMenu {
-	padding-bottom: 3px;
-	letter-spacing: 0.07em;
+.use_info li{
+	float:left;
+	margin-right:20px;
 }

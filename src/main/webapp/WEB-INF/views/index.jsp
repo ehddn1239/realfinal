@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +111,11 @@ $(function() {
 </script>
 </head>
 <body>
+	<iframe id="vimeo_player_82"
+		src="https://player.vimeo.com/video/733500685?autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;muted=1&amp;background=1"
+		frameborder="0" webkitallowfullscreen="" mozallowfullscreen=""
+		allowfullscreen="" allow="autoplay; fullscreen" data-ready="true"
+		style="width: 1070px; height: 601.875px;"></iframe>
 	<div id="whole-wrap-div">
 		<!-- 왼쪽 메뉴 -->
 		<div class="left side-menu">
@@ -137,15 +142,18 @@ $(function() {
 
 						<li>Outer<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<li onclick="location.href='showByCategory?p_category=1'">Padding & Jacekt</li>
+							<li onclick="location.href='showByCategory?p_category=1'">Padding
+								& Jacekt</li>
 							<li onclick="location.href='showByCategory?p_category=2'">Coat</li>
-							<li onclick="location.href='showByCategory?p_category=3'">Field Jacket</li>
+							<li onclick="location.href='showByCategory?p_category=3'">Field
+								Jacket</li>
 						</ul>
 					</ul>
 					<ul class="big_menu">
 						<li>Top<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<li onclick="location.href='showByCategory?p_category=4'">Kniet & Cardigan</li>
+							<li onclick="location.href='showByCategory?p_category=4'">Kniet
+								& Cardigan</li>
 							<li onclick="location.href='showByCategory?p_category=5'">Shirt</li>
 							<li onclick="location.href='showByCategory?p_category=6'">Tee</li>
 						</ul>
@@ -166,53 +174,63 @@ $(function() {
 							<li onclick="location.href='showByCategory?p_category=15'">신발</li>
 						</ul>
 					</ul>
-						<c:choose>
-				<c:when test="${loginCheck == 1 }">
-					<button class="login-btn">Sign In</button>
-					
-				</c:when>
-				<c:when test="${loginCheck == 0 }">
-					<form action="myPage.go" method="post">
-					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
-					<input type="hidden" value="${loginAccount.a_id }">
-					<c:if test="${loginAccount.a_userType == 3 }">
-						<button onclick="location.href = 'adminPage.go'" class="myPage-btn">관리자 페이지</button>
-					</c:if>
-						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
-					</form>
-					
-					
-				</c:when>
-			</c:choose>
-			<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
+					<c:choose>
+						<c:when test="${loginCheck == 1 }">
+							<button class="login-btn">Sign In</button>
+
+						</c:when>
+						<c:when test="${loginCheck == 0 }">
+							<form action="myPage.go" method="post">
+								<button type="button" class="logout-btn"
+									onclick="location.href='logout.do'">Logout</button>
+								<input type="hidden" value="${loginAccount.a_id }">
+								<c:if test="${loginAccount.a_userType == 3 }">
+									<button onclick="location.href = 'adminPage.go'"
+										class="myPage-btn">관리자 페이지</button>
+								</c:if>
+								<button class="myPage-btn">${loginAccount.a_nickname }님의
+									정보</button>
+							</form>
+
+
+						</c:when>
+					</c:choose>
+					<button id="regBtn" onclick="location.href='productReg.go'">상품
+						등록</button>
 				</div>
-				
+
 			</div>
 		</div>
-		
-		  <div class="over"></div>
-		</div>
-		<!-- 여기는 모달창 부분 -->
+
+		<div class="over"></div>
+	</div>
+	<!-- 여기는 모달창 부분 -->
 	<div class="modal">
 		<div class="modal_content">
 			<!-- <div class="remove-modal"><h2 class="modal-h2">[쇼핑몰이름]에 오신것을 환영합니다!<button class="remove-modal">x</button></h2></div>
 			 -->
-			
+
 			<div class="container" id="container">
 				<div class="form-container sign-up-container">
 					<!-- 여기는 회원가입 페이지에용 -->
-					<form class="modal-form" action="account.reg.do" method="post" name="joinForm" onsubmit="return joinCheck()">
+					<form class="modal-form" action="account.reg.do" method="post"
+						name="joinForm" onsubmit="return joinCheck()">
 						<h1 class="modal-h1">Create Account</h1>
-						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
-						<input id="a_id" class="modal-input" name="a_id" type="text" placeholder="UserID" />
+						<span class="modal-span">회원 가입을 시작하겠습니다!</span> <input id="a_id"
+							class="modal-input" name="a_id" type="text" placeholder="UserID" />
 						<button type="button" class="checkId">중복검사</button>
-						<input id="a_nickname" class="modal-input" name="a_nickname" type="text" placeholder="사용하실 닉네임"/>
-						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
-						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 
-						<span id="pw2_span" style=" font-size: 8pt; color: red;">비밀번호가 일치하지않음</span>
-						<input id="a_addr" class="modal-input" name="a_addr" type="text" placeholder="주소" />
-						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
-						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
+						<input id="a_nickname" class="modal-input" name="a_nickname"
+							type="text" placeholder="사용하실 닉네임" /> <input id="a_pw"
+							class="modal-input" name="a_pw" type="password"
+							placeholder="5자 이상, 대문자 포함" /> <input id="a_pw2"
+							class="modal-input" name="a_pw2" type="password"
+							placeholder="Password Confirm" /> <span id="pw2_span"
+							style="font-size: 8pt; color: red;">비밀번호가 일치하지않음</span> <input
+							id="a_addr" class="modal-input" name="a_addr" type="text"
+							placeholder="주소" /> <input id="a_email" class="modal-input"
+							name="a_email" type="email" placeholder="이메일" /> <input
+							id="a_phone" class="modal-input" name="a_phone" type="tel"
+							placeholder="전화번호" />
 						<button class="modal-button">Sign Up</button>
 					</form>
 				</div>
@@ -222,17 +240,21 @@ $(function() {
 						<h1 class="modal-h1">Sign in</h1>
 						<div class="social-container">
 							<!-- 여기는 카카오 간편 로그인 기능 -->
-							<a class="modal-a" href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-							<a class="modal-a" href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-							<a class="modal-a" href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+							<a class="modal-a" href="#" class="social"><i
+								class="fab fa-facebook-f"></i></a> <a class="modal-a" href="#"
+								class="social"><i class="fab fa-google-plus-g"></i></a> <a
+								class="modal-a" href="#" class="social"><i
+								class="fab fa-linkedin-in"></i></a>
 						</div>
-						<span>or use your account</span> 
-						<input class="modal-input" name="a_id" type="text" placeholder="UserID" />
-						<input class="modal-input" name="a_pw" type="password" placeholder="Password" />
-						<span id="span" style="visibility: hidden; margin-right:auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
+						<span>or use your account</span> <input class="modal-input"
+							name="a_id" type="text" placeholder="UserID" /> <input
+							class="modal-input" name="a_pw" type="password"
+							placeholder="Password" /> <span id="span"
+							style="visibility: hidden; margin-right: auto; font-size: 9pt;">입력하지
+							않은 항목이 있습니다</span>
 						<!-- 비밀번호찾기 기능 -->
 						<a class="modal-a" href="findpw.go">Forgot your password?</a>
-						<button class="modal-button" >Sign In</button>
+						<button class="modal-button">Sign In</button>
 
 					</form>
 				</div>
@@ -253,6 +275,6 @@ $(function() {
 				</div>
 			</div>
 		</div>
-		</div>
+	</div>
 </body>
 </html>
