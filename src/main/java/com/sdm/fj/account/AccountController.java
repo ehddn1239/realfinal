@@ -50,6 +50,13 @@ public class AccountController {
 		aDAO.loginCheck(req);
 		return "kmj/myPage";
 	}
+	@RequestMapping(value = "/deliveryTrackingGo", method = RequestMethod.GET)
+	public String deliveryTrackingGo(){
+		
+		
+		
+		return "ldw/deliveryTracking";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/checkId.go", method = RequestMethod.GET)
@@ -110,6 +117,7 @@ public class AccountController {
 		
 		return "kmj/myPage";
 	}
+	
 	
 	
 	
