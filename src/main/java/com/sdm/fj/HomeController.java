@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
 import com.sdm.fj.product.Product;
 
@@ -29,6 +28,8 @@ public class HomeController {
 		aDAO.loginCheck(req);
 		return "index";
 	}
+	
+	
 	
 	
 }

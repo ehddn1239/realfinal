@@ -1,11 +1,28 @@
 @charset "UTF-8";
-body{
-	background-image: url(../imgs/test.jpg);
+/*  body{
+	background-image: url("https://player.vimeo.com/video/733500685?autoplay=0&loop=0&title=0&byline=0&portrait=0&muted=1&background=1");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	/* background-position: center; */
+	background-position: center;
 }
+  */
+  
+  body {
+  padding: 0px;
+  margin: 0px;
+}
+.bg {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin: 0px auto;
+  position: relative;
+}
+video {
+  width: 100%;
+}
+
 #whole-wrap-div {
 	display: flex;
 	width: 100%;
