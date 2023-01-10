@@ -53,6 +53,17 @@
 			  });	
 	    });
 </script>
+<script type="text/javascript">
+function checkLogin(a_id, p_no) {
+	if(a_id == ''){
+		alert('로그인 후 이용해주세요');
+		return false;
+	}else{
+		location.href='favorite.do?p_no='+p_no + '&a_id=' + a_id;
+		return true;
+	}
+}
+</script>
 <link rel="stylesheet" href="resources/css/detail.css">
 </head>
 <body>
@@ -107,7 +118,7 @@
 						<button id="buyBtn">바로 구매</button></div>
 						<div><button id="containBagBtn">쇼핑백 담기</button></div>
 						<div><button id="wantBtn">
-							<span class="material-symbols-outlined"> favorite </span>
+							<span onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')" class="material-symbols-outlined"> favorite </span>
 						</button></div>
 					</div>
 				</div>
