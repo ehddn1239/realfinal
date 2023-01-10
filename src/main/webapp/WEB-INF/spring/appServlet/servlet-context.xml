@@ -34,7 +34,7 @@
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<beans:property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
-
+	
 		<beans:property name="url"
 			value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/ldw/Wallet_DB202204301707" />
 		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" 
@@ -45,6 +45,7 @@
 		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/ldw/Wallet_DB202204301707" 
 			/> -->
 
+		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707"  -->
 		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Users/moon/Desktop/Study/Wallet_DB202204301707" 
 			/> -->
 
