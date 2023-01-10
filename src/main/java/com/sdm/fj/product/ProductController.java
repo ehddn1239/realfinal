@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
 
 
@@ -95,8 +96,10 @@ public class ProductController {
 	public String goDetail(Product p, HttpServletRequest req) {
 		pDAO.goDetail(p,req);
 		pDAO.getDetail(p,req);
+		aDAO.loginCheck(req);
 		return "sh/detail";
 	}
+	
 	
 	@RequestMapping(value = "product.delete.do", method = RequestMethod.GET)
 	public String deleteProduct(Product p, HttpServletRequest req) {
@@ -165,6 +168,15 @@ public class ProductController {
 		
 		return "sh/detail";
 	}
+	
+	// favorite 등록
+	@RequestMapping(value = "/favorite.do", method = RequestMethod.GET)
+	public String favoriteInsert(Account a,Product p, HttpServletRequest req) {
+		pDAO.insertFavorite(a,p,req);
+		pDAO.getDetail(p,req);
+		return "sh/detail";
+	}
+	
 	
 	
 	

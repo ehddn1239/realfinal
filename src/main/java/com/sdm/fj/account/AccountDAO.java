@@ -280,6 +280,15 @@ public class AccountDAO {
 		
 	}
 
+	public void deleteAccount(Account a) {
+		if(ss.getMapper(AccountMapper.class).delete(a)==1) {
+			
+			System.out.println("계정 삭제 완료");
+		}else {
+			System.out.println("삭제 실패");
+		}
+	}
+
 	
 	
 
