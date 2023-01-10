@@ -91,6 +91,7 @@ function checkLogin(a_id, p_no) {
 					<div class="detailTitle">
 						<span>${p.p_name }</span>
 					</div>
+					<div class="productDescription">${p.p_description}</div>
 					<div class="detailPrice">정상가 <fmt:formatNumber value="${p.p_price }" type="currency"
 							currencySymbol="\\" /></div>
 
@@ -124,7 +125,7 @@ function checkLogin(a_id, p_no) {
 				</div>
 			</div>
 
-			<div class="productDescription">${p.p_description}</div>
+			
 
 			<div id="detailImgs">
 				<div class="productImg">
