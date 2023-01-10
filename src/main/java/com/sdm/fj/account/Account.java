@@ -10,15 +10,16 @@ public class Account {
 	private String a_rank;
 	private int a_cash;
 	private int a_userType;
-	private int a_favorite;
+	private String a_favorite;
 	private int a_reqStatus;
 	
 	public Account() {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Account(String a_id, String a_nickname, String a_pw, String a_addr, String a_email, String a_phone,
-			String a_rank, int a_cash, int a_userType, int a_favorite, int a_reqStatus) {
+			String a_rank, int a_cash, int a_userType, String a_favorite, int a_reqStatus) {
 		super();
 		this.a_id = a_id;
 		this.a_nickname = a_nickname;
@@ -33,6 +34,7 @@ public class Account {
 		this.a_reqStatus = a_reqStatus;
 	}
 
+
 	public int getA_reqStatus() {
 		return a_reqStatus;
 	}
@@ -41,13 +43,16 @@ public class Account {
 		this.a_reqStatus = a_reqStatus;
 	}
 
-	public int getA_favorite() {
+
+	public String getA_favorite() {
 		return a_favorite;
 	}
 
-	public void setA_favorite(int a_favorite) {
+
+	public void setA_favorite(String a_favorite) {
 		this.a_favorite = a_favorite;
 	}
+
 
 	public int getA_userType() {
 		return a_userType;

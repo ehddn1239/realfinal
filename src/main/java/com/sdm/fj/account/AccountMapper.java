@@ -28,5 +28,9 @@ public interface AccountMapper {
 
 	int updateReq(HashMap<String, String> val);
 
+	int delete(Account a);
+
+	int updateFavorite(HashMap<String, String> val);
+
 
 }
