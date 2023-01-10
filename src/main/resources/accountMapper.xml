@@ -47,6 +47,9 @@
 	<delete id="delete" parameterType="com.sdm.fj.account.Account">
 		delete from final_account where a_id = #{a_id}
 	</delete>
+	<select id="selectFavor" parameterType="com.sdm.fj.account.Account" resultType="string">
+		select a_favorite from final_account where a_id = #{a_id}
+	</select>
 	
 	<update id="updateFavorite" parameterType="map">
 		update final_account

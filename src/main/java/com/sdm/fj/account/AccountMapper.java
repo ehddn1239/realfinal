@@ -32,5 +32,7 @@ public interface AccountMapper {
 
 	int updateFavorite(HashMap<String, String> val);
 
+	String selectFavor(Account a);
+
 
 }

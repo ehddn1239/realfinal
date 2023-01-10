@@ -150,7 +150,6 @@ public class ProductDAO {
 
 	public void getDetail(Product p, HttpServletRequest req) {
 		Product pp = ss.getMapper(ProductMapper.class).getProduct(p);
-
 		String[] imgSplit = pp.getP_img().split("!");
 		// System.out.println(imgSplit);
 
@@ -261,16 +260,16 @@ public class ProductDAO {
 		String a_id = req.getParameter("a_id");
 		System.out.println("p_no = " + p_no);
 		System.out.println("a_id = " + a_id);
-		System.out.println("getA_favorite = " + a.getA_favorite());
-		String favors = "";
 		
-		if(a == null) {
+		String favors = ss.getMapper(AccountMapper.class).selectFavor(a);
+		
+		if(favors.isEmpty()) {
 			favors = p_no;
 		}else {
-			favors = a.getA_favorite() + ", " + p_no;
-			
+			favors += ", " +p_no;
 		}
 		System.out.println("favors = "+favors);
+		
 		HashMap<String, String> val = new HashMap<String, String>();
 		val.put("p_list", favors);
 		val.put("a_id", a_id);
@@ -278,6 +277,11 @@ public class ProductDAO {
 		if(ss.getMapper(AccountMapper.class).updateFavorite(val) > 0) {
 			System.out.println("찜하기 등록");
 		}
+	}
+
+	public void deleteFavorite(Account a, Product p, HttpServletRequest req) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

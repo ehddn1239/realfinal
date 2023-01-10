@@ -93,10 +93,13 @@ public class ProductController {
 	
 
 	@RequestMapping(value = "detail.go")
-	public String goDetail(Product p, HttpServletRequest req) {
+	public String goDetail(Account a, Product p, HttpServletRequest req) {
+		aDAO.loginCheck(req);
 		pDAO.goDetail(p,req);
 		pDAO.getDetail(p,req);
-		aDAO.loginCheck(req);
+		if(aDAO.loginCheck(req)) {
+			aDAO.setFavorites(p,a, req);
+		}
 		return "sh/detail";
 	}
 	
@@ -169,11 +172,31 @@ public class ProductController {
 		return "sh/detail";
 	}
 	
-	// favorite 등록
+	// favorite 등록 (찜하기)
 	@RequestMapping(value = "/favorite.do", method = RequestMethod.GET)
 	public String favoriteInsert(Account a,Product p, HttpServletRequest req) {
+		//찜하기 등록
+		aDAO.loginCheck(req);
 		pDAO.insertFavorite(a,p,req);
+		aDAO.setFavorites(p, a, req);
+		
+		//디테일 구하기
 		pDAO.getDetail(p,req);
+
+		return "sh/detail";
+	}
+	// favorite 취소 (찜하기)
+	@RequestMapping(value = "/favoriteCancle.do", method = RequestMethod.GET)
+	public String favoriteDelete(Account a,Product p, HttpServletRequest req) {
+		//찜하기 취소
+		aDAO.loginCheck(req);
+		pDAO.deleteFavorite(a,p,req);
+		aDAO.setFavorites(p, a, req);
+		
+		
+		//디테일 구하기
+		pDAO.getDetail(p,req);
+		
 		return "sh/detail";
 	}
 	

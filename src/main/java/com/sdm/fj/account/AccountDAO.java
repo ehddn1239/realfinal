@@ -14,6 +14,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sdm.fj.product.Product;
+
 @Service
 public class AccountDAO {
 
@@ -43,8 +45,6 @@ public class AccountDAO {
 		}else {
 			System.out.println("DB등록 실패");
 		}
-		
-		
 	}
 
 	public void login(Account a, HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -287,6 +287,24 @@ public class AccountDAO {
 		}else {
 			System.out.println("삭제 실패");
 		}
+	}
+
+	public void setFavorites(Product p, Account a, HttpServletRequest req) {
+		Account aa = (Account) req.getSession().getAttribute("loginAccount");
+		String favors = ss.getMapper(AccountMapper.class).selectFavor(aa);
+		System.out.println("p_no = " + p.getP_no());
+		String pno = Integer.toString(p.getP_no());
+		String[] favorites = favors.split(", ");
+		a.setFavorites(favorites);
+		for (String s : favorites) {
+			if(s.equals(pno)) {
+				req.setAttribute("checkFavorite", 1);
+				break;
+			}else {
+				req.setAttribute("checkFavorite", 0);
+			}
+		}
+		req.setAttribute("favorites", favorites);
 	}
 
 	
