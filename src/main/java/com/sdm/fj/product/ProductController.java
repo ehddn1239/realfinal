@@ -32,7 +32,7 @@ public class ProductController {
 			return "index";
 		}
 		
-		return "productReg";
+		return "ldw/productReg";
 	}
 	
 	@RequestMapping(value = "showByCategory", method = RequestMethod.GET)
@@ -88,7 +88,7 @@ public class ProductController {
 	public String regProduct(Product p, HttpServletRequest req,MultipartHttpServletRequest file) {
 		aDAO.loginCheck(req);
 		pDAO.regProducts(p,req,file);
-		return "productReg";
+		return "ldw/productReg";
 	}
 	
 
@@ -158,7 +158,7 @@ public class ProductController {
 		
 //		pDAO.updateProduct(p,req);
 		
-		return "productUpdate";
+		return "ldw/productUpdate";
 	}
 	
 	@RequestMapping(value = "product.update.do",method = RequestMethod.POST)
