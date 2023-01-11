@@ -177,6 +177,13 @@ public class ProductController {
 		return "sh/detail";
 	}
 	
+	@RequestMapping(value = "product.search", method = RequestMethod.GET)
+	public String productSearch(Product p, HttpServletRequest req) {
+		pDAO.getSearchProduct(p,req);
+		
+		return "ldw/searchProduct";
+	}
+	
 	
 	
 	

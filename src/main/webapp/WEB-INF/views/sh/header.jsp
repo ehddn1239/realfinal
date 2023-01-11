@@ -12,19 +12,22 @@
 	<div id="headerContainer">
 		<div id="headerWrapper">
 			<div id="headerLeft">
-				<a href="\fj"><span class="hTitleSpan">쇼핑몰 이름</span></a>
+				<a href="\fj"><span class="hTitleSpan">SDMALL</span></a>
 			</div>
 			<div id="headerTitle">
-				<input class="headerSearch" placeholder="원하시는 상품을 검색하세요.">
+				<form action="product.search">
+					<input type="search" class="headerSearch" name="p_name"
+						placeholder="원하시는 상품을 검색하세요.">
+				</form>
 			</div>
 
 			<div id="headerRight">
 				<ul class="use_info">
-				
-						<li><a href="#"><span class="header_login"></span><strong>login</strong></a></li>
-					
-						<li><a href="#"><span class="header_logout"></span><strong>logout</strong></a></li>
-				
+
+					<li><a href="#"><span class="header_login"></span><strong>login</strong></a></li>
+
+					<li><a href="#"><span class="header_logout"></span><strong>logout</strong></a></li>
+
 					<li><a href="#"><span class="header_mypage"></span><strong>my</strong></a></li>
 					<li><a href="#"><span class="header_bag"></span><strong>cart</strong></a></li>
 				</ul>

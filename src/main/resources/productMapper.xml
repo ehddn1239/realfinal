@@ -7,7 +7,9 @@
 	<select id="getProductByCategory" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
 		select * from final_product where p_category = #{p_category}
 	</select>
-	
+	<select id="getSearchProduct" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
+		select * from final_product where p_name like '%'||#{p_name}||'%'
+	</select>
 	<insert id="regProducts" parameterType="com.sdm.fj.product.Product">
 	insert into final_product values(final_product_seq.nextval, #{p_name},#{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, sysdate ,#{p_description})
 	</insert>
