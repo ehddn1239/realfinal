@@ -13,6 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.6.2.js"
 	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
 	crossorigin="anonymous"></script>
+	
 <script type="text/javascript">
 $(function() {
 	const indicator = document.querySelector('.nav-indicator');
@@ -39,6 +40,29 @@ $(function() {
 	});
 })
 </script>
+<script type="text/javascript">
+
+//jQuery로 favors a태그 눌럿을때 아래에 div가 보이도록 하자
+$(function() {
+	$("#favors").click(function() {
+		let a_id = $("#a-id").val();
+		$.ajax({
+			url:'showAllFavors.do',
+			data: {
+				"a_id" : a_id
+			},
+			success: function(data) {
+				console.log(data);
+				if(data == "N"){
+					alert('사용할 수 있는 아이디');
+				}else{
+					alert('불가능한 아이디입니다');
+				}
+			}
+		});
+	});
+});
+</script>
 </head>
 <body>
 	<div style="width: 1000px;">
@@ -58,12 +82,25 @@ $(function() {
 		<!-- 메뉴 리스트 -->
 		<nav class="nav">
 			<a href="deliveryTrackingGo" class="nav-item is-active" active-color="orange">배송 조회</a> 
-			<a href="#" class="nav-item" active-color="green">찜한 목록</a> 
+			<a onclick="showAllFavors('${loginAccount.a_id}')" class="nav-item" active-color="green"">찜한 목록</a> 
 			<a href="#" class="nav-item" active-color="red">장바구니</a> 
 			<a onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" class="nav-item" active-color="blue">판매자 등록</a> 
 			<a href="#" class="nav-item" active-color="violet">구매이력</a> 
 			<span class="nav-indicator"></span>
 		</nav>
+		<div class="favorites-div" style="display: flex;">
+		<!-- 찜목록 보여주기 -->
+			<c:forEach items="${favorsPNO }" var="f">
+				<div>
+					 <h3>${f.p_no }</h3>				
+					 <h3>${f.p_name }</h3>				
+					 <h3>${f.p_price }</h3>	
+					 <c:forEach items="${imgs[0]}" var="i">
+						<img src="resources/imgs/${i}">
+					</c:forEach>			
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 </body>
 

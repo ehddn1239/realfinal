@@ -12,11 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sdm.fj.product.Product;
+import com.sdm.fj.product.ProductDAO;
+
 @Controller
 public class AccountController {
 
 	@Autowired
 	AccountDAO aDAO;
+	
+	@Autowired
+	ProductDAO pDAO;
 	
 	@RequestMapping(value = "/account.reg.do", method = RequestMethod.POST)
 	public String register(Account a, HttpServletRequest req) {
@@ -51,9 +57,6 @@ public class AccountController {
 	}
 	@RequestMapping(value = "/deliveryTrackingGo", method = RequestMethod.GET)
 	public String deliveryTrackingGo(){
-		
-		
-		
 		return "ldw/deliveryTracking";
 	}
 	
@@ -166,8 +169,19 @@ public class AccountController {
 		return "kmj/adminPage";
 	}
 	
-	
-	
+	// 찜한거 불러오기
+	@RequestMapping(value = "/showAllFavors.do", method = RequestMethod.GET)
+	public String showAllFavors(Product p, Account a, HttpServletRequest req){
+		aDAO.loginCheck(req);
+		
+		// 찜 목록 게시글 따로 조회하기
+		pDAO.showClientFavors(req, p);
+		
+		//회원 정보 보여주는 일
+		aDAO.getAccount(a,req);
+		
+		return "kmj/myPage";
+	}
 	
 	
 	

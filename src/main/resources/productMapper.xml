@@ -24,5 +24,7 @@
 	update final_product set p_name= #{p_name}, p_price = #{p_price}, p_img = #{p_img}, p_category = #{p_category}, p_size = #{p_size}, p_description = #{p_description} where p_no = #{p_no}
 	</update>
 	
-	
+	<select id="getProductforFavor" parameterType="string" resultType="com.sdm.fj.product.Product">
+		select * from final_product where p_no = #{s}
+	</select>
 </mapper>

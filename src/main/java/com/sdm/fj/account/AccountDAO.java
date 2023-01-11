@@ -290,12 +290,14 @@ public class AccountDAO {
 	}
 
 	public void setFavorites(Product p, Account a, HttpServletRequest req) {
+		System.out.println("---------setFavorites함수 시작-------------");
 		Account aa = (Account) req.getSession().getAttribute("loginAccount");
 		String favors = ss.getMapper(AccountMapper.class).selectFavor(aa);
+		System.out.println("-----favors의 내용 = "+favors);
 		System.out.println("p_no = " + p.getP_no());
 		String pno = Integer.toString(p.getP_no());
 		String[] favorites = favors.split(", ");
-		a.setFavorites(favorites);
+		aa.setFavorites(favorites);
 		for (String s : favorites) {
 			if(s.equals(pno)) {
 				req.setAttribute("checkFavorite", 1);
@@ -307,7 +309,6 @@ public class AccountDAO {
 		req.setAttribute("favorites", favorites);
 	}
 
-	
 	
 
 	

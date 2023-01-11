@@ -16,6 +16,8 @@ public interface ProductMapper {
 
 	int updateProduct(Product p);
 
+	Product getProductforFavor(String s);
+
 	
 
 }

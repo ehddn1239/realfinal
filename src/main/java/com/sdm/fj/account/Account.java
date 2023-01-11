@@ -42,13 +42,6 @@ public class Account {
 		this.favorites = favorites;
 	}
 
-
-
-
-
-
-
-
 	public String[] getFavorites() {
 		return favorites;
 	}

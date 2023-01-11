@@ -32,7 +32,14 @@ public interface AccountMapper {
 
 	int updateFavorite(HashMap<String, String> val);
 
-	String selectFavor(Account a);
+	String selectFavor(Account aa);
+
+	int deleteFavorite(HashMap<String, String> val);
+
+	String showAllFavors(Account a);
+
+
+	String selectFavorforDelete(String aid);
 
 
 }

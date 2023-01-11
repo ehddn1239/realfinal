@@ -56,5 +56,15 @@
 		set a_favorite = #{p_list}
 		where a_id = #{a_id} 
 	</update>
+
+	<update id="deleteFavorite" parameterType="map">
+		update final_account
+		set a_favorite = #{favors}
+		where a_id = #{a_id} 
+	</update>	
+	
+	<select id="selectFavorforDelete" parameterType="string" resultType="string">
+		select a_favorite from final_account where a_id = #{aid}
+	</select>
 	
 </mapper>

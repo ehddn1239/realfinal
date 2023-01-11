@@ -60,6 +60,7 @@ function checkLogin(a_id, p_no) {
 		return false;
 	}else{
 		location.href='favorite.do?p_no='+p_no + '&a_id=' + a_id;
+		alert('찜하기 등록 하셨습니다.')
 		return true;
 	}
 }
@@ -67,6 +68,7 @@ function checkLogin(a_id, p_no) {
 function cancle(a_id, p_no){
 	if(confirm('이미 찜 해놓으신 품목 입니다. 취소 하시겠습니까?')){
 		location.href='favoriteCancle.do?p_no='+p_no + '&a_id='+a_id; 
+		alert('찜 목록에서 삭제하였습니다.')
 		return true;
 	}else{
 		return false;

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.synth.SynthScrollPaneUI;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -255,20 +256,23 @@ public class ProductDAO {
 	}
 
 	public void insertFavorite(Account a, Product p, HttpServletRequest req) {
-		
+		System.out.println("---------insertFavorite함수--------------");
 		String p_no = req.getParameter("p_no");
 		String a_id = req.getParameter("a_id");
 		System.out.println("p_no = " + p_no);
 		System.out.println("a_id = " + a_id);
 		
 		String favors = ss.getMapper(AccountMapper.class).selectFavor(a);
+		System.out.println("favors에 값을 받은 직후    favors = "+favors);
 		
 		if(favors.isEmpty()) {
-			favors = p_no;
+			System.out.println("-----isEmpty를 거침------");
+			favors = ", "+ p_no;
 		}else {
+			System.out.println("-----isEmpty를 거치지 않음------");
 			favors += ", " +p_no;
 		}
-		System.out.println("favors = "+favors);
+		System.out.println("favors에 [, p_no]를 붙인 직후 favors = "+favors);
 		
 		HashMap<String, String> val = new HashMap<String, String>();
 		val.put("p_list", favors);
@@ -280,7 +284,61 @@ public class ProductDAO {
 	}
 
 	public void deleteFavorite(Account a, Product p, HttpServletRequest req) {
-		// TODO Auto-generated method stub
+		System.out.println("------deleteFavorite함수 시작------");
+		String pno = req.getParameter("p_no");
+		String aid = req.getParameter("a_id");
+		String favors = ss.getMapper(AccountMapper.class).selectFavorforDelete(aid);
+		String[] favoritesAr = favors.split(", ");
+		System.out.println("pno = " + pno + " aid = " + aid + " favors = " + favors);
+		for (String s : favoritesAr) {
+			System.out.println("favoritesArr = " + s );
+			if(s.equals(pno)) {
+				favors = favors.replace(", "+s, "");
+			}
+		}
+		System.out.println("replace 이후 favors 문자열 - " + favors);
+		HashMap<String, String> val = new HashMap<String, String>();
+		
+		val.put("favors", favors);
+		val.put("a_id", aid);
+		
+		
+		if(ss.getMapper(AccountMapper.class).deleteFavorite(val) > 0) {
+			System.out.println("찜하기 삭제 완료");
+		}
+		favoritesAr = favors.split(", ");
+		a.setFavorites(favoritesAr);
+		req.setAttribute("checkFavorite", 0);
+	}
+
+	public void showClientFavors(HttpServletRequest req, Product p) {
+		System.out.println("--------showClientFavors시작-------");
+		Account a = (Account) req.getSession().getAttribute("loginAccount");
+		String[] favorsArr = a.getA_favorite().split(", ");
+		for (String s2 : favorsArr) {
+			System.out.println("favorsArr ??? "+s2);
+		}
+		ArrayList<Product> products = new ArrayList<Product>();
+		ArrayList<String> imgs = new ArrayList<String>();
+		
+		for (String s : favorsArr) {
+			System.out.println("favorsArr = " + s);
+			if(s.equals(" ")) {
+				continue;
+			}else {
+				Product pp = ss.getMapper(ProductMapper.class).getProductforFavor(s);
+				System.out.println("pp.getP_img() = " + pp.getP_img());
+				String[] imgSplit = pp.getP_img().split("!");
+				products.add(pp);
+				for (String s2 : imgSplit) {
+					System.out.println("한글" + s2);
+					imgs.add(s2);
+				}
+				pp.setImgs(imgs);
+			}
+		}
+		req.setAttribute("imgs", imgs);
+		req.setAttribute("favorsPNO", products);
 		
 	}
 
