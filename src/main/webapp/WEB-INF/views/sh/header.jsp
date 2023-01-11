@@ -30,7 +30,7 @@
 						</c:when>
 				</c:choose>
 					<li><a href="#"><span class="header_mypage"></span><strong>my</strong></a></li>
-					<li><a href="#"><span class="header_bag"></span><strong>cart</strong></a></li>
+					<li><a href="go.cart?a_id=${loginAccount.a_id }"><span class="header_bag"></span><strong>cart</strong></a></li>
 				</ul>
 			</div>
 
