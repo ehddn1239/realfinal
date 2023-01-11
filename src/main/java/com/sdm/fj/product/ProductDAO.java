@@ -280,4 +280,17 @@ public class ProductDAO {
 		}
 	}
 
+	public void getSearchProduct(Product p, HttpServletRequest req) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.getSearchProduct(p);
+		List<Product> products2 = new ArrayList<Product>();
+		
+		for (Product pp : products) {
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			products2.add(pp);
+		}
+		req.setAttribute("search", products2);
+	}
+
 }

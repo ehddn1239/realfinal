@@ -13,10 +13,13 @@
 	<div id="headerContainer">
 		<div id="headerWrapper">
 			<div id="headerLeft">
-				<a href="\fj"><span class="hTitleSpan">쇼핑몰 이름</span></a>
+				<a href="\fj"><span class="hTitleSpan">SDMALL</span></a>
 			</div>
 			<div id="headerTitle">
-				<input class="headerSearch" placeholder="원하시는 상품을 검색하세요.">
+				<form action="product.search">
+					<input type="search" class="headerSearch" name="p_name"
+						placeholder="원하시는 상품을 검색하세요.">
+				</form>
 			</div>
 
 			<div id="headerRight">

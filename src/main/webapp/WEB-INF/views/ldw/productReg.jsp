@@ -50,7 +50,7 @@ function setDetailImage(event){
 <body>
 	<div class="regRealContainer">
 
-		<div id="regtitle">쇼핑몰 이름</div>
+		<div id="regtitle">SDMALL</div>
 		<div id="regContainer">
 			<form action="reg.products.do" method="post"
 				enctype="multipart/form-data" name="fileForm">

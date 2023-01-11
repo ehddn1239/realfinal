@@ -16,6 +16,8 @@ public interface ProductMapper {
 
 	int updateProduct(Product p);
 
+	List<Product> getSearchProduct(Product p);
+
 	
 
 }
