@@ -71,11 +71,13 @@ $(function() {
 		
 });
 $(function() {
+	
 	$("#regBtn").on('click', function() {
 		if (${loginCheck == 1}) {
 			alert('판매자로 로그인 하세요');
 		}
 	});
+	
 	// 비밀번호 확인 비동기처리~
 	$("#a_pw2").keyup(function() {
 		if($("#a_pw2").val() == $("#a_pw").val()){
@@ -86,7 +88,7 @@ $(function() {
 	});
 	
 	/* 아이디 중복체크 */
-	$(function() {
+
 		$(".checkId").click(function() {
 			let a_id = $("#a_id").val();
 			$.ajax({
@@ -104,7 +106,7 @@ $(function() {
 				}
 				
 			});
-		});
+	
 	});
 	
 });
@@ -133,8 +135,10 @@ $(function() {
 		<div id="over">
 			<div class="left_sub_menu">
 				<div class="sub_menu">
-					<input type="search" name="SEARCH" placeholder="SEARCH">
-					<h2>쇼핑몰 제목</h2>
+					<form action="product.search">
+					<input type="search" name="p_name" placeholder="SEARCH">
+					</form>
+					<h2>SDMALL</h2>
 					<ul class="big_menu">
 						<a href="allProduct.go"><li>ALL</li></a>
 					</ul>
@@ -179,7 +183,7 @@ $(function() {
 				<c:when test="${loginCheck == 1 }">
 					<button class="login-btn">Sign In</button>
 					
-				</c:when>
+				</c:when>	
 				<c:when test="${loginCheck == 0 }">
 					<form action="myPage.go" method="post">
 					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>

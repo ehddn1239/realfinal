@@ -2,7 +2,6 @@
 
 #orderDiv {
 	display: flex;
-	text-align: center;
 	position: relative;
 }
 
@@ -13,18 +12,16 @@
 }
 
 #orderDetail {
-	border: 1px solid #942092;
 	/* position:absolute;
 	top:30%;
 	left:50%; */
 	width: 45vw;
-	text-align: center;
 	margin-left: 50px;
 	display: table;
 }
 
 #buyBtn {
-	margin-left: 30px;
+	margin-bottom: 10px;
 	width: 250px;
 	border-color: black;
 	background-color: white;
@@ -47,7 +44,6 @@
 	margin-left:10px;
 	width: 130px;
 	border-color:black;
-
 	height: 70px;
 	font-family: "ProximaNova-Semibold", "Noto Sans KR";
 	font-size: 20px;
@@ -84,10 +80,17 @@
 	float: left;
 	padding: 20px 0;
 }
-
+.productDescription{
+	position: absolute;
+	top:12%;
+	float: left;
+	font-size: 10pt;
+	font-weight: 600;
+	color: graytext;
+}
 .detailPrice {
 	position: absolute;
-	top: 20%;
+	top: 30%;
 }
 
 #detailImgs {

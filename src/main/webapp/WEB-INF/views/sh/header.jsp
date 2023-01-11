@@ -6,27 +6,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function goPost(){
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', 'myPage.go');
+    document.body.appendChild(f);
+    f.submit();
+}
+</script>
 <link rel="stylesheet" href="resources/css/header.css">
 </head>
 <body>
+
 	<div id="headerContainer">
 		<div id="headerWrapper">
 			<div id="headerLeft">
-				<a href="\fj"><span class="hTitleSpan">쇼핑몰 이름</span></a>
+				<a href="\fj"><span class="hTitleSpan">SDMALL</span></a>
 			</div>
 			<div id="headerTitle">
-				<input class="headerSearch" placeholder="원하시는 상품을 검색하세요.">
+				<form action="product.search">
+					<input type="search" class="headerSearch" name="p_name"
+						placeholder="원하시는 상품을 검색하세요.">
+				</form>
 			</div>
 
 			<div id="headerRight">
 				<ul class="use_info">
-				
+				<c:choose>
+				<c:when test="${loginAccount == null}">
 						<li><a href="#"><span class="header_login"></span><strong>login</strong></a></li>
-					
-						<li><a href="#"><span class="header_logout"></span><strong>logout</strong></a></li>
-				
-					<li><a href="#"><span class="header_mypage"></span><strong>my</strong></a></li>
-					<li><a href="#"><span class="header_bag"></span><strong>cart</strong></a></li>
+					</c:when>
+					<c:when test="${loginAccount != null }">
+						<li><a href="logout.do"><span class="header_logout"></span><strong>logout</strong></a></li>
+						</c:when>
+				</c:choose>
+					<li><a href="javascript:void(0)" onClick="javascript:goPost()"><span class="header_mypage"></span><strong>my</strong></a></li>
+					<li><a href="go.cart?a_id=${loginAccount.a_id }"><span class="header_bag"></span><strong>cart</strong></a></li>
 				</ul>
 			</div>
 

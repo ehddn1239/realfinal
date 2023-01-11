@@ -11,48 +11,65 @@
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-	crossorigin="anonymous">	
+	crossorigin="anonymous">
+	
 </script>
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<script type="text/javascript">
+<link rel="stylesheet" href="resources/css/detail.css">
 
+<script type="text/javascript">
 	function deleteProduct(n, c) {
 		let a = confirm('삭제하시겠습니까?')
-		if (a) {
+		if (a == 1) {
 			location.href = 'product.delete.do?p_no=' + n + '&p_category=' + c;
-		}
+		} 
 	}
 	// scroll
 
 	$(function() {
-		$('#back-to-top').on('click',function(e){
-		      e.preventDefault();
-		      $('html,body').animate({scrollTop:0},300);
-		  });
-		  
-		  $(window).scroll(function() {
-		    if ($(document).scrollTop() > 100) {
-		      $('#back-to-top').addClass('show');
-		    } else {
-		      $('#back-to-top').removeClass('show');
-		    }
-		  });	
-		  
-		    $('#back-to-bottom').click(function(e){
-		    	 e.preventDefault();
-			      $('html,body').animate({scrollTop:$(document).height()},300);
-	        });
-		    
-		    $(window).scroll(function() {
-			    if ($(document).scrollTop() > 100) {
-			      $('#back-to-bottom').removeClass('show');
-			    } else {
-			      $('#back-to-bottom').addClass('show');
-			    }
-			  });	
-	    });
+		$('#back-to-top').on('click', function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : 0
+			}, 300);
+		});
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-top').addClass('show');
+			} else {
+				$('#back-to-top').removeClass('show');
+			}
+		});
+
+		$('#back-to-bottom').click(function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(document).height()
+			}, 300);
+		});
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-bottom').removeClass('show');
+			} else {
+				$('#back-to-bottom').addClass('show');
+			}
+		});
+
+		$("#containBagBtn").click(function() {
+			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
+			if (check) {
+				location.href = '/cart.go?'
+							
+			}
+		});
+	});
+
 </script>
+
 <script type="text/javascript">
 function checkLogin(a_id, p_no) {
 	if(a_id == ''){
@@ -75,21 +92,25 @@ function cancle(a_id, p_no){
 	}
 }
 </script>
-<link rel="stylesheet" href="resources/css/detail.css">
+
 </head>
 <body>
 	<div class="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
-<div id="scrollBar">
- <div class="scrolltop"><a id="back-to-top"><span>🡅</span></a></div>
-  <div class="scrollbottom"><a id="back-to-bottom"><span>🡇</span></a> </div>
-</div>
+	<div id="scrollBar">
+		<div class="scrolltop">
+			<a id="back-to-top"><span>🡅</span></a>
+		</div>
+		<div class="scrollbottom">
+			<a id="back-to-bottom"><span>🡇</span></a>
+		</div>
+	</div>
 
 	<div id="detailWrapper">
 		<div id="detailWrap">
+			<form action="add.cart">
 			<div id="orderDiv">
-
 				<div id="mainImg">
 					<c:forEach items="${imgs[0]}" var="i">
 						<img src="resources/imgs/${i}">
@@ -98,36 +119,42 @@ function cancle(a_id, p_no){
 
 				<div id="orderDetail">
 
-
+					
 					<div class="detailTitle">
 						<span>${p.p_name }</span>
 					</div>
-					<div class="detailPrice">정상가 <fmt:formatNumber value="${p.p_price }" type="currency"
-							currencySymbol="\\" /></div>
+					<div class="productDescription">${p.p_description}</div>
+					<div class="detailPrice">
+						정상가
+						<fmt:formatNumber value="${p.p_price }" type="currency"
+							currencySymbol="\\" />
+					</div>
 
 					<div id="orderOptionDiv">
 						<div class="colorSelect">
 							<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
-								name="color">
+								name="p_color">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<option value="${p.p_color }">${p.p_color }</option>
 							</select>
 						</div>
 						<div class="sizeSelect">
 
-							<span>사이즈 </span><select class="selectbox" name="size">
+							<span>사이즈 </span><select class="selectbox" name="p_size">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<c:forEach items="${sizes}" var="i">
-									<option value="{i}">${i }</option>
+									<option value="${i}">${i }</option>
 								</c:forEach>
 							</select>
 
+							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 						</div>
+					
 					</div>
 					<div class="detailBtns">
 						<div>
 						<button id="buyBtn">바로 구매</button></div>
-						<div><button id="containBagBtn">쇼핑백 담기</button></div>
+						<div><button id="containBagBtn" name="p_no" value="${p.p_no }">쇼핑백 담기</button></div>
 						<div>
 						<!-- 로그인이 안됐을때 -->
 						<c:if test="${loginCheck == 1 }">
@@ -169,8 +196,9 @@ function cancle(a_id, p_no){
 					</div>
 				</div>
 			</div>
+				</form>
 
-			<div class="productDescription">${p.p_description}</div>
+
 
 			<div id="detailImgs">
 				<div class="productImg">
@@ -181,7 +209,7 @@ function cancle(a_id, p_no){
 
 			</div>
 			<div id="reviewDiv">
-				<div>리뷰목록1</div>
+				<div>구매후기</div>
 
 			</div>
 			<div id="qnaDiv">

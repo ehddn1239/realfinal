@@ -83,7 +83,7 @@ $(function() {
 		<nav class="nav">
 			<a href="deliveryTrackingGo" class="nav-item is-active" active-color="orange">배송 조회</a> 
 			<a onclick="showAllFavors('${loginAccount.a_id}')" class="nav-item" active-color="green"">찜한 목록</a> 
-			<a href="#" class="nav-item" active-color="red">장바구니</a> 
+			<a href="go.cart?a_id=${loginAccount.a_id }" class="nav-item" active-color="red">장바구니</a> 
 			<a onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" class="nav-item" active-color="blue">판매자 등록</a> 
 			<a href="#" class="nav-item" active-color="violet">구매이력</a> 
 			<span class="nav-indicator"></span>
