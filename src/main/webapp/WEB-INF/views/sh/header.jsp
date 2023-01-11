@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function goPost(){
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', 'myPage.go');
+    document.body.appendChild(f);
+    f.submit();
+}
+</script>
 <link rel="stylesheet" href="resources/css/header.css">
 </head>
 <body>
@@ -32,7 +41,7 @@
 						<li><a href="logout.do"><span class="header_logout"></span><strong>logout</strong></a></li>
 						</c:when>
 				</c:choose>
-					<li><a href="#"><span class="header_mypage"></span><strong>my</strong></a></li>
+					<li><a href="javascript:void(0)" onClick="javascript:goPost()"><span class="header_mypage"></span><strong>my</strong></a></li>
 					<li><a href="go.cart?a_id=${loginAccount.a_id }"><span class="header_bag"></span><strong>cart</strong></a></li>
 				</ul>
 			</div>
