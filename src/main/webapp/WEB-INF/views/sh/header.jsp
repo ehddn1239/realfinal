@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="resources/css/header.css">
 </head>
 <body>
+
 	<div id="headerContainer">
 		<div id="headerWrapper">
 			<div id="headerLeft">
@@ -23,13 +24,16 @@
 
 			<div id="headerRight">
 				<ul class="use_info">
-
-					<li><a href="#"><span class="header_login"></span><strong>login</strong></a></li>
-
-					<li><a href="#"><span class="header_logout"></span><strong>logout</strong></a></li>
-
+				<c:choose>
+				<c:when test="${loginAccount == null}">
+						<li><a href="#"><span class="header_login"></span><strong>login</strong></a></li>
+					</c:when>
+					<c:when test="${loginAccount != null }">
+						<li><a href="logout.do"><span class="header_logout"></span><strong>logout</strong></a></li>
+						</c:when>
+				</c:choose>
 					<li><a href="#"><span class="header_mypage"></span><strong>my</strong></a></li>
-					<li><a href="#"><span class="header_bag"></span><strong>cart</strong></a></li>
+					<li><a href="go.cart?a_id=${loginAccount.a_id }"><span class="header_bag"></span><strong>cart</strong></a></li>
 				</ul>
 			</div>
 

@@ -67,6 +67,7 @@
 			}
 		});
 	});
+
 </script>
 
 <script type="text/javascript">
@@ -97,8 +98,8 @@
 
 	<div id="detailWrapper">
 		<div id="detailWrap">
+			<form action="add.cart">
 			<div id="orderDiv">
-
 				<div id="mainImg">
 					<c:forEach items="${imgs[0]}" var="i">
 						<img src="resources/imgs/${i}">
@@ -107,7 +108,7 @@
 
 				<div id="orderDetail">
 
-
+					
 					<div class="detailTitle">
 						<span>${p.p_name }</span>
 					</div>
@@ -121,39 +122,35 @@
 					<div id="orderOptionDiv">
 						<div class="colorSelect">
 							<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
-								name="color">
+								name="p_color">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<option value="${p.p_color }">${p.p_color }</option>
 							</select>
 						</div>
 						<div class="sizeSelect">
 
-							<span>사이즈 </span><select class="selectbox" name="size">
+							<span>사이즈 </span><select class="selectbox" name="p_size">
 								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 								<c:forEach items="${sizes}" var="i">
-									<option value="{i}">${i }</option>
+									<option value="${i}">${i }</option>
 								</c:forEach>
 							</select>
-					
+
+							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 						</div>
+					
 					</div>
 					<div class="detailBtns">
 						<div>
-							<button id="buyBtn">바로 구매</button>
-						</div>
-						<div>
-							<button id="containBagBtn">쇼핑백 담기</button>
-						</div>
-						<div>
-							<button id="wantBtn">
-								<span
-									onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')"
-									class="material-symbols-outlined"> favorite </span>
-							</button>
-						</div>
+						<button id="buyBtn" type="button">바로 구매</button></div>
+						<div><button id="containBagBtn" name="p_no" value="${p.p_no }">쇼핑백 담기</button></div>
+						<div><button id="wantBtn" type="button">
+							<span onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')" class="material-symbols-outlined"> favorite </span>
+						</button></div>
 					</div>
 				</div>
 			</div>
+				</form>
 
 
 
