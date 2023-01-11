@@ -8,20 +8,7 @@
 }
   */
   
-  body {
-  padding: 0px;
-  margin: 0px;
-}
-.bg {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  margin: 0px auto;
-  position: relative;
-}
-video {
-  width: 100%;
-}
+
 
 #whole-wrap-div {
 	display: flex;
