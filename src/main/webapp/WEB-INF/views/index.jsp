@@ -242,18 +242,14 @@ $(function() {
 						<h1 class="modal-h1">Sign in</h1>
 						<div class="social-container">
 							<!-- 여기는 카카오 간편 로그인 기능 -->
-							<a class="modal-a" href="#" class="social"><i
-								class="fab fa-facebook-f"></i></a> <a class="modal-a" href="#"
-								class="social"><i class="fab fa-google-plus-g"></i></a> <a
-								class="modal-a" href="#" class="social"><i
-								class="fab fa-linkedin-in"></i></a>
+							<a class="modal-a" href="#" class="social"><i class="fab fa-facebook-f"></i></a> 
+							<a class="modal-a" href="#" class="social"><i class="fab fa-google-plus-g"></i></a> 
+							<a class="modal-a" href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 						</div>
-						<span>or use your account</span> <input class="modal-input"
-							name="a_id" type="text" placeholder="UserID" /> <input
-							class="modal-input" name="a_pw" type="password"
-							placeholder="Password" /> <span id="span"
-							style="visibility: hidden; margin-right: auto; font-size: 9pt;">입력하지
-							않은 항목이 있습니다</span>
+						<span>or use your account</span> 
+						<input class="modal-input" name="a_id" type="text" placeholder="UserID" /> 
+						<input class="modal-input" name="a_pw" type="password" placeholder="Password" /> 
+						<span id="span" style="visibility: hidden; margin-right: auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
 						<!-- 비밀번호찾기 기능 -->
 						<a class="modal-a" href="findpw.go">Forgot your password?</a>
 						<button class="modal-button">Sign In</button>

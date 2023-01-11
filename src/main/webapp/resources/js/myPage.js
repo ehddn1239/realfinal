@@ -19,3 +19,10 @@ function deleteInfo(id) {
 		return false;
 	}
 }
+// 찜 목록 보이기
+function showAllFavors(id) {
+	
+	location.href="showAllFavors.do?a_id="+id;
+	
+	
+}
