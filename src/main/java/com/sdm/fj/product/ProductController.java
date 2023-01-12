@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
+import com.sdm.fj.cart.CartDTO;
 
 
 
@@ -28,7 +29,12 @@ public class ProductController {
 	@RequestMapping(value = "productReg.go", method = RequestMethod.GET)
 	public String goRegProduct(Product p, HttpServletRequest req) {
 		if (aDAO.loginCheck(req) == false ) {
-			req.setAttribute("reg", "판매자로 로그인 하세요!");
+			// 유저 타입 확인하는 메서드 2와 3만 false를 반환함( 판매자, 관리자)
+				// 1만 true를 반환함
+			if(aDAO.checkUserType(req)) {
+				req.setAttribute("reg", "판매자로 로그인 하세요!");
+			}
+				req.setAttribute("reg", "로그인 먼저 하세요!");
 			return "index";
 		}
 		
@@ -93,10 +99,12 @@ public class ProductController {
 	
 
 	@RequestMapping(value = "detail.go")
-	public String goDetail(Product p, HttpServletRequest req) {
+	public String goDetail(Account a, Product p, HttpServletRequest req) {
+		if(aDAO.loginCheck(req)) {
+			aDAO.setFavorites(p,a, req);
+		}
 		pDAO.goDetail(p,req);
 		pDAO.getDetail(p,req);
-		aDAO.loginCheck(req);
 		return "sh/detail";
 	}
 	
@@ -169,11 +177,33 @@ public class ProductController {
 		return "sh/detail";
 	}
 	
-	// favorite 등록
+	// favorite 등록 (찜하기)
 	@RequestMapping(value = "/favorite.do", method = RequestMethod.GET)
 	public String favoriteInsert(Account a,Product p, HttpServletRequest req) {
+		//찜하기 등록
+		aDAO.loginCheck(req);
 		pDAO.insertFavorite(a,p,req);
+		aDAO.setFavorites(p, a, req);
+		
+		//디테일 구하기
+		pDAO.goDetail(p, req);
 		pDAO.getDetail(p,req);
+
+		return "sh/detail";
+	}
+	// favorite 취소 (찜하기)
+	@RequestMapping(value = "/favoriteCancle.do", method = RequestMethod.GET)
+	public String favoriteDelete(Account a,Product p, HttpServletRequest req) {
+		
+		//찜하기 취소
+		aDAO.loginCheck(req);
+		aDAO.setFavorites(p, a, req);
+		pDAO.deleteFavorite(a,p,req);
+		
+		//디테일 구하기
+		pDAO.goDetail(p, req);
+		pDAO.getDetail(p,req);
+		
 		return "sh/detail";
 	}
 	
@@ -182,6 +212,28 @@ public class ProductController {
 		pDAO.getSearchProduct(p,req);
 		
 		return "ldw/searchProduct";
+	}
+	@RequestMapping(value = "/buy.go", method = RequestMethod.GET)
+	public String goBuyPage(Product p, Account a, HttpServletRequest req) {
+		
+		//디테일 구하기
+		pDAO.goDetail(p, req);
+		pDAO.getDetail(p,req);
+		
+		
+		return "kmj/buyPage";
+	}
+	@RequestMapping(value = "/buy.do", method = RequestMethod.POST)
+	public String doBuyPage(Product p, Account a, HttpServletRequest req, CartDTO cart) {
+		aDAO.loginCheck(req);
+		//구매하는 일
+		pDAO.buyProduct(p,cart,req);
+		
+		//디테일 구하기
+		pDAO.goDetail(p, req);
+		pDAO.getDetail(p,req);
+		
+		return "sh/detail";
 	}
 	
 	
