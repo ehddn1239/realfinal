@@ -66,6 +66,7 @@
 							
 			}
 		});
+		
 	});
 
 </script>
@@ -86,6 +87,14 @@ function cancle(a_id, p_no){
 	if(confirm('이미 찜 해놓으신 품목 입니다. 취소 하시겠습니까?')){
 		location.href='favoriteCancle.do?p_no='+p_no + '&a_id='+a_id; 
 		alert('찜 목록에서 삭제하였습니다.')
+		return true;
+	}else{
+		return false;
+	}
+}
+function confirmPay(pno, aid){
+	if(confirm('결제 페이지로 이동하시겠습니까?')){
+		location.href='buy.go?p_no='+pno+'&a_id='+aid;
 		return true;
 	}else{
 		return false;
@@ -153,7 +162,8 @@ function cancle(a_id, p_no){
 					</div>
 					<div class="detailBtns">
 						<div>
-						<button id="buyBtn">바로 구매</button></div>
+						<button type="button" id="buyBtn" onclick="return confirmPay('${p.p_no}','${loginAccount.a_id }')">바로 구매</button>
+						</div>
 						<div><button id="containBagBtn" name="p_no" value="${p.p_no }">쇼핑백 담기</button></div>
 						<div>
 						<!-- 로그인이 안됐을때 -->
@@ -178,20 +188,6 @@ function cancle(a_id, p_no){
 								</button>
 							</c:when>
 						</c:choose>
-							<%-- <c:if test="${checkFavorite eq 'do' }">
-							<!-- p_no가 이미 찜햇을때 -->
-								<button id="wantBtn">
-									<span onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')" class="material-symbols-outlined2"> favorite </span>
-								</button>
-							</c:if>
-							<c:if test="${checkFavorite eq 'no' }">
-							<!-- 찜 안햇을때 -->
-								<button id="wantBtn">
-									<span onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')" class="material-symbols-outlined"> favorite </span>
-								</button>
-							</c:if> --%>
-						
-						
 						</div>
 					</div>
 				</div>

@@ -67,4 +67,11 @@
 		select a_favorite from final_account where a_id = #{aid}
 	</select>
 	
+	<update id="payMoney" parameterType="com.sdm.fj.account.Account">
+		update final_account
+		set a_cash = #{a_cash}
+		where a_id = #{a_id}
+	</update>
+	
+	
 </mapper>

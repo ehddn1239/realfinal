@@ -41,5 +41,7 @@ public interface AccountMapper {
 
 	String selectFavorforDelete(String aid);
 
+	int payMoney(Account a2);
+
 
 }
