@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountMapper;
+import com.sdm.fj.cart.CartDTO;
 
 @Service
 public class ProductDAO {
@@ -351,6 +352,35 @@ public class ProductDAO {
 			products2.add(pp);
 		}
 		req.setAttribute("search", products2);
+	}
+
+	public void buyProduct(Product p, CartDTO cart, HttpServletRequest req) {
+		System.out.println("--------buyProduct함수 시작---------");
+		Account a = (Account) req.getSession().getAttribute("loginAccount");
+		int money = a.getA_cash();
+		System.out.println("money = " +money);
+		int qty = cart.getCart_qty();
+		System.out.println("cart_qty - "+qty);
+		int pay = p.getP_price();
+		System.out.println("pay = "+pay);
+
+		int remain = money - (qty * pay);
+		Account a2 = new Account();
+		a2.setA_id(a.getA_id());
+		a2.setA_cash(remain);
+		
+		System.out.println("a2의 a_id = "+a2.getA_id());
+		System.out.println("a2의 a_cash = "+a2.getA_cash());
+		
+		
+		if(ss.getMapper(AccountMapper.class).payMoney(a2) == 1) {
+			System.out.println("결제 성공");
+		}else {
+			System.out.println("결제 실패");
+		}
+		
+		
+		
 	}
 
 }

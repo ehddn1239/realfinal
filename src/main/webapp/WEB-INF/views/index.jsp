@@ -194,7 +194,6 @@ $(function() {
 						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
 					</form>
 					
-					
 				</c:when>
 			</c:choose>
 			<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
