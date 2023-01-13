@@ -59,8 +59,8 @@ public class AccountController {
 		aDAO.loginCheck(req);
 		return "index";
 	}
-	
-	@RequestMapping(value = "/myPage.go", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
 	public String myPage(Account a, HttpServletRequest req) {
 
 		aDAO.loginCheck(req);
@@ -198,38 +198,25 @@ public class AccountController {
 
 	@ResponseBody
 	@RequestMapping(value = "/kakaoPay")
-	public String kakaoPay() {
-		try {
-			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
-			HttpURLConnection con = (HttpURLConnection) address.openConnection();
-			con.setRequestMethod("POST");
-			con.setRequestProperty("Authorization", "KakaoAK eae68a80f7adc3a998cc4fecc3c323a2");
-			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-			con.setDoOutput(true);
-			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/fj/gohome.go&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/gohome.go";
-			OutputStream out = con.getOutputStream(); // 주는 역할
-			DataOutputStream dos = new DataOutputStream(out); // 데이터 주는 역할
-			dos.writeBytes(param);
-			dos.close();
-
-			int result = con.getResponseCode();
-
-			InputStream is;
-
-			// http에서 정상적 결과는 200 나머지는 그냥 에러
-			if (result == 200) {
-				is = con.getInputStream();
-			} else {
-				is = con.getErrorStream();
-			}
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
-			return br.readLine();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+	public String kakaoPay(HttpServletRequest req) {
+		
+		if(aDAO.kakaoPay(req)) {
+			String result = (String) req.getAttribute("result");
+			return result;
 		}
-		return "";
+		
+		return "카카오페이 결제 실패";
+	}
+	@RequestMapping(value = "/kakaoPopup.go")
+	public String popup(HttpServletRequest req) {
+		
+		if(aDAO.kakaoPay(req)) {
+			String result = (String) req.getAttribute("result");
+			aDAO.chargeMoney(req);
+			return result;
+		}
+		
+		return "kmj/kakaoPopup";
 	}
 
 }

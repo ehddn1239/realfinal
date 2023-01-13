@@ -185,7 +185,7 @@ $(function() {
 					
 				</c:when>	
 				<c:when test="${loginCheck == 0 }">
-					<form action="myPage.go" method="post">
+					<form action="myPage.go" method="get">
 					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
 					<input type="hidden" value="${loginAccount.a_id }">
 					
