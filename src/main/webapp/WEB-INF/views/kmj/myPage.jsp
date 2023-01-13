@@ -48,6 +48,7 @@ $(function() {
 		let a_id = $("#a-id").val();
 		$.ajax({
 			url:'showAllFavors.do',
+			
 			data: {
 				"a_id" : a_id
 			},
@@ -60,6 +61,23 @@ $(function() {
 				}
 			}
 		});
+	});
+	//카카오페이 ajax 통신 세팅
+	$('#kakaoPay').click(function() {
+		
+		$.ajax({
+			url:'kakaoPay',
+			dataType:'json',
+			success:function(data){
+				alert(data.next_redirect_pc_url);
+				var link = data.next_redirect_pc_url;
+				window.open(link);
+			},
+			error:function(error){
+				alert(error);
+			}
+		});
+
 	});
 });
 </script>
@@ -74,6 +92,7 @@ $(function() {
 				<h5>누적 포인트 ${loginAccount.a_exp }점</h5>
 				<button onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
 				<button onclick="return deleteInfo('${loginAccount.a_id}')">계정 삭제</button>
+				<img id="kakaoPay" style="width: 50px; height: 30px;" alt="" src="resources/imgs/kakaoPay.png">
 			</div>
 			<div class="my-info2">
 				<h4>배송 주소 : ${loginAccount.a_addr }</h4>
