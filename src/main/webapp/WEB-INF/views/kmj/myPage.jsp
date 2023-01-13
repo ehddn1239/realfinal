@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
@@ -69,7 +70,7 @@ $(function() {
 			url:'kakaoPay',
 			dataType:'json',
 			success:function(data){
-				alert(data.next_redirect_pc_url);
+				console.log(data);
 				var link = data.next_redirect_pc_url;
 				window.open(link);
 			},
@@ -81,6 +82,15 @@ $(function() {
 	});
 });
 </script>
+<script type="text/javascript">
+function goChargeCash(id) {
+	if(confirm('캐시를 충전하러 가시겠습니까?')){
+		location.href="kakaoPopup.go?a_id="+id;
+		return true;
+	}
+	return false;
+}
+</script>
 </head>
 <body>
 	<div style="width: 1000px;">
@@ -88,9 +98,11 @@ $(function() {
 		<div class="profile-div">
 			<div class="my-info">
 				<h3>${loginAccount.a_nickname }님 환영합니다!</h3>
-				<h4>당신의 회원 등급은 '${loginAccount.a_rank }'입니다!</h4>
+				<h4>${loginAccount.a_nickname }님의 회원 등급은 '${loginAccount.a_rank }'입니다!</h4>
+				<h4>${loginAccount.a_nickname }님의 보유 캐시는 '${loginAccount.a_cash }'입니다!</h4>
 				<button onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
 				<button onclick="return deleteInfo('${loginAccount.a_id}')">계정 삭제</button>
+				<button onclick="return goChargeCash('${loginAccount.a_id}')">캐시 충전</button>
 				<img id="kakaoPay" style="width: 50px; height: 30px;" alt="" src="resources/imgs/kakaoPay.png">
 			</div>
 			<div class="my-info2">
@@ -114,9 +126,7 @@ $(function() {
 					 <h3>${f.p_no }</h3>				
 					 <h3>${f.p_name }</h3>				
 					 <h3>${f.p_price }</h3>	
-					 <c:forEach items="${imgs[0]}" var="i">
-						<img src="resources/imgs/${i}">
-					</c:forEach>			
+					<img src="resources/imgs/${f.p_img}">
 				</div>
 			</c:forEach>
 		</div>

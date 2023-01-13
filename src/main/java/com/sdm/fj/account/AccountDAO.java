@@ -1,7 +1,14 @@
 package com.sdm.fj.account;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -315,6 +322,50 @@ public class AccountDAO {
 			return false;
 		}
 		return true;
+	}
+
+	public boolean kakaoPay(HttpServletRequest req) {
+		try {
+			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
+			HttpURLConnection con = (HttpURLConnection) address.openConnection();
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Authorization", "KakaoAK eae68a80f7adc3a998cc4fecc3c323a2");
+			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			con.setDoOutput(true);
+			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/fj/myPage.go&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/gohome.go";
+			OutputStream out = con.getOutputStream(); // 주는 역할
+			DataOutputStream dos = new DataOutputStream(out); // 데이터 주는 역할
+			dos.writeBytes(param);
+			dos.close();
+
+			int result = con.getResponseCode();
+
+			InputStream is;
+
+			// http에서 정상적 결과는 200 나머지는 그냥 에러
+			if (result == 200) {
+				is = con.getInputStream();
+			} else {
+				is = con.getErrorStream();
+			}
+			InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+			req.setAttribute("result", br.readLine());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public void chargeMoney(HttpServletRequest req) {
+		int money = Integer.parseInt(req.getParameter("money"));
+//		String id = 
+		
+//		if(ss.getMapper(AccountMapper.class).chargeMoney() == 1) {
+			
+//		}
+		
 	}
 
 	
