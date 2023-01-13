@@ -270,7 +270,7 @@ $(function() {
 						<div class="overlay-panel overlay-right">
 							<h1 class="modal-h1">어서오세요!</h1>
 							<h1 class="modal-h1">처음이신가요?</h1>
-							<p class="modal-p">[쇼핑몰 이름]의 회원이 되어보시겠나요?</p>
+							<p class="modal-p">[SDMALL]의 회원이 되어보시겠나요?</p>
 							<button class="ghost" id="signUp">Sign Up</button>
 						</div>
 					</div>

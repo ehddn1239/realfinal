@@ -26,6 +26,8 @@ public class ProductController {
 		pDAO.getAllProducts(p, req, cri);
 		return "ldw/All/allProduct";
 	}
+	
+	
 	@RequestMapping(value = "productReg.go", method = RequestMethod.GET)
 	public String goRegProduct(Product p, HttpServletRequest req) {
 		if (aDAO.loginCheck(req) == false ) {
