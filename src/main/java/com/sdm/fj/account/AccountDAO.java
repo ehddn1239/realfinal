@@ -313,7 +313,7 @@ public class AccountDAO {
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
 		if(a.getA_userType() == 2 || a.getA_userType() == 3) {
 			return false;
-		}
+		}	
 		return true;
 	}
 

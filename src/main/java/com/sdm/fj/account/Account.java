@@ -8,7 +8,7 @@ public class Account {
 	private String a_email;
 	private String a_phone;
 	private String a_rank;
-	private int a_exp;
+	private double a_exp;
 	private int a_cash;
 	private int a_userType;
 	private String a_favorite;
@@ -40,12 +40,12 @@ public class Account {
 	}
 
 
-	public int getA_exp() {
+	public double getA_exp() {
 		return a_exp;
 	}
 
-	public void setA_exp(int a_exp) {
-		this.a_exp = a_exp;
+	public void setA_exp(double accumulateExp) {
+		this.a_exp = accumulateExp;
 
 	}
 	public String[] getFavorites() {

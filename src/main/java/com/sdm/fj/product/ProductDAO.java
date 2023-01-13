@@ -364,14 +364,19 @@ public class ProductDAO {
 		System.out.println("cart_qty - "+qty);
 		int pay = p.getP_price();
 		System.out.println("pay = "+pay);
+		
+		double exp = a.getA_exp();
+		System.out.println("exp =" + exp);
 
+		double accumulateExp = exp + (qty * pay) * 0.01;
 		int remain = money - (qty * pay);
 		Account a2 = new Account();
 		a2.setA_id(a.getA_id());
 		a2.setA_cash(remain);
-		
+		a2.setA_exp(accumulateExp);
 		System.out.println("a2의 a_id = "+a2.getA_id());
 		System.out.println("a2의 a_cash = "+a2.getA_cash());
+		System.out.println("a2의 a_exp = "+a2.getA_exp());
 		
 		
 		if(ss.getMapper(AccountMapper.class).payMoney(a2) == 1) {
@@ -383,5 +388,6 @@ public class ProductDAO {
 		
 		
 	}
+
 
 }
