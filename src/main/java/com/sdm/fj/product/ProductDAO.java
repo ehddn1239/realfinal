@@ -26,7 +26,7 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession ss;
 
-	public void getAllProducts(Product p, HttpServletRequest req) {
+	public void getAllProducts(Product p, HttpServletRequest req, Criteria cri) {
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getAllProducts();
 		List<Product> products2 = new ArrayList<Product>();
@@ -37,6 +37,7 @@ public class ProductDAO {
 			products2.add(pp);
 		}
 		req.setAttribute("products", products2);
+		req.setAttribute("pageMaker", new PageDTO(cri, 123));
 
 	}
 

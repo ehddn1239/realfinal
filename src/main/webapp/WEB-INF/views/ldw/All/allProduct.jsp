@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/productPage.css">
+
 </head>
 <body>
 <div class="header">
@@ -30,10 +31,31 @@
 					</div>
 				
 				</div>
+				
 			</c:forEach>
+			
 		</div>
+<div>
+  <ul class="pagination">
+    <c:if test="${pageMaker.prev }">
+      <li class="pagination_button">
+      	<a href="#">Previous</a>
+      </li>
+    </c:if>
 
+    <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+      <li class="pagination_button">
+      	<a href="#">${num }</a>
+      </li>
+    </c:forEach>
 
+    <c:if test="${pageMaker.next }">
+      <li class="pagination_button">
+        <a href="#">Next</a>
+      </li>
+    </c:if>
+  </ul>
+</div>
 
 	</div>
 </html>
