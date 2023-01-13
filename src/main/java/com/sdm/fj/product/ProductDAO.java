@@ -316,13 +316,14 @@ public class ProductDAO {
 	public void showClientFavors(HttpServletRequest req, Product p) {
 		System.out.println("--------showClientFavors시작-------");
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
-		String[] favorsArr = a.getA_favorite().split(", ");
+		String[] favorsArr = a.getA_favorite().split(",");
 		for (String s2 : favorsArr) {
-			System.out.println("favorsArr ??? "+s2);
+			System.out.println("favorsArr = "+s2);
 		}
-		ArrayList<Product> products = new ArrayList<Product>();
-		ArrayList<String> imgs = new ArrayList<String>();
+//		ArrayList<String> imgs = new ArrayList<String>();
+		ArrayList<ProductForFavorite> products = new ArrayList<ProductForFavorite>();
 		
+		String sendImg="";
 		for (String s : favorsArr) {
 			System.out.println("favorsArr = " + s);
 			if(s.equals(" ")) {
@@ -330,16 +331,25 @@ public class ProductDAO {
 			}else {
 				Product pp = ss.getMapper(ProductMapper.class).getProductforFavor(s);
 				System.out.println("pp.getP_img() = " + pp.getP_img());
+				ProductForFavorite pf = new ProductForFavorite();
+				int pno = pp.getP_no();
+				String pname = pp.getP_name();
+				int price = pp.getP_price();
 				String[] imgSplit = pp.getP_img().split("!");
-				products.add(pp);
-				for (String s2 : imgSplit) {
-					System.out.println("한글" + s2);
-					imgs.add(s2);
-				}
-				pp.setImgs(imgs);
+				sendImg= imgSplit[0];
+				
+				System.out.println("pno = " + pno);
+				System.out.println("pname = " + pname);
+				System.out.println("price = " + price);
+				System.out.println("sendimg = " + sendImg);
+				pf.setP_name(pname);
+				pf.setP_no(pno);
+				pf.setP_price(price);
+				pf.setP_img(sendImg);
+				
+				products.add(pf);
 			}
 		}
-		req.setAttribute("imgs", imgs);
 		req.setAttribute("favorsPNO", products);
 	}
 	public void getSearchProduct(Product p, HttpServletRequest req) {
