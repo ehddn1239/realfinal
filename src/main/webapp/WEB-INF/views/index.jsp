@@ -181,22 +181,27 @@ $(function() {
 
 						<c:choose>
 				<c:when test="${loginCheck == 1 }">
-					<button class="login-btn">Sign In</button>
+					<button class="login-btn">Login</button>
 					
 				</c:when>	
 				<c:when test="${loginCheck == 0 }">
 					<form action="myPage.go" method="post">
 					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
 					<input type="hidden" value="${loginAccount.a_id }">
+					
 					<c:if test="${loginAccount.a_userType == 3 }">
 						<button type="button" onclick="location.href ='adminPage.go'" class="myPage-btn">고객 관리</button>
 					</c:if>
 						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
 					</form>
-					
+
+					<c:if test="${loginAccount.a_userType == 2 }">
+						<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
+					</c:if>	
+
 				</c:when>
 			</c:choose>
-			<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
+			
 
 				</div>
 
@@ -217,8 +222,8 @@ $(function() {
 					<form class="modal-form" action="account.reg.do" method="post"
 						name="joinForm" onsubmit="return joinCheck()">
 						<h1 class="modal-h1">Create Account</h1>
-						<span class="modal-span">회원 가입을 시작하겠습니다!</span> <input id="a_id"
-							class="modal-input" name="a_id" type="text" placeholder="UserID" />
+						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
+						<input id="a_id" class="modal-input" name="a_id" type="text" placeholder="UserID" />
 						<button type="button" class="checkId">중복검사</button>
 						<input id="a_nickname" class="modal-input" name="a_nickname"
 							type="text" placeholder="사용하실 닉네임" /> <input id="a_pw"

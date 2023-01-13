@@ -22,8 +22,8 @@ public class ProductController {
 	private AccountDAO aDAO;
 	
 	@RequestMapping(value = "allProduct.go", method = RequestMethod.GET)
-	public String allProduct(Product p, HttpServletRequest req) {
-		pDAO.getAllProducts(p, req);
+	public String allProduct(Product p, HttpServletRequest req, Criteria cri) {
+		pDAO.getAllProducts(p, req, cri);
 		return "ldw/All/allProduct";
 	}
 	@RequestMapping(value = "productReg.go", method = RequestMethod.GET)

@@ -89,6 +89,7 @@ $(function() {
 			<div class="my-info">
 				<h3>${loginAccount.a_nickname }님 환영합니다!</h3>
 				<h4>당신의 회원 등급은 '${loginAccount.a_rank }'입니다!</h4>
+				<h5>누적 포인트 ${loginAccount.a_exp }점</h5>
 				<button onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
 				<button onclick="return deleteInfo('${loginAccount.a_id}')">계정 삭제</button>
 				<img id="kakaoPay" style="width: 50px; height: 30px;" alt="" src="resources/imgs/kakaoPay.png">
