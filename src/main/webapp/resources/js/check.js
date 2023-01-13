@@ -14,7 +14,6 @@ function loginCheck() {
 	}
 	return true;
 }
-
 function joinCheck() {
 	var idInput = document.joinForm.a_id;
 	var pwInput = document.joinForm.a_pw;
