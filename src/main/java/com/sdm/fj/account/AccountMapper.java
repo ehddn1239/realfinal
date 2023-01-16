@@ -43,5 +43,7 @@ public interface AccountMapper {
 
 	int payMoney(Account a2);
 
+	int chargeMoney(Charger c);
+
 
 }
