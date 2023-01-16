@@ -15,17 +15,18 @@ $(function() {
 	$('#chargeMoney').click(function() {
 		var id = $("#id").val();
 		var money = $("#money").val();
-		
+		console.log('id = '+id);
+		console.log('money = '+money);
 		$.ajax({
-			url:'kakaoPay',
+			url:'kakaoPay2',
 			dataType:'json',
 			data:{
 				"a_id" : id,
 				"money" : money,
 			},
 			success:function(data){
-				var link = data.next_redirect_pc_url;
-				window.open(link);
+				alert(data.next_redirect_pc_url)
+				location.href= data.next_redirect_pc_url;
 			},
 			error:function(error){
 				alert(error);
@@ -45,7 +46,7 @@ $(function() {
 		<option value="100000">100,000원</option>
 		<option value="1000000">1,000,000원</option>
 	</select>
-	<input name ="a_id" id="id" value="${loginAccount.a_id }">
+	<input type="hidden" name ="a_id" id="id" value="${loginAccount.a_id }">
 	<button id="chargeMoney">충전하기</button>
 
 

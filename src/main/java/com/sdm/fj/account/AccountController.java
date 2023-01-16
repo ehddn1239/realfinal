@@ -145,6 +145,7 @@ public class AccountController {
 		return "kmj/requestSellerPage";
 	}
 
+
 	// 판매자 양식 작성 후 요청 보내기
 	@RequestMapping(value = "/sendReq.do", method = RequestMethod.GET)
 	public String sendReq(Account a, RequestSeller r, HttpServletRequest req) {
@@ -188,7 +189,7 @@ public class AccountController {
 		return "kmj/myPage";
 	}
 
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value = "/kakaoPay")
 	public String kakaoPay(HttpServletRequest req) {
 		
@@ -198,9 +199,23 @@ public class AccountController {
 		}
 		
 		return "카카오페이 결제 실패";
+	}*/
+	@ResponseBody
+	@RequestMapping(value = "/kakaoPay2")
+	public String kakaoPay2(@RequestParam("a_id") String id, @RequestParam("money") int money, HttpServletRequest req) {
+		aDAO.kakaoPay(id, money, req);
+		
+		return aDAO.kakaoPay(id, money, req);
 	}
 	@RequestMapping(value = "/kakaoPopup.go")
-	public String popup(HttpServletRequest req) {
+	public String kakaoPaygo(HttpServletRequest req) {
+		aDAO.loginCheck(req);
+		return "kmj/kakaoPopup";
+	}
+	
+	//카카오 결제 실패 페이지
+	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
+	public String failCharge(Account a, HttpServletRequest req) {
 		
 		
 		if(aDAO.kakaoPay(req)) {
@@ -208,8 +223,17 @@ public class AccountController {
 			aDAO.chargeMoney(req);
 			return result;
 		}
+		return "kmj/failPage";
+	}
+	//카카오 결제 완료 후 ㄹㅇ 결제하는 페이지
+	@RequestMapping(value = "/doCharge", method = RequestMethod.GET)
+	public String chargeMoney(@RequestParam("money") int money ,Charger c, HttpServletRequest req) {
 		
-		return "kmj/kakaoPopup";
+		aDAO.loginCheck(req);
+		
+		aDAO.chargeMoney(money, req);
+		
+		return "kmj/successPage";
 	}
 
 }
