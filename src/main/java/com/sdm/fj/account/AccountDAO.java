@@ -66,6 +66,7 @@ public class AccountDAO {
 				req.getSession().setAttribute("loginAccount", aa);
 				req.getSession().setMaxInactiveInterval(60 * 10);
 				System.out.println("로그인  성공");
+				
 			} else {
 				out.println("<script language ='javascript'>");
 				out.println("alert('비밀번호가 틀렸습니다');");
@@ -85,16 +86,42 @@ public class AccountDAO {
 			out.flush();
 			System.out.println("로그인 실패(아이디 오류)");
 		}
+		
 	}
 	
 	public boolean loginCheck(HttpServletRequest req) {
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
 		if (a != null) {
+			String rank = "";
+			
+			if (a.getA_exp() >= 5000 && a.getA_exp() < 10000) {
+				rank = "Silver";
+			} else if (a.getA_exp() >= 10000 && a.getA_exp() < 15000) {
+				rank = "Gold";
+			} else if (a.getA_exp() >= 15000 && a.getA_exp() < 20000) {
+				rank = "Platinum";
+			} else if (a.getA_exp() >= 20000) {
+				rank = "Diamond";
+			} else {
+				rank = "Bronze";
+			}
+			Account a2 = new Account();
+			a2.setA_id(a.getA_id());
+			a2.setA_rank(rank);
+			
+			
+			if(ss.getMapper(AccountMapper.class).changeRank(a2) == 1) {
+			}else {
+			}
+			req.setAttribute("rank", rank);
 			req.setAttribute("loginCheck", 0);
 			return true;
+			
 		}
 		req.setAttribute("loginCheck", 1);
 		return false;
+
+		
 	}
 	
 	
@@ -154,12 +181,14 @@ public class AccountDAO {
 	}
 	//특정 아이디 조회할떄 쓸라고 만듬
 		public void getAccount(Account a, HttpServletRequest req) {
-			Account aa = ss.getMapper(AccountMapper.class).getAccount(a);
+			Account aa = ss.getMapper(AccountMapper.class).getAccount(a);		
 			if(aa != null) {
 				req.setAttribute("loginAccount", aa);
 			}else {
 				System.out.println("조회할 아이디가 없음");
 			}
+			
+			
 		}
 	
 	private void sendEmail(Account a, String div) {
