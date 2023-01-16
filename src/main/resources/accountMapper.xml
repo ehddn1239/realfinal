@@ -72,6 +72,10 @@
 		set a_cash = #{a_cash}, a_exp = #{a_exp}
 		where a_id = #{a_id}
 	</update>
-	
+	<update id="chargeMoney" parameterType="com.sdm.fj.account.Charger">
+		update final_account
+		set a_cash = a_cash + #{money}
+		where a_id = #{id}
+	</update>
 	
 </mapper>

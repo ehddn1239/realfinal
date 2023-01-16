@@ -324,15 +324,27 @@ public class AccountDAO {
 		return true;
 	}
 
-	public boolean kakaoPay(HttpServletRequest req) {
+	public String kakaoPay(String id, int money, HttpServletRequest req) {
 		try {
+			
+			System.out.println("-----------kakaoPay함수 시작--------------");
+			String a_id = id;
+			System.out.println("a_id = "+a_id);
+			
+			int a_cash = money;
+			System.out.println("a_cash = " + a_cash);
+			
+			String approval_url = "http://localhost:8080/fj/doCharge?money="+a_cash;
+			System.out.println("approval_url = " +approval_url);
+			
+			
 			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection con = (HttpURLConnection) address.openConnection();
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Authorization", "KakaoAK eae68a80f7adc3a998cc4fecc3c323a2");
 			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			con.setDoOutput(true);
-			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/fj/myPage.go&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/gohome.go";
+			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url="+ approval_url +"&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/goFail.go";
 			OutputStream out = con.getOutputStream(); // 주는 역할
 			DataOutputStream dos = new DataOutputStream(out); // 데이터 주는 역할
 			dos.writeBytes(param);
@@ -350,21 +362,26 @@ public class AccountDAO {
 			}
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
-			req.setAttribute("result", br.readLine());
-			return true;
+			req.setAttribute("result", 1);
+			return br.readLine();
 		} catch (Exception e) {
+			req.setAttribute("result", 0);
 			e.printStackTrace();
 		}
-		return false;
+		return "";
 	}
 
-	public void chargeMoney(HttpServletRequest req) {
-		int money = Integer.parseInt(req.getParameter("money"));
-//		String id = 
+	public void chargeMoney(int money, HttpServletRequest req) {
 		
-//		if(ss.getMapper(AccountMapper.class).chargeMoney() == 1) {
-			
-//		}
+		Account a = (Account) req.getSession().getAttribute("loginAccount");
+		String id = a.getA_id();
+		Charger c = new Charger();
+		c.setId(id);
+		c.setMoney(money);
+		
+		if(ss.getMapper(AccountMapper.class).chargeMoney(c) == 1) {
+			System.out.println("충전 성공");
+		}
 		
 	}
 
