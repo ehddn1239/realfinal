@@ -1,14 +1,6 @@
 package com.sdm.fj.account;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -225,6 +217,12 @@ public class AccountController {
 	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
 	public String failCharge(Account a, HttpServletRequest req) {
 		
+		
+		if(aDAO.kakaoPay(req)) {
+			String result = (String) req.getAttribute("result");
+			aDAO.chargeMoney(req);
+			return result;
+		}
 		return "kmj/failPage";
 	}
 	//카카오 결제 완료 후 ㄹㅇ 결제하는 페이지
