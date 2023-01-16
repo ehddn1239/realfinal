@@ -69,7 +69,7 @@
 	
 	<update id="payMoney" parameterType="com.sdm.fj.account.Account">
 		update final_account
-		set a_cash = #{a_cash}
+		set a_cash = #{a_cash}, a_exp = #{a_exp}
 		where a_id = #{a_id}
 	</update>
 	<update id="chargeMoney" parameterType="com.sdm.fj.account.Charger">
