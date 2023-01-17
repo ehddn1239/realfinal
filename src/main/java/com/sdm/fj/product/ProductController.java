@@ -384,6 +384,9 @@ public class ProductController {
 		aDAO.loginCheck(req);
 		//구매하는 일
 		pDAO.buyProduct(p,cart,req);
+		//구매이력 남기는 일
+		pDAO.regOrderList(p,cart,a,req);
+		
 		
 		//디테일 구하기
 		pDAO.goDetail(p, req);

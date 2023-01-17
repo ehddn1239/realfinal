@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountMapper;
+import com.sdm.fj.account.OrderList;
+import com.sdm.fj.account.OrderlistMapper;
 import com.sdm.fj.cart.CartDTO;
 
 @Service
@@ -358,6 +360,7 @@ public class ProductDAO {
 //		ArrayList<String> imgs = new ArrayList<String>();
 		ArrayList<ProductForFavorite> products = new ArrayList<ProductForFavorite>();
 		
+		
 		String sendImg="";
 		for (String s : favorsArr) {
 			System.out.println("favorsArr = " + s);
@@ -437,6 +440,41 @@ public class ProductDAO {
 	
 
 	
+
+	public void regOrderList(Product p, CartDTO cart, Account a, HttpServletRequest req) {
+		System.out.println("--------regOrderList함수 시작-------");
+		Account a2 = (Account) req.getSession().getAttribute("loginAccount");
+		String id = a2.getA_id();
+		int pno = p.getP_no();
+		System.out.println("pno = "+pno);
+		int qty = cart.getCart_qty();
+		System.out.println("cart_qty - "+qty);
+		
+		String p_name = ss.getMapper(ProductMapper.class).getPname(pno);
+		
+		OrderList ol = new OrderList();
+		ol.setO_p_no(pno);
+		ol.setO_qty(qty);
+		ol.setO_a_id(id);
+		ol.setO_p_name(p_name);
+		if(ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
+			System.out.println("구매이력 등록 완료");
+		}
+		
+	}
+
+	public void showAllOrders(OrderList o, HttpServletRequest req, Product p) {
+		System.out.println("--------showAllOrders함수 시작---------------");
+		OrderlistMapper om = ss.getMapper(OrderlistMapper.class);
+		System.out.println("o_a_id = " + o.getO_a_id());
+		ArrayList<OrderList> orders = om.showAllOrders(o);
+		System.out.println("----------------showAllOrders함수 끝-----------");
+		for (OrderList o2 : orders) {
+			System.out.println(o2);
+		}
+		
+		req.setAttribute("orderList22", orders);
+	}
 
 
 }

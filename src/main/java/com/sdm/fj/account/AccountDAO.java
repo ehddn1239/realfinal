@@ -306,7 +306,6 @@ public class AccountDAO {
 		}
 
 	}
-
 	public void deleteAccount(Account a) {
 		if (ss.getMapper(AccountMapper.class).delete(a) == 1) {
 
@@ -383,17 +382,14 @@ public class AccountDAO {
 			}
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
-			req.setAttribute("result", 1);
 			return br.readLine();
 		} catch (Exception e) {
-			req.setAttribute("result", 0);
 			e.printStackTrace();
 		}
 		return "";
 	}
 
 	public void chargeMoney(int money, HttpServletRequest req) {
-
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
 		String id = a.getA_id();
 		Charger c = new Charger();
