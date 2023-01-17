@@ -20,4 +20,10 @@ public interface ProductMapper {
 
 	List<Product> getSearchProduct(Product p);
 
+	List<Product> gethighPriceProducts(int p_category);
+
+	List<Product> getLowPriceProducts(int p_category);
+
+	List<Product> getNewProducts(int p_category);
+
 }
