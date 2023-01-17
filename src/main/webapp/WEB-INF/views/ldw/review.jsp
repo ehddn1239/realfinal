@@ -29,9 +29,9 @@
 <body>
 <h1>후기 작성<br></h1>
 <div id="ReviewContainer">
-<form class="mb-3" name="myform" id="myform" method="post">
-
-<img src="resources/imgs/${p.p_img}">SDMall<br>${p.p_name}<br>
+<form class="mb-3" name="myform" id="myform" method="post" enctype="multipart/form-data">
+후기 이미지:<input name="p_img" type="file">
+SDMall<br>${p.p_name}<br>
 옵션 ${p.p_size}${p.p_color}<br>
 <fieldset>
 		<span class="text-bold">별점을 선택해주세요</span>
