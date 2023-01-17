@@ -315,7 +315,6 @@ public class AccountDAO {
 		
 		
 	}
-
 	public void deleteAccount(Account a) {
 		if(ss.getMapper(AccountMapper.class).delete(a)==1) {
 			
@@ -373,7 +372,7 @@ public class AccountDAO {
 			con.setRequestProperty("Authorization", "KakaoAK eae68a80f7adc3a998cc4fecc3c323a2");
 			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			con.setDoOutput(true);
-			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url="+ approval_url +"&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/goFail.go";
+			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=SDMall&quantity=1&total_amount="+ money +"&vat_amount=200&tax_free_amount=0&approval_url="+ approval_url +"&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/goFail.go";
 			OutputStream out = con.getOutputStream(); // 주는 역할
 			DataOutputStream dos = new DataOutputStream(out); // 데이터 주는 역할
 			dos.writeBytes(param);
@@ -391,17 +390,14 @@ public class AccountDAO {
 			}
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
-			req.setAttribute("result", 1);
 			return br.readLine();
 		} catch (Exception e) {
-			req.setAttribute("result", 0);
 			e.printStackTrace();
 		}
 		return "";
 	}
 
 	public void chargeMoney(int money, HttpServletRequest req) {
-		
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
 		String id = a.getA_id();
 		Charger c = new Charger();

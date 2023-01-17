@@ -20,4 +20,6 @@ public interface ProductMapper {
 
 	List<Product> getSearchProduct(Product p);
 
+	String getPname(int pno);
+
 }

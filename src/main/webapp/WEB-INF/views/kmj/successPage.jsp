@@ -10,9 +10,12 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	alert('결제에 성공했습니다');
-	location.href='gohome.go';
 </script>
 </head>
 <body>
+<h1>성공페이지</h1>
+<button onclick="location.href='orderDetail'">주문 상세페이지로</button>
+<button onclick="location.href='gohome.go'">홈 화면으로</button>
+
 </body>
 </html>

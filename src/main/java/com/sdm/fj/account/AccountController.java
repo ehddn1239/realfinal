@@ -53,9 +53,10 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
-	public String myPage(Account a, HttpServletRequest req) {
+	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
 		aDAO.loginCheck(req);
+		
 		return "kmj/myPage";
 	}
 
@@ -175,8 +176,19 @@ public class AccountController {
 		return "kmj/adminPage";
 	}
 
+	// 구매이력 불러오기
+	@RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
+	public String showAllOrders(OrderList o, Product p, Account a, HttpServletRequest req) {
+		aDAO.loginCheck(req);
+		
+		// 구매이력 불러오기
+		pDAO.showAllOrders(o, req, p);
+		
+		return "kmj/myPage";
+	}
+	
 	// 찜한거 불러오기
-	@RequestMapping(value = "/showAllFavors.do", method = RequestMethod.GET)
+	@RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
 	public String showAllFavors(Product p, Account a, HttpServletRequest req) {
 		aDAO.loginCheck(req);
 
@@ -189,17 +201,6 @@ public class AccountController {
 		return "kmj/myPage";
 	}
 
-	/*@ResponseBody
-	@RequestMapping(value = "/kakaoPay")
-	public String kakaoPay(HttpServletRequest req) {
-		
-		if(aDAO.kakaoPay(req)) {
-			String result = (String) req.getAttribute("result");
-			return result;
-		}
-		
-		return "카카오페이 결제 실패";
-	}*/
 	@ResponseBody
 	@RequestMapping(value = "/kakaoPay2")
 	public String kakaoPay2(@RequestParam("a_id") String id, @RequestParam("money") int money, HttpServletRequest req) {
@@ -216,13 +217,6 @@ public class AccountController {
 	//카카오 결제 실패 페이지
 	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
 	public String failCharge(Account a, HttpServletRequest req) {
-		
-		
-		if(aDAO.kakaoPay(req)) {
-			String result = (String) req.getAttribute("result");
-			aDAO.chargeMoney(req);
-			return result;
-		}
 		return "kmj/failPage";
 	}
 	//카카오 결제 완료 후 ㄹㅇ 결제하는 페이지

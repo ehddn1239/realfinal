@@ -42,47 +42,6 @@ $(function() {
 })
 </script>
 <script type="text/javascript">
-
-//jQuery로 favors a태그 눌럿을때 아래에 div가 보이도록 하자
-$(function() {
-	$("#favors").click(function() {
-		let a_id = $("#a-id").val();
-		$.ajax({
-			url:'showAllFavors.do',
-			
-			data: {
-				"a_id" : a_id
-			},
-			success: function(data) {
-				console.log(data);
-				if(data == "N"){
-					alert('사용할 수 있는 아이디');
-				}else{
-					alert('불가능한 아이디입니다');
-				}
-			}
-		});
-	});
-	//카카오페이 ajax 통신 세팅
-	$('#kakaoPay').click(function() {
-		
-		$.ajax({
-			url:'kakaoPay',
-			dataType:'json',
-			success:function(data){
-				console.log(data);
-				var link = data.next_redirect_pc_url;
-				window.open(link);
-			},
-			error:function(error){
-				alert(error);
-			}
-		});
-
-	});
-});
-</script>
-<script type="text/javascript">
 function goChargeCash(id) {
 	if(confirm('캐시를 충전하러 가시겠습니까?')){
 		location.href="kakaoPopup.go?a_id="+id;
@@ -114,13 +73,14 @@ function goChargeCash(id) {
 		<!-- 메뉴 리스트 -->
 		<nav class="nav">
 			<a href="deliveryTrackingGo" class="nav-item is-active" active-color="orange">배송 조회</a> 
-			<a onclick="showAllFavors('${loginAccount.a_id}')" class="nav-item" active-color="green"">찜한 목록</a> 
+			<a id="favors" onclick="location.href='showAllFavors.do?a_id=${loginAccount.a_id}'" class="nav-item" active-color="green">찜한 목록</a> 
+			<input id="aid" value="${loginAccount.a_id }" type="hidden">
 			<a href="go.cart?a_id=${loginAccount.a_id }" class="nav-item" active-color="red">장바구니</a> 
 			<a onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" class="nav-item" active-color="blue">판매자 등록</a> 
-			<a href="#" class="nav-item" active-color="violet">구매이력</a> 
+			<a id="orderlist" class="nav-item" active-color="violet" href="showAllOrders.do?o_a_id=${loginAccount.a_id}">구매이력</a> 
 			<span class="nav-indicator"></span>
 		</nav>
-		<div class="favorites-div" style="display: flex;">
+		<div class="favorites-div">
 		<!-- 찜목록 보여주기 -->
 			<c:forEach items="${favorsPNO }" var="f">
 				<div>
@@ -128,6 +88,17 @@ function goChargeCash(id) {
 					 <h3>${f.p_name }</h3>				
 					 <h3>${f.p_price }</h3>	
 					<img src="resources/imgs/${f.p_img}">
+				</div>
+			</c:forEach>
+		</div>
+		<div class="orderlist-div">
+		<!-- 찜목록 보여주기 -->
+			<c:forEach items="${orderList22 }" var="o">
+				<div>
+					 <h3>${o.o_p_name }</h3>				
+					 <h3>${o.o_qty }</h3>
+					 <h3>${o.o_date}</h3>
+					 <button>작성하러 가기</button>
 				</div>
 			</c:forEach>
 		</div>

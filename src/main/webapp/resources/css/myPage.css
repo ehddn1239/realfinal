@@ -69,7 +69,12 @@
   z-index: 1;
   border-radius: 8px 8px 0 0;
 }
-
+.favorites-div{
+	display : flex;
+}
+.orderlist-div{
+	display : flex;
+}
 @media (max-width: 580px) {
   .nav { overflow: auto; }
 }
