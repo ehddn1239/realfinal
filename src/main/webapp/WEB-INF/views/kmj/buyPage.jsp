@@ -50,6 +50,7 @@ function checkMoney(cash, price) {
 			<form action="buy.do" method="post" onsubmit="return checkMoney('${loginAccount.a_cash}', ${p.p_price })">
 			<!-- name으로 p_color, p_size, cart_qty, p_price, p_no 넘겨줌 -->
 			<div id="orderDiv">
+			이름: ${loginAccount.a_id}
 				<div id="mainImg">
 					<c:forEach items="${imgs[0]}" var="i">
 						<img src="resources/imgs/${i}">
@@ -62,7 +63,6 @@ function checkMoney(cash, price) {
 					<div class="detailTitle">
 						<span>${p.p_name }</span>
 					</div>
-					<div class="productDescription">${p.p_description}</div>
 					<div class="detailPrice">
 						정상가
 						<fmt:formatNumber value="${p.p_price }" type="currency"
@@ -71,11 +71,9 @@ function checkMoney(cash, price) {
 
 					<div id="orderOptionDiv">
 						<div class="colorSelect">
-							<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
-								name="p_color">
-								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
-								<option value="${p.p_color }">${p.p_color }</option>
-							</select>
+							<span>색상</span> 
+								
+								${p.p_color }
 						</div>
 						<div class="sizeSelect">
 

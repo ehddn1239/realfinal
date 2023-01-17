@@ -394,6 +394,14 @@ public class ProductController {
 		
 		return "sh/detail";
 	}
+	@RequestMapping(value = "/review.go", method = RequestMethod.GET)
+	public String goReview(Product p, Account a, HttpServletRequest req, CartDTO cart) {
+		aDAO.loginCheck(req);
+		
+		
+		
+		return "ldw/review";
+	}
 	
 	
 	
