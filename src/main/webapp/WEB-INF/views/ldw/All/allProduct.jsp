@@ -19,9 +19,9 @@
 		<div>
 
 			<ul>
-				<li><a href="">최신순</a></li>
-				<li><a href="">낮은가격</a></li>
-				<li><a href="">높은가격</a></li>
+				<li><a href="allNewProduct.select?p_category=0">최신순</a></li>
+				<li><a href="allLowProduct.select?p_category=0">낮은가격</a></li>
+				<li><a href="allHighProduct.select?p_category=0">높은가격</a></li>
 			</ul>
 
 		</div>
@@ -45,22 +45,7 @@
 			</c:forEach>
 
 		</div>
-		<div>
-			<ul class="pagination">
-				<c:if test="${pageMaker.prev }">
-					<li class="pagination_button"><a href="#">Previous</a></li>
-				</c:if>
-
-				<c:forEach var="num" begin="${pageMaker.startPage }"
-					end="${pageMaker.endPage }">
-					<li class="pagination_button"><a href="#">${num }</a></li>
-				</c:forEach>
-
-				<c:if test="${pageMaker.next }">
-					<li class="pagination_button"><a href="#">Next</a></li>
-				</c:if>
-			</ul>
-		</div>
+	
 
 	</div>
 </html>

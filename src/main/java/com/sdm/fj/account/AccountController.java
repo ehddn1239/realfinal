@@ -52,7 +52,7 @@ public class AccountController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage.go", method = RequestMethod.POST)
 	public String myPage(Account a, HttpServletRequest req) {
 
 		aDAO.loginCheck(req);
@@ -216,12 +216,6 @@ public class AccountController {
 	// 카카오 결제 실패 페이지
 	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
 	public String failCharge(Account a, HttpServletRequest req) {
-
-		if (aDAO.kakaoPay(req)) {
-			String result = (String) req.getAttribute("result");
-			aDAO.chargeMoney(req);
-			return result;
-		}
 
 		return "kmj/failPage";
 	}
