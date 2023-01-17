@@ -1,32 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdm.fj.product.ProductMapper">
-	<select id="getAllProducts" resultType="com.sdm.fj.product.Product">
-		select * from final_product 
+	<select id="getAllProducts"
+		resultType="com.sdm.fj.product.Product">
+		select * from final_product
 	</select>
-	<select id="getProductByCategory" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
-		select * from final_product where p_category = #{p_category}
+	<select id="getProductByCategory"
+		resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Product">
+		select * from final_product where p_category =
+		#{p_category}
 	</select>
-	<select id="getSearchProduct" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
-		select * from final_product where p_name like '%'||#{p_name}||'%'
+	<select id="getSearchProduct"
+		resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Product">
+		select * from final_product where p_name like
+		'%'||#{p_name}||'%'
 	</select>
-	<insert id="regProducts" parameterType="com.sdm.fj.product.Product">
-	insert into final_product values(final_product_seq.nextval, #{p_name},#{p_price}, #{p_img}, #{p_category}, #{p_size}, #{p_color}, sysdate ,#{p_description})
+	<insert id="regProducts"
+		parameterType="com.sdm.fj.product.Product">
+		insert into final_product
+		values(final_product_seq.nextval,
+		#{p_name},#{p_price}, #{p_img},
+		#{p_category}, #{p_size}, #{p_color},
+		sysdate ,#{p_description})
 	</insert>
-	
+
 	<select id="getProduct" resultType="com.sdm.fj.product.Product">
-	select * from final_product where p_no = #{p_no}
+		select * from final_product
+		where p_no = #{p_no}
 	</select>
-	
-	<delete id="deleteProduct" parameterType="com.sdm.fj.product.Product">
+
+	<delete id="deleteProduct"
+		parameterType="com.sdm.fj.product.Product">
 		delete final_product where p_no = #{p_no}
 	</delete>
-	
-	<update id="updateProduct" parameterType="com.sdm.fj.product.Product">
-	update final_product set p_name= #{p_name}, p_price = #{p_price}, p_img = #{p_img}, p_category = #{p_category}, p_size = #{p_size}, p_description = #{p_description} where p_no = #{p_no}
+
+	<update id="updateProduct"
+		parameterType="com.sdm.fj.product.Product">
+		update final_product set p_name= #{p_name}, p_price =
+		#{p_price}, p_img =
+		#{p_img}, p_category = #{p_category}, p_size =
+		#{p_size},
+		p_description = #{p_description} where p_no = #{p_no}
 	</update>
-	
-	<select id="getProductforFavor" parameterType="string" resultType="com.sdm.fj.product.Product">
+
+	<select id="getProductforFavor" parameterType="string"
+		resultType="com.sdm.fj.product.Product">
 		select * from final_product where p_no = #{s}
+	</select>
+
+
+	<select id="getList" resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Criteria">
+		select * from
+		(select rownum as rn, a.* from
+		( select * from final_product
+		order by p_no desc)a )
+		where rn &gt;
+		(#{pageNum}-1) * #{amount} and rn
+		&lt;= #{pageNum} * #{amount}
+
+<!-- 		<if test="p_caterory != null">
+			where p_category = #{p_category}
+		</if> -->
+
+	</select>
+
+	<select id="getTotal" parameterType="com.sdm.fj.product.Criteria" resultType="int">
+		select count(*) as total from final_product
+	</select>
+
+<!-- 		<if test="p_caterory != null">
+			where p_category = #{p_category}
+		</if> -->
+	<select id="getTotalByCate" resultType="int" parameterType="com.sdm.fj.product.Criteria" >
+		select count(*) as total from final_product where p_category = #{p_category}
+	</select>
+
+	<select id="getListByCate" resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Criteria">
+		select * from
+		(select rownum as rn, a.* from
+		( select * from final_product where p_category = #{p_category}
+		order by p_no desc)a )
+		where rn &gt;
+		(#{pageNum}-1) * #{amount} and rn
+		&lt;= #{pageNum} * #{amount}
+
+<!-- 		<if test="p_caterory != null">
+			where p_category = #{p_category}
+		</if> -->
+
 	</select>
 </mapper>

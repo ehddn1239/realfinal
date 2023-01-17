@@ -17,7 +17,7 @@
 	<div class="contentWrap">
 		<h1>데님</h1>
 		<div class="content">
-			<c:forEach items="${products}" var="d">
+			<c:forEach items="${lists}" var="d">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${d.p_img}"
@@ -34,6 +34,17 @@
 				</div>
 			</c:forEach>
 		</div>
+		<div class="pageNumWrapper">
+			<ul class="pageUl">
+			<c:forEach var="num" begin="${pageVO.startPage }"
+				end="${pageVO.endPage }">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }"><a
+					href="showByCategory?p_category=10&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+			</c:forEach>
+			</ul>
+		</div>
+		
 	</div>
 </body>
 </html>

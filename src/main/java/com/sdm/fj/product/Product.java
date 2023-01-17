@@ -83,5 +83,11 @@ public class Product {
 	public void setSizes(ArrayList<String> sizes) {
 		this.sizes = sizes;
 	}
+	@Override
+	public String toString() {
+		return "Product [p_no=" + p_no + ", p_name=" + p_name + ", p_price=" + p_price + ", p_img=" + p_img
+				+ ", p_category=" + p_category + ", p_size=" + p_size + ", p_color=" + p_color + ", p_date=" + p_date
+				+ ", p_description=" + p_description + ", imgs=" + imgs + ", sizes=" + sizes + "]";
+	}
 	
 }

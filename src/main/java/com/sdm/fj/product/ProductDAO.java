@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.synth.SynthScrollPaneUI;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -382,5 +381,56 @@ public class ProductDAO {
 		
 		
 	}
+	public void getList(Criteria cri,HttpServletRequest req){
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> lists = pm.getList(cri);
+		List<Product> lists2 = new ArrayList<Product>();
+System.out.println("111");
+		for (Product pp : lists) {
+			System.out.println("222");
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			lists2.add(pp);
+			
+		}
+		for (Product product : lists2) {
+			System.out.println(product.toString());
+		}
+		req.setAttribute("lists", lists2);
+	}
+
+	public int getTotal() {
+		return ss.getMapper(ProductMapper.class).getTotal();
+	}
+
+	public void getListByCate(Criteria cri, HttpServletRequest req) {
+		int p_category = Integer.parseInt(req.getParameter("p_category"));
+		cri.setP_category(p_category);
+		System.out.println(cri.getP_category());
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> lists = pm.getListByCate(cri);
+		List<Product> lists2 = new ArrayList<Product>();
+		
+		
+		for (Product pp : lists) {
+			System.out.println("222");
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			lists2.add(pp);
+			
+		}
+		
+		req.setAttribute("lists", lists2);
+	}
+
+
+	public int getTotalByCate(Criteria cri,HttpServletRequest req) {
+		int p_category = Integer.parseInt(req.getParameter("p_category"));
+		cri.setP_category(p_category);
+		
+		return ss.getMapper(ProductMapper.class).getTotalByCate(cri);
+	}
+	
+	
 
 }
