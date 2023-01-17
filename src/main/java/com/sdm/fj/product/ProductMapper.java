@@ -19,6 +19,7 @@ public interface ProductMapper {
 	int updateProduct(Product p);
 
 	Product getProductforFavor(String s);
+
 	List<Product> getSearchProduct(Product p);
 	
 	List<Product> getList(Criteria cri); 		//페이징처리
@@ -29,6 +30,14 @@ public interface ProductMapper {
 
 	int getTotalByCate(Criteria cri);
 
+
+	List<Product> getSearchProduct(Product p);
+
+
+	String getPname(int pno);
+	List<Product> gethighPriceProducts(int p_category);
+
+	List<Product> getLowPriceProducts(int p_category);
+
+	List<Product> getNewProducts(int p_category);
 }
-
-

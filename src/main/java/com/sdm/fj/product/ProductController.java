@@ -29,6 +29,162 @@ public class ProductController {
 		pDAO.getList(cri, req);
 		return "ldw/All/allProduct";
 	}
+	@RequestMapping(value = "allNewProduct.select", method = RequestMethod.GET)
+	public String allNewProductSelect(Product p, HttpServletRequest req) {
+	
+		if (Integer.parseInt(req.getParameter("p_category")) == 0) {
+			pDAO.getNewProducts(p, req);
+			return "ldw/All/allProduct";
+		}else {
+			int p_category = Integer.parseInt(req.getParameter("p_category"));
+			switch (p_category) {
+			case 1:
+				pDAO.getNewProducts(p, req);
+				return "ldw/outer/padding";
+			case 2:
+				pDAO.getNewProducts(p, req);
+				return "ldw/outer/coat";
+			case 3:
+				pDAO.getNewProducts(p, req);
+				return "ldw/outer/fieldJacket";
+			case 4:
+				pDAO.getNewProducts(p, req);
+				return "ldw/top/knitwear";
+			case 5:
+				pDAO.getNewProducts(p, req);
+				return "ldw/top/shirt";
+			case 6:
+				pDAO.getNewProducts(p, req);
+				return "ldw/top/tShirt";
+			case 9:
+				pDAO.getNewProducts(p, req);
+				return "sh/bottom/pants";
+			case 10:
+				pDAO.getNewProducts(p, req);
+				return "sh/bottom/denim";
+			case 12:
+				pDAO.getNewProducts(p, req);
+				return "sh/bottom/shorts";
+			case 13:
+				pDAO.getNewProducts(p, req);
+				return "sh/etc/acc";
+			case 14:
+				pDAO.getNewProducts(p, req);
+				return "sh/etc/bag";
+			case 15:
+				pDAO.getNewProducts(p, req);
+				return "sh/etc/shoes";
+			default:
+				break;
+			}
+		}
+		return "";
+	}
+	
+	@RequestMapping(value = "allHighProduct.select", method = RequestMethod.GET)
+	public String allHighProductSelect(Product p, HttpServletRequest req) {
+	
+		if (Integer.parseInt(req.getParameter("p_category")) == 0) {
+			pDAO.getHighPriceProducts(p, req);
+			return "ldw/All/allProduct";
+		}else {
+			int p_category = Integer.parseInt(req.getParameter("p_category"));
+			switch (p_category) {
+			case 1:
+				pDAO.getHighPriceProducts(p, req);
+				return "ldw/outer/padding";
+			case 2:
+				pDAO.getHighPriceProducts(p, req);
+				return "ldw/outer/coat";
+			case 3:
+				pDAO.getHighPriceProducts(p, req);
+				return "ldw/outer/fieldJacket";
+			case 4:
+				pDAO.getHighPriceProducts(p, req);
+				return "ldw/top/knitwear";
+			case 5:
+				pDAO.getHighPriceProducts(p, req);
+				return "ldw/top/shirt";
+			case 6:
+				pDAO.getHighPriceProducts(p, req);
+				return "ldw/top/tShirt";
+			case 9:
+				pDAO.getHighPriceProducts(p, req);
+				return "sh/bottom/pants";
+			case 10:
+				pDAO.getHighPriceProducts(p, req);
+				return "sh/bottom/denim";
+			case 12:
+				pDAO.getHighPriceProducts(p, req);
+				return "sh/bottom/shorts";
+			case 13:
+				pDAO.getHighPriceProducts(p, req);
+				return "sh/etc/acc";
+			case 14:
+				pDAO.getHighPriceProducts(p, req);
+				return "sh/etc/bag";
+			case 15:
+				pDAO.getHighPriceProducts(p, req);
+				return "sh/etc/shoes";
+			default:
+				break;
+			}
+		}
+		return "";
+	}
+	@RequestMapping(value = "allLowProduct.select", method = RequestMethod.GET)
+	public String allLowProductSelect(Product p, HttpServletRequest req) {
+		
+		pDAO.getLowPriceProducts(p, req);
+		
+		if (req.getParameter("p_category") != null) {
+			int p_category = Integer.parseInt(req.getParameter("p_category"));
+			switch (p_category) {
+			case 1:
+				pDAO.getLowPriceProducts(p, req);
+				return "ldw/outer/padding";
+			case 2:
+				pDAO.getLowPriceProducts(p, req);
+				return "ldw/outer/coat";
+			case 3:
+				pDAO.getLowPriceProducts(p, req);
+				return "ldw/outer/fieldJacket";
+			case 4:
+				pDAO.getLowPriceProducts(p, req);
+				return "ldw/top/knitwear";
+			case 5:
+				pDAO.getLowPriceProducts(p, req);
+				return "ldw/top/shirt";
+			case 6:
+				pDAO.getLowPriceProducts(p, req);
+				return "ldw/top/tShirt";
+			case 9:
+				pDAO.getLowPriceProducts(p, req);
+				return "sh/bottom/pants";
+			case 10:
+				pDAO.getLowPriceProducts(p, req);
+				return "sh/bottom/denim";
+			case 12:
+				pDAO.getLowPriceProducts(p, req);
+				return "sh/bottom/shorts";
+			case 13:
+				pDAO.getLowPriceProducts(p, req);
+				return "sh/etc/acc";
+			case 14:
+				pDAO.getLowPriceProducts(p, req);
+				return "sh/etc/bag";
+			case 15:
+				pDAO.getLowPriceProducts(p, req);
+				return "sh/etc/shoes";
+			default:
+				break;
+			}
+		}
+		
+		return "ldw/All/allProduct";
+	}
+	
+	
 	@RequestMapping(value = "productReg.go", method = RequestMethod.GET)
 	public String goRegProduct(Product p, HttpServletRequest req) {
 		if (aDAO.loginCheck(req) == false ) {
@@ -248,12 +404,23 @@ public class ProductController {
 		aDAO.loginCheck(req);
 		//구매하는 일
 		pDAO.buyProduct(p,cart,req);
+		//구매이력 남기는 일
+		pDAO.regOrderList(p,cart,a,req);
+		
 		
 		//디테일 구하기
 		pDAO.goDetail(p, req);
 		pDAO.getDetail(p,req);
 		
 		return "sh/detail";
+	}
+	@RequestMapping(value = "/review.go", method = RequestMethod.GET)
+	public String goReview(Product p, Account a, HttpServletRequest req, CartDTO cart) {
+		aDAO.loginCheck(req);
+		
+		
+		
+		return "ldw/review";
 	}
 	
 	

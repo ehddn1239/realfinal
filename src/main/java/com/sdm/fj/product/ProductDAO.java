@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountMapper;
+import com.sdm.fj.account.OrderList;
+import com.sdm.fj.account.OrderlistMapper;
 import com.sdm.fj.cart.CartDTO;
 
 @Service
@@ -37,6 +39,43 @@ public class ProductDAO {
 		}
 		req.setAttribute("products", products2);
 
+	}
+	public void getHighPriceProducts(Product p, HttpServletRequest req) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.gethighPriceProducts(p.getP_category());
+		List<Product> products2 = new ArrayList<Product>();
+
+		for (Product pp : products) {
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			products2.add(pp);
+		}
+		req.setAttribute("products", products2);
+		
+	}
+	public void getLowPriceProducts(Product p, HttpServletRequest req) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.getLowPriceProducts(p.getP_category());
+		List<Product> products2 = new ArrayList<Product>();
+
+		for (Product pp : products) {
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			products2.add(pp);
+		}
+		req.setAttribute("products", products2);
+	}
+	public void getNewProducts(Product p, HttpServletRequest req) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.getNewProducts(p.getP_category());
+		List<Product> products2 = new ArrayList<Product>();
+
+		for (Product pp : products) {
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			products2.add(pp);
+		}
+		req.setAttribute("products", products2);
 	}
 
 	public void getProductByCategory(HttpServletRequest req, Product p) {
@@ -314,13 +353,15 @@ public class ProductDAO {
 	public void showClientFavors(HttpServletRequest req, Product p) {
 		System.out.println("--------showClientFavors시작-------");
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
-		String[] favorsArr = a.getA_favorite().split(", ");
+		String[] favorsArr = a.getA_favorite().split(",");
 		for (String s2 : favorsArr) {
-			System.out.println("favorsArr ??? "+s2);
+			System.out.println("favorsArr = "+s2);
 		}
-		ArrayList<Product> products = new ArrayList<Product>();
-		ArrayList<String> imgs = new ArrayList<String>();
+//		ArrayList<String> imgs = new ArrayList<String>();
+		ArrayList<ProductForFavorite> products = new ArrayList<ProductForFavorite>();
 		
+		
+		String sendImg="";
 		for (String s : favorsArr) {
 			System.out.println("favorsArr = " + s);
 			if(s.equals(" ")) {
@@ -328,16 +369,25 @@ public class ProductDAO {
 			}else {
 				Product pp = ss.getMapper(ProductMapper.class).getProductforFavor(s);
 				System.out.println("pp.getP_img() = " + pp.getP_img());
+				ProductForFavorite pf = new ProductForFavorite();
+				int pno = pp.getP_no();
+				String pname = pp.getP_name();
+				int price = pp.getP_price();
 				String[] imgSplit = pp.getP_img().split("!");
-				products.add(pp);
-				for (String s2 : imgSplit) {
-					System.out.println("한글" + s2);
-					imgs.add(s2);
-				}
-				pp.setImgs(imgs);
+				sendImg= imgSplit[0];
+				
+				System.out.println("pno = " + pno);
+				System.out.println("pname = " + pname);
+				System.out.println("price = " + price);
+				System.out.println("sendimg = " + sendImg);
+				pf.setP_name(pname);
+				pf.setP_no(pno);
+				pf.setP_price(price);
+				pf.setP_img(sendImg);
+				
+				products.add(pf);
 			}
 		}
-		req.setAttribute("imgs", imgs);
 		req.setAttribute("favorsPNO", products);
 	}
 	public void getSearchProduct(Product p, HttpServletRequest req) {
@@ -362,14 +412,19 @@ public class ProductDAO {
 		System.out.println("cart_qty - "+qty);
 		int pay = p.getP_price();
 		System.out.println("pay = "+pay);
+		
+		double exp = a.getA_exp();
+		System.out.println("exp =" + exp);
 
+		double accumulateExp = exp + (qty * pay) * 0.01;
 		int remain = money - (qty * pay);
 		Account a2 = new Account();
 		a2.setA_id(a.getA_id());
 		a2.setA_cash(remain);
-		
+		a2.setA_exp(accumulateExp);
 		System.out.println("a2의 a_id = "+a2.getA_id());
 		System.out.println("a2의 a_cash = "+a2.getA_cash());
+		System.out.println("a2의 a_exp = "+a2.getA_exp());
 		
 		
 		if(ss.getMapper(AccountMapper.class).payMoney(a2) == 1) {
@@ -381,6 +436,7 @@ public class ProductDAO {
 		
 		
 	}
+
 	public void getList(Criteria cri,HttpServletRequest req){
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> lists = pm.getList(cri);
@@ -432,5 +488,45 @@ System.out.println("111");
 	}
 	
 	
+
+	
+
+	
+
+	public void regOrderList(Product p, CartDTO cart, Account a, HttpServletRequest req) {
+		System.out.println("--------regOrderList함수 시작-------");
+		Account a2 = (Account) req.getSession().getAttribute("loginAccount");
+		String id = a2.getA_id();
+		int pno = p.getP_no();
+		System.out.println("pno = "+pno);
+		int qty = cart.getCart_qty();
+		System.out.println("cart_qty - "+qty);
+		
+		String p_name = ss.getMapper(ProductMapper.class).getPname(pno);
+		
+		OrderList ol = new OrderList();
+		ol.setO_p_no(pno);
+		ol.setO_qty(qty);
+		ol.setO_a_id(id);
+		ol.setO_p_name(p_name);
+		if(ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
+			System.out.println("구매이력 등록 완료");
+		}
+		
+	}
+
+	public void showAllOrders(OrderList o, HttpServletRequest req, Product p) {
+		System.out.println("--------showAllOrders함수 시작---------------");
+		OrderlistMapper om = ss.getMapper(OrderlistMapper.class);
+		System.out.println("o_a_id = " + o.getO_a_id());
+		ArrayList<OrderList> orders = om.showAllOrders(o);
+		System.out.println("----------------showAllOrders함수 끝-----------");
+		for (OrderList o2 : orders) {
+			System.out.println(o2);
+		}
+		
+		req.setAttribute("orderList22", orders);
+	}
+
 
 }

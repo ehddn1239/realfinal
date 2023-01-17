@@ -97,7 +97,13 @@
   margin: 8px 0;
   width: 100%;
 }
-
+.modal-input-id {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 70%;
+}
 .container {
   background-color: #fff;
   border-radius: 10px;
