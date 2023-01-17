@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.synth.SynthScrollPaneUI;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession ss;
 
-	public void getAllProducts(Product p, HttpServletRequest req, Criteria cri) {
+	public void getAllProducts(Product p, HttpServletRequest req) {
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getAllProducts();
 		List<Product> products2 = new ArrayList<Product>();
@@ -39,8 +38,44 @@ public class ProductDAO {
 			products2.add(pp);
 		}
 		req.setAttribute("products", products2);
-		req.setAttribute("pageMaker", new PageDTO(cri, 123));
 
+	}
+	public void getHighPriceProducts(Product p, HttpServletRequest req) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.gethighPriceProducts(p.getP_category());
+		List<Product> products2 = new ArrayList<Product>();
+
+		for (Product pp : products) {
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			products2.add(pp);
+		}
+		req.setAttribute("products", products2);
+		
+	}
+	public void getLowPriceProducts(Product p, HttpServletRequest req) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.getLowPriceProducts(p.getP_category());
+		List<Product> products2 = new ArrayList<Product>();
+
+		for (Product pp : products) {
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			products2.add(pp);
+		}
+		req.setAttribute("products", products2);
+	}
+	public void getNewProducts(Product p, HttpServletRequest req) {
+		ProductMapper pm = ss.getMapper(ProductMapper.class);
+		List<Product> products = pm.getNewProducts(p.getP_category());
+		List<Product> products2 = new ArrayList<Product>();
+
+		for (Product pp : products) {
+			String imges[] = pp.getP_img().split("!");
+			pp.setP_img(imges[0]);
+			products2.add(pp);
+		}
+		req.setAttribute("products", products2);
 	}
 
 	public void getProductByCategory(HttpServletRequest req, Product p) {
@@ -401,6 +436,10 @@ public class ProductDAO {
 		
 		
 	}
+	
+	
+
+	
 
 	public void regOrderList(Product p, CartDTO cart, Account a, HttpServletRequest req) {
 		System.out.println("--------regOrderList함수 시작-------");

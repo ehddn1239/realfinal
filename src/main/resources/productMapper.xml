@@ -4,6 +4,28 @@
 	<select id="getAllProducts" resultType="com.sdm.fj.product.Product">
 		select * from final_product 
 	</select>
+	<select id="gethighPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
+		select * from final_product 
+		<if test='p_category > 0'>
+		where p_category = #{p_category}
+		</if>
+		order by p_price desc 
+	</select>
+	<select id="getLowPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
+		select * from final_product 
+		<if test='p_category > 0'>
+		where p_category = #{p_category}
+		</if>
+		order by p_price
+	</select>
+	<select id="getNewProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
+		select * from final_product 
+		<if test='p_category > 0'>
+		where p_category = #{p_category}
+		</if>
+		order by p_date
+	</select>
+	
 	<select id="getProductByCategory" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
 		select * from final_product where p_category = #{p_category}
 	</select>
