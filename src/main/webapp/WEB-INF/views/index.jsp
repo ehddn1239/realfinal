@@ -116,8 +116,8 @@ $(function() {
 	<iframe id="vimeo_player_82"
 		src="https://player.vimeo.com/video/733500685?autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;muted=1&amp;background=1"
 		frameborder="0" webkitallowfullscreen="" mozallowfullscreen=""
-		allowfullscreen="" allow="autoplay; fullscreen" data-ready="true"
-		style="width: 1070px; height: 601.875px;"></iframe>
+		allowfullscreen="1" allow="autoplay; fullscreen" data-ready="true" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"
+		></iframe>
 	<div id="whole-wrap-div">
 		<!-- 왼쪽 메뉴 -->
 		<div class="left side-menu">
