@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdm.fj.account.OrderlistMapper">
+
+	<insert id="regOrder" parameterType="com.sdm.fj.account.OrderList">
+		insert into final_order_list values(final_order_list_seq.nextval,#{o_p_no},#{o_a_id}, sysdate, #{o_qty}, #{o_p_name} )
+	</insert>
+
+	<select id="showAllOrders" parameterType="com.sdm.fj.account.OrderList" resultType="com.sdm.fj.account.OrderList">
+		select * from final_order_list where o_a_id = #{o_a_id}
+	</select>
+</mapper>

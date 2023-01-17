@@ -13,7 +13,11 @@
 	<div class="header">
 		<jsp:include page="../header.jsp"></jsp:include>
 	</div>
-
+<ul>
+				<li><a href="allNewProduct.select?p_category=10">최신순</a></li>
+				<li><a href="allLowProduct.select?p_category=10">낮은가격</a></li>
+				<li><a href="allHighProduct.select?p_category=10">높은가격</a></li>
+			</ul>
 	<div class="contentWrap">
 		<h1>데님</h1>
 		<div class="content">

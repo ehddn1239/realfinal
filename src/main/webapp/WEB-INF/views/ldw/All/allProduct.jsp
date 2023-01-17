@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/productPage.css">
+
 </head>
 <body>
 	<div class="header">
@@ -15,6 +16,15 @@
 	</div>
 
 	<div class="contentWrap">
+		<div>
+
+			<ul>
+				<li><a href="allNewProduct.select?p_category=0">최신순</a></li>
+				<li><a href="allLowProduct.select?p_category=0">낮은가격</a></li>
+				<li><a href="allHighProduct.select?p_category=0">높은가격</a></li>
+			</ul>
+
+		</div>
 		<div class="content">
 			<c:forEach items="${lists }" var="p">
 				<div class="item">
@@ -31,6 +41,7 @@
 					</div>
 
 				</div>
+
 			</c:forEach>
 		</div>
 		<div class="pageNumWrapper">
@@ -43,5 +54,12 @@
 			</c:forEach>
 			</ul>
 		</div>
+
+
+			</c:forEach>
+
+		</div>
+	
+
 	</div>
 </html>

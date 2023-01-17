@@ -1,6 +1,7 @@
 package com.sdm.fj.product;
 
 
+
 public class Criteria {
 	private int pageNum;
 	private int amount;
@@ -22,6 +23,8 @@ public class Criteria {
 	public Criteria(int i, int j) {
 		this.pageNum = i;
 		this.amount = j;
+
+
 	}
 
 	public int getPageNum() {
@@ -40,7 +43,15 @@ public class Criteria {
 		this.amount = amount;
 	}
 	
+
 	
 	
 	
+
+
+	@Override
+	public String toString() {
+		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + "]";
+	}
 }
+

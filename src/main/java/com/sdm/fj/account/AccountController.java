@@ -1,14 +1,6 @@
 package com.sdm.fj.account;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,10 +52,11 @@ public class AccountController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/myPage.go", method = RequestMethod.POST)
-	public String myPage(Account a, HttpServletRequest req) {
+	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
+	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
 		aDAO.loginCheck(req);
+		
 		return "kmj/myPage";
 	}
 
@@ -182,8 +175,19 @@ public class AccountController {
 		return "kmj/adminPage";
 	}
 
+	// 구매이력 불러오기
+	@RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
+	public String showAllOrders(OrderList o, Product p, Account a, HttpServletRequest req) {
+		aDAO.loginCheck(req);
+		
+		// 구매이력 불러오기
+		pDAO.showAllOrders(o, req, p);
+		
+		return "kmj/myPage";
+	}
+	
 	// 찜한거 불러오기
-	@RequestMapping(value = "/showAllFavors.do", method = RequestMethod.GET)
+	@RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
 	public String showAllFavors(Product p, Account a, HttpServletRequest req) {
 		aDAO.loginCheck(req);
 
@@ -196,40 +200,47 @@ public class AccountController {
 		return "kmj/myPage";
 	}
 
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/kakaoPay") public String
+	 * kakaoPay(HttpServletRequest req) {
+	 * 
+	 * if(aDAO.kakaoPay(req)) { String result = (String) req.getAttribute("result");
+	 * return result; }
+	 * 
+	 * return "카카오페이 결제 실패"; }
+	 */
 	@ResponseBody
-	@RequestMapping(value = "/kakaoPay")
-	public String kakaoPay() {
-		try {
-			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
-			HttpURLConnection con = (HttpURLConnection) address.openConnection();
-			con.setRequestMethod("POST");
-			con.setRequestProperty("Authorization", "KakaoAK eae68a80f7adc3a998cc4fecc3c323a2");
-			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-			con.setDoOutput(true);
-			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8080/fj/gohome.go&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/gohome.go";
-			OutputStream out = con.getOutputStream(); // 주는 역할
-			DataOutputStream dos = new DataOutputStream(out); // 데이터 주는 역할
-			dos.writeBytes(param);
-			dos.close();
+	@RequestMapping(value = "/kakaoPay2")
+	public String kakaoPay2(@RequestParam("a_id") String id, @RequestParam("money") int money, HttpServletRequest req) {
+		aDAO.kakaoPay(id, money, req);
 
-			int result = con.getResponseCode();
+		return aDAO.kakaoPay(id, money, req);
+	}
 
-			InputStream is;
+	@RequestMapping(value = "/kakaoPopup.go")
+	public String kakaoPaygo(HttpServletRequest req) {
+		aDAO.loginCheck(req);
+		return "kmj/kakaoPopup";
+	}
 
-			// http에서 정상적 결과는 200 나머지는 그냥 에러
-			if (result == 200) {
-				is = con.getInputStream();
-			} else {
-				is = con.getErrorStream();
-			}
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
-			return br.readLine();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "";
+	// 카카오 결제 실패 페이지
+	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
+	public String failCharge(Account a, HttpServletRequest req) {
+
+		return "kmj/failPage";
+	}
+
+	// 카카오 결제 완료 후 real 결제하는 페이지
+	@RequestMapping(value = "/doCharge", method = RequestMethod.GET)
+	public String chargeMoney(@RequestParam("money") int money, Charger c, HttpServletRequest req) {
+
+		aDAO.loginCheck(req);
+
+		aDAO.chargeMoney(money, req);
+
+		return "kmj/successPage";
 	}
 
 }
