@@ -192,7 +192,7 @@ $(function() {
 					<c:if test="${loginAccount.a_userType == 3 }">
 						<button type="button" onclick="location.href ='adminPage.go'" class="myPage-btn">고객 관리</button>
 					</c:if>
-						<button class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
+						<button name="a_id" value="${loginAccount.a_id }" class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
 					</form>
 
 					<c:if test="${loginAccount.a_userType == 2 }">
@@ -225,18 +225,13 @@ $(function() {
 						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
 						<input id="a_id" class="modal-input-id" name="a_id" type="text" placeholder="UserID" />
 						<button type="button" class="checkId">중복검사</button>
-						<input id="a_nickname" class="modal-input" name="a_nickname"
-							type="text" placeholder="사용하실 닉네임" /> <input id="a_pw"
-							class="modal-input" name="a_pw" type="password"
-							placeholder="5자 이상, 대문자 포함" /> <input id="a_pw2"
-							class="modal-input" name="a_pw2" type="password"
-							placeholder="Password Confirm" /> <span id="pw2_span"
-							style="font-size: 8pt; color: red;">비밀번호가 일치하지않음</span> <input
-							id="a_addr" class="modal-input" name="a_addr" type="text"
-							placeholder="주소" /> <input id="a_email" class="modal-input"
-							name="a_email" type="email" placeholder="이메일" /> <input
-							id="a_phone" class="modal-input" name="a_phone" type="tel"
-							placeholder="전화번호" />
+						<input id="a_nickname" class="modal-input" name="a_nickname"type="text" placeholder="사용하실 닉네임" />
+						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
+						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 
+						<span id="pw2_span" style="font-size: 8pt; color: red;">비밀번호가 일치하지않음</span> 
+						<input id="a_addr" class="modal-input" name="a_addr" type="text"placeholder="주소" /> 
+						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
+						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
 						<button class="modal-button">Sign Up</button>
 					</form>
 				</div>
@@ -244,12 +239,12 @@ $(function() {
 				<div class="form-container sign-in-container">
 					<form class="modal-form" action="account.login.do" method="post">
 						<h1 class="modal-h1">Sign in</h1>
-						<div class="social-container">
-							<!-- 여기는 카카오 간편 로그인 기능 -->
+						<!-- <div class="social-container">
+							여기는 카카오 간편 로그인 기능
 							<a class="modal-a" href="#" class="social"><i class="fab fa-facebook-f"></i></a> 
 							<a class="modal-a" href="#" class="social"><i class="fab fa-google-plus-g"></i></a> 
 							<a class="modal-a" href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-						</div>
+						</div> -->
 						<span>or use your account</span> 
 						<input class="modal-input" name="a_id" type="text" placeholder="UserID" /> 
 						<input class="modal-input" name="a_pw" type="password" placeholder="Password" /> 

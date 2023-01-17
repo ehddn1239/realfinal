@@ -59,7 +59,7 @@ function goChargeCash(id) {
 				<h3>${loginAccount.a_nickname }님 환영합니다!</h3>
 				<h4>당신의 회원 등급은 ${rank} 입니다!</h4>
 				<h5>누적 포인트 ${loginAccount.a_exp }점</h5>
-				<h5>보유 캐시 ${loginAccount.a_cash }점</h5>
+				<h5>보유 캐시 ${loginAccount.a_cash }원</h5>
 				<button onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
 				<button onclick="return deleteInfo('${loginAccount.a_id}')">계정 삭제</button>
 				<button onclick="return goChargeCash('${loginAccount.a_id}')">캐시 충전</button>
@@ -77,7 +77,7 @@ function goChargeCash(id) {
 			<input id="aid" value="${loginAccount.a_id }" type="hidden">
 			<a href="go.cart?a_id=${loginAccount.a_id }" class="nav-item" active-color="red">장바구니</a> 
 			<a onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" class="nav-item" active-color="blue">판매자 등록</a> 
-			<a id="orderlist" class="nav-item" active-color="violet" href="showAllOrders.do?o_a_id=${loginAccount.a_id}">구매이력</a> 
+			<a id="orderlist" class="nav-item" active-color="violet" href="showAllOrders.do?o_a_id=${loginAccount.a_id}&a_id=${loginAccount.a_id}">구매이력</a> 
 			<span class="nav-indicator"></span>
 		</nav>
 		<div class="favorites-div">
