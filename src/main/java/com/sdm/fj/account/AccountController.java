@@ -52,10 +52,11 @@ public class AccountController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/myPage.go", method = RequestMethod.POST)
-	public String myPage(Account a, HttpServletRequest req) {
+	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
+	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
 		aDAO.loginCheck(req);
+		
 		return "kmj/myPage";
 	}
 
@@ -174,8 +175,19 @@ public class AccountController {
 		return "kmj/adminPage";
 	}
 
+	// 구매이력 불러오기
+	@RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
+	public String showAllOrders(OrderList o, Product p, Account a, HttpServletRequest req) {
+		aDAO.loginCheck(req);
+		
+		// 구매이력 불러오기
+		pDAO.showAllOrders(o, req, p);
+		
+		return "kmj/myPage";
+	}
+	
 	// 찜한거 불러오기
-	@RequestMapping(value = "/showAllFavors.do", method = RequestMethod.GET)
+	@RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
 	public String showAllFavors(Product p, Account a, HttpServletRequest req) {
 		aDAO.loginCheck(req);
 
@@ -216,7 +228,10 @@ public class AccountController {
 	// 카카오 결제 실패 페이지
 	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
 	public String failCharge(Account a, HttpServletRequest req) {
+<<<<<<< HEAD
+=======
 
+>>>>>>> 773e8faa1d8ead5da122f95106628a8c751c26e2
 		return "kmj/failPage";
 	}
 

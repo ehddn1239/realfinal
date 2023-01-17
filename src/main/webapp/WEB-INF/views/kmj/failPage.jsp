@@ -10,7 +10,7 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	alert('결제에 실패 했습니다');
-	location.href='kakaoPopup.go';
+	history.go(-3);
 </script>
 </head>
 <body>
