@@ -1,19 +1,30 @@
 package com.sdm.fj.product;
 
+
+
 public class Criteria {
 	private int pageNum;
 	private int amount;
-	private int startNum;
+	private int p_category;
 	
-	public Criteria() {
-		//객체 생성시 기본 생성자를 호출하여 매개변수를 줘서 매개변수를 가지고 있는 생성자 함수 호출
-		this(1, 10); //생성자에서 pageNum=1, amount=10으로 설정
+	
+	public int getP_category() {
+		return p_category;
 	}
-	
-	// 기본 생성자 설정
-	public Criteria(int pageNum, int amount) {
-		this.pageNum = pageNum;
-		this.amount = amount;
+
+	public void setP_category(int p_category) {
+		this.p_category = p_category;
+	}
+
+	public Criteria() {
+		this(1,9); //나타낼 게시글수
+	}
+
+	public Criteria(int i, int j) {
+		this.pageNum = i;
+		this.amount = j;
+
+
 	}
 
 	public int getPageNum() {
@@ -32,16 +43,15 @@ public class Criteria {
 		this.amount = amount;
 	}
 	
-	public int getStartNum() {
-		return startNum;
-	}
 
-	public void setStartNum(int startNum) {
-		this.startNum = startNum;
-	}
+	
+	
+	
+
 
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + "]";
 	}
 }
+

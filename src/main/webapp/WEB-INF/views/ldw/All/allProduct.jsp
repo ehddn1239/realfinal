@@ -26,7 +26,7 @@
 
 		</div>
 		<div class="content">
-			<c:forEach items="${products }" var="p">
+			<c:forEach items="${lists }" var="p">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${p.p_img}"
@@ -41,6 +41,20 @@
 					</div>
 
 				</div>
+
+			</c:forEach>
+		</div>
+		<div class="pageNumWrapper">
+			<ul class="pageUl">
+			<c:forEach var="num" begin="${pageVO.startPage }"
+				end="${pageVO.endPage }">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }"><a
+					href="allProduct.go?pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+			</c:forEach>
+			</ul>
+		</div>
+
 
 			</c:forEach>
 
