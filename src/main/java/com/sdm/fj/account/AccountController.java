@@ -56,7 +56,7 @@ public class AccountController {
 	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
 		if (aDAO.loginCheck(req)) {
-			
+			aDAO.getAccount(a, req);
 			return "kmj/myPage";
 		}
 		return "index";
@@ -230,7 +230,6 @@ public class AccountController {
 	// 카카오 결제 실패 페이지
 	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
 	public String failCharge(Account a, HttpServletRequest req) {
-
 		return "kmj/failPage";
 	}
 
