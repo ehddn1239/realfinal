@@ -21,7 +21,7 @@
 <div class="contentWrap">
 		<h1>가방</h1>
 		<div class="content">
-			<c:forEach items="${products}" var="b">
+			<c:forEach items="${lists}" var="b">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${b.p_img}" onclick="location.href='detail.go?p_no=${b.p_no}'">
@@ -37,6 +37,17 @@
 				</div>
 			</c:forEach>
 		</div>
+		<div class="pageNumWrapper">
+			<ul class="pageUl">
+			<c:forEach var="num" begin="${pageVO.startPage }"
+				end="${pageVO.endPage }">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }"><a
+					href="showByCategory?p_category=14&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+			</c:forEach>
+			</ul>
+		</div>
+		
 	</div>
 </body>
 </html>

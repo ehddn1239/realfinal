@@ -23,7 +23,7 @@
 }
 
 .item {
-	flex-direction: column; 
+	flex-direction: column;
 	margin: 20px 0;
 	width: 33%;
 }
@@ -31,12 +31,37 @@
 .itemspan1 {
 	margin-left: 50px;
 	text-align: left;
-	margin-bottom:8px;
+	margin-bottom: 8px;
 }
 
 .itemspan2 {
 	margin-left: 50px;
 	text-align: left;
-	font-size:10pt;
-	font-weight:500;
+	font-size: 10pt;
+	font-weight: 500;
+}
+
+.pageNumWrapper a{
+	text-decoration: none;
+	color: black;
+}
+
+.pageNumWrapper{
+	position:relative;
+	margin-bottom:70px;
+}
+
+.pageUl {
+
+	position:absolute;
+	left:45%;
+	list-style: none;
+	
+}
+
+
+
+#pageLi {
+	float: left;
+	margin-right:20px;
 }
