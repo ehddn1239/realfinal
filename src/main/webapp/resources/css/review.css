@@ -10,6 +10,7 @@
 #myform fieldset legend{
     text-align: right;
 }
+
 #myform input[type=radio]{
     display: none;
 }

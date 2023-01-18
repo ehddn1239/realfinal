@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
 import com.sdm.fj.cart.CartDTO;
+import com.sdm.fj.review.Review;
+import com.sdm.fj.review.ReviewDAO;
 
 
 
@@ -20,6 +22,8 @@ public class ProductController {
 	private ProductDAO pDAO;
 	@Autowired
 	private AccountDAO aDAO;
+	@Autowired 
+	private ReviewDAO rDAO;
 	
 	@RequestMapping(value = "allProduct.go", method = RequestMethod.GET)
 	public String allProduct(Product p, HttpServletRequest req) {
@@ -255,12 +259,13 @@ public class ProductController {
 	
 
 	@RequestMapping(value = "detail.go")
-	public String goDetail(Account a, Product p, HttpServletRequest req) {
+	public String goDetail(Account a, Product p, HttpServletRequest req, Review r) {
 		if(aDAO.loginCheck(req)) {
 			aDAO.setFavorites(p,a, req);
 		}
 		pDAO.goDetail(p,req);
 		pDAO.getDetail(p,req);
+		rDAO.productReviewSelect(req,r,p,a);
 		return "sh/detail";
 	}
 	
@@ -393,14 +398,6 @@ public class ProductController {
 		pDAO.getDetail(p,req);
 		
 		return "sh/detail";
-	}
-	@RequestMapping(value = "/review.go", method = RequestMethod.GET)
-	public String goReview(Product p, Account a, HttpServletRequest req, CartDTO cart) {
-		aDAO.loginCheck(req);
-		
-		
-		
-		return "ldw/review";
 	}
 	
 	
