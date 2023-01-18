@@ -219,11 +219,6 @@ function confirmPay(pno, aid){
 				
 
 			</div>
-			<div id="qnaDiv">
-				<div>큐앤에이목록1</div>
-				<div>큐앤에이목록2</div>
-				<div>큐앤에이목록3</div>
-			</div>
 		</div>
 	</div>
 	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>

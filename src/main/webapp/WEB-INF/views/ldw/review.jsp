@@ -30,9 +30,10 @@
 <h1>후기 작성<br></h1>
 <div id="ReviewContainer">
 <form class="mb-3" name="myform" id="myform" method="post" enctype="multipart/form-data" action="regReview.do">
-후기 이미지:<input name="p_img" type="file">
-SDMall<br>${p.p_name}<br>
-옵션 ${p.p_size}${p.p_color}<br>
+후기 이미지:<input name="r_img" type="file">
+SDMall<br>
+${orderList22.o_p_name}<br>
+옵션 ${orderList22.o_p_size}${orderList22.o_p_color}<br>
 <fieldset>
 		<span class="text-bold">별점을 선택해주세요</span>
 		<input type="radio" name="r_grade" value="5" id="rate1"><label
