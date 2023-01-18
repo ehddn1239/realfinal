@@ -93,14 +93,34 @@ function goChargeCash(id) {
 		</div>
 		<div class="orderlist-div">
 		<!-- 찜목록 보여주기 -->
-			<c:forEach items="${orderList22 }" var="o">
-				<div>
-					 <h3>${o.o_p_name }</h3>				
-					 <h3>${o.o_qty }</h3>
-					 <h3>${o.o_date}</h3>
-					 <button onclick="location.href='review.go?r_p_no=${o.o_no}'">작성하러 가기</button>
-				</div>
+			<table border="1">
+				<tr>
+					<td>사진</td>
+					<td>이름</td>
+					<td>구매 날짜</td>
+					<td>작성 여부</td>
+				</tr>
+				
+				<tr>
+				
+				</tr>
+				
+				<c:forEach items="${orderList22 }" var="o">
+					<tr>
+						<td>사진</td>
+						<td>이름</td>
+						<td>구매 날짜</td>
+						<td>작성 여부</td>
+					</tr>
+					
+					<div>
+						 <h3>${o.o_p_name }</h3>				
+					 	<h3>${o.o_qty }</h3>
+					 	<h3>${o.o_date}</h3>
+					 	<button onclick="location.href='review.go'">작성하러 가기</button>
+					</div>
 			</c:forEach>
+			</table>
 		</div>
 	</div>
 </body>
