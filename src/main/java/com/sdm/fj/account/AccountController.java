@@ -52,12 +52,14 @@ public class AccountController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage.go", method = { RequestMethod.GET, RequestMethod.POST})
 	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
-		aDAO.loginCheck(req);
-		
-		return "kmj/myPage";
+		if (aDAO.loginCheck(req)) {
+			aDAO.getAccount(a, req);
+			return "kmj/myPage";
+		}
+		return "index";
 	}
 
 	@RequestMapping(value = "/deliveryTrackingGo", method = RequestMethod.GET)
@@ -228,7 +230,6 @@ public class AccountController {
 	// 카카오 결제 실패 페이지
 	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
 	public String failCharge(Account a, HttpServletRequest req) {
-
 		return "kmj/failPage";
 	}
 

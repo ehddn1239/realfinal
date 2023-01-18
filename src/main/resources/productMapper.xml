@@ -7,6 +7,7 @@
 	</select>
 
 
+
 	<select id="gethighPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Criteria">
 	
 			select * from
@@ -20,26 +21,49 @@
 		(#{pageNum}-1) * #{amount} and rn
 		&lt;= #{pageNum} * #{amount} order by rn desc
 
+
+	<select id="getProductByCategory"
+		resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Product">
+		select * from final_product where p_category =
+		#{p_category}
+
 	</select>
-	<select id="getLowPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
-		select * from final_product 
+	<select id="gethighPriceProducts"
+		resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Product">
+		select * from final_product
 		<if test='p_category > 0'>
-		where p_category = #{p_category}
+			where p_category = #{p_category}
+		</if>
+		order by p_price desc
+	</select>
+	<select id="getLowPriceProducts"
+		resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Product">
+		select * from final_product
+		<if test='p_category > 0'>
+			where p_category = #{p_category}
 		</if>
 		order by p_price
 	</select>
-	<select id="getNewProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
-		select * from final_product 
+	<select id="getNewProducts"
+		resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Product">
+		select * from final_product
 		<if test='p_category > 0'>
-		where p_category = #{p_category}
+			where p_category = #{p_category}
 		</if>
 		order by p_date
 	</select>
-	
-	<select id="getProductByCategory" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
-		select * from final_product where p_category = #{p_category}
 
-	</select>
+	<!-- <select id="getProductByCategory"
+		resultType="com.sdm.fj.product.Product"
+		parameterType="com.sdm.fj.product.Product">
+		select * from final_product where p_category =
+		#{p_category}
+
+	</select> -->
 	<select id="getSearchProduct"
 		resultType="com.sdm.fj.product.Product"
 		parameterType="com.sdm.fj.product.Product">
@@ -61,12 +85,12 @@
 	</select>
 
 
-
 	<select id="getPname" parameterType="int" resultType="string">
 		select p_name from final_product where p_no = #{pno}
 	</select>
-	
-	<delete id="deleteProduct" parameterType="com.sdm.fj.product.Product">
+
+	<delete id="deleteProduct"
+		parameterType="com.sdm.fj.product.Product">
 
 		delete final_product where p_no = #{p_no}
 	</delete>
@@ -96,24 +120,24 @@
 		(#{pageNum}-1) * #{amount} and rn
 		&lt;= #{pageNum} * #{amount}
 
-<!-- 		<if test="p_caterory != null">
-			where p_category = #{p_category}
-		</if> -->
+		<!-- <if test="p_caterory != null"> where p_category = #{p_category} </if> -->
 
 	</select>
 
-	<select id="getTotal" parameterType="com.sdm.fj.product.Criteria" resultType="int">
+	<select id="getTotal"
+		parameterType="com.sdm.fj.product.Criteria" resultType="int">
 		select count(*) as total from final_product
 	</select>
 
-<!-- 		<if test="p_caterory != null">
-			where p_category = #{p_category}
-		</if> -->
-	<select id="getTotalByCate" resultType="int" parameterType="com.sdm.fj.product.Criteria" >
-		select count(*) as total from final_product where p_category = #{p_category}
+	<!-- <if test="p_caterory != null"> where p_category = #{p_category} </if> -->
+	<select id="getTotalByCate" resultType="int"
+		parameterType="com.sdm.fj.product.Criteria">
+		select count(*) as total from final_product where p_category =
+		#{p_category}
 	</select>
 
-	<select id="getListByCate" resultType="com.sdm.fj.product.Product"
+	<select id="getListByCate"
+		resultType="com.sdm.fj.product.Product"
 		parameterType="com.sdm.fj.product.Criteria">
 		select * from
 		(select rownum as rn, a.* from
@@ -123,9 +147,7 @@
 		(#{pageNum}-1) * #{amount} and rn
 		&lt;= #{pageNum} * #{amount}
 
-<!-- 		<if test="p_caterory != null">
-			where p_category = #{p_category}
-		</if> -->
+		<!-- <if test="p_caterory != null"> where p_category = #{p_category} </if> -->
 
 	</select>
 </mapper>
