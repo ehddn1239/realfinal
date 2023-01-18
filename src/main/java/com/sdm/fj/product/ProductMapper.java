@@ -20,7 +20,6 @@ public interface ProductMapper {
 
 	Product getProductforFavor(String s);
 
-	List<Product> getSearchProduct(Product p);
 	
 	List<Product> getList(Criteria cri); 		//페이징처리
 
