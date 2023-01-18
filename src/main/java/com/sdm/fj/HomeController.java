@@ -28,6 +28,11 @@ public class HomeController {
 		aDAO.loginCheck(req);
 		return "index";
 	}
+	@RequestMapping(value = "/goDesign", method = RequestMethod.GET)
+	public String goDesign(Product p, HttpServletRequest req) {
+		aDAO.loginCheck(req);
+		return "index2";
+	}
 	
 	
 	

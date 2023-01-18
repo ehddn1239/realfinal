@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/index1.css">
-<link rel="stylesheet" href="resources/css/index.css">
+<title>테스트용 메인화면</title>
+<link rel="stylesheet" href="resources/css/homeDesign.css">
 <link rel="stylesheet" href="resources/css/login.css">
 <link rel="stylesheet" href="resources/css/productPage.css">
 <link rel="stylesheet"
@@ -113,11 +112,6 @@ $(function() {
 </script>
 </head>
 <body>
-	<iframe id="vimeo_player_82"
-		src="https://player.vimeo.com/video/733500685?autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;muted=1&amp;background=1"
-		frameborder="0" webkitallowfullscreen="" mozallowfullscreen=""
-		allowfullscreen="1" allow="autoplay; fullscreen" data-ready="true" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"
-		></iframe>
 	<div id="whole-wrap-div">
 		<!-- 왼쪽 메뉴 -->
 		<div class="left side-menu">
@@ -182,7 +176,7 @@ $(function() {
 						<c:choose>
 				<c:when test="${loginCheck == 1 }">
 					<button class="login-btn">Login</button>
-					<a href="goDesign">메인화면 디자인 가기</a>
+					
 				</c:when>	
 				<c:when test="${loginCheck == 0 }">
 					<form action="myPage.go" method="get">
@@ -207,9 +201,37 @@ $(function() {
 
 			</div>
 		</div>
-
-		<div class="over"></div>
 	</div>
+	<div class="slider js-slider">
+      <div class="slide js-slide">
+        <div class="slide__content">
+          <figure class="slide__img js-slide__img">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo1.jpg"
+            />
+          </figure>
+          <figure class="slide__img js-slide__img">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo2.jpg"
+            />
+          </figure>
+        </div>
+        <div class="slider__text js-slider__text">
+          <div class="slider__text-line js-slider__text-line">
+            <div>Black is</div>
+          </div>
+          <div class="slider__text-line js-slider__text-line">
+            <div>timeless. Black is</div>
+          </div>
+          <div class="slider__text-line js-slider__text-line">
+            <div>the color of</div>
+          </div>
+          <div class="slider__text-line js-slider__text-line">
+            <div>Eternity.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 	<!-- 여기는 모달창 부분 -->
 	<div class="modal">
 		<div class="modal_content">
