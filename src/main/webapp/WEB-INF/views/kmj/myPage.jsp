@@ -93,7 +93,7 @@ function goChargeCash(id) {
 		</div>
 		<div class="orderlist-div">
 		<!-- 찜목록 보여주기 -->
-			<table>
+			<table border="1">
 				<tr>
 					<td>사진</td>
 					<td>이름</td>
