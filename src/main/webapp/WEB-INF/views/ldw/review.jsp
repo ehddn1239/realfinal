@@ -29,21 +29,21 @@
 <body>
 <h1>후기 작성<br></h1>
 <div id="ReviewContainer">
-<form class="mb-3" name="myform" id="myform" method="post" enctype="multipart/form-data">
+<form class="mb-3" name="myform" id="myform" method="post" enctype="multipart/form-data" action="regReview.do">
 후기 이미지:<input name="p_img" type="file">
 SDMall<br>${p.p_name}<br>
 옵션 ${p.p_size}${p.p_color}<br>
 <fieldset>
 		<span class="text-bold">별점을 선택해주세요</span>
-		<input type="radio" name="reviewStar" value="5" id="rate1"><label
+		<input type="radio" name="r_grade" value="5" id="rate1"><label
 			for="rate1">★</label>
-		<input type="radio" name="reviewStar" value="4" id="rate2"><label
+		<input type="radio" name="r_grade" value="4" id="rate2"><label
 			for="rate2">★</label>
-		<input type="radio" name="reviewStar" value="3" id="rate3"><label
+		<input type="radio" name="r_grade" value="3" id="rate3"><label
 			for="rate3">★</label>
-		<input type="radio" name="reviewStar" value="2" id="rate4"><label
+		<input type="radio" name="r_grade" value="2" id="rate4"><label
 			for="rate4">★</label>
-		<input type="radio" name="reviewStar" value="1" id="rate5"><label
+		<input type="radio" name="r_grade" value="1" id="rate5"><label
 			for="rate5">★</label>
 	</fieldset>
 	<br>
@@ -52,7 +52,8 @@ SDMall<br>${p.p_name}<br>
 	<textarea placeholder="내용" class="DOC_TEXT" name="DOC_TEXT"></textarea>
 <input type="checkbox">작성된 후기는 SDMall 홍보 콘텐츠로 사용될 수 있습니다. (필수)<br>
 
-<button id="regbtn">등록</button>
+<button id="regbtn" value="${reviews.p_no }" >등록</button>
+
 </form>
 </div>
 </body>
