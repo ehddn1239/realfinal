@@ -21,7 +21,7 @@
 <div class="contentWrap">
 		<h1>가방</h1>
 		<div class="content">
-			<c:forEach items="${lists}" var="b">
+			<c:forEach items="${products}" var="b">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${b.p_img}" onclick="location.href='detail.go?p_no=${b.p_no}'">

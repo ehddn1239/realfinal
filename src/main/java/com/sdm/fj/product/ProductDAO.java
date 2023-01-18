@@ -40,9 +40,11 @@ public class ProductDAO {
 		req.setAttribute("products", products2);
 
 	}
-	public void getHighPriceProducts(Product p, HttpServletRequest req) {
+	public void getHighPriceProducts(Criteria cri,HttpServletRequest req) {
+		int p_category = Integer.parseInt(req.getParameter("p_category"));
+		cri.setP_category(p_category);
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
-		List<Product> products = pm.gethighPriceProducts(p.getP_category());
+		List<Product> products = pm.gethighPriceProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
 
 		for (Product pp : products) {
@@ -452,7 +454,7 @@ System.out.println("111");
 		for (Product product : lists2) {
 			System.out.println(product.toString());
 		}
-		req.setAttribute("lists", lists2);
+		req.setAttribute("products", lists2);
 	}
 
 	public int getTotal() {
@@ -476,7 +478,7 @@ System.out.println("111");
 			
 		}
 		
-		req.setAttribute("lists", lists2);
+		req.setAttribute("products", lists2);
 	}
 
 
@@ -527,6 +529,4 @@ System.out.println("111");
 		
 		req.setAttribute("orderList22", orders);
 	}
-
-
-}
+	}

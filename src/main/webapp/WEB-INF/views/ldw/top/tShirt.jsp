@@ -20,7 +20,7 @@
 			</ul>
 <div class="contentWrap">
 	<div class="content">
-	<c:forEach items="${lists }" var="t">
+	<c:forEach items="${products }" var="t">
 	<div class="item">
 	<div class="itemImgDiv">
 	<img class="productImg" src="resources/imgs/${t.p_img}" onclick="location.href='detail.go?p_no=${t.p_no}'">

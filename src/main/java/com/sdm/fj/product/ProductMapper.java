@@ -20,7 +20,7 @@ public interface ProductMapper {
 
 	Product getProductforFavor(String s);
 
-	List<Product> getSearchProduct(Product p);
+
 	
 	List<Product> getList(Criteria cri); 		//페이징처리
 
@@ -35,9 +35,11 @@ public interface ProductMapper {
 
 
 	String getPname(int pno);
-	List<Product> gethighPriceProducts(int p_category);
+	List<Product> gethighPriceProducts(Criteria cri);
 
 	List<Product> getLowPriceProducts(int p_category);
 
 	List<Product> getNewProducts(int p_category);
+
+	
 }

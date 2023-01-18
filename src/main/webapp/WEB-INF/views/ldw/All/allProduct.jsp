@@ -26,7 +26,7 @@
 
 		</div>
 		<div class="content">
-			<c:forEach items="${lists }" var="p">
+			<c:forEach items="${products }" var="p">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${p.p_img}"
@@ -56,10 +56,10 @@
 		</div>
 
 
-			</c:forEach>
+		
 
 		</div>
 	
 
-	</div>
+
 </html>

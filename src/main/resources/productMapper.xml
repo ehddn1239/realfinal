@@ -6,18 +6,20 @@
 		select * from final_product
 	</select>
 
-	<select id="getProductByCategory"
-		resultType="com.sdm.fj.product.Product"
-		parameterType="com.sdm.fj.product.Product">
-		select * from final_product where p_category =
-		#{p_category}
 
-	<select id="gethighPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
-		select * from final_product 
+	<select id="gethighPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Criteria">
+	
+			select * from
+		(select rownum as rn, a.* from
+		( select * from final_product
 		<if test='p_category > 0'>
 		where p_category = #{p_category}
 		</if>
-		order by p_price desc 
+		order by p_price desc )a )
+		where rn &gt;
+		(#{pageNum}-1) * #{amount} and rn
+		&lt;= #{pageNum} * #{amount} order by rn desc
+
 	</select>
 	<select id="getLowPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Product">
 		select * from final_product 
@@ -59,8 +61,6 @@
 	</select>
 
 
-	<delete id="deleteProduct"
-		parameterType="com.sdm.fj.product.Product">
 
 	<select id="getPname" parameterType="int" resultType="string">
 		select p_name from final_product where p_no = #{pno}
