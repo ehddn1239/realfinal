@@ -7,4 +7,6 @@ public interface OrderlistMapper {
 	int regOrder(OrderList ol);
 
 	ArrayList<OrderList> showAllOrders(OrderList o);
+
+	OrderList getProduct(OrderList o);
 }

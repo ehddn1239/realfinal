@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
+
+import com.sdm.fj.account.OrderList;
 import com.sdm.fj.cart.CartDTO;
 import com.sdm.fj.product.Product;
 import com.sdm.fj.product.ProductDAO;
@@ -21,13 +24,17 @@ public class ReviewController {
 	
 	@Autowired
 	private AccountDAO aDAO;
-	
 
-	
+	@Autowired
+	private ProductDAO pDAO;
+
+
 	@RequestMapping(value = "/review.go", method = RequestMethod.GET)
-	public String goReview(Product p, Account a, HttpServletRequest req, CartDTO cart) {
+	public String goReview(OrderList o, Product p, Account a, HttpServletRequest req, CartDTO cart) {
 		aDAO.loginCheck(req);
-		
+		pDAO.getOrders(o, req, p);
+		System.out.println("--------review.go 시작--------------");
+
 		return "ldw/review";
 	}
 	
@@ -40,5 +47,5 @@ public class ReviewController {
 		
 		return "kmj/myPage";
 	}
-	
+
 }

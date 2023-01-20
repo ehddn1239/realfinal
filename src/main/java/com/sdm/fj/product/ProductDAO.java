@@ -57,9 +57,11 @@ public class ProductDAO {
 
 	}
 
+
 	public void getLowPriceProducts(Criteria cri, HttpServletRequest req) {
 //		int p_category = Integer.parseInt(req.getParameter("p_category"));
 //		cri.setP_category(p_category);
+
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getLowPriceProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
@@ -72,9 +74,11 @@ public class ProductDAO {
 		req.setAttribute("products", products2);
 	}
 
+
 	public void getNewProducts(Criteria cri, HttpServletRequest req) {
 //		int p_category = Integer.parseInt(req.getParameter("p_category"));
 //		cri.setP_category(p_category);
+
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getNewProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
@@ -135,6 +139,7 @@ public class ProductDAO {
 			 * imgs.add(s); } p.setImges(imgs);
 			 */
 
+			
 			String name = req.getParameter("p_name");
 			String size[] = req.getParameterValues("p_size");
 			String sizes = "";
@@ -480,6 +485,7 @@ public class ProductDAO {
 
 		}
 
+
 		req.setAttribute("products", lists2);
 	}
 
@@ -490,7 +496,6 @@ public class ProductDAO {
 		return ss.getMapper(ProductMapper.class).getTotalByCate(cri);
 	}
 
-
 	public void regOrderList(Product p, CartDTO cart, Account a, HttpServletRequest req) {
 		System.out.println("--------regOrderList함수 시작-------");
 		Account a2 = (Account) req.getSession().getAttribute("loginAccount");
@@ -498,13 +503,13 @@ public class ProductDAO {
 		int pno = p.getP_no();
 		System.out.println("pno = " + pno);
 		int qty = cart.getCart_qty();
-
 		System.out.println("cart_qty - "+qty);
+
 		String p_name = ss.getMapper(ProductMapper.class).getPname(pno);
 		String p_size = cart.getP_size();
 		String p_color = cart.getP_color();
 		int o_p_price = cart.getP_price();
-		
+    
 		OrderList ol = new OrderList();
 		ol.setO_p_no(pno);
 		ol.setO_qty(qty);
@@ -514,8 +519,8 @@ public class ProductDAO {
 		ol.setO_p_size(p_size);
 		ol.setO_p_color(p_color);
 		ol.setO_p_price(o_p_price);
-		
-		if(ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
+
+		if (ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
 			System.out.println("구매이력 등록 완료");
 		}
 
@@ -533,4 +538,13 @@ public class ProductDAO {
 
 		req.setAttribute("orderList22", orders);
 	}
+
+
+	public void getOrders(OrderList o, HttpServletRequest req, Product p) {
+		OrderList oo = ss.getMapper(OrderlistMapper.class).getProduct(o);
+		req.setAttribute("oo", oo);
+		
+	}
+
+
 }
