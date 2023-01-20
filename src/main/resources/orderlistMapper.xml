@@ -3,7 +3,7 @@
 <mapper namespace="com.sdm.fj.account.OrderlistMapper">
 
 	<insert id="regOrder" parameterType="com.sdm.fj.account.OrderList">
-		insert into final_order_list values(final_order_list_seq.nextval,#{o_p_no},#{o_a_id}, sysdate, #{o_qty}, #{o_p_name} )
+		insert into final_order_list values(final_order_list_seq.nextval,#{o_p_no},#{o_a_id}, sysdate, #{o_qty}, #{o_p_name},#{o_p_size},#{o_p_color}, #{o_p_price} )
 	</insert>
 
 	<select id="showAllOrders" parameterType="com.sdm.fj.account.OrderList" resultType="com.sdm.fj.account.OrderList">

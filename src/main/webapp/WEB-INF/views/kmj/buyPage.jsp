@@ -72,7 +72,7 @@ function checkMoney(cash, price) {
 					<div id="orderOptionDiv">
 						<div class="colorSelect">
 							<span>색상</span> 
-								
+								<input name="p_color" value="${p.p_color }" type="hidden"> 
 								${p.p_color }
 						</div>
 						<div class="sizeSelect">

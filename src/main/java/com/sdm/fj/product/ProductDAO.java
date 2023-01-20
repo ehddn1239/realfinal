@@ -489,6 +489,11 @@ public class ProductDAO {
 
 		return ss.getMapper(ProductMapper.class).getTotalByCate(cri);
 	}
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> be7540a5791600bef43fd377417c0ce3785bff82
 
 	public void regOrderList(Product p, CartDTO cart, Account a, HttpServletRequest req) {
 		System.out.println("--------regOrderList함수 시작-------");
@@ -497,16 +502,24 @@ public class ProductDAO {
 		int pno = p.getP_no();
 		System.out.println("pno = " + pno);
 		int qty = cart.getCart_qty();
-		System.out.println("cart_qty - " + qty);
 
+		System.out.println("cart_qty - "+qty);
 		String p_name = ss.getMapper(ProductMapper.class).getPname(pno);
-
+		String p_size = cart.getP_size();
+		String p_color = cart.getP_color();
+		int o_p_price = cart.getP_price();
+		
 		OrderList ol = new OrderList();
 		ol.setO_p_no(pno);
 		ol.setO_qty(qty);
 		ol.setO_a_id(id);
 		ol.setO_p_name(p_name);
-		if (ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
+
+		ol.setO_p_size(p_size);
+		ol.setO_p_color(p_color);
+		ol.setO_p_price(o_p_price);
+		
+		if(ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
 			System.out.println("구매이력 등록 완료");
 		}
 
