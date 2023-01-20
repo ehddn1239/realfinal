@@ -17,9 +17,6 @@ public class OrderList {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
 	public OrderList(int o_no, int o_p_no, String o_a_id, Date o_date, int o_qty, String o_p_name, String o_p_size,
 			String o_p_color, int o_p_price) {
 		super();
@@ -34,44 +31,29 @@ public class OrderList {
 		this.o_p_price = o_p_price;
 	}
 
-
-
-
 	public String getO_p_size() {
 		return o_p_size;
 	}
-
 
 	public void setO_p_size(String o_p_size) {
 		this.o_p_size = o_p_size;
 	}
 
-
 	public String getO_p_color() {
 		return o_p_color;
 	}
-
 
 	public void setO_p_color(String o_p_color) {
 		this.o_p_color = o_p_color;
 	}
 
-
-
-
 	public int getO_p_price() {
 		return o_p_price;
 	}
 
-
-
-
 	public void setO_p_price(int o_p_price) {
 		this.o_p_price = o_p_price;
 	}
-
-
-
 
 	public int getO_no() {
 		return o_no;

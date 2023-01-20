@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
+import com.sdm.fj.account.OrderList;
 import com.sdm.fj.cart.CartDTO;
 import com.sdm.fj.review.Review;
 import com.sdm.fj.review.ReviewDAO;
@@ -279,7 +280,7 @@ public class ProductController {
 	
 
 	@RequestMapping(value = "detail.go")
-	public String goDetail(Account a, Product p, HttpServletRequest req, Review r) {
+	public String goDetail(OrderList o, Account a, Product p, HttpServletRequest req, Review r) {
 		if(aDAO.loginCheck(req)) {
 			aDAO.setFavorites(p,a, req);
 		}

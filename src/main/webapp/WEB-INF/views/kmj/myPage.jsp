@@ -117,7 +117,9 @@ function goChargeCash(id) {
 						 <h3>${o.o_p_name }</h3>				
 					 	<h3>${o.o_qty }</h3>
 					 	<h3>${o.o_date}</h3>
-					 	<button onclick="location.href='review.go'">작성하러 가기</button>
+					 	<h3>${o.o_p_size}</h3>
+					 	<h3>${o.o_p_color}</h3>
+					 	<button onclick="location.href='review.go?o_no=${o.o_no}'">작성하러 가기</button>
 					</div>
 			</c:forEach>
 			</table>

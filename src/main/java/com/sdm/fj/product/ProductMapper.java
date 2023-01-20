@@ -2,8 +2,6 @@ package com.sdm.fj.product;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 public interface ProductMapper {
 
 	List<Product> getAllProducts();

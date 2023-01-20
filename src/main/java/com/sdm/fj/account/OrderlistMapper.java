@@ -8,4 +8,6 @@ public interface OrderlistMapper {
 
 	ArrayList<OrderList> showAllOrders(OrderList o);
 
+	OrderList getProduct(OrderList o);
+
 }
