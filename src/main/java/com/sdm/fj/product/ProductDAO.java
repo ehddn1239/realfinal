@@ -489,11 +489,7 @@ public class ProductDAO {
 
 		return ss.getMapper(ProductMapper.class).getTotalByCate(cri);
 	}
-<<<<<<< HEAD
-=======
-	
-	
->>>>>>> be7540a5791600bef43fd377417c0ce3785bff82
+
 
 	public void regOrderList(Product p, CartDTO cart, Account a, HttpServletRequest req) {
 		System.out.println("--------regOrderList함수 시작-------");

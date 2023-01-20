@@ -63,7 +63,7 @@
 		<if test='p_category > 0'>
 		where p_category = #{p_category}
 		</if>
-		order by p_date)a )
+		order by p_date desc)a )
 		where rn &gt;
 		(#{pageNum}-1) * #{amount} and rn
 		&lt;= #{pageNum} * #{amount} 
