@@ -57,7 +57,6 @@ public class ProductDAO {
 
 	}
 
-
 	public void getLowPriceProducts(Criteria cri, HttpServletRequest req) {
 //		int p_category = Integer.parseInt(req.getParameter("p_category"));
 //		cri.setP_category(p_category);
@@ -73,7 +72,6 @@ public class ProductDAO {
 		}
 		req.setAttribute("products", products2);
 	}
-
 
 	public void getNewProducts(Criteria cri, HttpServletRequest req) {
 //		int p_category = Integer.parseInt(req.getParameter("p_category"));
@@ -139,7 +137,6 @@ public class ProductDAO {
 			 * imgs.add(s); } p.setImges(imgs);
 			 */
 
-			
 			String name = req.getParameter("p_name");
 			String size[] = req.getParameterValues("p_size");
 			String sizes = "";
@@ -485,7 +482,6 @@ public class ProductDAO {
 
 		}
 
-
 		req.setAttribute("products", lists2);
 	}
 
@@ -503,13 +499,13 @@ public class ProductDAO {
 		int pno = p.getP_no();
 		System.out.println("pno = " + pno);
 		int qty = cart.getCart_qty();
-		System.out.println("cart_qty - "+qty);
+		System.out.println("cart_qty - " + qty);
 
 		String p_name = ss.getMapper(ProductMapper.class).getPname(pno);
 		String p_size = cart.getP_size();
 		String p_color = cart.getP_color();
 		int o_p_price = cart.getP_price();
-    
+
 		OrderList ol = new OrderList();
 		ol.setO_p_no(pno);
 		ol.setO_qty(qty);
@@ -539,12 +535,10 @@ public class ProductDAO {
 		req.setAttribute("orderList22", orders);
 	}
 
-
 	public void getOrders(OrderList o, HttpServletRequest req, Product p) {
 		OrderList oo = ss.getMapper(OrderlistMapper.class).getProduct(o);
 		req.setAttribute("oo", oo);
-		
-	}
 
+	}
 
 }
