@@ -39,10 +39,10 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/regReview.do", method=RequestMethod.POST)
-	public String regReviewDo(Review r, HttpServletRequest req) {
+	public String regReviewDo(Review r, HttpServletRequest req,MultipartHttpServletRequest file) {
 		System.out.println("---------regReview.do컨트롤러 시작------------");
 		// 리뷰 하는 일
-		rDAO.regReview(req, r);
+		rDAO.regReview(req, r, file);
 		
 		
 		return "kmj/myPage";
