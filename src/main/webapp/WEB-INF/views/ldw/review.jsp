@@ -16,7 +16,6 @@
 		$('.DOC_TEXT').keyup(function(e) {
 			var content = $(this).val();
 			$('#counter').html("(" + content.length + " / 최대 200자)"); //글자수 실시간 카운팅
-
 			if (content.length > 200) {
 				alert("최대 200자까지 입력 가능합니다.");
 				$(this).val(content.substring(0, 200));
@@ -32,30 +31,30 @@
 		후기 작성<br>
 	</h1>
 	<div id="ReviewContainer">
-		<form class="mb-3" name="myform" id="myform" method="post"
-			enctype="multipart/form-data" action="regReview.do">
-			후기 이미지:<input  name="r_img" type="file"><br> 
-			SDMall<br>
-			${p.p_name}<br>
-			옵션 ${p.p_size} ${p.p_color}<br>
+		<form action="regReview.do" id="myform" method="post"
+			enctype="multipart/form-data">
+			후기 이미지:<input name="files" type="file"> SDMall<br> 옵션<br>
+			이름:${oo.o_p_name}<br> 사이즈:${oo.o_p_size}<br>
+			색상:${oo.o_p_color}<br> <input value="${oo.o_p_no }"
+				name="o_p_no" type="hidden">
+
 			<fieldset>
-				<span class="text-bold">별점을 선택해주세요</span> 
-				<input type="radio" name="r_grade" value="5" id="rate1">
-				<label for="rate1">★</label>
-				<input type="radio" name="r_grade" value="4" id="rate2">
-				<label for="rate2">★</label> 
-				<input type="radio" name="r_grade" value="3" id="rate3">
-				<label for="rate3">★</label> 
-				<input type="radio" name="r_grade" value="2" id="rate4">
-				<label for="rate4">★</label>
-				<input type="radio" name="r_grade" value="1" id="rate5">
-				<label for="rate5">★</label>
-			</fieldset><br>
-			<span>상품에 대한 평가를 20자 이상 작성해 주세요.</span><br> 
-			<span style="color: #aaa;" id="counter">(0 / 최대 200자)</span>
-			<textarea placeholder="내용" class="DOC_TEXT" name="DOC_TEXT"></textarea>
-			<input type="checkbox">작성된 후기는 SDMall 홍보 콘텐츠로 사용될 수 있습니다. (필수)<br>
-			<button id="regbtn" value="${reviews.p_no }">등록</button>
+				<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
+					name="r_grade" value="5" id="rate1"><label for="rate1">★</label>
+				<input type="radio" name="r_grade" value="4" id="rate2"><label
+					for="rate2">★</label> <input type="radio" name="r_grade" value="3"
+					id="rate3"><label for="rate3">★</label> <input type="radio"
+					name="r_grade" value="2" id="rate4"><label for="rate4">★</label>
+				<input type="radio" name="r_grade" value="1" id="rate5"><label
+					for="rate5">★</label>
+			</fieldset>
+			<br> <span>상품에 대한 평가를 20자 이상 작성해 주세요.</span><br> <span
+				style="color: #aaa;" id="counter">(0 / 최대 200자)</span>
+			<textarea placeholder="내용" class="DOC_TEXT" name="r_txt"></textarea>
+			<input type="checkbox">작성된 후기는 SDMall 홍보 콘텐츠로 사용될 수 있습니다.
+			(필수)<br>
+
+			<button id="regbtn">등록</button>
 
 		</form>
 	</div>

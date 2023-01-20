@@ -21,13 +21,12 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewDAO rDAO;
-	
+
 	@Autowired
 	private AccountDAO aDAO;
 
 	@Autowired
 	private ProductDAO pDAO;
-
 
 	@RequestMapping(value = "/review.go", method = RequestMethod.GET)
 	public String goReview(OrderList o, Product p, Account a, HttpServletRequest req, CartDTO cart) {
@@ -37,14 +36,13 @@ public class ReviewController {
 
 		return "ldw/review";
 	}
-	
-	@RequestMapping(value = "/regReview.do", method=RequestMethod.POST)
-	public String regReviewDo(Review r, HttpServletRequest req,MultipartHttpServletRequest file) {
+
+	@RequestMapping(value = "/regReview.do", method = RequestMethod.POST)
+	public String regReviewDo(Review r, HttpServletRequest req, MultipartHttpServletRequest file) {
 		System.out.println("---------regReview.do컨트롤러 시작------------");
 		// 리뷰 하는 일
 		rDAO.regReview(req, r, file);
-		
-		
+
 		return "kmj/myPage";
 	}
 
