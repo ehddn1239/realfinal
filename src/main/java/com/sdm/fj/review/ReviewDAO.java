@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import com.sdm.fj.account.Account;
 import com.sdm.fj.product.Product;
 
@@ -20,9 +21,11 @@ public class ReviewDAO {
 	@Autowired
 	private SqlSession ss;
 
-	public void regReview(HttpServletRequest req, Product p, Account a, Review r) {
+	public void regReview(HttpServletRequest req, Review r) {
 		try {
+			System.out.println("------------regReview함수----------------");
 			String path = req.getSession().getServletContext().getRealPath("resources/imgs");
+			System.out.println("path = "+path);
 			MultipartRequest mr = new MultipartRequest(req, path, 31457280, "utf-8", new DefaultFileRenamePolicy());
 			Account aa = (Account) req.getSession().getAttribute("loginAccount");
 			

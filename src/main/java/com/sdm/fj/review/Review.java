@@ -11,6 +11,9 @@ public class Review {
 	private int r_grade;
 	private String r_img;
 	private Date r_date;
+	private String p_name;
+	private String p_size;
+	private String p_color;
 	
 	public Date getR_date() {
 		return r_date;
@@ -20,9 +23,6 @@ public class Review {
 		this.r_date = r_date;
 	}
 
-	private String p_name;
-	private String p_size;
-	private String p_color;
 	
 	
 	public Review() {
