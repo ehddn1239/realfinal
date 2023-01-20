@@ -4,7 +4,7 @@
 
 	<insert id="addCart" parameterType="com.sdm.fj.cart.CartDTO">
 		insert into final_cart
-		values(#{a_id}, #{p_no}, final_cart_seq.nextval, 1,
+		values(#{a_id}, #{p_no}, final_cart_seq.nextval, #{cart_qty},
 		sysdate,#{p_price},#{p_img},#{p_size},#{p_color},#{p_name})
 
 	</insert>
