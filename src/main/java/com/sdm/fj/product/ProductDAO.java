@@ -40,9 +40,10 @@ public class ProductDAO {
 		req.setAttribute("products", products2);
 
 	}
-	public void getHighPriceProducts(Criteria cri,HttpServletRequest req) {
-		int p_category = Integer.parseInt(req.getParameter("p_category"));
-		cri.setP_category(p_category);
+
+	public void getHighPriceProducts(Criteria cri, HttpServletRequest req) {
+//		int p_category = Integer.parseInt(req.getParameter("p_category"));
+//		cri.setP_category(p_category);
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.gethighPriceProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
@@ -53,11 +54,14 @@ public class ProductDAO {
 			products2.add(pp);
 		}
 		req.setAttribute("products", products2);
-		
+
 	}
-	public void getLowPriceProducts(Product p, HttpServletRequest req) {
+
+	public void getLowPriceProducts(Criteria cri, HttpServletRequest req) {
+//		int p_category = Integer.parseInt(req.getParameter("p_category"));
+//		cri.setP_category(p_category);
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
-		List<Product> products = pm.getLowPriceProducts(p.getP_category());
+		List<Product> products = pm.getLowPriceProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
 
 		for (Product pp : products) {
@@ -67,9 +71,12 @@ public class ProductDAO {
 		}
 		req.setAttribute("products", products2);
 	}
-	public void getNewProducts(Product p, HttpServletRequest req) {
+
+	public void getNewProducts(Criteria cri, HttpServletRequest req) {
+//		int p_category = Integer.parseInt(req.getParameter("p_category"));
+//		cri.setP_category(p_category);
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
-		List<Product> products = pm.getNewProducts(p.getP_category());
+		List<Product> products = pm.getNewProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
 
 		for (Product pp : products) {
@@ -302,24 +309,24 @@ public class ProductDAO {
 		String a_id = req.getParameter("a_id");
 		System.out.println("p_no = " + p_no);
 		System.out.println("a_id = " + a_id);
-		
+
 		String favors = ss.getMapper(AccountMapper.class).selectFavor(a);
-		System.out.println("favors에 값을 받은 직후    favors = "+favors);
-		
-		if(favors.isEmpty()) {
+		System.out.println("favors에 값을 받은 직후    favors = " + favors);
+
+		if (favors.isEmpty()) {
 			System.out.println("-----isEmpty를 거침------");
-			favors = ", "+ p_no;
-		}else {
+			favors = ", " + p_no;
+		} else {
 			System.out.println("-----isEmpty를 거치지 않음------");
-			favors += ", " +p_no;
+			favors += ", " + p_no;
 		}
-		System.out.println("favors에 [, p_no]를 붙인 직후 favors = "+favors);
-		
+		System.out.println("favors에 [, p_no]를 붙인 직후 favors = " + favors);
+
 		HashMap<String, String> val = new HashMap<String, String>();
 		val.put("p_list", favors);
 		val.put("a_id", a_id);
-		
-		if(ss.getMapper(AccountMapper.class).updateFavorite(val) > 0) {
+
+		if (ss.getMapper(AccountMapper.class).updateFavorite(val) > 0) {
 			System.out.println("찜하기 등록");
 		}
 	}
@@ -332,19 +339,18 @@ public class ProductDAO {
 		String[] favoritesAr = favors.split(", ");
 		System.out.println("pno = " + pno + " aid = " + aid + " favors = " + favors);
 		for (String s : favoritesAr) {
-			System.out.println("favoritesArr = " + s );
-			if(s.equals(pno)) {
-				favors = favors.replace(", "+s, "");
+			System.out.println("favoritesArr = " + s);
+			if (s.equals(pno)) {
+				favors = favors.replace(", " + s, "");
 			}
 		}
 		System.out.println("replace 이후 favors 문자열 - " + favors);
 		HashMap<String, String> val = new HashMap<String, String>();
-		
+
 		val.put("favors", favors);
 		val.put("a_id", aid);
-		
-		
-		if(ss.getMapper(AccountMapper.class).deleteFavorite(val) > 0) {
+
+		if (ss.getMapper(AccountMapper.class).deleteFavorite(val) > 0) {
 			System.out.println("찜하기 삭제 완료");
 		}
 		favoritesAr = favors.split(", ");
@@ -357,18 +363,17 @@ public class ProductDAO {
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
 		String[] favorsArr = a.getA_favorite().split(",");
 		for (String s2 : favorsArr) {
-			System.out.println("favorsArr = "+s2);
+			System.out.println("favorsArr = " + s2);
 		}
 //		ArrayList<String> imgs = new ArrayList<String>();
 		ArrayList<ProductForFavorite> products = new ArrayList<ProductForFavorite>();
-		
-		
-		String sendImg="";
+
+		String sendImg = "";
 		for (String s : favorsArr) {
 			System.out.println("favorsArr = " + s);
-			if(s.equals(" ")) {
+			if (s.equals(" ")) {
 				continue;
-			}else {
+			} else {
 				Product pp = ss.getMapper(ProductMapper.class).getProductforFavor(s);
 				System.out.println("pp.getP_img() = " + pp.getP_img());
 				ProductForFavorite pf = new ProductForFavorite();
@@ -376,8 +381,8 @@ public class ProductDAO {
 				String pname = pp.getP_name();
 				int price = pp.getP_price();
 				String[] imgSplit = pp.getP_img().split("!");
-				sendImg= imgSplit[0];
-				
+				sendImg = imgSplit[0];
+
 				System.out.println("pno = " + pno);
 				System.out.println("pname = " + pname);
 				System.out.println("price = " + price);
@@ -386,17 +391,18 @@ public class ProductDAO {
 				pf.setP_no(pno);
 				pf.setP_price(price);
 				pf.setP_img(sendImg);
-				
+
 				products.add(pf);
 			}
 		}
 		req.setAttribute("favorsPNO", products);
 	}
+
 	public void getSearchProduct(Product p, HttpServletRequest req) {
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> products = pm.getSearchProduct(p);
 		List<Product> products2 = new ArrayList<Product>();
-		
+
 		for (Product pp : products) {
 			String imges[] = pp.getP_img().split("!");
 			pp.setP_img(imges[0]);
@@ -409,12 +415,12 @@ public class ProductDAO {
 		System.out.println("--------buyProduct함수 시작---------");
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
 		int money = a.getA_cash();
-		System.out.println("money = " +money);
+		System.out.println("money = " + money);
 		int qty = cart.getCart_qty();
-		System.out.println("cart_qty - "+qty);
+		System.out.println("cart_qty - " + qty);
 		int pay = p.getP_price();
-		System.out.println("pay = "+pay);
-		
+		System.out.println("pay = " + pay);
+
 		double exp = a.getA_exp();
 		System.out.println("exp =" + exp);
 
@@ -424,32 +430,29 @@ public class ProductDAO {
 		a2.setA_id(a.getA_id());
 		a2.setA_cash(remain);
 		a2.setA_exp(accumulateExp);
-		System.out.println("a2의 a_id = "+a2.getA_id());
-		System.out.println("a2의 a_cash = "+a2.getA_cash());
-		System.out.println("a2의 a_exp = "+a2.getA_exp());
-		
-		
-		if(ss.getMapper(AccountMapper.class).payMoney(a2) == 1) {
+		System.out.println("a2의 a_id = " + a2.getA_id());
+		System.out.println("a2의 a_cash = " + a2.getA_cash());
+		System.out.println("a2의 a_exp = " + a2.getA_exp());
+
+		if (ss.getMapper(AccountMapper.class).payMoney(a2) == 1) {
 			System.out.println("결제 성공");
-		}else {
+		} else {
 			System.out.println("결제 실패");
 		}
-		
-		
-		
+
 	}
 
-	public void getList(Criteria cri,HttpServletRequest req){
+	public void getList(Criteria cri, HttpServletRequest req) {
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> lists = pm.getList(cri);
 		List<Product> lists2 = new ArrayList<Product>();
-System.out.println("111");
+		System.out.println("111");
 		for (Product pp : lists) {
 			System.out.println("222");
 			String imges[] = pp.getP_img().split("!");
 			pp.setP_img(imges[0]);
 			lists2.add(pp);
-			
+
 		}
 		for (Product product : lists2) {
 			System.out.println(product.toString());
@@ -468,53 +471,45 @@ System.out.println("111");
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
 		List<Product> lists = pm.getListByCate(cri);
 		List<Product> lists2 = new ArrayList<Product>();
-		
-		
+
 		for (Product pp : lists) {
 			System.out.println("222");
 			String imges[] = pp.getP_img().split("!");
 			pp.setP_img(imges[0]);
 			lists2.add(pp);
-			
+
 		}
-		
+
 		req.setAttribute("products", lists2);
 	}
 
-
-	public int getTotalByCate(Criteria cri,HttpServletRequest req) {
+	public int getTotalByCate(Criteria cri, HttpServletRequest req) {
 		int p_category = Integer.parseInt(req.getParameter("p_category"));
 		cri.setP_category(p_category);
-		
+
 		return ss.getMapper(ProductMapper.class).getTotalByCate(cri);
 	}
-	
-	
-
-	
-
-	
 
 	public void regOrderList(Product p, CartDTO cart, Account a, HttpServletRequest req) {
 		System.out.println("--------regOrderList함수 시작-------");
 		Account a2 = (Account) req.getSession().getAttribute("loginAccount");
 		String id = a2.getA_id();
 		int pno = p.getP_no();
-		System.out.println("pno = "+pno);
+		System.out.println("pno = " + pno);
 		int qty = cart.getCart_qty();
-		System.out.println("cart_qty - "+qty);
-		
+		System.out.println("cart_qty - " + qty);
+
 		String p_name = ss.getMapper(ProductMapper.class).getPname(pno);
-		
+
 		OrderList ol = new OrderList();
 		ol.setO_p_no(pno);
 		ol.setO_qty(qty);
 		ol.setO_a_id(id);
 		ol.setO_p_name(p_name);
-		if(ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
+		if (ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
 			System.out.println("구매이력 등록 완료");
 		}
-		
+
 	}
 
 	public void showAllOrders(OrderList o, HttpServletRequest req, Product p) {
@@ -526,7 +521,7 @@ System.out.println("111");
 		for (OrderList o2 : orders) {
 			System.out.println(o2);
 		}
-		
+
 		req.setAttribute("orderList22", orders);
 	}
-	}
+}

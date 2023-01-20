@@ -36,9 +36,9 @@ public interface ProductMapper {
 	String getPname(int pno);
 	List<Product> gethighPriceProducts(Criteria cri);
 
-	List<Product> getLowPriceProducts(int p_category);
+	List<Product> getLowPriceProducts(Criteria cri);
 
-	List<Product> getNewProducts(int p_category);
+	List<Product> getNewProducts(Criteria cri);
 
 	
 }

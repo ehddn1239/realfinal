@@ -29,49 +29,57 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "allNewProduct.select", method = RequestMethod.GET)
-	public String allNewProductSelect(Criteria cri,Product p, HttpServletRequest req) {
+	public String allNewProductSelect(Criteria cri, Product p, HttpServletRequest req) {
+
+		PageVO pageVO = new PageVO(cri, pDAO.getTotal());
+
+		String newProduct = req.getServletPath().substring(1, 13);
+		System.out.println(newProduct);
+		pageVO.setSort(newProduct);
+
+		req.setAttribute("pageVO", pageVO);
 
 		if (Integer.parseInt(req.getParameter("p_category")) == 0) {
-			pDAO.getNewProducts(p, req);
+			pDAO.getNewProducts(cri, req);
 			return "ldw/All/allProduct";
 		} else {
 			int p_category = Integer.parseInt(req.getParameter("p_category"));
 			switch (p_category) {
 			case 1:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "ldw/outer/padding";
 			case 2:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "ldw/outer/coat";
 			case 3:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "ldw/outer/fieldJacket";
 			case 4:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "ldw/top/knitwear";
 			case 5:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "ldw/top/shirt";
 			case 6:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "ldw/top/tShirt";
 			case 9:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "sh/bottom/pants";
 			case 10:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "sh/bottom/denim";
 			case 12:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "sh/bottom/shorts";
 			case 13:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "sh/etc/acc";
 			case 14:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "sh/etc/bag";
 			case 15:
-				pDAO.getNewProducts(p, req);
+				pDAO.getNewProducts(cri, req);
 				return "sh/etc/shoes";
 			default:
 				break;
@@ -81,8 +89,14 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "allHighProduct.select", method = RequestMethod.GET)
-	public String allHighProductSelect(Criteria cri,Product p, HttpServletRequest req) {
+	public String allHighProductSelect(Criteria cri, Product p, HttpServletRequest req) {
+
 		PageVO pageVO = new PageVO(cri, pDAO.getTotal());
+
+		String highPrice = req.getServletPath().substring(1, 13);
+		System.out.println(highPrice);
+		pageVO.setSort(highPrice);
+
 		req.setAttribute("pageVO", pageVO);
 
 		if (Integer.parseInt(req.getParameter("p_category")) == 0) {
@@ -135,55 +149,67 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "allLowProduct.select", method = RequestMethod.GET)
-	public String allLowProductSelect(Product p, HttpServletRequest req) {
+	public String allLowProductSelect(Product p, HttpServletRequest req,Criteria cri) {
 
-		pDAO.getLowPriceProducts(p, req);
+//		pDAO.getLowPriceProducts(p, req);
+		
+		PageVO pageVO = new PageVO(cri, pDAO.getTotal());
 
-		if (req.getParameter("p_category") != null) {
+		String lowProduct = req.getServletPath().substring(1, 13);
+		System.out.println(lowProduct);
+		pageVO.setSort(lowProduct);
+
+		req.setAttribute("pageVO", pageVO);
+
+		if (Integer.parseInt(req.getParameter("p_category")) == 0) {
+			pDAO.getLowPriceProducts(cri, req);
+			return "ldw/All/allProduct";
+		}else {
 			int p_category = Integer.parseInt(req.getParameter("p_category"));
 			switch (p_category) {
 			case 1:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "ldw/outer/padding";
 			case 2:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "ldw/outer/coat";
 			case 3:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "ldw/outer/fieldJacket";
 			case 4:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "ldw/top/knitwear";
 			case 5:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "ldw/top/shirt";
 			case 6:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "ldw/top/tShirt";
 			case 9:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "sh/bottom/pants";
 			case 10:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "sh/bottom/denim";
 			case 12:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "sh/bottom/shorts";
 			case 13:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "sh/etc/acc";
 			case 14:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "sh/etc/bag";
 			case 15:
-				pDAO.getLowPriceProducts(p, req);
+				pDAO.getLowPriceProducts(cri, req);
 				return "sh/etc/shoes";
 			default:
 				break;
 			}
 		}
+		
 
-		return "ldw/All/allProduct";
+		return "";
 	}
 
 	@RequestMapping(value = "productReg.go", method = RequestMethod.GET)
@@ -283,46 +309,51 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "product.delete.do", method = RequestMethod.GET)
-	public String deleteProduct(Product p, HttpServletRequest req) {
+	public String deleteProduct(Product p, HttpServletRequest req, Criteria cri) {
+		int p_category = Integer.parseInt(req.getParameter("p_category"));
+		cri.setP_category(p_category);
+		// System.out.println(p_category);
+		PageVO pageVO = new PageVO(cri, pDAO.getTotalByCate(cri, req));
+		req.setAttribute("pageVO", pageVO);
 		pDAO.deleteProduct(p, req);
 
-		pDAO.getProductByCategory(req, p);
-		switch (Integer.parseInt(req.getParameter("p_category"))) {
+//		pDAO.getProductByCategory(req, p);
+		switch (p_category) {
 		case 1:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "ldw/outer/padding";
 		case 2:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "ldw/outer/coat";
 		case 3:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "ldw/outer/fieldJacket";
 		case 4:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "ldw/top/knitwear";
 		case 5:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "ldw/top/shirt";
 		case 6:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "ldw/top/tShirt";
 		case 9:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "sh/bottom/pants";
 		case 10:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "sh/bottom/denim";
 		case 12:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "sh/bottom/shorts";
 		case 13:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "sh/etc/acc";
 		case 14:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "sh/etc/bag";
 		case 15:
-			pDAO.getProductByCategory(req, p);
+			pDAO.getListByCate(cri, req);
 			return "sh/etc/shoes";
 		default:
 			break;

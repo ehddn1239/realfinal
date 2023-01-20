@@ -41,9 +41,28 @@
 			<ul class="pageUl">
 			<c:forEach var="num" begin="${pageVO.startPage }"
 				end="${pageVO.endPage }">
+				<c:choose>
+				<c:when test="${pageVO.sort eq 'allHighProdu'}">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }">
+				<a href="allHighProduct.select?p_category=13&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+				 </c:when>
+				 <c:when test="${pageVO.sort eq 'allNewProduc'}">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }">
+				<a href="allNewProduct.select?p_category=13&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+				 </c:when>
+				 <c:when test="${pageVO.sort eq 'allLowProduc'}">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }">
+				<a href="allLowProduct.select?p_category=13&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+				 </c:when>
+				 <c:otherwise>
 				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }"><a
 					href="showByCategory?p_category=13&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
 				</li>
+				 </c:otherwise>
+				</c:choose>
 			</c:forEach>
 			</ul>
 		</div>
