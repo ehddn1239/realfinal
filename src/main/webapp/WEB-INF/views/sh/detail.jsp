@@ -181,7 +181,7 @@
 							<div>
 								<!-- 로그인이 안됐을때 -->
 								<c:if test="${loginCheck == 1 }">
-									<button id="wantBtn">
+									<button type="button" id="wantBtn">
 										<!-- 로그인 안됏을떄 -->
 										<span
 											onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')"
@@ -192,14 +192,14 @@
 									<c:when test="${checkFavorite == 1 }">
 										<!-- p_no가 이미 찜햇을때 -->
 										<!-- 클릭 하면 이미 했다고 취소할거냐고 물을 것  -->
-										<button id="wantBtn"
+										<button type="button" id="wantBtn"
 											onclick="return cancle('${loginAccount.a_id}','${p.p_no }')">
 											<img alt="" src="resources/imgs/filled_heart.png">
 										</button>
 									</c:when>
 									<c:when test="${checkFavorite == 0 }">
 										<!-- 찜 안햇을때 -->
-										<button id="wantBtn"
+										<button id="wantBtn" type="button"
 											onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')">
 											<span class="material-symbols-outlined"> favorite </span>
 										</button>
