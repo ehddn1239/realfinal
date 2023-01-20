@@ -12,13 +12,9 @@ public class Review {
 	private String r_img;
 	private Date r_date;
 
-	
-
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public Review(int r_no, int r_o_p_no, String r_a_id, String r_txt, int r_grade, String r_img, Date r_date,
 			String r_o_p_name, String r_o_p_size, String r_o_p_color) {
@@ -32,8 +28,6 @@ public class Review {
 		this.r_date = r_date;
 	}
 
-
-
 	public Date getR_date() {
 		return r_date;
 	}
@@ -41,7 +35,7 @@ public class Review {
 	public void setR_date(Date r_date) {
 		this.r_date = r_date;
 	}
-	
+
 	public int getR_no() {
 		return r_no;
 	}
@@ -49,8 +43,6 @@ public class Review {
 	public void setR_no(int r_no) {
 		this.r_no = r_no;
 	}
-
-
 
 	public String getR_a_id() {
 		return r_a_id;
@@ -84,26 +76,12 @@ public class Review {
 		this.r_img = r_img;
 	}
 
-
-
 	public int getR_o_p_no() {
 		return r_o_p_no;
 	}
 
-
-
 	public void setR_o_p_no(int r_o_p_no) {
 		this.r_o_p_no = r_o_p_no;
 	}
-
-
-
-
-
-
-
-
-
-
 
 }
