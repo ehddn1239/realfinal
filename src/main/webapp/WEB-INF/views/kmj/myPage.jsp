@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/myPage.css">
 <!-- <script type="text/javascript" src="resources/js/myPage.js"></script> -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet'
+	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <script src="https://code.jquery.com/jquery-3.6.2.js"
 	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
 	crossorigin="anonymous"></script>
@@ -193,23 +194,24 @@ function goChargeCash(id) {
 				<!-- 구매목록 보여주기 -->
 				<table border="1" class="orderlist-tbl">
 					<tr class="orderlist-header">
-						<td>사진</td>
-						<td>이름</td>
-						<td>구매 날짜</td>
-						<td>구매 수량</td>
-						<td>후기 작성</td>
-					</tr>
-					<c:forEach items="${orderList22 }" var="o">
+						<c:forEach items="${orderList22 }" var="o">
+							<tr>
+								<td>사진</td>
+								<td>이름</td>
+								<td>구매 날짜</td>
+								<td>작성 여부</td>
+							</tr>
 
-						<tr class="orderlist-content-tr">
-							<td><img alt="" src=""></td>
-							<td>${o.o_p_name }</td>
-							<td>${o.o_date}</td>
-							<td>${o.o_qty }</td>
-							<td><button onclick="location.href='review.go'">작성하러
-									가기</button></td>
-						</tr>
-					</c:forEach>
+							<div>
+								<h3>${o.o_p_name }</h3>
+								<h3>${o.o_qty }</h3>
+								<h3>${o.o_date}</h3>
+								<h3>${o.o_p_size}</h3>
+								<h3>${o.o_p_color}</h3>
+								<button onclick="location.href='review.go?o_no=${o.o_no}'">작성하러
+									가기</button>
+							</div>
+						</c:forEach>
 				</table>
 			</div>
 		</c:if>

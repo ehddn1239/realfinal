@@ -21,7 +21,7 @@ public class ProductController {
 	private ProductDAO pDAO;
 	@Autowired
 	private AccountDAO aDAO;
-	@Autowired 
+	@Autowired
 	private ReviewDAO rDAO;
 
 	@RequestMapping(value = "allProduct.go", method = RequestMethod.GET)
@@ -154,10 +154,10 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "allLowProduct.select", method = RequestMethod.GET)
-	public String allLowProductSelect(Product p, HttpServletRequest req,Criteria cri) {
+	public String allLowProductSelect(Product p, HttpServletRequest req, Criteria cri) {
 
 //		pDAO.getLowPriceProducts(p, req);
-		
+
 		PageVO pageVO = new PageVO(cri, pDAO.getTotal());
 
 		String lowProduct = req.getServletPath().substring(1, 13);
@@ -169,7 +169,7 @@ public class ProductController {
 		if (Integer.parseInt(req.getParameter("p_category")) == 0) {
 			pDAO.getLowPriceProducts(cri, req);
 			return "ldw/All/allProduct";
-		}else {
+		} else {
 			int p_category = Integer.parseInt(req.getParameter("p_category"));
 			switch (p_category) {
 			case 1:
@@ -212,7 +212,6 @@ public class ProductController {
 				break;
 			}
 		}
-		
 
 		return "";
 	}
@@ -306,14 +305,14 @@ public class ProductController {
 	@RequestMapping(value = "detail.go")
 
 	public String goDetail(OrderList o, Account a, Product p, HttpServletRequest req, Review r) {
-  
-		if(aDAO.loginCheck(req)) {
-			aDAO.setFavorites(p,a, req);
+
+		if (aDAO.loginCheck(req)) {
+			aDAO.setFavorites(p, a, req);
 		}
-		pDAO.goDetail(p,req);
-		pDAO.getDetail(p,req);
-		
-		rDAO.productReviewSelect(req,r,p,a);
+		pDAO.goDetail(p, req);
+		pDAO.getDetail(p, req);
+		rDAO.productReviewSelect(req, r, p, a);
+
 		return "sh/detail";
 	}
 
