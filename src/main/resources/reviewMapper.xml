@@ -6,7 +6,7 @@
 	insert into final_product_review values(final_product_review_seq.nextval, #{r_p_no},#{r_a_id}, #{r_txt}, #{r_img}, #{r_grade}, #{p_color}, #{p_size} ,#{p_name},sysdate)
 </insert>
 
-<select id="getReviewProducts" resultType="com.sdm.fj.review.Review">
-	select * from final_product_review where r_p_no = #{r_p_no}
+<select id="getReviewProducts" parameterType="int" resultType="com.sdm.fj.review.Review">
+	select * from final_product_review where r_p_no = #{no}
 </select>
 </mapper>

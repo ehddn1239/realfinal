@@ -22,14 +22,14 @@ public class CartDAO {
 
 	
 	public void addcart(Product p ,CartDTO cart, HttpServletRequest req) {
-		
+		System.out.println("-------addCart함수 시작---------");
 		Account aa = (Account) req.getSession().getAttribute("loginAccount");
 		if(aa != null) {
 		cart.setA_id(aa.getA_id());
 		System.out.println(aa.getA_id());
 
 		Product pp= ss.getMapper(ProductMapper.class).getProduct(p);
-		
+		System.out.println("p_size = " + p.getP_size());
 		cart.setP_no(p.getP_no());
 		cart.setP_name(pp.getP_name());
 		cart.setP_price(pp.getP_price());

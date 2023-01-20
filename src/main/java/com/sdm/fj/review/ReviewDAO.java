@@ -70,10 +70,11 @@ public class ReviewDAO {
 	}
 
 	public void productReviewSelect(HttpServletRequest req, Review r, Product p, Account a) {
-		int r_p_no = Integer.parseInt(req.getParameter("p_no"));
+		System.out.println("------productReviewSelect--------");
+		int no = Integer.parseInt(req.getParameter("p_no"));
 		ReviewMapper rm = ss.getMapper(ReviewMapper.class);
 		
-		List<Review> reviews = rm.getReviewProducts(r_p_no);
+		List<Review> reviews = rm.getReviewProducts(no);
 
 		
 		req.setAttribute("reviews", reviews);

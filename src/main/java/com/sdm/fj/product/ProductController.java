@@ -285,7 +285,9 @@ public class ProductController {
 		}
 		pDAO.goDetail(p,req);
 		pDAO.getDetail(p,req);
+		
 		rDAO.productReviewSelect(req,r,p,a);
+		
 		return "sh/detail";
 	}
 	
@@ -411,7 +413,6 @@ public class ProductController {
 		pDAO.buyProduct(p,cart,req);
 		//구매이력 남기는 일
 		pDAO.regOrderList(p,cart,a,req);
-		
 		
 		//디테일 구하기
 		pDAO.goDetail(p, req);

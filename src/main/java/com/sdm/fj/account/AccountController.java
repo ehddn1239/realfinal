@@ -57,6 +57,11 @@ public class AccountController {
 
 		if (aDAO.loginCheck(req)) {
 			aDAO.getAccount(a, req);
+			// 구매이력 불러오기
+			pDAO.showAllOrders(o, req, p);
+			// 찜 목록 게시글 따로 조회하기
+			pDAO.showClientFavors(req, p);
+			
 			return "kmj/myPage";
 		}
 		return "index";
@@ -177,7 +182,7 @@ public class AccountController {
 		return "kmj/adminPage";
 	}
 
-	// 구매이력 불러오기
+	/*// 구매이력 불러오기
 	@RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
 	public String showAllOrders(OrderList o, Product p, Account a, HttpServletRequest req) {
 		aDAO.loginCheck(req);
@@ -186,9 +191,9 @@ public class AccountController {
 		pDAO.showAllOrders(o, req, p);
 		
 		return "kmj/myPage";
-	}
+	}*/
 	
-	// 찜한거 불러오기
+	/*// 찜한거 불러오기
 	@RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
 	public String showAllFavors(Product p, Account a, HttpServletRequest req) {
 		aDAO.loginCheck(req);
@@ -200,19 +205,8 @@ public class AccountController {
 		aDAO.getAccount(a, req);
 
 		return "kmj/myPage";
-	}
+	}*/
 
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/kakaoPay") public String
-	 * kakaoPay(HttpServletRequest req) {
-	 * 
-	 * if(aDAO.kakaoPay(req)) { String result = (String) req.getAttribute("result");
-	 * return result; }
-	 * 
-	 * return "카카오페이 결제 실패"; }
-	 */
 	@ResponseBody
 	@RequestMapping(value = "/kakaoPay2")
 	public String kakaoPay2(@RequestParam("a_id") String id, @RequestParam("money") int money, HttpServletRequest req) {

@@ -56,6 +56,7 @@ public class AccountDAO {
 		String id = req.getParameter("a_id");
 		String pw = req.getParameter("a_pw");
 		Account aa = ss.getMapper(AccountMapper.class).login(a);
+		
 		res.setContentType("text/html; utf-8");
 		PrintWriter out = res.getWriter();
 
