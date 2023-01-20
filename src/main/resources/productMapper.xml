@@ -1,43 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.sdm.fj.product.ProductMapper">
+
 	<select id="getAllProducts"
 		resultType="com.sdm.fj.product.Product">
 		select * from final_product
 	</select>
+
+
+
+	<select id="gethighPriceProducts" resultType="com.sdm.fj.product.Product" parameterType="com.sdm.fj.product.Criteria">
+	
+			select * from
+		(select rownum as rn, a.* from
+		( select * from final_product
+		<if test='p_category > 0'>
+		where p_category = #{p_category}
+		</if>
+		order by p_price desc )a )
+		where rn &gt;
+		(#{pageNum}-1) * #{amount} and rn
+		&lt;= #{pageNum} * #{amount} 
+</select>
 
 	<select id="getProductByCategory"
 		resultType="com.sdm.fj.product.Product"
 		parameterType="com.sdm.fj.product.Product">
 		select * from final_product where p_category =
 		#{p_category}
+
 	</select>
-	<select id="gethighPriceProducts"
-		resultType="com.sdm.fj.product.Product"
-		parameterType="com.sdm.fj.product.Product">
-		select * from final_product
-		<if test='p_category > 0'>
-			where p_category = #{p_category}
-		</if>
-		order by p_price desc
-	</select>
+	
+	
 	<select id="getLowPriceProducts"
 		resultType="com.sdm.fj.product.Product"
 		parameterType="com.sdm.fj.product.Product">
-		select * from final_product
+		
+			select * from
+		(select rownum as rn, a.* from
+		( select * from final_product
 		<if test='p_category > 0'>
-			where p_category = #{p_category}
+		where p_category = #{p_category}
 		</if>
-		order by p_price
+		order by p_price)a )
+		where rn &gt;
+		(#{pageNum}-1) * #{amount} and rn
+		&lt;= #{pageNum} * #{amount} 
+		
+		
 	</select>
+	
+	
 	<select id="getNewProducts"
 		resultType="com.sdm.fj.product.Product"
 		parameterType="com.sdm.fj.product.Product">
-		select * from final_product
+		
+		
+			select * from
+		(select rownum as rn, a.* from
+		( select * from final_product
 		<if test='p_category > 0'>
-			where p_category = #{p_category}
+		where p_category = #{p_category}
 		</if>
-		order by p_date
+		order by p_date desc)a )
+		where rn &gt;
+		(#{pageNum}-1) * #{amount} and rn
+		&lt;= #{pageNum} * #{amount} 
+		
+		
 	</select>
 
 	<!-- <select id="getProductByCategory"

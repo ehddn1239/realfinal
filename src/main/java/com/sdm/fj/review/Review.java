@@ -12,6 +12,8 @@ public class Review {
 	private String r_img;
 	private Date r_date;
 
+	
+
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}

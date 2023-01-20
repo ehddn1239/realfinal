@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
+
 import com.sdm.fj.account.OrderList;
 import com.sdm.fj.cart.CartDTO;
 import com.sdm.fj.product.Product;
@@ -20,10 +21,13 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewDAO rDAO;
+	
 	@Autowired
 	private AccountDAO aDAO;
+
 	@Autowired
 	private ProductDAO pDAO;
+
 
 	@RequestMapping(value = "/review.go", method = RequestMethod.GET)
 	public String goReview(OrderList o, Product p, Account a, HttpServletRequest req, CartDTO cart) {
@@ -33,16 +37,14 @@ public class ReviewController {
 
 		return "ldw/review";
 	}
-
-	@RequestMapping(value = "/regReview.do", method = RequestMethod.POST)
-	public String regReviewDo(Review r, HttpServletRequest req, MultipartHttpServletRequest file) {
-		aDAO.loginCheck(req);
+	
+	@RequestMapping(value = "/regReview.do", method=RequestMethod.POST)
+	public String regReviewDo(Review r, HttpServletRequest req) {
+		System.out.println("---------regReview.do컨트롤러 시작------------");
 		// 리뷰 하는 일
-		// 확실히 여길 들어오는 과정에서 터짐
-		System.out.println("-------regReview.do시작---------");
-
-		rDAO.regReview(req, r, file);
-
+		rDAO.regReview(req, r);
+		
+		
 		return "kmj/myPage";
 	}
 

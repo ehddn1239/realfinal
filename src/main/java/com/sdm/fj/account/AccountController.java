@@ -52,7 +52,7 @@ public class AccountController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/myPage.go", method = { RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/myPage.go", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
 		if (aDAO.loginCheck(req)) {
@@ -181,13 +181,13 @@ public class AccountController {
 	@RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
 	public String showAllOrders(OrderList o, Product p, Account a, HttpServletRequest req) {
 		aDAO.loginCheck(req);
-		
+
 		// 구매이력 불러오기
 		pDAO.showAllOrders(o, req, p);
-		
+
 		return "kmj/myPage";
 	}
-	
+
 	// 찜한거 불러오기
 	@RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
 	public String showAllFavors(Product p, Account a, HttpServletRequest req) {

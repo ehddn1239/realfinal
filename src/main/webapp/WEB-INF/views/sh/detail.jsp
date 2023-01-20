@@ -118,6 +118,7 @@ function confirmPay(pno, aid){
 
 	<div id="detailWrapper">
 		<div id="detailWrap">
+		
 			<form action="add.cart">
 			<div id="orderDiv">
 				<div id="mainImg">
@@ -155,6 +156,11 @@ function confirmPay(pno, aid){
 									<option value="${i}">${i }</option>
 								</c:forEach>
 							</select>
+							</div>
+							<div class="SelectQty">
+							
+							<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox" name="cart_qty" type="number">
+								
 
 							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 						</div>

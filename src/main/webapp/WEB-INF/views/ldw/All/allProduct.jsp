@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/productPage.css">
 
+
 </head>
 <body>
 	<div class="header">
@@ -26,7 +27,7 @@
 
 		</div>
 		<div class="content">
-			<c:forEach items="${lists }" var="p">
+			<c:forEach items="${products }" var="p">
 				<div class="item">
 					<div class="itemImgDiv">
 						<img class="productImg" src="resources/imgs/${p.p_img}"
@@ -48,13 +49,34 @@
 			<ul class="pageUl">
 			<c:forEach var="num" begin="${pageVO.startPage }"
 				end="${pageVO.endPage }">
-				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }"><a
-					href="allProduct.go?pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				<c:choose>
+				<c:when test="${pageVO.sort eq 'allHighProdu'}">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }">
+				<a href="allHighProduct.select?p_category=0&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
 				</li>
+				 </c:when>
+				 <c:when test="${pageVO.sort eq 'allNewProduc'}">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }">
+				<a href="allNewProduct.select?p_category=0&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+				 </c:when>
+				 <c:when test="${pageVO.sort eq 'allLowProduc'}">
+				<li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }">
+				<a href="allLowProduct.select?p_category=0&pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+				 </c:when>
+				 <c:otherwise>
+				 <li id="pageLi" class="${pageVO.pageNum eq num ? 'active' : '' }">
+				 <a href="allProduct.go?pageNum=${num }&amount=${pageVO.amount }">${num }</a>
+				</li>
+				 </c:otherwise>
+				</c:choose>
 			</c:forEach>
 			</ul>
 		</div>
 
 
+
 		</div>
+
 </html>

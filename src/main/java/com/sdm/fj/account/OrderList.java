@@ -12,6 +12,7 @@ public class OrderList {
 	private String o_p_size;
 	private String o_p_color;
 	private int o_p_price;
+	
 
 	public OrderList() {
 		// TODO Auto-generated constructor stub
