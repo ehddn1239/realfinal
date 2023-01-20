@@ -75,14 +75,21 @@ body{
   z-index: 1;
   border-radius: 8px 8px 0 0;
 }
-.favorites-div{
+ .favorites-div{
 	display : flex;
-}
+} 
 .orderlist-tbl{
-	
-	
-	
+	display : none;
 }
+#favorSec{
+	width: 100px;
+	height: 100px;
+}
+#favorSecImg{
+	width: 50px;
+	height: 50px;
+}
+
 .whole-div{
 	justify-content: center;
 	position:relative;

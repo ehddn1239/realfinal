@@ -525,8 +525,12 @@ public class ProductDAO {
 	public void showAllOrders(OrderList o, HttpServletRequest req, Product p) {
 		System.out.println("--------showAllOrders함수 시작---------------");
 		OrderlistMapper om = ss.getMapper(OrderlistMapper.class);
-		System.out.println("o_a_id = " + o.getO_a_id());
-		ArrayList<OrderList> orders = om.showAllOrders(o);
+		Account a = (Account) req.getSession().getAttribute("loginAccount");
+		String id = a.getA_id();
+		HashMap<String, String> val = new HashMap<String, String>();
+		val.put("id", id);
+//		System.out.println("o_a_id = " + o.getO_a_id());
+		ArrayList<OrderList> orders = om.showAllOrders(val);
 		System.out.println("----------------showAllOrders함수 끝-----------");
 		for (OrderList o2 : orders) {
 			System.out.println(o2);

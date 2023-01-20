@@ -40,6 +40,30 @@ $(function() {
 	  item.addEventListener('click', (e) => { handleIndicator(e.target)});
 	  item.classList.contains('is-active') && handleIndicator(item);
 	});
+	
+	$(".favors").click(function() {
+		if($(".orderlist-tbl").css('display') == 'flex'){
+			$(".orderlist-tbl").hide();
+		}
+		if($(".favorites-div").css('display') == 'flex'){
+			$(".favorites-div").hide();
+		}else{
+			$(".favorites-div").css('display','flex');
+		}
+	});
+	$("#orderlist").click(function() {
+		if($(".favorites-div").css('display') == 'flex'){
+			$(".favorites-div").hide();
+		}
+		
+		if($(".orderlist-tbl").css('display') == 'flex'){
+			$(".orderlist-tbl").hide();
+		}else{
+			$(".orderlist-tbl").css('display','block');
+		}
+	});
+	
+	
 })
 </script>
 
@@ -102,49 +126,41 @@ function goChargeCash(id) {
 			<div class="tab-content">
 
 				<div class="active">
-					<div class="box" style="background: #BDBDBD;">
-						<img class="profile" src="resources/imgs/deliveryCar.png">
-					</div>
+					<section class="box" style="background: #BDBDBD;">
+   						 <img class="profile" src="resources/imgs/deliveryCar.png">
+					</section>
 					<h2>배송 조회</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-						Quis eum similique quisquam officiis neque, cumque dignissimos
-						architecto nisi totam sapiente eos et illum laborum atque vero ea
-						perferendis consectetur veritatis.</p>
+					<p>배송 조회 하는 페이지를 보여주자</p>
 				</div>
-
 				<div>
-					<i class="fa fa-favorites"></i>
-					<h2>This is about section</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-						Quis eum similique quisquam officiis neque, cumque dignissimos
-						architecto nisi totam sapiente eos et illum laborum atque vero ea
-						perferendis consectetur veritatis.</p>
+					<div class="favorites-div" >
+					<!-- 찜목록 보여주기 -->
+					<c:forEach items="${favorsPNO }" var="f">
+					<section id="favorSec" >
+						<img id="favorSecImg" src="resources/imgs/${f.p_img}">
+						<h3>${f.p_no }</h3>
+						<h3>${f.p_name }</h3>
+						<h3>${f.p_price }</h3>
+					</section>
+					</c:forEach>
+					</div>
 				</div>
 
 				<div>
 					<i class="fa fa-cart"></i>
-					<h2>This is services section</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-						Quis eum similique quisquam officiis neque, cumque dignissimos
-						architecto nisi totam sapiente eos et illum laborum atque vero ea
-						perferendis consectetur veritatis.</p>
+					<h2>장바구니</h2>
+					<p>장바구니 목록 보여주기</p>
 				</div>
 
 				<div>
 					<i class="fa fa-productor"></i>
-					<h2>This is contact section</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-						Quis eum similique quisquam officiis neque, cumque dignissimos
-						architecto nisi totam sapiente eos et illum laborum atque vero ea
-						perferendis consectetur veritatis.</p>
+					<h2>판매자 전환 요청</h2>
+					<p>판매자 전환 요청하러 가기</p>
 				</div>
 				<div>
 					<i class="fa fa-orderlist"></i>
-					<h2>This is contact section</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-						Quis eum similique quisquam officiis neque, cumque dignissimos
-						architecto nisi totam sapiente eos et illum laborum atque vero ea
-						perferendis consectetur veritatis.</p>
+					<h2>구매 이력</h2>
+					<p>구매 이력을 확인 할 수 있는 곳.</p>
 				</div>
 
 			</div>
@@ -154,20 +170,15 @@ function goChargeCash(id) {
 
 		<!-- 메뉴 리스트 -->
 		<nav class="nav">
-			<a href="deliveryTrackingGo" class="nav-item is-active"
-				active-color="orange">배송 조회</a> <a id="favors"
-				onclick="location.href='showAllFavors.do?a_id=${loginAccount.a_id}'"
-				class="nav-item" active-color="green">찜한 목록</a> <input id="aid"
-				value="${loginAccount.a_id }" type="hidden"> <a
-				href="go.cart?a_id=${loginAccount.a_id }" class="nav-item"
-				active-color="red">장바구니</a> <a
-				onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')"
-				class="nav-item" active-color="blue">판매자 등록</a> <a id="orderlist"
-				class="nav-item" active-color="violet"
-				href="showAllOrders.do?o_a_id=${loginAccount.a_id}&a_id=${loginAccount.a_id}">구매이력</a>
+			<a href="deliveryTrackingGo" class="nav-item is-active" active-color="orange">배송 조회</a> 
+			<a class="favors" class="nav-item" active-color="green">찜한 목록</a> 
+			<input id="aid"value="${loginAccount.a_id }" type="hidden"> 
+			<a href="go.cart?a_id=${loginAccount.a_id }" class="nav-item" active-color="red">장바구니</a> 
+			<a onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" class="nav-item" active-color="blue">판매자 등록</a> 
+			<a id="orderlist" class="nav-item" active-color="violet" >구매이력</a>
 			<span class="nav-indicator"></span>
 		</nav>
-		<div class="favorites-div">
+		<div class="favorites-div" >
 			<!-- 찜목록 보여주기 -->
 			<c:forEach items="${favorsPNO }" var="f">
 				<div>
@@ -180,7 +191,7 @@ function goChargeCash(id) {
 		</div>
 		<c:if test="${orderList22 != null }">
 			<div class="orderlist-div">
-				<!-- 찜목록 보여주기 -->
+				<!-- 구매목록 보여주기 -->
 				<table border="1" class="orderlist-tbl">
 					<tr class="orderlist-header">
 						<c:forEach items="${orderList22 }" var="o">
