@@ -41,9 +41,11 @@ public class ProductDAO {
 
 	}
 
-	public void getHighPriceProducts(Product p, HttpServletRequest req) {
+	public void getHighPriceProducts(Criteria cri, HttpServletRequest req) {
+//		int p_category = Integer.parseInt(req.getParameter("p_category"));
+//		cri.setP_category(p_category);
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
-		List<Product> products = pm.gethighPriceProducts(p.getP_category());
+		List<Product> products = pm.gethighPriceProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
 
 		for (Product pp : products) {
@@ -55,9 +57,13 @@ public class ProductDAO {
 
 	}
 
-	public void getLowPriceProducts(Product p, HttpServletRequest req) {
+
+	public void getLowPriceProducts(Criteria cri, HttpServletRequest req) {
+//		int p_category = Integer.parseInt(req.getParameter("p_category"));
+//		cri.setP_category(p_category);
+
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
-		List<Product> products = pm.getLowPriceProducts(p.getP_category());
+		List<Product> products = pm.getLowPriceProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
 
 		for (Product pp : products) {
@@ -68,9 +74,13 @@ public class ProductDAO {
 		req.setAttribute("products", products2);
 	}
 
-	public void getNewProducts(Product p, HttpServletRequest req) {
+
+	public void getNewProducts(Criteria cri, HttpServletRequest req) {
+//		int p_category = Integer.parseInt(req.getParameter("p_category"));
+//		cri.setP_category(p_category);
+
 		ProductMapper pm = ss.getMapper(ProductMapper.class);
-		List<Product> products = pm.getNewProducts(p.getP_category());
+		List<Product> products = pm.getNewProducts(cri);
 		List<Product> products2 = new ArrayList<Product>();
 
 		for (Product pp : products) {
@@ -452,7 +462,7 @@ public class ProductDAO {
 		for (Product product : lists2) {
 			System.out.println(product.toString());
 		}
-		req.setAttribute("lists", lists2);
+		req.setAttribute("products", lists2);
 	}
 
 	public int getTotal() {
@@ -475,7 +485,8 @@ public class ProductDAO {
 
 		}
 
-		req.setAttribute("lists", lists2);
+
+		req.setAttribute("products", lists2);
 	}
 
 	public int getTotalByCate(Criteria cri, HttpServletRequest req) {
@@ -492,17 +503,19 @@ public class ProductDAO {
 		int pno = p.getP_no();
 		System.out.println("pno = " + pno);
 		int qty = cart.getCart_qty();
-		System.out.println("cart_qty - " + qty);
+		System.out.println("cart_qty - "+qty);
+
 		String p_name = ss.getMapper(ProductMapper.class).getPname(pno);
 		String p_size = cart.getP_size();
 		String p_color = cart.getP_color();
 		int o_p_price = cart.getP_price();
-
+    
 		OrderList ol = new OrderList();
 		ol.setO_p_no(pno);
 		ol.setO_qty(qty);
 		ol.setO_a_id(id);
 		ol.setO_p_name(p_name);
+
 		ol.setO_p_size(p_size);
 		ol.setO_p_color(p_color);
 		ol.setO_p_price(o_p_price);
@@ -510,7 +523,6 @@ public class ProductDAO {
 		if (ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
 			System.out.println("구매이력 등록 완료");
 		}
-		req.setAttribute("orderlist2", ol);
 
 	}
 
@@ -527,10 +539,12 @@ public class ProductDAO {
 		req.setAttribute("orderList22", orders);
 	}
 
+
 	public void getOrders(OrderList o, HttpServletRequest req, Product p) {
 		OrderList oo = ss.getMapper(OrderlistMapper.class).getProduct(o);
 		req.setAttribute("oo", oo);
 		
 	}
+
 
 }
