@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdm.fj.review.ReviewMapper">
 
-<insert id="regReview" parameterType="com.sdm.fj.review.Review">
-	insert into final_product_review values(final_product_review_seq.nextval, #{r_p_no},#{r_a_id}, #{r_txt}, #{r_img}, #{r_grade}, #{p_color}, #{p_size} ,#{p_name},sysdate)
-</insert>
+	<insert id="regReview" parameterType="com.sdm.fj.review.Review">
+		insert into final_product_review values(final_product_review_seq.nextval,
+		#{r_o_p_no},#{r_a_id}, #{r_txt}, #{r_img}, #{r_grade}, sysdate)
+	</insert>
 
-<select id="getReviewProducts" parameterType="int" resultType="com.sdm.fj.review.Review">
-	select * from final_product_review where r_p_no = #{no}
-</select>
+	<select id="getReviewProducts"
+		resultType="com.sdm.fj.review.Review">
+		select * from final_product_review where r_o_p_no = #{p_no}
+	</select>
 </mapper>

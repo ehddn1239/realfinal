@@ -9,4 +9,5 @@ public interface OrderlistMapper {
 
 	ArrayList<OrderList> showAllOrders(HashMap<String, String> val);
 
+	OrderList getProduct(OrderList o);
 }

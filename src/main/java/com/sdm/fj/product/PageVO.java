@@ -10,6 +10,7 @@ public class PageVO {
 		private int amount;
 		//현재 페이지 번호, 한 페이지에 표출할 데이터 개수
 		private Criteria cri;
+		private String sort;
 		
 
 		public PageVO(Criteria cri, int total) {
@@ -93,6 +94,19 @@ public class PageVO {
 		public Criteria getCri() {
 			return cri;
 		}
+
+		
+		public String getSort() {
+			return sort;
+		}
+
+
+
+		public void setSort(String sort) {
+			this.sort = sort;
+		}
+
+
 
 		@Override
 		public String toString() {

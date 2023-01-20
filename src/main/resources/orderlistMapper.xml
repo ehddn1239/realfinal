@@ -9,4 +9,10 @@
 	<select id="showAllOrders" parameterType="map" resultType="com.sdm.fj.account.OrderList">
 		select * from final_order_list where o_a_id = #{id}
 	</select>
+	
+	<select id="getProduct" parameterType="com.sdm.fj.account.OrderList" resultType="com.sdm.fj.account.OrderList">
+		select * from final_order_list where o_no = #{o_no}
+	</select>
+	
+	
 </mapper>

@@ -6,6 +6,6 @@ public interface ReviewMapper {
 
 	int regReview(Review r);
 
-	List<Review> getReviewProducts(int no);
+	List<Review> getReviewProducts(int r_no);
 
 }

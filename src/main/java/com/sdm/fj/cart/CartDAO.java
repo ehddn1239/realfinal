@@ -35,7 +35,9 @@ public class CartDAO {
 		cart.setP_price(pp.getP_price());
 		cart.setP_color(pp.getP_color());
 		cart.setP_size(req.getParameter("p_size"));
-		
+		int cart_qty = Integer.parseInt( req.getParameter("cart_qty"));
+		System.out.println("수량" + cart_qty);
+		cart.setCart_qty(cart_qty);
 		
 		
 		

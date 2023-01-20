@@ -1,17 +1,18 @@
 package com.sdm.fj.review;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
 import com.sdm.fj.product.Product;
@@ -20,44 +21,60 @@ import com.sdm.fj.product.Product;
 public class ReviewDAO {
 	@Autowired
 	private SqlSession ss;
-
-	public void regReview(HttpServletRequest req, Review r) {
+	 
+	public void regReview(HttpServletRequest req, Review r, MultipartHttpServletRequest file) {
+		System.out.println("--------regReview함수 시작--------");
+		
+		String path = req.getSession().getServletContext().getRealPath("resources/imgs");
 		try {
-			System.out.println("------------regReview함수----------------");
-			String path = req.getSession().getServletContext().getRealPath("resources/imgs");
-			System.out.println("path = "+path);
-			MultipartRequest mr = new MultipartRequest(req, path, 31457280, "utf-8", new DefaultFileRenamePolicy());
+			List<MultipartFile> list = file.getFiles("files");
+			String img = "";
+			for (int i = 0; i < list.size(); i++) {
+				UUID uuid = UUID.randomUUID();
+				String fileRealName = uuid + "_" + list.get(i).getOriginalFilename();
+				long size = list.get(i).getSize();
+				// System.out.println("파일명 :" + fileRealName);
+				// System.out.println("사이즈" + size);
+
+				// System.out.println(uuid.toString());
+				String[] uuids = uuid.toString().split("-");
+
+				File saveFile = new File(path + "/" + fileRealName);
+				try {
+					list.get(i).transferTo(saveFile);
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				img += fileRealName + "!";
+			}
+		
+			/*
+			 * String[] imgSplit = img.split("!"); ArrayList<String> imgs = new
+			 * ArrayList<String>(); for (String s : imgSplit) { System.out.println(s);
+			 * imgs.add(s); } p.setImges(imgs);
+			 */
+
 			Account aa = (Account) req.getSession().getAttribute("loginAccount");
-			
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String name = mr.getParameter("p_name");
-			String size = mr.getParameter("p_size");
-			String color = mr.getParameter("p_color");
-			String img = mr.getFilesystemName("r_img");
-			String txt = mr.getParameter("r_txt");
-			int grade = Integer.parseInt("r_grade");
-			String date = mr.getParameter("r_date");
-			Date r_date = sdf.parse(date);
-			
-			System.out.println(name);
-			System.out.println(size);
-			System.out.println(color);
+			ReviewMapper rm = ss.getMapper(ReviewMapper.class);
+				
+			int p_no = Integer.parseInt(req.getParameter("o_p_no"));
+			String txt = req.getParameter("r_txt"); 
+			int grade = Integer.parseInt(req.getParameter("r_grade"));
 			System.out.println(img);
 			System.out.println(txt);
 			System.out.println(grade);
-			System.out.println(r_date);
 			System.out.println(aa.getA_id());
 			
+			r.setR_o_p_no(p_no);
 			r.setR_a_id(aa.getA_id());
-			r.setP_name(name);
-			r.setP_size(size);
-			r.setP_color(color);
 			r.setR_img(img);
 			r.setR_txt(txt);
 			r.setR_grade(grade);
-			r.setR_date(r_date);
-		
+
 			if (ss.getMapper(ReviewMapper.class).regReview(r) == 1) {
 				req.setAttribute("r", "등록 성공!");
 			} else {
@@ -71,13 +88,19 @@ public class ReviewDAO {
 
 	public void productReviewSelect(HttpServletRequest req, Review r, Product p, Account a) {
 		System.out.println("------productReviewSelect--------");
+		
 		int no = Integer.parseInt(req.getParameter("p_no"));
 		ReviewMapper rm = ss.getMapper(ReviewMapper.class);
-		
-		List<Review> reviews = rm.getReviewProducts(no);
 
+		List<Review> reviews = rm.getReviewProducts(no);
+		List<Review> reviews2 = new ArrayList<Review>();
 		
-		req.setAttribute("reviews", reviews);
-		
+		for (Review rr : reviews) {
+			String[] imge = rr.getR_img().split("!");
+			rr.setR_img(imge[0]);
+			reviews2.add(rr);
+		}
+		req.setAttribute("reviews", reviews2);
+
 	}
 }

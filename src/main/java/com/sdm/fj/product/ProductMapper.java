@@ -2,8 +2,6 @@ package com.sdm.fj.product;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 public interface ProductMapper {
 
 	List<Product> getAllProducts();
@@ -34,9 +32,11 @@ public interface ProductMapper {
 
 
 	String getPname(int pno);
-	List<Product> gethighPriceProducts(int p_category);
+	List<Product> gethighPriceProducts(Criteria cri);
 
-	List<Product> getLowPriceProducts(int p_category);
+	List<Product> getLowPriceProducts(Criteria cri);
 
-	List<Product> getNewProducts(int p_category);
+	List<Product> getNewProducts(Criteria cri);
+
+	
 }

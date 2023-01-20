@@ -117,6 +117,7 @@
 
 	<div id="detailWrapper">
 		<div id="detailWrap">
+		
 			<form action="add.cart">
 				<div id="orderDiv">
 					<div id="mainImg">
@@ -127,7 +128,17 @@
 
 					<div id="orderDetail">
 
-
+							<span>사이즈 </span><select class="selectbox" name="p_size">
+								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
+								<c:forEach items="${sizes}" var="i">
+									<option value="${i}">${i }</option>
+								</c:forEach>
+							</select>
+							</div>
+							<div class="SelectQty">
+							
+							<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox" name="cart_qty" type="number">
+								
 						<div class="detailTitle">
 							<span>${p.p_name }</span>
 						</div>
@@ -215,20 +226,12 @@
 				<c:forEach items="${reviews }" var="r">
 					<img src="resources/imgs/${r.r_img}">
 						평점${r.r_grade }
-						회원 아이디 ${r.r_a_id }
-						상품 이름 ${r.p_name }
-						사이즈 ${r.p_size }
-						컬러 ${r.p_color }
+						회원 아이디 ${r.r_a_id } 
 						등록 날짜 ${r.r_date }
 						후기 내용 ${r.r_txt }
-					</c:forEach>
+				</c:forEach> 
+					
 
-
-			</div>
-			<div id="qnaDiv">
-				<div>큐앤에이목록1</div>
-				<div>큐앤에이목록2</div>
-				<div>큐앤에이목록3</div>
 			</div>
 		</div>
 	</div>
