@@ -363,7 +363,10 @@ public class ProductDAO {
 	public void showClientFavors(HttpServletRequest req, Product p) {
 		System.out.println("--------showClientFavors시작-------");
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
-		String[] favorsArr = a.getA_favorite().split(",");
+		HashMap<String, String> val = new HashMap<String, String>();
+		val.put("id", a.getA_id());
+		String fa = ss.getMapper(AccountMapper.class).getFavor(val);
+		String[] favorsArr = fa.split(",");
 		for (String s2 : favorsArr) {
 			System.out.println("favorsArr = " + s2);
 		}
@@ -423,6 +426,22 @@ public class ProductDAO {
 		int pay = p.getP_price();
 		System.out.println("pay = " + pay);
 
+		//티어에 따른 가격 검색
+		if(a.getA_rank().equals("Bronze")) {
+			pay = (int) (pay * 0.95);
+		}else if(a.getA_rank().equals("Silver")) {
+			pay = (int) (pay * 0.90);
+		}else if(a.getA_rank().equals("Gold")) {
+			pay = (int) (pay * 0.85);
+		}else if(a.getA_rank().equals("Platinum")) {
+			pay = (int) (pay * 0.80);
+		}else{
+			pay = (int) (pay * 0.75);
+		}
+		
+		
+		
+		
 		double exp = a.getA_exp();
 		System.out.println("exp =" + exp);
 
@@ -505,6 +524,8 @@ public class ProductDAO {
 		String p_size = cart.getP_size();
 		String p_color = cart.getP_color();
 		int o_p_price = cart.getP_price();
+		String o_p_img = cart.getP_img();
+		System.out.println("o_p_img = " + o_p_img);
 
 		OrderList ol = new OrderList();
 		ol.setO_p_no(pno);
@@ -515,6 +536,7 @@ public class ProductDAO {
 		ol.setO_p_size(p_size);
 		ol.setO_p_color(p_color);
 		ol.setO_p_price(o_p_price);
+		ol.setO_p_img(o_p_img);
 
 		if (ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
 			System.out.println("구매이력 등록 완료");
@@ -544,5 +566,6 @@ public class ProductDAO {
 		req.setAttribute("oo", oo);
 
 	}
+
 
 }
