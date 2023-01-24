@@ -79,6 +79,9 @@ function goChargeCash(id) {
 </script>
 </head>
 <body>
+	<div class="header">
+		<jsp:include page="../sh/header.jsp"></jsp:include>
+	</div>
 	<div class="whole-div" style="width: 1000px;">
 		<!-- 프로필 보여줄 리스트  -->
 		<div class="profile-div">
@@ -94,8 +97,6 @@ function goChargeCash(id) {
 					삭제</button>
 				<button onclick="return goChargeCash('${loginAccount.a_id}')">캐시
 					충전</button>
-				<img id="kakaoPay" style="width: 50px; height: 30px;" alt=""
-					src="resources/imgs/kakaoPay.png">
 			</div>
 			<div class="my-info2">
 				<h4>배송 주소 : ${loginAccount.a_addr }</h4>
@@ -127,48 +128,85 @@ function goChargeCash(id) {
 
 				<div class="active">
 					<section class="box" style="background: #BDBDBD;">
-   						 <img class="profile" src="resources/imgs/deliveryCar.png">
+						<img class="profile" src="resources/imgs/deliveryCar.png">
 					</section>
 					<h2>배송 조회</h2>
-					<p>배송 조회 하는 페이지를 보여주자</p>
+					<p>
+						<a href="deliveryTrackingGo" class="nav-item is-active"
+							active-color="orange">배송 조회 하러 가기!</a>
+					</p>
 				</div>
 				<div>
-					<div class="favorites-div" >
-					<!-- 찜목록 보여주기 -->
-					<c:forEach items="${favorsPNO }" var="f">
-					<section id="favorSec" >
-						<img id="favorSecImg" src="resources/imgs/${f.p_img}">
-						<h3>${f.p_no }</h3>
-						<h3>${f.p_name }</h3>
-						<h3>${f.p_price }</h3>
+					<section class="favorites-div">
+						<!-- 찜목록 보여주기 -->
+						<c:forEach items="${favorsPNO }" var="f">
+
+						 <section id="favorSec" onclick="location.href='detail.go?p_no=${f.p_no}'">
+								<img id="favorSecImg" src="resources/imgs/${f.p_img}" >
+								<h3>${f.p_no }</h3>
+								<h3>${f.p_name }</h3>
+								<h3>${f.p_price }</h3>
+						</section>
+						 </c:forEach> 
 					</section>
-					</c:forEach>
-					</div>
 				</div>
 
 				<div>
 					<i class="fa fa-cart"></i>
 					<h2>장바구니</h2>
-					<p>장바구니 목록 보여주기</p>
+					<p>장바구니로 이동하시겠습니까?</p>
+					<button onclick="location.href='go.cart?a_id=${loginAccount.a_id }'">이동</button>
 				</div>
 
 				<div>
-					<i class="fa fa-productor"></i>
+					<section class="box" style="background: #BDBDBD;">
+						<img class="profile" src="resources/imgs/productor.png">
+					</section>
 					<h2>판매자 전환 요청</h2>
 					<p>판매자 전환 요청하러 가기</p>
+					<button onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" 
+					class="nav-item" active-color="blue">판매자 등록</button>
 				</div>
 				<div>
-					<i class="fa fa-orderlist"></i>
-					<h2>구매 이력</h2>
-					<p>구매 이력을 확인 할 수 있는 곳.</p>
+					<c:if test="${orderList22 != null }">
+						<section class="orderlist-div">
+						<!-- 구매목록 보여주기 -->
+							<table border="1" class="orderlist-tbl">
+								<tr>
+									<td>사진</td>
+									<td>이름</td>
+									<td>수량</td>
+									<td>구매 날짜</td>
+									<td>사이즈</td>
+									<td>색상</td>
+									<td>작성 여부</td>
+								</tr>
+							<c:forEach items="${orderList22 }" var="o">
+								<tr>
+									<td><img id="favorimg" src="resources/imgs/${o.o_p_img}"></td>
+									<td>${o.o_p_name }</td>
+									<td>${o.o_qty }</td>
+									<td>${o.o_date}</td>
+									<td>${o.o_p_size}</td>
+									<td>${o.o_p_color}</td>
+									<td><button onclick="location.href='review.go?o_no=${o.o_no}'">작성하러
+									가기</button></td>
+								</tr>
+							</c:forEach>
+							</table>
+						</section>
+					</c:if>
 				</div>
 
 			</div>
 		</div>
+		<div style="height: 300px;">
+		
+		
+		</div>
 
 
-
-		<!-- 메뉴 리스트 -->
+		<%-- <!-- 메뉴 리스트 -->
 		<nav class="nav">
 			<a href="deliveryTrackingGo" class="nav-item is-active" active-color="orange">배송 조회</a> 
 			<a class="favors" class="nav-item" active-color="green">찜한 목록</a> 
@@ -214,8 +252,10 @@ function goChargeCash(id) {
 						</c:forEach>
 				</table>
 			</div>
-		</c:if>
+		</c:if> --%>
 	</div>
 </body>
 <script type="text/javascript" src="resources/js/myPage.js"></script>
+<script type="text/javascript">
+</script>
 </html>

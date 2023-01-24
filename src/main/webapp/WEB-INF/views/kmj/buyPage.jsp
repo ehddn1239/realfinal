@@ -54,6 +54,7 @@ function checkMoney(cash, price) {
 				<div id="mainImg">
 					<c:forEach items="${imgs[0]}" var="i">
 						<img src="resources/imgs/${i}">
+						<input name="p_img" value="${i }" type="hidden">			
 					</c:forEach>
 				</div>
 
