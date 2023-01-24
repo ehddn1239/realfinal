@@ -117,7 +117,7 @@
 
 	<div id="detailWrapper">
 		<div id="detailWrap">
-		
+
 			<form action="add.cart">
 				<div id="orderDiv">
 					<div id="mainImg">
@@ -128,46 +128,80 @@
 
 					<div id="orderDetail">
 
-							<span>사이즈 </span><select class="selectbox" name="p_size">
-								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
-								<c:forEach items="${sizes}" var="i">
-									<option value="${i}">${i }</option>
-								</c:forEach>
-							</select>
-							</div>
-							<div class="SelectQty">
-							
-							<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox" name="cart_qty" type="number">
-								
+						<span>사이즈 </span><select class="selectbox" name="p_size">
+							<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
+							<c:forEach items="${sizes}" var="i">
+								<option value="${i}">${i }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="SelectQty">
+
+						<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox"
+							name="cart_qty" type="number">
+
 						<div class="detailTitle">
 							<span>${p.p_name }</span>
 						</div>
 						<div class="productDescription">${p.p_description}</div>
 						<div class="detailPrice">
-							정상가
-							<del><fmt:formatNumber value="${p.p_price }" type="currency"
-								currencySymbol="\\" /></del> <br>
-							<c:if test="${loginAccount.a_rank eq 'Bronze'}">
-							할인가 
-								<fmt:formatNumber value="${p.p_price * 0.95}" type="currency"
-									currencySymbol="\\" />
-							</c:if>	
-							<c:if test="${loginAccount.a_rank eq 'Silver'}">
-								<fmt:formatNumber value="${p.p_price * 0.90}" type="currency"
-									currencySymbol="\\" />
-							</c:if>	
-							<c:if test="${loginAccount.a_rank eq 'Gold'}">
-								<fmt:formatNumber value="${p.p_price * 0.85}" type="currency"
-									currencySymbol="\\" />
-							</c:if>	
-							<c:if test="${loginAccount.a_rank eq 'Platinum'}">
-								<fmt:formatNumber value="${p.p_price * 0.80}" type="currency"
-									currencySymbol="\\" />
-							</c:if>	
-							<c:if test="${loginAccount.a_rank eq 'Diamond'}">
-								<fmt:formatNumber value="${p.p_price * 0.75}" type="currency"
-									currencySymbol="\\" />
-							</c:if>	
+							<c:choose>
+								<c:when test="${loginAccount.a_rank eq 'Bronze'}">
+									정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.95}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Silver'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.90}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Gold'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.85}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Platinum'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.80}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Diamond'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.75}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:otherwise>
+									가격 
+										<fmt:formatNumber value="${p.p_price}" type="currency"
+										currencySymbol="\\" />
+								</c:otherwise>
+							</c:choose>
 						</div>
 
 						<div id="orderOptionDiv">
@@ -250,8 +284,8 @@
 						회원 아이디 ${r.r_a_id } 
 						등록 날짜 ${r.r_date }
 						후기 내용 ${r.r_txt }
-				</c:forEach> 
-					
+				</c:forEach>
+
 
 			</div>
 		</div>
