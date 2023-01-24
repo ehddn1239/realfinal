@@ -145,8 +145,29 @@
 						<div class="productDescription">${p.p_description}</div>
 						<div class="detailPrice">
 							정상가
-							<fmt:formatNumber value="${p.p_price }" type="currency"
-								currencySymbol="\\" />
+							<del><fmt:formatNumber value="${p.p_price }" type="currency"
+								currencySymbol="\\" /></del> <br>
+							<c:if test="${loginAccount.a_rank eq 'Bronze'}">
+							할인가 
+								<fmt:formatNumber value="${p.p_price * 0.95}" type="currency"
+									currencySymbol="\\" />
+							</c:if>	
+							<c:if test="${loginAccount.a_rank eq 'Silver'}">
+								<fmt:formatNumber value="${p.p_price * 0.90}" type="currency"
+									currencySymbol="\\" />
+							</c:if>	
+							<c:if test="${loginAccount.a_rank eq 'Gold'}">
+								<fmt:formatNumber value="${p.p_price * 0.85}" type="currency"
+									currencySymbol="\\" />
+							</c:if>	
+							<c:if test="${loginAccount.a_rank eq 'Platinum'}">
+								<fmt:formatNumber value="${p.p_price * 0.80}" type="currency"
+									currencySymbol="\\" />
+							</c:if>	
+							<c:if test="${loginAccount.a_rank eq 'Diamond'}">
+								<fmt:formatNumber value="${p.p_price * 0.75}" type="currency"
+									currencySymbol="\\" />
+							</c:if>	
 						</div>
 
 						<div id="orderOptionDiv">
