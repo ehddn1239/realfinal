@@ -18,6 +18,25 @@
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
 
+<!-- 우편번호 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+window.onload = function(){
+	
+	document.getElementById("a_post").addEventListener("click", function() {
+		new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	            document.getElementById("a_post").value = data.address; //주소값
+				document.querySelector("input[name=a_addr]").focus(); // 상세주소에 포커싱	            
+	        }
+	    }).open();	
+	})
+}
+   
+</script>
+
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
 	crossorigin="anonymous">
@@ -251,7 +270,8 @@ $(function() {
 						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
 						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 
 						<span id="pw2_span" style="font-size: 8pt; color: red;">비밀번호가 일치하지않음</span> 
-						<input id="a_addr" class="modal-input" name="a_addr" type="text"placeholder="주소" /> 
+						<input id="a_post" class="modal-input" name="a_post" type="text"placeholder="우편번호" /> 
+						<input id="a_addr" class="modal-input" name="a_addr" type="text"placeholder="상세주소" /> 
 						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
 						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
 						<button class="modal-button">Sign Up</button>

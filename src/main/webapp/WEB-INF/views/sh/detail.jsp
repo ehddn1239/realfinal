@@ -90,24 +90,46 @@
 			}
 		}
 
-		function cancle(a_id, p_no) {
-			if (confirm('이미 찜 해놓으신 품목 입니다. 취소 하시겠습니까?')) {
-				location.href = 'favoriteCancle.do?p_no=' + p_no + '&a_id='
-						+ a_id;
-				alert('찜 목록에서 삭제하였습니다.')
-				return true;
-			} else {
-				return false;
+		$("#containBagBtn").click(function() {
+			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
+			if (check) {
+				location.href = '/cart.go?'
+
 			}
+		});
+
+	
+</script>
+
+<script type="text/javascript">
+	function checkLogin(a_id, p_no) {
+		if (a_id == '') {
+			alert('로그인 후 이용해주세요');
+			return false;
+		} else {
+			location.href = 'favorite.do?p_no=' + p_no + '&a_id=' + a_id;
+			alert('찜하기 등록 하셨습니다.')
+			return true;
 		}
-		function confirmPay(pno, aid) {
-			if (confirm('결제 페이지로 이동하시겠습니까?')) {
-				location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid;
-				return true;
-			} else {
-				return false;
-			}
+	}
+
+	function cancle(a_id, p_no) {
+		if (confirm('이미 찜 해놓으신 품목 입니다. 취소 하시겠습니까?')) {
+			location.href = 'favoriteCancle.do?p_no=' + p_no + '&a_id=' + a_id;
+			alert('찜 목록에서 삭제하였습니다.')
+			return true;
+		} else {
+			return false;
 		}
+	}
+	function confirmPay(pno, aid) {
+		if (confirm('결제 페이지로 이동하시겠습니까?')) {
+			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid;
+			return true;
+		} else {
+			return false;
+		}
+	}
 </script>
 
 </head>
@@ -137,15 +159,80 @@
 
 					<div id="orderDetail">
 
+						<span>사이즈 </span><select class="selectbox" name="p_size">
+							<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
+							<c:forEach items="${sizes}" var="i">
+								<option value="${i}">${i }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="SelectQty">
+
+						<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox"
+							name="cart_qty" type="number">
 
 						<div class="detailTitle">
 							<span>${p.p_name }</span>
 						</div>
 						<div class="productDescription">${p.p_description}</div>
 						<div class="detailPrice">
-							정상가
-							<fmt:formatNumber value="${p.p_price }" type="currency"
-								currencySymbol="\\" />
+							<c:choose>
+								<c:when test="${loginAccount.a_rank eq 'Bronze'}">
+									정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.95}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Silver'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.90}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Gold'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.85}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Platinum'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.80}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Diamond'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.75}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:otherwise>
+									가격 
+										<fmt:formatNumber value="${p.p_price}" type="currency"
+										currencySymbol="\\" />
+								</c:otherwise>
+							</c:choose>
 						</div>
 
 						<div id="orderOptionDiv">
@@ -163,13 +250,8 @@
 									<c:forEach items="${sizes}" var="i">
 										<option value="${i}">${i }</option>
 									</c:forEach>
-								</select>
-							</div>
-							<div class="SelectQty">
 
-								<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox"
-									name="cart_qty" type="number"> <input name="a_id"
-									value="${loginAccount.a_id}" type="hidden">
+								</select> <input name="a_id" value="${loginAccount.a_id}" type="hidden">
 							</div>
 
 						</div>
@@ -186,7 +268,8 @@
 							<div>
 								<!-- 로그인이 안됐을때 -->
 								<c:if test="${loginCheck == 1 }">
-									<button id="wantBtn">
+
+									<button type="button" id="wantBtn">
 										<!-- 로그인 안됏을떄 -->
 										<span
 											onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')"
@@ -197,14 +280,16 @@
 									<c:when test="${checkFavorite == 1 }">
 										<!-- p_no가 이미 찜햇을때 -->
 										<!-- 클릭 하면 이미 했다고 취소할거냐고 물을 것  -->
-										<button id="wantBtn"
+										<button type="button" id="wantBtn"
+
 											onclick="return cancle('${loginAccount.a_id}','${p.p_no }')">
 											<img alt="" src="resources/imgs/filled_heart.png">
 										</button>
 									</c:when>
 									<c:when test="${checkFavorite == 0 }">
 										<!-- 찜 안햇을때 -->
-										<button id="wantBtn"
+
+										<button id="wantBtn" type="button"
 											onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')">
 											<span class="material-symbols-outlined"> favorite </span>
 										</button>
@@ -237,6 +322,7 @@
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
 						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
 					</c:if>
+
 				</c:forEach>
 
 

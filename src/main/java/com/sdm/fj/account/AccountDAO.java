@@ -37,6 +37,10 @@ public class AccountDAO {
 		String addr = req.getParameter("a_addr");
 		String email = req.getParameter("a_email");
 		String phone = req.getParameter("a_phone");
+		String postAddr = req.getParameter("a_post");
+		
+		
+				
 
 		a.setA_id(id);
 		a.setA_pw(pw);
@@ -44,6 +48,7 @@ public class AccountDAO {
 		a.setA_addr(addr);
 		a.setA_email(email);
 		a.setA_phone(phone);
+		a.setA_post(postAddr);
 
 		if (ss.getMapper(AccountMapper.class).register(a) == 1) {
 			System.out.println("회원가입 성공");
@@ -56,6 +61,7 @@ public class AccountDAO {
 		String id = req.getParameter("a_id");
 		String pw = req.getParameter("a_pw");
 		Account aa = ss.getMapper(AccountMapper.class).login(a);
+		
 		res.setContentType("text/html; utf-8");
 		PrintWriter out = res.getWriter();
 
