@@ -51,7 +51,9 @@ public class AccountController {
 		aDAO.loginCheck(req);
 		return "index";
 	}
-
+	
+	
+	
 	@RequestMapping(value = "/myPage.go", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
