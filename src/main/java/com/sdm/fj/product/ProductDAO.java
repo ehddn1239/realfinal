@@ -313,7 +313,7 @@ public class ProductDAO {
 		System.out.println("a_id = " + a_id);
 		String favors = ss.getMapper(AccountMapper.class).selectFavor(a);
 		System.out.println("favors에 값을 받은 직후    favors = " + favors);
-		if (favors == null|| favors.isEmpty() ) {
+		if (favors == null || favors.isEmpty()) {
 			System.out.println("-----isEmpty를 거침------");
 			favors = ", " + p_no;
 		} else {
@@ -362,17 +362,17 @@ public class ProductDAO {
 		HashMap<String, String> val = new HashMap<String, String>();
 		val.put("id", a.getA_id());
 		String fa = ss.getMapper(AccountMapper.class).getFavor(val);
-		if(fa != null) {
+		if (fa != null) {
 			String[] favorsArr = fa.split(", ");
 			ArrayList<ProductForFavorite> products = new ArrayList<ProductForFavorite>();
-			
+
 			String sendImg = "";
 			for (String s : favorsArr) {
 				System.out.println("favorsArr = " + s);
-				if (s.equals(" ")||s.equals("")) {
+				if (s.equals(" ") || s.equals("")) {
 					continue;
 				} else {
-					System.out.println("else문으로 들어옴 s - " +s);
+					System.out.println("else문으로 들어옴 s - " + s);
 					Product pp = ss.getMapper(ProductMapper.class).getProductforFavor(s);
 					System.out.println("pp.getP_img() = " + pp.getP_img());
 					ProductForFavorite pf = new ProductForFavorite();
@@ -381,7 +381,7 @@ public class ProductDAO {
 					int price = pp.getP_price();
 					String[] imgSplit = pp.getP_img().split("!");
 					sendImg = imgSplit[0];
-					
+
 					System.out.println("pno = " + pno);
 					System.out.println("pname = " + pname);
 					System.out.println("price = " + price);
@@ -390,7 +390,7 @@ public class ProductDAO {
 					pf.setP_no(pno);
 					pf.setP_price(price);
 					pf.setP_img(sendImg);
-					
+
 					products.add(pf);
 				}
 			}
@@ -421,22 +421,19 @@ public class ProductDAO {
 		int pay = p.getP_price();
 		System.out.println("pay = " + pay);
 
-		//티어에 따른 가격 검색
-		if(a.getA_rank().equals("Bronze")) {
+		// 티어에 따른 가격 검색
+		if (a.getA_rank().equals("Bronze")) {
 			pay = (int) (pay * 0.95);
-		}else if(a.getA_rank().equals("Silver")) {
+		} else if (a.getA_rank().equals("Silver")) {
 			pay = (int) (pay * 0.90);
-		}else if(a.getA_rank().equals("Gold")) {
+		} else if (a.getA_rank().equals("Gold")) {
 			pay = (int) (pay * 0.85);
-		}else if(a.getA_rank().equals("Platinum")) {
+		} else if (a.getA_rank().equals("Platinum")) {
 			pay = (int) (pay * 0.80);
-		}else{
+		} else {
 			pay = (int) (pay * 0.75);
 		}
-		
-		
-		
-		
+
 		double exp = a.getA_exp();
 		System.out.println("exp =" + exp);
 
@@ -521,7 +518,7 @@ public class ProductDAO {
 		int o_p_price = cart.getP_price();
 		String o_p_img = cart.getP_img();
 		System.out.println("o_p_img = " + o_p_img);
-		
+
 		String o_post = req.getParameter("o_post");
 		String o_addr = req.getParameter("o_addr");
 
@@ -568,6 +565,5 @@ public class ProductDAO {
 		req.setAttribute("oo", oo);
 
 	}
-
 
 }

@@ -287,22 +287,24 @@
 			<div id="reviewDiv">
 				<div>구매후기</div>
 				<c:forEach items="${reviews }" var="r">
-					<img src="resources/imgs/${r.r_img}" style="width:100px;">
+					<img src="resources/imgs/${r.r_img}" style="width: 100px;">
 						평점${r.r_grade }
 						회원 아이디 ${r.r_a_id } 
 						등록 날짜 ${r.r_date }
 						후기 내용 ${r.r_txt }
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
-					<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
-				</c:if>
-					</c:forEach>
-				
+						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
+					</c:if>
+				</c:forEach>
+
 
 			</div>
-			
+
 		</div>
 	</div>
-	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
-			<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
+	<c:if test="${userType == true}">
+		<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
+		<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
+	</c:if>
 </body>
 </html>
