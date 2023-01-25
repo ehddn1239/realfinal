@@ -139,59 +139,64 @@
 						<div class="detailPrice">
 							<c:choose>
 								<c:when test="${loginAccount.a_rank eq 'Bronze'}">
-									정상가
-									<del>
+                           정상가
+                           <del>
 										<fmt:formatNumber value="${p.p_price }" type="currency"
 											currencySymbol="\\" />
 									</del>
 									<br> 할인가
-										<fmt:formatNumber value="${p.p_price * 0.95}" type="currency"
+                              <fmt:formatNumber
+										value="${p.p_price * 0.95}" type="currency"
 										currencySymbol="\\" />
 								</c:when>
 								<c:when test="${loginAccount.a_rank eq 'Silver'}">
-								정상가
-									<del>
+                        정상가
+                           <del>
 										<fmt:formatNumber value="${p.p_price }" type="currency"
 											currencySymbol="\\" />
 									</del>
 									<br> 할인가
-										<fmt:formatNumber value="${p.p_price * 0.90}" type="currency"
+                              <fmt:formatNumber
+										value="${p.p_price * 0.90}" type="currency"
 										currencySymbol="\\" />
 								</c:when>
 								<c:when test="${loginAccount.a_rank eq 'Gold'}">
-								정상가
-									<del>
+                        정상가
+                           <del>
 										<fmt:formatNumber value="${p.p_price }" type="currency"
 											currencySymbol="\\" />
 									</del>
 									<br> 할인가
-										<fmt:formatNumber value="${p.p_price * 0.85}" type="currency"
+                              <fmt:formatNumber
+										value="${p.p_price * 0.85}" type="currency"
 										currencySymbol="\\" />
 								</c:when>
 								<c:when test="${loginAccount.a_rank eq 'Platinum'}">
-								정상가
-									<del>
+                        정상가
+                           <del>
 										<fmt:formatNumber value="${p.p_price }" type="currency"
 											currencySymbol="\\" />
 									</del>
 									<br> 할인가
-										<fmt:formatNumber value="${p.p_price * 0.80}" type="currency"
+                              <fmt:formatNumber
+										value="${p.p_price * 0.80}" type="currency"
 										currencySymbol="\\" />
 								</c:when>
 								<c:when test="${loginAccount.a_rank eq 'Diamond'}">
-								정상가
-									<del>
+                        정상가
+                           <del>
 										<fmt:formatNumber value="${p.p_price }" type="currency"
 											currencySymbol="\\" />
 									</del>
 									<br> 할인가
-										<fmt:formatNumber value="${p.p_price * 0.75}" type="currency"
+                              <fmt:formatNumber
+										value="${p.p_price * 0.75}" type="currency"
 										currencySymbol="\\" />
 								</c:when>
 								<c:otherwise>
-									가격 
-										<fmt:formatNumber value="${p.p_price}" type="currency"
-										currencySymbol="\\" />
+                           가격 
+                              <fmt:formatNumber value="${p.p_price}"
+										type="currency" currencySymbol="\\" />
 								</c:otherwise>
 							</c:choose>
 						</div>
