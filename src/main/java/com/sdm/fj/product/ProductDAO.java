@@ -315,7 +315,7 @@ public class ProductDAO {
 		String favors = ss.getMapper(AccountMapper.class).selectFavor(a);
 		System.out.println("favors에 값을 받은 직후    favors = " + favors);
 
-		if (favors.isEmpty()) {
+		if (favors == null|| favors.isEmpty() ) {
 			System.out.println("-----isEmpty를 거침------");
 			favors = ", " + p_no;
 		} else {
@@ -367,18 +367,16 @@ public class ProductDAO {
 		val.put("id", a.getA_id());
 		String fa = ss.getMapper(AccountMapper.class).getFavor(val);
 		if(fa != null) {
-			String[] favorsArr = fa.split(",");
-			for (String s2 : favorsArr) {
-				System.out.println("favorsArr = " + s2);
-			}
+			String[] favorsArr = fa.split(", ");
 			ArrayList<ProductForFavorite> products = new ArrayList<ProductForFavorite>();
 			
 			String sendImg = "";
 			for (String s : favorsArr) {
 				System.out.println("favorsArr = " + s);
-				if (s.equals(" ")) {
+				if (s.equals(" ")||s.equals("")) {
 					continue;
 				} else {
+					System.out.println("else문으로 들어옴 s - " +s);
 					Product pp = ss.getMapper(ProductMapper.class).getProductforFavor(s);
 					System.out.println("pp.getP_img() = " + pp.getP_img());
 					ProductForFavorite pf = new ProductForFavorite();
@@ -401,11 +399,7 @@ public class ProductDAO {
 				}
 			}
 			req.setAttribute("favorsPNO", products);
-		
-		
-		
 		}
-//		ArrayList<String> imgs = new ArrayList<String>();
 	}
 
 	public void getSearchProduct(Product p, HttpServletRequest req) {
@@ -531,7 +525,12 @@ public class ProductDAO {
 		int o_p_price = cart.getP_price();
 		String o_p_img = cart.getP_img();
 		System.out.println("o_p_img = " + o_p_img);
+		
+		String o_post = req.getParameter("o_post");
+		String o_addr = req.getParameter("o_addr");
 
+		System.out.println("o_post = " + o_post);
+		System.out.println("o_addr = " + o_addr);
 		OrderList ol = new OrderList();
 		ol.setO_p_no(pno);
 		ol.setO_qty(qty);
@@ -542,6 +541,8 @@ public class ProductDAO {
 		ol.setO_p_color(p_color);
 		ol.setO_p_price(o_p_price);
 		ol.setO_p_img(o_p_img);
+		ol.setO_addr(o_addr);
+		ol.setO_post(o_post);
 
 		if (ss.getMapper(OrderlistMapper.class).regOrder(ol) > 0) {
 			System.out.println("구매이력 등록 완료");
