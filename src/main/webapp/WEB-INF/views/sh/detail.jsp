@@ -302,9 +302,11 @@
 
 		</div>
 	</div>
-	<c:if test="${userType == true}">
+	<div class="sellerbtn">
+	<c:if test="${loginAccount.a_userType == 2}">
 		<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
 		<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
 	</c:if>
+	</div>
 </body>
 </html>

@@ -49,11 +49,16 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "/review.delete.do", method = RequestMethod.GET)
-	public String reviewDeleteDo(Review r, HttpServletRequest req, Criteria cri) {
-		System.out.println("---------regReview.delete컨트롤러 시작------------");
+	public String reviewDeleteDo(Account a, Product p, Review r, HttpServletRequest req, Criteria cri) {
 
 		rDAO.deleteReview(req, r, cri);
-
+		if(aDAO.loginCheck(req)) {
+			aDAO.setFavorites(p, a, req);
+		}
+		pDAO.goDetail(p, req);
+		pDAO.getDetail(p, req);
+		rDAO.productReviewSelect(req, r, p, a);
+		
 		return "sh/detail";
 
 	}

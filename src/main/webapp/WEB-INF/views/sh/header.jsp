@@ -35,7 +35,7 @@ function goPost(){
 				<ul class="use_info">
 				<c:choose>
 				<c:when test="${loginAccount == null}">
-						<li><a href="#"><span class="header_login"></span><strong>login</strong></a></li>
+						<li><a href="login.go"><span class="header_login"></span><strong>login</strong></a></li>
 					</c:when>
 					<c:when test="${loginAccount != null }">
 						<li><a href="logout.do"><span class="header_logout"></span><strong>logout</strong></a></li>
