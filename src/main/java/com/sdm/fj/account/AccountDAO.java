@@ -328,17 +328,21 @@ public class AccountDAO {
 		System.out.println("-----favors의 내용 = " + favors);
 		System.out.println("p_no = " + p.getP_no());
 		String pno = Integer.toString(p.getP_no());
-		String[] favorites = favors.split(", ");
-		aa.setFavorites(favorites);
-		for (String s : favorites) {
-			if (s.equals(pno)) {
-				req.setAttribute("checkFavorite", 1);
-				break;
-			} else {
-				req.setAttribute("checkFavorite", 0);
+		if(favors != null) {
+			String[] favorites = favors.split(", ");
+			aa.setFavorites(favorites);
+			for (String s : favorites) {
+				if (s.equals(pno)) {
+					req.setAttribute("checkFavorite", 1);
+					break;
+				} else {
+					req.setAttribute("checkFavorite", 0);
+				}
 			}
+			req.setAttribute("favorites", favorites);
+		}else {
+			req.setAttribute("checkFavorite", 0);
 		}
-		req.setAttribute("favorites", favorites);
 	}
 
 	public boolean checkUserType(HttpServletRequest req) {
