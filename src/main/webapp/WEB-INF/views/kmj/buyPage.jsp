@@ -30,7 +30,10 @@ window.onload= function() {
 	});
 }
 </script>
-
+<script type="text/javascript">
+$(function() {
+})
+</script>
 <script type="text/javascript">
 function checkMoney(cash, price) {
 	const qty = document.getElementById('qty').value;
@@ -169,9 +172,9 @@ function checkMoney(cash, price) {
 						</div>
 						<div class="select-addr">
 								배송주소 입력 <br>
+								<input name="chk_info" type="radio" value="my">내주소 <input name="chk_info" type="radio" value="new">새 주소 입력 <br>
 								<input name="o_post" id="o_post" placeholder="도로명주소"> <button type="button" id="postBtn">우편번호 검색</button> <br>
 								<input name="o_addr" id="o_addr" placeholder="상세 주소">
-
 						</div>
 					</div>
 					<div class="detailBtns">
