@@ -47,17 +47,15 @@ public class ReviewController {
 
 		return "kmj/myPage";
 	}
+
 	@RequestMapping(value = "/review.delete.do", method = RequestMethod.GET)
-	public String reviewDeleteDo(Review r, HttpServletRequest req,Criteria cri) {
+	public String reviewDeleteDo(Review r, HttpServletRequest req, Criteria cri) {
 		System.out.println("---------regReview.delete컨트롤러 시작------------");
 
-		
-		
-		rDAO.deleteReview(req, r,cri);
+		rDAO.deleteReview(req, r, cri);
 
-		
 		return "sh/detail";
 
 	}
-	
+
 }

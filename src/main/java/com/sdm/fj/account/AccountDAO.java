@@ -348,8 +348,10 @@ public class AccountDAO {
 	public boolean checkUserType(HttpServletRequest req) {
 		Account a = (Account) req.getSession().getAttribute("loginAccount");
 		if (a.getA_userType() == 2 || a.getA_userType() == 3) {
+			req.setAttribute("userType", a.getA_userType() == 2 || a.getA_userType() == 3);
 			return false;
 		}
+	
 		return true;
 	}
 
