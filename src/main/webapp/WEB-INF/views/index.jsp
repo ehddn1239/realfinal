@@ -194,8 +194,13 @@ $(function() {
 
 						<c:choose>
 				<c:when test="${loginCheck == 1 }">
-					<button class="login-btn">Login</button>
-					<a href="gohome.go">메인으로 이동</a>
+					<button class="login-btn">
+    					<span class="circle" aria-hidden="true">
+     					<span class="icon arrow"></span>
+    					</span>
+    					<span class="button-text">로그인</span>
+  					</button>
+					
 				</c:when>	
 				<c:when test="${loginCheck == 0 }">
 					<form action="myPage.go" method="get">
