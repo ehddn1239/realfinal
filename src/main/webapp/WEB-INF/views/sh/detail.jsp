@@ -99,8 +99,8 @@
 		}
 	}
 	function deleteReview(n, a) {
-		let a = confirm('삭제하시겠습니까?');
-		if (a == 1) {
+		let aa = confirm('삭제하시겠습니까?');
+		if (aa == 1) {
 			location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
 		}
 	}
@@ -287,24 +287,22 @@
 			<div id="reviewDiv">
 				<div>구매후기</div>
 				<c:forEach items="${reviews }" var="r">
-					<img src="resources/imgs/${r.r_img}" style="width: 100px;">
-                  평점${r.r_grade }
-                  회원 아이디 ${r.r_a_id } 
-                  등록 날짜 ${r.r_date }
-                  후기 내용 ${r.r_txt }
-               </c:forEach>
-				<c:if test="${loginAccount.a_id eq reviews.r_a_id}">
-					<button
-						onclick="deleteReview('${reviews.r_no}','${reviews.r_a_id}')">삭제</button>
+					<img src="resources/imgs/${r.r_img}" style="width:100px;">
+						평점${r.r_grade }
+						회원 아이디 ${r.r_a_id } 
+						등록 날짜 ${r.r_date }
+						후기 내용 ${r.r_txt }
+						<c:if test="${loginAccount.a_id eq r.r_a_id}">
+					<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
 				</c:if>
+					</c:forEach>
+				
 
 			</div>
-
+			
 		</div>
 	</div>
-	<div>
-		<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
-		<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
-	</div>
+	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
+			<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
 </body>
 </html>

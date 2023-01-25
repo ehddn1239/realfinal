@@ -31,13 +31,14 @@
 		후기 작성<br>
 	</h1>
 	<div id="ReviewContainer">
-		<form action="regReview.do" id="myform" method="post"
-			enctype="multipart/form-data">
-			후기 이미지:<input name="files" type="file"> SDMall<br> 옵션<br>
-			이름:${oo.o_p_name}<br> 사이즈:${oo.o_p_size}<br>
-			색상:${oo.o_p_color}<br> <input value="${oo.o_p_no }"
-				name="o_p_no" type="hidden">
-
+		<form action="regReview.do" id="myform" method="post" enctype="multipart/form-data" >
+			후기 이미지:<input name="files" type="file"> SDMall<br>
+			옵션<br>  
+			이름:${oo.o_p_name}<br>  
+			사이즈:${oo.o_p_size}<br>
+			색상:${oo.o_p_color}<br>
+			<input value="${oo.o_p_no }" name="o_p_no" type="hidden">
+			
 			<fieldset>
 				<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
 					name="r_grade" value="5" id="rate1"><label for="rate1">★</label>
