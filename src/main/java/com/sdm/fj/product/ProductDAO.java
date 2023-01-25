@@ -311,11 +311,9 @@ public class ProductDAO {
 		String a_id = req.getParameter("a_id");
 		System.out.println("p_no = " + p_no);
 		System.out.println("a_id = " + a_id);
-
 		String favors = ss.getMapper(AccountMapper.class).selectFavor(a);
 		System.out.println("favors에 값을 받은 직후    favors = " + favors);
-
-		if (favors.isEmpty()) {
+		if (favors == null|| favors.isEmpty() ) {
 			System.out.println("-----isEmpty를 거침------");
 			favors = ", " + p_no;
 		} else {
@@ -323,11 +321,9 @@ public class ProductDAO {
 			favors += ", " + p_no;
 		}
 		System.out.println("favors에 [, p_no]를 붙인 직후 favors = " + favors);
-
 		HashMap<String, String> val = new HashMap<String, String>();
 		val.put("p_list", favors);
 		val.put("a_id", a_id);
-
 		if (ss.getMapper(AccountMapper.class).updateFavorite(val) > 0) {
 			System.out.println("찜하기 등록");
 		}
