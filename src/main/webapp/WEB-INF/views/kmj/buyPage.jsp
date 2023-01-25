@@ -15,6 +15,22 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="resources/css/detail.css">
+<!-- 우편번호 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+window.onload= function() {
+	document.getElementById("postBtn").addEventListener("click", function() {
+		new daum.Postcode({
+	        oncomplete: function(data) {
+				document.getElementById("o_post").value = data.address;
+				document.querySelector("input[name=o_addr]").focus();
+	        
+	        }
+	    }).open();
+	});
+}
+</script>
+
 <script type="text/javascript">
 function checkMoney(cash, price) {
 	const qty = document.getElementById('qty').value;
@@ -65,9 +81,65 @@ function checkMoney(cash, price) {
 						<span>${p.p_name }</span>
 					</div>
 					<div class="detailPrice">
-						정상가
-						<fmt:formatNumber value="${p.p_price }" type="currency"
-							currencySymbol="\\" />
+						<h4>보유 캐시 : ${loginAccount.a_cash }원</h4>
+						
+						<c:choose>
+								<c:when test="${loginAccount.a_rank eq 'Bronze'}">
+									정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.95}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Silver'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.90}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Gold'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.85}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Platinum'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.80}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:when test="${loginAccount.a_rank eq 'Diamond'}">
+								정상가
+									<del>
+										<fmt:formatNumber value="${p.p_price }" type="currency"
+											currencySymbol="\\" />
+									</del>
+									<br> 할인가
+										<fmt:formatNumber value="${p.p_price * 0.75}" type="currency"
+										currencySymbol="\\" />
+								</c:when>
+								<c:otherwise>
+									가격 
+										<fmt:formatNumber value="${p.p_price}" type="currency"
+										currencySymbol="\\" />
+								</c:otherwise>
+							</c:choose>
 					</div>
 
 					<div id="orderOptionDiv">
@@ -91,6 +163,15 @@ function checkMoney(cash, price) {
 						<div class="select-number">
 							<span>수량</span><input type="number" id="qty" name="cart_qty">
 							<input name="p_price" value="${p.p_price }" type="hidden">
+							<br>
+							<br>
+							<br>
+						</div>
+						<div class="select-addr">
+								배송주소 입력 <br>
+								<input name="o_post" id="o_post" placeholder="도로명주소"> <button type="button" id="postBtn">우편번호 검색</button> <br>
+								<input name="o_addr" id="o_addr" placeholder="상세 주소">
+
 						</div>
 					</div>
 					<div class="detailBtns">
