@@ -47,5 +47,7 @@ public interface AccountMapper {
   
 	int chargeMoney(Charger c);
 
+	String getFavor(HashMap<String, String> val);
+
 
 }

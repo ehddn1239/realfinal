@@ -72,6 +72,11 @@ function selectAll(selectAll)  {
 			</tr>
 		</c:forEach>
 	</table> --%>
+	
+	<div class="header">
+		<jsp:include page="header.jsp"></jsp:include>
+	</div>
+	
 	<div class="support-grid"></div>
 
 	<div class="band">
@@ -83,8 +88,15 @@ function selectAll(selectAll)  {
 				<article>
 					<h1>${c.p_name }</h1>
 					<span>상품 색상 : ${c.p_color }</span>
+					<c:choose>
+					<c:when test="${c.p_size eq null }">
+					<span>상품 사이즈 : 선택하지 않았습니다.</span>
+					</c:when>
+					<c:otherwise>
 					<span>상품 사이즈 : ${c.p_size  }</span>
-					<span>상품 사이즈 : ${c.p_price }</span>
+					</c:otherwise>
+					</c:choose>
+					<span>상품 가격 : ${c.p_price }</span>
 					<span>상품 구매 수량 : ${c.cart_qty }</span>
 					<button onclick="return confirmPay('${c.p_no}','${loginAccount.a_id }','${c.cartId }', '${c.p_size }','${c.p_color }')">구매</button>
 					

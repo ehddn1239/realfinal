@@ -45,3 +45,4 @@ function _class(name){
 	    
 	  });
 	}
+	
