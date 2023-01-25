@@ -10,10 +10,20 @@
 	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
-function goPost(){
+function goPost(id){
+	if(id == ''){
+		alert("로그인을 먼저 해주세요!");
+		return false;
+	}
     let f = document.createElement('form');
+    var newInput = document.createElement("input");
     f.setAttribute('method', 'post');
     f.setAttribute('action', 'myPage.go');
+    newInput.setAttribute("type", "hidden");
+    newInput.setAttribute("name", "a_id");
+    newInput.setAttribute("id", "a_id");
+    newInput.setAttribute("value", id);
+    f.appendChild(newInput);
     document.body.appendChild(f);
     f.submit();
 }
@@ -55,7 +65,7 @@ $(function() {
 						<li><a href="logout.do"><span class="header_logout"></span><strong>logout</strong></a></li>
 						</c:when>
 				</c:choose>
-					<li><a href="javascript:void(0)" onClick="javascript:goPost()"><span class="header_mypage"></span><strong>my</strong></a></li>
+					<li><a href="javascript:void(0)" onClick="javascript:goPost('${loginAccount.a_id}')"><span class="header_mypage"></span><strong>my</strong></a></li>
 					<li><a href="go.cart?a_id=${loginAccount.a_id }"><span class="header_bag"></span><strong>cart</strong></a></li>
 				</ul>
 			</div>
