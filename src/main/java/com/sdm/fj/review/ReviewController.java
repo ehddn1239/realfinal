@@ -13,6 +13,8 @@ import com.sdm.fj.account.AccountDAO;
 
 import com.sdm.fj.account.OrderList;
 import com.sdm.fj.cart.CartDTO;
+import com.sdm.fj.product.Criteria;
+import com.sdm.fj.product.PageVO;
 import com.sdm.fj.product.Product;
 import com.sdm.fj.product.ProductDAO;
 
@@ -44,6 +46,16 @@ public class ReviewController {
 		rDAO.regReview(req, r, file);
 
 		return "kmj/myPage";
+	}
+
+	@RequestMapping(value = "/review.delete.do", method = RequestMethod.GET)
+	public String reviewDeleteDo(Review r, HttpServletRequest req, Criteria cri) {
+		System.out.println("---------regReview.delete컨트롤러 시작------------");
+
+		rDAO.deleteReview(req, r, cri);
+
+		return "sh/detail";
+
 	}
 
 }

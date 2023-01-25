@@ -12,14 +12,20 @@ public class OrderList {
 	private String o_p_size;
 	private String o_p_color;
 	private int o_p_price;
+	private String o_p_img;
+	private String o_post;
+	private String o_addr;
 	
 
 	public OrderList() {
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+
 	public OrderList(int o_no, int o_p_no, String o_a_id, Date o_date, int o_qty, String o_p_name, String o_p_size,
-			String o_p_color, int o_p_price) {
+			String o_p_color, int o_p_price, String o_p_img, String o_post, String o_addr) {
 		super();
 		this.o_no = o_no;
 		this.o_p_no = o_p_no;
@@ -30,7 +36,41 @@ public class OrderList {
 		this.o_p_size = o_p_size;
 		this.o_p_color = o_p_color;
 		this.o_p_price = o_p_price;
+		this.o_p_img = o_p_img;
+		this.o_post = o_post;
+		this.o_addr = o_addr;
 	}
+
+
+
+
+	public String getO_post() {
+		return o_post;
+	}
+
+
+
+
+	public void setO_post(String o_post) {
+		this.o_post = o_post;
+	}
+
+
+
+
+	public String getO_addr() {
+		return o_addr;
+	}
+
+
+
+
+	public void setO_addr(String o_addr) {
+		this.o_addr = o_addr;
+	}
+
+
+
 
 	public String getO_p_size() {
 		return o_p_size;
@@ -67,6 +107,17 @@ public class OrderList {
 	public int getO_p_no() {
 		return o_p_no;
 	}
+
+	
+	public String getO_p_img() {
+		return o_p_img;
+	}
+
+
+	public void setO_p_img(String o_p_img) {
+		this.o_p_img = o_p_img;
+	}
+
 
 	public void setO_p_no(int o_p_no) {
 		this.o_p_no = o_p_no;

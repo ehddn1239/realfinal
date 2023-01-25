@@ -303,16 +303,14 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "detail.go")
-
 	public String goDetail(OrderList o, Account a, Product p, HttpServletRequest req, Review r) {
 
-		if (aDAO.loginCheck(req)) {
+		if(aDAO.loginCheck(req)) {
 			aDAO.setFavorites(p, a, req);
 		}
 		pDAO.goDetail(p, req);
 		pDAO.getDetail(p, req);
 		rDAO.productReviewSelect(req, r, p, a);
-
 		return "sh/detail";
 	}
 
