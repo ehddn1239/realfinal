@@ -14,6 +14,7 @@ public class Account {
 	private String a_favorite;
 	private int a_reqStatus;
 	private String[] favorites;
+	private String a_post;
 	
 	
 
@@ -22,8 +23,11 @@ public class Account {
 	}
 
 
+
+
 	public Account(String a_id, String a_nickname, String a_pw, String a_addr, String a_email, String a_phone,
-			String a_rank, int a_cash, int a_userType, String a_favorite, int a_reqStatus, String[] favorites) {
+			String a_rank, double a_exp, int a_cash, int a_userType, String a_favorite, int a_reqStatus,
+			String[] favorites, String a_post) {
 		super();
 		this.a_id = a_id;
 		this.a_nickname = a_nickname;
@@ -32,12 +36,16 @@ public class Account {
 		this.a_email = a_email;
 		this.a_phone = a_phone;
 		this.a_rank = a_rank;
+		this.a_exp = a_exp;
 		this.a_cash = a_cash;
 		this.a_userType = a_userType;
 		this.a_favorite = a_favorite;
 		this.a_reqStatus = a_reqStatus;
 		this.favorites = favorites;
+		this.a_post = a_post;
 	}
+
+
 
 
 	public double getA_exp() {
@@ -53,6 +61,20 @@ public class Account {
 	}
 
 
+
+
+
+
+	public String getA_post() {
+		return a_post;
+	}
+
+
+
+
+	public void setA_post(String a_post) {
+		this.a_post = a_post;
+	}
 
 
 

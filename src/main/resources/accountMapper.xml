@@ -3,7 +3,7 @@
 <mapper namespace="com.sdm.fj.account.AccountMapper">
 
 	<insert id="register" parameterType="com.sdm.fj.account.Account">
-		insert into final_account values(#{a_id}, #{a_nickname}, #{a_pw}, #{a_addr}, #{a_email}, #{a_phone},'Bronze', 0, 1, null, 0, 1000)
+		insert into final_account values(#{a_id}, #{a_nickname}, #{a_pw}, #{a_addr}, #{a_email}, #{a_phone},'Bronze', 0, 1, null, 0, 1000, #{a_post})
 	</insert>
 	
 	<select id="login" resultType="com.sdm.fj.account.Account" parameterType="com.sdm.fj.account.Account">

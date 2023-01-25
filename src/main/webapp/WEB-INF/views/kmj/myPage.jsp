@@ -99,7 +99,8 @@ function goChargeCash(id) {
 					충전</button>
 			</div>
 			<div class="my-info2">
-				<h4>배송 주소 : ${loginAccount.a_addr }</h4>
+				<h4>도로명 주소 : ${loginAccount.a_post }</h4>
+				<h4>상세 주소 : ${loginAccount.a_addr }</h4>
 				<h4>이메일 : ${loginAccount.a_email }</h4>
 			</div>
 		</div>
