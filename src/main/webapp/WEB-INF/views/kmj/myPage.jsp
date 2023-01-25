@@ -71,7 +71,7 @@ $(function() {
 <script type="text/javascript">
 function goChargeCash(id) {
 	if(confirm('캐시를 충전하러 가시겠습니까?')){
-		location.href="kakaoPopup.go?a_id="+id;
+		window.open('kakaoPopup.go?a_id='+id, "금액 선택", "width=400, height=300, top=50, left=50");
 		return true;
 	}
 	return false;

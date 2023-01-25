@@ -22,7 +22,6 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 window.onload = function(){
-	
 	document.getElementById("a_post").addEventListener("click", function() {
 		new daum.Postcode({
 	        oncomplete: function(data) {
@@ -32,9 +31,8 @@ window.onload = function(){
 				document.querySelector("input[name=a_addr]").focus(); // 상세주소에 포커싱	            
 	        }
 	    }).open();	
-	})
+	});
 }
-   
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"
@@ -125,7 +123,7 @@ $(function() {
 				
 			});
 	
-	});
+		});
 	
 });
 </script>

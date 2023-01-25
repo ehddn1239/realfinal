@@ -43,17 +43,37 @@ public class AccountController {
 			return "index";
 		}
 	}
-	@RequestMapping(value = "login.go", method = RequestMethod.GET)
-	public String login(HttpServletRequest req) {
-
-		return "ldw/login";
+	@RequestMapping(value = "/account.reg.do2", method = RequestMethod.POST)
+	public String register2(Account a, HttpServletRequest req) {
+		
+		aDAO.register(a, req);
+		
+		aDAO.loginCheck(req);
+		return "index";
 	}
+	
+	@RequestMapping(value = "/account.login.do2", method = RequestMethod.POST)
+	public String login2(Account a, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		aDAO.login(a, req, res);
+		if (aDAO.loginCheck(req)) {
+			return "pop";
+		} else {
+			return "pop";
+		}
+	}
+	
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
 
 		aDAO.logout(req);
 		aDAO.loginCheck(req);
 		return "index";
+	}
+	@RequestMapping(value = "/loginPopup.go", method = RequestMethod.GET)
+	public String loginPopup(HttpServletRequest req) {
+		
+		return "kmj/login";
 	}
 	
 	
