@@ -20,44 +20,75 @@
 <link rel="stylesheet" href="resources/css/detail.css">
 
 <script type="text/javascript">
-	function deleteProduct(n, c) {
-		let a = confirm('삭제하시겠습니까?')
-		if (a == 1) {
-			location.href = 'product.delete.do?p_no=' + n + '&p_category=' + c;
+
+		function deleteProduct(n, c) {
+			let a = confirm('삭제하시겠습니까?')
+			if (a == 1) {
+				location.href = 'product.delete.do?p_no=' + n + '&p_category='
+						+ c;
+			}
 		}
-	}
-	// scroll
 
-	$(function() {
-		$('#back-to-top').on('click', function(e) {
-			e.preventDefault();
-			$('html,body').animate({
-				scrollTop : 0
-			}, 300);
-		});
-
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > 100) {
-				$('#back-to-top').addClass('show');
-			} else {
-				$('#back-to-top').removeClass('show');
+		function deleteReview(n, a) {
+			let a = confirm('삭제하시겠습니까?');
+			if (a == 1) {
+				location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
 			}
+		}
+		;
+
+		// scroll
+		$(function() {
+			$('#back-to-top').on('click', function(e) {
+				e.preventDefault();
+				$('html,body').animate({
+					scrollTop : 0
+				}, 300);
+			});
+
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > 100) {
+					$('#back-to-top').addClass('show');
+				} else {
+					$('#back-to-top').removeClass('show');
+				}
+			});
+
+			$('#back-to-bottom').click(function(e) {
+				e.preventDefault();
+				$('html,body').animate({
+					scrollTop : $(document).height()
+				}, 300);
+			});
+
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > 100) {
+					$('#back-to-bottom').removeClass('show');
+				} else {
+					$('#back-to-bottom').addClass('show');
+				}
+			});
+
+			$("#containBagBtn").click(function() {
+				var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
+				if (check) {
+					location.href = '/cart.go?'
+
+				}
+			});
+
 		});
 
-		$('#back-to-bottom').click(function(e) {
-			e.preventDefault();
-			$('html,body').animate({
-				scrollTop : $(document).height()
-			}, 300);
-		});
-
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > 100) {
-				$('#back-to-bottom').removeClass('show');
+		function checkLogin(a_id, p_no) {
+			if (a_id == '') {
+				alert('로그인 후 이용해주세요');
+				return false;
 			} else {
-				$('#back-to-bottom').addClass('show');
+				location.href = 'favorite.do?p_no=' + p_no + '&a_id=' + a_id;
+				alert('찜하기 등록 하셨습니다.')
+				return true;
 			}
-		});
+		}
 
 		$("#containBagBtn").click(function() {
 			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
@@ -67,7 +98,7 @@
 			}
 		});
 
-	});
+	
 </script>
 
 <script type="text/javascript">
@@ -219,6 +250,7 @@
 									<c:forEach items="${sizes}" var="i">
 										<option value="${i}">${i }</option>
 									</c:forEach>
+
 								</select> <input name="a_id" value="${loginAccount.a_id}" type="hidden">
 							</div>
 
@@ -236,6 +268,7 @@
 							<div>
 								<!-- 로그인이 안됐을때 -->
 								<c:if test="${loginCheck == 1 }">
+
 									<button type="button" id="wantBtn">
 										<!-- 로그인 안됏을떄 -->
 										<span
@@ -248,12 +281,14 @@
 										<!-- p_no가 이미 찜햇을때 -->
 										<!-- 클릭 하면 이미 했다고 취소할거냐고 물을 것  -->
 										<button type="button" id="wantBtn"
+
 											onclick="return cancle('${loginAccount.a_id}','${p.p_no }')">
 											<img alt="" src="resources/imgs/filled_heart.png">
 										</button>
 									</c:when>
 									<c:when test="${checkFavorite == 0 }">
 										<!-- 찜 안햇을때 -->
+
 										<button id="wantBtn" type="button"
 											onclick="return checkLogin('${loginAccount.a_id}','${p.p_no }')">
 											<span class="material-symbols-outlined"> favorite </span>
@@ -284,6 +319,10 @@
 						회원 아이디 ${r.r_a_id } 
 						등록 날짜 ${r.r_date }
 						후기 내용 ${r.r_txt }
+						<c:if test="${loginAccount.a_id eq r.r_a_id}">
+						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
+					</c:if>
+
 				</c:forEach>
 
 
