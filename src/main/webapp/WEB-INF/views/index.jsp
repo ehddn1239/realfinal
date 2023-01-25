@@ -65,7 +65,7 @@ $(function() {
 /* 	$(".remove-modal").click(function() {
 	 	
  	}); */
- 	$(".modal").click(function(e) {
+ 	$(".modal").mousedown(function(e) {
  		if($(e.target).parents('.container').length < 1){
  			$(".modal").fadeOut();
  			
