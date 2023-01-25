@@ -43,7 +43,11 @@ public class AccountController {
 			return "index";
 		}
 	}
+	@RequestMapping(value = "login.go", method = RequestMethod.GET)
+	public String login(HttpServletRequest req) {
 
+		return "ldw/login";
+	}
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
 
