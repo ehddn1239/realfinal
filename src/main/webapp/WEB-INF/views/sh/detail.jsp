@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="resources/css/detail.css">
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
@@ -15,80 +18,45 @@
 	
 </script>
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet" href="resources/css/detail.css">
-
 <script type="text/javascript">
-
-		function deleteProduct(n, c) {
-			let a = confirm('삭제하시겠습니까?')
-			if (a == 1) {
-				location.href = 'product.delete.do?p_no=' + n + '&p_category='
-						+ c;
-			}
+	function deleteProduct(n, c) {
+		let a = confirm('삭제하시겠습니까?')
+		if (a == 1) {
+			location.href = 'product.delete.do?p_no=' + n + '&p_category=' + c;
 		}
+	}
+	// scroll
 
-		function deleteReview(n, a) {
-			let a = confirm('삭제하시겠습니까?');
-			if (a == 1) {
-				location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
-			}
-		}
-		;
-
-		// scroll
-		$(function() {
-			$('#back-to-top').on('click', function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : 0
-				}, 300);
-			});
-
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-top').addClass('show');
-				} else {
-					$('#back-to-top').removeClass('show');
-				}
-			});
-
-			$('#back-to-bottom').click(function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : $(document).height()
-				}, 300);
-			});
-
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-bottom').removeClass('show');
-				} else {
-					$('#back-to-bottom').addClass('show');
-				}
-			});
-
-			$("#containBagBtn").click(function() {
-				var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
-				if (check) {
-					location.href = '/cart.go?'
-
-				}
-			});
-
+	$(function() {
+		$('#back-to-top').on('click', function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : 0
+			}, 300);
 		});
 
-		function checkLogin(a_id, p_no) {
-			if (a_id == '') {
-				alert('로그인 후 이용해주세요');
-				return false;
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-top').addClass('show');
 			} else {
-				location.href = 'favorite.do?p_no=' + p_no + '&a_id=' + a_id;
-				alert('찜하기 등록 하셨습니다.')
-				return true;
+				$('#back-to-top').removeClass('show');
 			}
-		}
+		});
+
+		$('#back-to-bottom').click(function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(document).height()
+			}, 300);
+		});
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-bottom').removeClass('show');
+			} else {
+				$('#back-to-bottom').addClass('show');
+			}
+		});
 
 		$("#containBagBtn").click(function() {
 			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
@@ -98,7 +66,7 @@
 			}
 		});
 
-	
+	});
 </script>
 
 <script type="text/javascript">
@@ -130,8 +98,13 @@
 			return false;
 		}
 	}
+	function deleteReview(n, a) {
+		let aa = confirm('삭제하시겠습니까?');
+		if (aa == 1) {
+			location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
+		}
+	}
 </script>
-
 </head>
 <body>
 	<div class="header">
@@ -158,18 +131,6 @@
 					</div>
 
 					<div id="orderDetail">
-
-						<span>사이즈 </span><select class="selectbox" name="p_size">
-							<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
-							<c:forEach items="${sizes}" var="i">
-								<option value="${i}">${i }</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="SelectQty">
-
-						<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox"
-							name="cart_qty" type="number">
 
 						<div class="detailTitle">
 							<span>${p.p_name }</span>
@@ -250,10 +211,14 @@
 									<c:forEach items="${sizes}" var="i">
 										<option value="${i}">${i }</option>
 									</c:forEach>
-
-								</select> <input name="a_id" value="${loginAccount.a_id}" type="hidden">
+								</select>
 							</div>
+							<div class="SelectQty">
 
+								<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox"
+									name="cart_qty" type="number">
+							</div>
+							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 						</div>
 						<div class="detailBtns">
 							<div>
@@ -281,7 +246,6 @@
 										<!-- p_no가 이미 찜햇을때 -->
 										<!-- 클릭 하면 이미 했다고 취소할거냐고 물을 것  -->
 										<button type="button" id="wantBtn"
-
 											onclick="return cancle('${loginAccount.a_id}','${p.p_no }')">
 											<img alt="" src="resources/imgs/filled_heart.png">
 										</button>
@@ -298,8 +262,12 @@
 							</div>
 						</div>
 					</div>
+
+
 				</div>
 			</form>
+
+
 
 
 
@@ -314,30 +282,22 @@
 			<div id="reviewDiv">
 				<div>구매후기</div>
 				<c:forEach items="${reviews }" var="r">
-					<img src="resources/imgs/${r.r_img}">
+					<img src="resources/imgs/${r.r_img}" style="width:100px;">
 						평점${r.r_grade }
 						회원 아이디 ${r.r_a_id } 
 						등록 날짜 ${r.r_date }
 						후기 내용 ${r.r_txt }
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
-						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
-					</c:if>
-
-				</c:forEach>
-
+					<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
+				</c:if>
+					</c:forEach>
+				
 
 			</div>
+			
 		</div>
 	</div>
 	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
-	<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
-
+			<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
 </body>
-
-
-
-
-
-
-
 </html>

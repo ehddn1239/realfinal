@@ -311,7 +311,6 @@ public class ProductController {
 		pDAO.goDetail(p, req);
 		pDAO.getDetail(p, req);
 		rDAO.productReviewSelect(req, r, p, a);
-
 		return "sh/detail";
 	}
 
