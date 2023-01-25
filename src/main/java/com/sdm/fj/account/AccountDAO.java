@@ -350,6 +350,7 @@ public class AccountDAO {
 		if (a.getA_userType() == 2 || a.getA_userType() == 3) {
 			return false;
 		}
+	
 		return true;
 	}
 

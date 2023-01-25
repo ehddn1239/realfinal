@@ -62,7 +62,7 @@ public class AccountController {
 			return "pop";
 		}
 	}
-
+	
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
 

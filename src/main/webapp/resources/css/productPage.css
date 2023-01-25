@@ -41,27 +41,54 @@
 	font-weight: 500;
 }
 
-.pageNumWrapper a{
+.pageNumWrapper a {
 	text-decoration: none;
 	color: black;
 }
 
-.pageNumWrapper{
-	position:relative;
-	margin-bottom:70px;
+.pageNumWrapper {
+	position: relative;
+	margin-bottom: 70px;
 }
 
 .pageUl {
-
-	position:absolute;
-	left:45%;
+	position: absolute;
+	left: 45%;
 	list-style: none;
+}
+
+.lookupList a{
+	text-decoration: none;
+	color: #999;
+}
+.lookup{
+	margin-top: -25px; 
+}
+.lookupList {
+	display: flex;
+	float:right;
 	
 }
 
+.newProduct {
+	margin-right: 11px;
+	font-size: 9pt;
+	font-weight: 500;
+}
 
+.lowPrice {
+	margin-right: 11px;
+	font-size: 10pt;
+	font-weight: 500;
+}
+
+.highPrice {
+	margin-right: 15px;
+	font-size: 10pt;
+	font-weight: 500;
+}
 
 #pageLi {
 	float: left;
-	margin-right:20px;
+	margin-right: 20px;
 }
