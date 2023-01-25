@@ -11,4 +11,8 @@
 		resultType="com.sdm.fj.review.Review">
 		select * from final_product_review where r_o_p_no = #{p_no}
 	</select>
+	<delete id="deleteReview" parameterType="com.sdm.fj.review.Review">
+		delete final_product_review where r_no = #{r_no}
+	</delete>
+	
 </mapper>

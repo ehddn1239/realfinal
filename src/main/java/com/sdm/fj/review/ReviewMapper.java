@@ -8,4 +8,6 @@ public interface ReviewMapper {
 
 	List<Review> getReviewProducts(int r_no);
 
+	int deleteReview(Review r);
+
 }
