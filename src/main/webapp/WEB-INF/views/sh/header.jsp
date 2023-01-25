@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.2.js"
+	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
+	crossorigin="anonymous"></script>
 <script type="text/javascript">
 function goPost(){
     let f = document.createElement('form');
@@ -16,6 +19,17 @@ function goPost(){
 }
 </script>
 <link rel="stylesheet" href="resources/css/header.css">
+<script type="text/javascript">
+$(function() {
+	var new_window_width = 880;
+    var new_window_height = 620;
+	var positionX = ( window.screen.width / 2 ) - ( new_window_width / 2 );
+    var positionY = ( window.screen.height / 2 ) - ( new_window_height / 2 );
+	$("#loginPopup").click(function() {
+		window.open('loginPopup.go', "로그인/회원가입", "width=880, height=620,"+ "top="+positionY+", left="+positionX);
+	})
+})
+</script>
 </head>
 <body>
 
@@ -35,7 +49,7 @@ function goPost(){
 				<ul class="use_info">
 				<c:choose>
 				<c:when test="${loginAccount == null}">
-						<li><a href="#"><span class="header_login"></span><strong>login</strong></a></li>
+						<li><a id="loginPopup"><span class="header_login"></span><strong>login</strong></a></li>
 					</c:when>
 					<c:when test="${loginAccount != null }">
 						<li><a href="logout.do"><span class="header_logout"></span><strong>logout</strong></a></li>
