@@ -83,8 +83,8 @@ body {
 }
 
 .favorites-div {
-	display: flex;
 	flex-wrap: wrap;
+	display: flex;
 }
 #favorimg{
 	width: 50px;
@@ -102,7 +102,6 @@ body {
 
 #favorSec {
 	width: 100px;
-	height: 100px;
 	cursor: pointer;
 }
 

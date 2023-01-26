@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sdm.fj.product.Product;
 import com.sdm.fj.product.ProductDAO;
+import com.sdm.fj.product.ProductForFavorites;
 
 @Controller
 public class AccountController {
@@ -87,10 +88,40 @@ public class AccountController {
 			pDAO.showAllOrders(o, req, p);
 			// 찜 목록 게시글 따로 조회하기
 			pDAO.showClientFavors(req, p);
+			// 찜하기 페이징
+			pDAO.paging(1, req, p);
 			
 			return "kmj/myPage";
 		}
 		return "index";
+	}
+	
+	@RequestMapping(value = "/favorsPaging", method = RequestMethod.GET )
+	public String paging(@RequestParam("curPageNo") int page,OrderList o, Account a, Product p, HttpServletRequest req) {
+		// 비동기로 찌를거면, 데이터 4개를 받아오는게 맞는거. 그쵸그쵸
+		if (aDAO.loginCheck(req)) {
+			aDAO.getAccount(a, req);
+			// 구매이력 불러오기
+			pDAO.showAllOrders(o, req, p);
+			// 찜 목록 게시글 따로 조회하기
+			pDAO.showClientFavors(req, p);  
+			// 찜하기 페이징
+			pDAO.paging(page, req, p);
+			
+			return "kmj/myPage";
+		}
+		return "";
+	}
+	
+	@RequestMapping(value = "/favorsPaging2", method = RequestMethod.GET,
+	produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ProductForFavorites pagingFavor(@RequestParam("curPageNo") int page, Account a, Product p, HttpServletRequest req) {
+		// 비동기로 찌를거면, 데이터 4개를 받아오는게 맞는거. 그쵸그쵸
+			pDAO.showClientFavors(req, p); 
+			// 찜하기 페이징
+			 // 아마 복붙 과정에서 그냥 잇엇던걸거에요 네 ㅋㅋㅋ 미리 해놓은거라
+			return pDAO.paging(page, req, p);
 	}
 
 	@RequestMapping(value = "/deliveryTrackingGo", method = RequestMethod.GET)
@@ -140,17 +171,29 @@ public class AccountController {
 	public String changeInfoGo(Account a, HttpServletRequest req) {
 
 		aDAO.loginCheck(req);
+		
+		
+		
 		return "kmj/changeInfo";
 	}
 
 	@RequestMapping(value = "/changeInfo.do", method = RequestMethod.POST)
-	public String changeInfoDo(Account a, HttpServletRequest req) {
+	public String changeInfoDo(OrderList o, Account a, Product p, HttpServletRequest req) {
 
 		// 정보 바꿔주는 일
 		// 보여주는일도 같이합니다~
 		aDAO.changeInfo(a, req);
-
-		return "kmj/myPage";
+		if (aDAO.loginCheck(req)) {
+			aDAO.getAccount(a, req);
+			// 구매이력 불러오기
+			pDAO.showAllOrders(o, req, p);
+			// 찜 목록 게시글 따로 조회하기
+			pDAO.showClientFavors(req, p);
+			
+			return "kmj/myPage";
+		}
+		return "index";
+//		return "kmj/myPage";
 	}
 
 	/*
