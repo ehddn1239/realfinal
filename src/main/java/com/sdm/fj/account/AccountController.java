@@ -51,9 +51,7 @@ public class AccountController {
 		aDAO.loginCheck(req);
 		return "index";
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/myPage.go", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPage(OrderList o, Account a, Product p, HttpServletRequest req) {
 
@@ -63,7 +61,7 @@ public class AccountController {
 			pDAO.showAllOrders(o, req, p);
 			// 찜 목록 게시글 따로 조회하기
 			pDAO.showClientFavors(req, p);
-			
+
 			return "kmj/myPage";
 		}
 		return "index";
@@ -184,30 +182,31 @@ public class AccountController {
 		return "kmj/adminPage";
 	}
 
-	/*// 구매이력 불러오기
-	@RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
-	public String showAllOrders(OrderList o, Product p, Account a, HttpServletRequest req) {
-		aDAO.loginCheck(req);
+	/*
+	 * // 구매이력 불러오기
+	 * 
+	 * @RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
+	 * public String showAllOrders(OrderList o, Product p, Account a,
+	 * HttpServletRequest req) { aDAO.loginCheck(req);
+	 * 
+	 * // 구매이력 불러오기 pDAO.showAllOrders(o, req, p);
+	 * 
+	 * return "kmj/myPage"; }
+	 */
 
-		// 구매이력 불러오기
-		pDAO.showAllOrders(o, req, p);
-
-		return "kmj/myPage";
-	}*/
-	
-	/*// 찜한거 불러오기
-	@RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
-	public String showAllFavors(Product p, Account a, HttpServletRequest req) {
-		aDAO.loginCheck(req);
-
-		// 찜 목록 게시글 따로 조회하기
-		pDAO.showClientFavors(req, p);
-
-		// 회원 정보 보여주는 일
-		aDAO.getAccount(a, req);
-
-		return "kmj/myPage";
-	}*/
+	/*
+	 * // 찜한거 불러오기
+	 * 
+	 * @RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
+	 * public String showAllFavors(Product p, Account a, HttpServletRequest req) {
+	 * aDAO.loginCheck(req);
+	 * 
+	 * // 찜 목록 게시글 따로 조회하기 pDAO.showClientFavors(req, p);
+	 * 
+	 * // 회원 정보 보여주는 일 aDAO.getAccount(a, req);
+	 * 
+	 * return "kmj/myPage"; }
+	 */
 
 	@ResponseBody
 	@RequestMapping(value = "/kakaoPay2")

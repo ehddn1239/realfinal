@@ -285,16 +285,19 @@
 
 			</div>
 			<div id="reviewDiv">
-				<div>구매후기</div>
+				<div >Review</div>
+		
 				<c:forEach items="${reviews }" var="r">
+				<div class="reveiws">
 					<img src="resources/imgs/${r.r_img}" style="width: 100px;">
-						평점${r.r_grade }
+						평점<div class="star_" >${r.r_grade }</div>
 						회원 아이디 ${r.r_a_id } 
 						등록 날짜 ${r.r_date }
 						후기 내용 ${r.r_txt }
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
 						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
 					</c:if>
+					</div>
 				</c:forEach>
 
 
