@@ -62,11 +62,12 @@
 	color: #999;
 }
 .lookup{
-	margin-top: -25px; 
+	 
 }
 .lookupList {
 	display: flex;
 	float:right;
+	
 	
 }
 

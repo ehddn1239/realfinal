@@ -1,23 +1,24 @@
 @charset "UTF-8";
 
 .regRealContainer {
+	width: 800px;
+	height: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	/* border:1px solid black;  */
 	position: relative;
-	width: 100%;
-	height: 100%;
-	width: 100%;
 }
 
 #regtitle {
 	position: absolute;
 	left: 44%;
-	font-size: 25pt;
+	font-size: 14pt;
 	font-weight: 600;
-	top: -60px;
+	top: -30px;
 }
 
 #regContainer {
 	width: 700px;
-	border: 1px solid black;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 6px;
@@ -28,6 +29,7 @@
 	margin-top: 5px;
 	position: relative;
 	height: 200px;
+	font-size: 10pt;
 }
 
 #regImg>input {
@@ -44,9 +46,9 @@
 	position: absolute;
 	left: 250px;
 	height: 20px;
-	width: 250px;
+	width: 310px;
 	height: 30px;
-	font-size: 12pt;
+	font-size: 10pt;
 }
 
 .regProductName {
@@ -57,7 +59,7 @@
 .regProductName>input {
 	position: absolute;
 	left: 250px;
-	width: 250px;
+	width: 300px;
 }
 
 .regProductColor {
@@ -68,7 +70,7 @@
 .regProductColor>input {
 	position: absolute;
 	left: 250px;
-	width: 250px;
+	width: 300px;
 }
 
 .regSize {
@@ -90,7 +92,7 @@
 .regProductPrice>input {
 	position: absolute;
 	left: 250px;
-	width: 250px;
+	width: 300px;
 }
 
 .regProductInfo {
@@ -110,8 +112,7 @@
 	position: relative;
 	height: 50px;
 	text-align: center;
-	margin-top: 30px;
-	
+	margin-top: 10px;
 }
 
 input {
@@ -132,15 +133,12 @@ h1 {
 }
 
 button {
-	
-	border-radius: 30px;
-	background-color: black;
+	background-color: #212121;
 	color: white;
 	min-width: 100px;
-    height: 40px;
-	border: 1px solid #000000;
+	height: 40px;
 	box-sizing: border-box;
-	font-size: 14px;
+	font-size: 10pt;
 	text-align: center;
 	cursor: pointer;
 }
@@ -168,9 +166,18 @@ button:hover {
 	padding: 5px;
 }
 
-#images_container>img {
+#images_container {
+	border: 2px solid #999;
+	height: 150px;
 	margin-top: 15px;
+}
+
+#images_container>img {
 	width: 120px;
 	height: 150px;
 	margin-left: 3px;
+}
+
+.regSpan {
+	font-size: 11pt;
 }
