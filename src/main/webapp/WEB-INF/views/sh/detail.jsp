@@ -8,6 +8,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.star-rating{
+	width: 304px;
+}
+.star-rating,.star-rating span{
+	display: inline-block;
+	height: 55px;
+	overflow: hidden;
+	background: url(resources/imgs/star.png)no-repeat;
+}
+.star-rating span {
+	background-position:left bottom;
+	line-height: 0;
+	vertical-align: top; 
+}
+
+</style>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="resources/css/detail.css">
@@ -290,10 +307,54 @@
 				<c:forEach items="${reviews }" var="r">
 				<div class="reveiws">
 					<img src="resources/imgs/${r.r_img}" style="width: 100px;">
-						평점<div class="star_" >${r.r_grade }</div>
-						회원 아이디 ${r.r_a_id } 
-						등록 날짜 ${r.r_date }
-						후기 내용 ${r.r_txt }
+
+					<c:choose>
+					<c:when test="${r.r_grade  eq 1}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:20%"></span>
+						</span>
+					</div>
+					</c:when>
+					<c:when test="${r.r_grade  eq 2}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:40%"></span>
+						</span>
+					</div>
+					</c:when>
+					<c:when test="${r.r_grade  eq 3}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:60%"></span>
+						</span>
+					</div>
+					
+					</c:when>
+					<c:when test="${r.r_grade  eq 4}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:80%"></span>
+						</span>
+					</div>
+					</c:when>
+					<c:when test="${r.r_grade  eq 5}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:100%"></span>
+						</span>
+					</div>
+					</c:when>
+					</c:choose><br>
+						회원 아이디 ${r.r_a_id } <br>
+						등록 날짜 ${r.r_date }<br>
+						후기 내용 ${r.r_txt }<br>
+
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
 						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
 					</c:if>
@@ -305,9 +366,11 @@
 
 		</div>
 	</div>
-	<c:if test="${userType == true}">
-		<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
-		<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
-	</c:if>
+	<div class="sellerbtn">
+		<c:if test="${loginAccount.a_userType == 2}">
+			<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
+			<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
+		</c:if>
+	</div>
 </body>
 </html>

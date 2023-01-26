@@ -13,11 +13,16 @@
 <div class="header">
 		<jsp:include page="../../sh/header.jsp"></jsp:include>
 	</div>
-<ul>
-				<li><a href="allNewProduct.select?p_category=5">최신순</a></li>
-				<li><a href="allLowProduct.select?p_category=5">낮은가격</a></li>
-				<li><a href="allHighProduct.select?p_category=5">높은가격</a></li>
+<div class="lookup">
+
+			<ul class="lookupList">
+			
+			<li class="newProduct"><a href="allNewProduct.select?p_category=0">신상품순</a></li>
+				<li class="lowPrice"><a href="allLowProduct.select?p_category=0">낮은가격</a></li>
+				<li class="highPrice"><a href="allHighProduct.select?p_category=0">높은가격</a></li>
 			</ul>
+
+		</div>
 <div class="contentWrap">
 	<div class="content">
 	<c:forEach items="${products }" var="s">
