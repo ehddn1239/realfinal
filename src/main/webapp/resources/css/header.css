@@ -35,11 +35,14 @@ li{list-style:none}
 ul{padding-inline-start:0}
 a{text-decoration:none;font-size:14px}
 
+#menuWrapper{
+
+}
 
 .menu {
   
   overflow: hidden;
-  margin: 10px auto;
+  /* margin: 10px auto; */
 }
 
 .menu > li {
@@ -47,8 +50,9 @@ a{text-decoration:none;font-size:14px}
   float: left;
   text-align: center;
   line-height: 60px;
-  background-color: black;
+  background-color: black; 
   letter-spacing:1px;
+  
 }
 
 .menu a {
@@ -57,13 +61,15 @@ a{text-decoration:none;font-size:14px}
 
 .submenu > li {
   line-height: 40px;
-  background-color:#dcdcdc;
+  background-color:#ffffff;
   color:black;
+  
 }
 
 .submenu {
   height: 0; /*ul의 높이를 안보이게 처리*/
   overflow: hidden;
+  box-shadow: -10px 5px 10px -5px;
 
 }
 
@@ -75,13 +81,14 @@ a{text-decoration:none;font-size:14px}
 .menu > li:hover {
   /* background-color: ; */
   transition-duration: 0.5s;
+   
   
 }
 
 .menu > li:hover .submenu {
-  height: 120px; /*서브메뉴 li한개의 높이 50*5*/
-  transition-duration: 1s;
-  color:black;
+  height: 122px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 0.3s;
+/*   color:black; */
   
   
 }

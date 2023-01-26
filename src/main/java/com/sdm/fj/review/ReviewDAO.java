@@ -115,4 +115,10 @@ public class ReviewDAO {
 		}
 
 	}
+
+	public void getReviewCount(HttpServletRequest req, Review r, Product p) {
+		int p_no = Integer.parseInt(req.getParameter("p_no"));
+		req.setAttribute("reviewCount", ss.getMapper(ReviewMapper.class).getReveiewCount(p_no));
+		
+	}
 }
