@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
+import com.sdm.fj.account.OrderList;
 import com.sdm.fj.product.Criteria;
 import com.sdm.fj.product.Product;
 import com.sdm.fj.product.ProductMapper;
@@ -115,6 +116,7 @@ public class ReviewDAO {
 		}
 
 	}
+
 
 	public void getReviewCount(HttpServletRequest req, Review r, Product p) {
 		int p_no = Integer.parseInt(req.getParameter("p_no"));

@@ -334,10 +334,6 @@
 				</div>
 			</form>
 
-
-
-
-
 			<div id="detailImgs">
 				<div class="productImg">
 					<c:forEach items="${imgs }" var="i">
@@ -347,54 +343,66 @@
 
 			</div>
 			<div id="reviewDiv">
+
 				<div>Review (${reviewCount })</div>
-
 				<c:forEach items="${reviews }" var="r">
-					<div class="reveiws">
-						<img src="resources/imgs/${r.r_img}" style="width: 100px;">
+				<div class="reveiws">
+				<fmt:formatDate pattern="yyyy-MM-dd" value="${r.r_date }"/>
+				<div>${r.r_a_id }</div>
+				<c:forEach items="${imgs[0]}" var="i">
+							<img id="reviewMainImg" src="resources/imgs/${i}">
+							<span>${p.p_name }(${p.p_color })</span>
+							<span style="color:#777;">(구매확정)</span>
+						</c:forEach>
+						<c:choose>
+					<c:when test="${r.r_grade  eq 1}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:20%"></span>
+						</span>
+					</div>
+					</c:when>
+					<c:when test="${r.r_grade  eq 2}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:40%"></span>
+						</span>
+					</div>
+					</c:when>
+					<c:when test="${r.r_grade  eq 3}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:60%"></span>
+						</span>
+					</div>
+					
+					</c:when>
+					<c:when test="${r.r_grade  eq 4}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:80%"></span>
+						</span>
+					</div>
+					</c:when>
+					<c:when test="${r.r_grade  eq 5}">
+					<div>
+					평점${r.r_grade}
+					<span class="star-rating">
+							<span style="width:100%"></span>
+						</span>
+					</div>
+					</c:when>
+					</c:choose>
+					<div><img src="resources/imgs/${r.r_img}" id="reviewImg"></div>
 
-						<div class="starDiv">
-							<c:choose>
-								<c:when test="${r.r_grade  eq 1}">
-									<div>
-										평점${r.r_grade} <span class="star-rating"> <span
-											style="width: 20%"></span>
-										</span>
-									</div>
-								</c:when>
-								<c:when test="${r.r_grade  eq 2}">
-									<div>
-										평점${r.r_grade} <span class="star-rating"> <span
-											style="width: 40%"></span>
-										</span>
-									</div>
-								</c:when>
-								<c:when test="${r.r_grade  eq 3}">
-									<div>
-										평점${r.r_grade} <span class="star-rating"> <span
-											style="width: 60%"></span>
-										</span>
-									</div>
-
-								</c:when>
-								<c:when test="${r.r_grade  eq 4}">
-									<div>
-										평점${r.r_grade} <span class="star-rating"> <span
-											style="width: 80%"></span>
-										</span>
-									</div>
-								</c:when>
-								<c:when test="${r.r_grade  eq 5}">
-									<div>
-										평점${r.r_grade} <span class="star-rating"> <span
-											style="width: 100%"></span>
-										</span>
-									</div>
-								</c:when>
-							</c:choose>
-						</div>
-						<br> 회원 아이디 ${r.r_a_id } <br> 등록 날짜 ${r.r_date }<br>
-						후기 내용 ${r.r_txt }<br>
+					
+						
+						
+						<div>${r.r_txt }</div>
 
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
 							<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
