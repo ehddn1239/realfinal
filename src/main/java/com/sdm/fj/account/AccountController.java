@@ -96,22 +96,6 @@ public class AccountController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/favorsPaging", method = RequestMethod.GET )
-	public String paging(@RequestParam("curPageNo") int page,OrderList o, Account a, Product p, HttpServletRequest req) {
-		// 비동기로 찌를거면, 데이터 4개를 받아오는게 맞는거. 그쵸그쵸
-		if (aDAO.loginCheck(req)) {
-			aDAO.getAccount(a, req);
-			// 구매이력 불러오기
-			pDAO.showAllOrders(o, req, p);
-			// 찜 목록 게시글 따로 조회하기
-			pDAO.showClientFavors(req, p);  
-			// 찜하기 페이징
-			pDAO.paging(page, req, p);
-			
-			return "kmj/myPage";
-		}
-		return "";
-	}
 	
 	@RequestMapping(value = "/favorsPaging2", method = RequestMethod.GET,
 	produces="application/json; charset=utf-8")
