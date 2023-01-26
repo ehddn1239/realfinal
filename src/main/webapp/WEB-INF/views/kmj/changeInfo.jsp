@@ -26,38 +26,34 @@ $(function() {
 <body>
 	<div class="whole-wrap-div">
 		<form action="changeInfo.do" method="post" onsubmit="return changeInfoCheck()">
-			<table>
-				<tr>
-					<td>아이디 : </td>
-					<td>${loginAccount.a_id }</td>
-				</tr>
-				<tr>
-					<td>비밀번호 : </td>
-					<td><input id="pw" type="password" name="pw" value="${loginAccount.a_pw }"></td>
-				</tr>
-				<tr>
-					<td>비밀번호 확인 : </td>
-					<td><input id="pw2" type="password"></td>
-				</tr>
-				<tr>
-					<td>닉네임 : </td>
-					<td><input id="nick" name="nickname" value="${loginAccount.a_nickname }"></td>
-				</tr>
-				<tr>
-					<td>주소 : </td>
-					<td> <input id="addr" name="addr" value="${loginAccount.a_addr }"></td>
-				</tr>
-				<tr>
-					<td>연락처 : </td>
-					<td> <input type="tel" id="phone" name="phone" value="${loginAccount.a_phone }"></td>
-				</tr>
-				<tr>
-					<td style="text-align: center;" colspan="2">
-					<button>수정하기</button>
-					</td>
-				</tr>
+			<div>
+				<div>
+					<div>ID</div>
+					<div>${loginAccount.a_id }</div>
+				</div>
+				<div>
+					<div>Password</div>
+					<div><input id="pw" type="password" name="pw" value="${loginAccount.a_pw }"></div>
+				</div>
+				<div>
+					<div>Confirm Password</div>
+					<div><input id="pw2" type="password"></div>
+				</div>
+				<div>
+					<div>Nickname</div>
+					<div><input id="nick" name="nickname" value="${loginAccount.a_nickname }"></div>
+				</div>
+				<div>
+					<div>Address</div>
+					<div><input id="addr" name="addr" value="${loginAccount.a_addr }"></div>
+				</div>
+				<div>
+					<div>Phone</div>
+					<div><input type="tel" id="phone" name="phone" value="${loginAccount.a_phone }"></div>
+				</div>
+				<div><button>수정하기</button></div>
 				<input name="a_id" value="${loginAccount.a_id }" type="hidden">
-			</table>
+			</div>
 		</form>
 	</div>
 
