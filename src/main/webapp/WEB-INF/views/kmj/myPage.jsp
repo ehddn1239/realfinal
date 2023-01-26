@@ -174,7 +174,11 @@ $(function() {
 				} 
 			}); 
 	 });
-		
+	 
+	 $('#olbtn').click(function() {
+		$('.wrapper').css('display','block');
+	});
+	 
 })
 </script>
 <script type="text/javascript">
@@ -291,38 +295,30 @@ function goChargeCash(id) {
 				<div>
 					<c:if test="${orderList22 != null }">
 						<section class="orderlist-div">
-							<!-- 구매목록 보여주기 -->
-							<table border="1" class="orderlist-tbl">
-								<tr>
-									<td>사진</td>
-									<td>이름</td>
-									<td>수량</td>
-									<td>구매 날짜</td>
-									<td>사이즈</td>
-									<td>색상</td>
-									<td>작성 여부</td>
-								</tr>
-								<c:forEach items="${orderList22 }" var="o">
-									<tr>
-										<td><img id="favorimg" src="resources/imgs/${o.o_p_img}"></td>
-										<td>${o.o_p_name }</td>
-										<td>${o.o_qty }</td>
-										<td>${o.o_date}</td>
-										<td>${o.o_p_size}</td>
-										<td>${o.o_p_color}</td>
-										<td><button
-												onclick="location.href='review.go?o_no=${o.o_no}'">작성하러
-												가기</button></td>
-									</tr>
-								</c:forEach>
-							</table>
+							<i class="fa fa-cart"></i>
+							<h2>구매 이력</h2>
+							<p>구매 이력을 확인 하시겠습니까?</p>
+							<button id="olbtn">추억 펼치기..</button>
 						</section>
 					</c:if>
 				</div>
 
 			</div>
 		</div>
-		<div style="height: 300px;"></div>
+		<div class="wrapper">
+		<c:forEach items="${orderList22 }" var="o">
+			<div class="item">
+    			<div class="polaroid"><img class="order-img" src="resources/imgs/${o.o_p_img}">
+      				<div class="caption">
+      					<p>구매 날짜 : ${o.o_date }</p>
+      					<p>상품 명 : ${o.o_p_name }</p>
+      					<p>구매 사이즈 : ${o.o_p_size }</p>
+      					<p>구매 수량 : ${o.o_qty }</p>
+      				</div>
+    			</div>
+  			</div>
+		</c:forEach>
+		</div>
 
 
 		<%-- <!-- 메뉴 리스트 -->

@@ -96,7 +96,6 @@ public class AccountController {
 		return "index";
 	}
 	
-	
 	@RequestMapping(value = "/favorsPaging2", method = RequestMethod.GET,
 	produces="application/json; charset=utf-8")
 	@ResponseBody
