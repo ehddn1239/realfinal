@@ -37,19 +37,23 @@
 			이름:${oo.o_p_name}<br> 사이즈:${oo.o_p_size}<br>
 			색상:${oo.o_p_color}<br> <input value="${oo.o_p_no }"
 				name="o_p_no" type="hidden">
+			<div class="star-rating space-x-4 mx-auto">
 
-			<fieldset>
-				<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
-					name="r_grade" value="5" id="rate1"><label for="rate1">★</label>
-				<input type="radio" name="r_grade" value="4" id="rate2"><label
-					for="rate2">★</label> <input type="radio" name="r_grade" value="3"
-					id="rate3"><label for="rate3">★</label> <input type="radio"
-					name="r_grade" value="2" id="rate4"><label for="rate4">★</label>
-				<input type="radio" name="r_grade" value="1" id="rate5"><label
-					for="rate5">★</label>
-			</fieldset>
-			<br> <span>상품에 대한 평가를 20자 이상 작성해 주세요.</span><br> <span
-				style="color: #aaa;" id="counter">(0 / 최대 200자)</span>
+				<input type="radio" id="5-stars" name="r_grade" value="5"
+					v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
+				<input type="radio" id="4-stars" name="r_grade" value="4"
+					v-model="ratings" /> <label for="4-stars" class="star">★</label> <input
+					type="radio" id="3-stars" name="r_grade" value="3"
+					v-model="ratings" /> <label for="3-stars" class="star">★</label> <input
+					type="radio" id="2-stars" name="r_grade" value="2"
+					v-model="ratings" /> <label for="2-stars" class="star">★</label> <input
+					type="radio" id="1-star" name="r_grade" value="1" v-model="ratings" />
+				<label for="1-star" class="star">★</label>
+			</div>
+			<span class="text-bold">별점을 선택해주세요</span> <br>
+			 <span>상품에
+				대한 평가를 20자 이상 작성해 주세요.</span><br> <span style="color: #aaa;"
+				id="counter">(0 / 최대 200자)</span>
 			<textarea placeholder="내용" class="DOC_TEXT" name="r_txt"></textarea>
 			<input type="checkbox">작성된 후기는 SDMall 홍보 콘텐츠로 사용될 수 있습니다.
 			(필수)<br>
