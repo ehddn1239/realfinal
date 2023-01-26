@@ -80,6 +80,9 @@
 	float: left;
 	padding: 20px 0;
 }
+.sellerbtn{
+	margin-left: 70px;
+}
 .productDescription{
 	position: absolute;
 	top:12%;
@@ -90,7 +93,7 @@
 }
 .detailPrice {
 	position: absolute;
-	top: 20%;
+	top: 30%;
 }
 
 #detailImgs {

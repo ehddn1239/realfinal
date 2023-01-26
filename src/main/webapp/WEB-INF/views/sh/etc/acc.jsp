@@ -13,11 +13,16 @@
 <div class="header">
 		<jsp:include page="../header.jsp"></jsp:include>
 	</div>
-	<ul>
-				<li><a href="allNewProduct.select?p_category=13">최신순</a></li>
-				<li><a href="allLowProduct.select?p_category=13">낮은가격</a></li>
-				<li><a href="allHighProduct.select?p_category=13">높은가격</a></li>
+	<div class="lookup">
+
+			<ul class="lookupList">
+			
+			<li class="newProduct"><a href="allNewProduct.select?p_category=0">신상품순</a></li>
+				<li class="lowPrice"><a href="allLowProduct.select?p_category=0">낮은가격</a></li>
+				<li class="highPrice"><a href="allHighProduct.select?p_category=0">높은가격</a></li>
 			</ul>
+
+		</div>
 <div class="contentWrap">
 		<h1>악세서리</h1>
 		<div class="content">
@@ -30,10 +35,11 @@
 						<span>${a.p_name}</span>
 					</div>
 					<div class="itemspan2">
-						<span>${a.p_price}</span>
+						<fmt:formatNumber value="${a.p_price}" type="currency"
+							currencySymbol="\\" />
 					</div>
 					<fmt:formatDate var="resultRegDt" value="${p.p_date}" pattern="yyyy-MM-dd"/>
-	<span>${resultRegDt}</span>
+					<span>${resultRegDt}</span>
 				</div>
 			</c:forEach>
 		</div>
