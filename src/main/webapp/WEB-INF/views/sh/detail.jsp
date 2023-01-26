@@ -9,21 +9,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.star-rating{
-	width: 304px;
-}
-.star-rating,.star-rating span{
-	display: inline-block;
-	height: 55px;
-	overflow: hidden;
-	background: url(resources/imgs/star.png)no-repeat;
-}
-.star-rating span {
-	background-position:left bottom;
-	line-height: 0;
-	vertical-align: top; 
+.star-rating {
+	/* width: 304px; */
+	width: 100px;
+	height: 20px;
 }
 
+.star-rating, .star-rating span {
+	display: inline-block;
+	/* height: 55px; */
+	height: 18px;
+	overflow: hidden;
+	background: url(resources/imgs/star.png) no-repeat;
+	background-size: 100px;
+}
+
+.starDiv {
+	
+}
+
+.star-rating span {
+	background-position: left bottom;
+	line-height: 0;
+	vertical-align: top;
+	background-size: 100px;
+}
 </style>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -121,6 +131,40 @@
 			location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
 		}
 	}
+	/* function count(type)  {
+		  // 결과를 표시할 element
+		  const resultElement = document.getElementById('qtyBox');
+		 
+		  // 현재 화면에 표시된 값
+		  let number = resultElement.innerText;
+		  
+		  // 더하기/빼기
+		  if(type === 'plus') {
+		    number = parseInt(number) + 1;
+		  }else if(type === 'minus')  {
+		    number = parseInt(number) - 1;
+		  }
+		  
+		  // 결과 출력
+		  resultElement.innerText = number;
+		} */
+		var count = 0;
+		var inter;
+		 
+		function add(){
+		    count += 1;
+		    $('#qtyBox').html(count)
+		}
+		 
+		    $(document).ready(function(){
+		        $('#plus').on('mousedown',function(){
+		            inter = setInterval(add , 70)
+		        })
+		 
+		        $('#plus').on('mouseup',function(){
+		            clearInterval(inter)
+		        })
+		    })
 </script>
 </head>
 <body>
@@ -236,9 +280,10 @@
 								</select>
 							</div>
 							<div class="SelectQty">
-
-								<span>수량 &nbsp;&nbsp;</span><input value="1" class="qtyBox"
-									name="cart_qty" type="number">
+								<span>수량 &nbsp;&nbsp;</span><input id="qtyBox" name="cart_qty"
+									type="number" value="1"> <input type='button'
+									id="plus" value='+' /> <input type='button'
+									id="minus" value='-' />
 							</div>
 							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 						</div>
@@ -298,7 +343,8 @@
 
 			</div>
 			<div id="reviewDiv">
-				<div >Review(${count})</div>
+
+				<div>Review (${reviewCount })</div>
 				<c:forEach items="${reviews }" var="r">
 				<div class="reveiws">
 				<fmt:formatDate pattern="yyyy-MM-dd" value="${r.r_date }"/>
@@ -359,8 +405,8 @@
 						<div>${r.r_txt }</div>
 
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
-						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
-					</c:if>
+							<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
+						</c:if>
 					</div>
 				</c:forEach>
 

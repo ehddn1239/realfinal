@@ -2,6 +2,8 @@ package com.sdm.fj.review;
 
 import java.util.List;
 
+
+
 public interface ReviewMapper {
 
 	int regReview(Review r);
@@ -10,6 +12,7 @@ public interface ReviewMapper {
 
 	int deleteReview(Review r);
 
-	int countReview(int r_no);
+
+	int getReveiewCount(int p_no);
 
 }
