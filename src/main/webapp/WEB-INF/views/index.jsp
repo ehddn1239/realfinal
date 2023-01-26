@@ -22,7 +22,6 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 window.onload = function(){
-	
 	document.getElementById("a_post").addEventListener("click", function() {
 		new daum.Postcode({
 	        oncomplete: function(data) {
@@ -32,9 +31,8 @@ window.onload = function(){
 				document.querySelector("input[name=a_addr]").focus(); // 상세주소에 포커싱	            
 	        }
 	    }).open();	
-	})
+	});
 }
-   
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"
@@ -125,7 +123,7 @@ $(function() {
 				
 			});
 	
-	});
+		});
 	
 });
 </script>
@@ -160,7 +158,7 @@ $(function() {
 						<li>Outer<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
 							<li onclick="location.href='showByCategory?p_category=1'">Padding
-								& Jacekt</li>
+								& Jacket</li>
 							<li onclick="location.href='showByCategory?p_category=2'">Coat</li>
 							<li onclick="location.href='showByCategory?p_category=3'">Field
 								Jacket</li>
@@ -178,17 +176,17 @@ $(function() {
 					<ul class="big_menu">
 						<li>Bottom<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<li onclick="location.href='showByCategory?p_category=9'">팬츠</li>
-							<li onclick="location.href='showByCategory?p_category=10'">청바지</li>
-							<li onclick="location.href='showByCategory?p_category=12'">반바지</li>
+							<li onclick="location.href='showByCategory?p_category=9'">Pants</li>
+							<li onclick="location.href='showByCategory?p_category=10'">Denim</li>
+							<li onclick="location.href='showByCategory?p_category=12'">Shorts</li>
 						</ul>
 					</ul>
 					<ul class="big_menu">
 						<li>ETC.<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<li onclick="location.href='showByCategory?p_category=13'">액세서리</li>
-							<li onclick="location.href='showByCategory?p_category=14'">가방</li>
-							<li onclick="location.href='showByCategory?p_category=15'">신발</li>
+							<li onclick="location.href='showByCategory?p_category=13'">Acc</li>
+							<li onclick="location.href='showByCategory?p_category=14'">Bag</li>
+							<li onclick="location.href='showByCategory?p_category=15'">Shoes</li>
 						</ul>
 					</ul>
 
