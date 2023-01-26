@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.sdm.fj.account.Account;
+import com.sdm.fj.account.OrderList;
 import com.sdm.fj.product.Criteria;
 import com.sdm.fj.product.Product;
 import com.sdm.fj.product.ProductMapper;
@@ -114,5 +115,10 @@ public class ReviewDAO {
 			req.setAttribute("r", "삭제 실패..");
 		}
 
+	}
+
+	public void reviewCount(OrderList o, HttpServletRequest req, Product p) {
+		int no = Integer.parseInt(req.getParameter("p_no"));
+		 req.setAttribute("count",ss.getMapper(ReviewMapper.class).countReview(no));
 	}
 }

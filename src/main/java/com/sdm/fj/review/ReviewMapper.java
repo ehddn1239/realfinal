@@ -10,4 +10,6 @@ public interface ReviewMapper {
 
 	int deleteReview(Review r);
 
+	int countReview(int r_no);
+
 }

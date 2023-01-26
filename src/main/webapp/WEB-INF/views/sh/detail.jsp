@@ -289,10 +289,6 @@
 				</div>
 			</form>
 
-
-
-
-
 			<div id="detailImgs">
 				<div class="productImg">
 					<c:forEach items="${imgs }" var="i">
@@ -302,13 +298,17 @@
 
 			</div>
 			<div id="reviewDiv">
-				<div >Review</div>
-		
+				<div >Review(${count})</div>
 				<c:forEach items="${reviews }" var="r">
 				<div class="reveiws">
-					<img src="resources/imgs/${r.r_img}" style="width: 100px;">
-
-					<c:choose>
+				<fmt:formatDate pattern="yyyy-MM-dd" value="${r.r_date }"/>
+				<div>${r.r_a_id }</div>
+				<c:forEach items="${imgs[0]}" var="i">
+							<img id="reviewMainImg" src="resources/imgs/${i}">
+							<span>${p.p_name }(${p.p_color })</span>
+							<span style="color:#777;">(구매확정)</span>
+						</c:forEach>
+						<c:choose>
 					<c:when test="${r.r_grade  eq 1}">
 					<div>
 					평점${r.r_grade}
@@ -350,10 +350,13 @@
 						</span>
 					</div>
 					</c:when>
-					</c:choose><br>
-						회원 아이디 ${r.r_a_id } <br>
-						등록 날짜 ${r.r_date }<br>
-						후기 내용 ${r.r_txt }<br>
+					</c:choose>
+					<div><img src="resources/imgs/${r.r_img}" id="reviewImg"></div>
+
+					
+						
+						
+						<div>${r.r_txt }</div>
 
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
 						<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>

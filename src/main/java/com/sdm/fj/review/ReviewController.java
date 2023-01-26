@@ -38,6 +38,8 @@ public class ReviewController {
 
 		return "ldw/review";
 	}
+	
+
 
 	@RequestMapping(value = "/regReview.do", method = RequestMethod.POST)
 	public String regReviewDo(Review r, HttpServletRequest req, MultipartHttpServletRequest file) {
