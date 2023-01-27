@@ -310,6 +310,7 @@ public class ProductController {
 		}
 		pDAO.goDetail(p, req);
 		pDAO.getDetail(p, req);
+		rDAO.getReviewCount(req,r,p);
 		rDAO.productReviewSelect(req, r, p, a);
 		return "sh/detail";
 	}
