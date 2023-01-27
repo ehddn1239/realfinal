@@ -100,10 +100,8 @@ public class AccountController {
 	produces="application/json; charset=utf-8")
 	@ResponseBody
 	public ProductForFavorites pagingFavor(@RequestParam("curPageNo") int page, Account a, Product p, HttpServletRequest req) {
-		// 비동기로 찌를거면, 데이터 4개를 받아오는게 맞는거. 그쵸그쵸
 			pDAO.showClientFavors(req, p); 
 			// 찜하기 페이징
-			 // 아마 복붙 과정에서 그냥 잇엇던걸거에요 네 ㅋㅋㅋ 미리 해놓은거라
 			return pDAO.paging(page, req, p);
 	}
 
@@ -172,7 +170,8 @@ public class AccountController {
 			pDAO.showAllOrders(o, req, p);
 			// 찜 목록 게시글 따로 조회하기
 			pDAO.showClientFavors(req, p);
-			
+			// 찜하기 페이징
+			pDAO.paging(1, req, p);
 			return "kmj/myPage";
 		}
 		return "index";
@@ -207,13 +206,22 @@ public class AccountController {
 
 	// 판매자 양식 작성 후 요청 보내기
 	@RequestMapping(value = "/sendReq.do", method = RequestMethod.GET)
-	public String sendReq(Account a, RequestSeller r, HttpServletRequest req) {
+	public String sendReq(Account a, RequestSeller r, HttpServletRequest req, Product p, OrderList o) {
 
 		// 신청서 보내는 일(등록)
 		aDAO.sendReq(a, r, req);
-
-		// 회원 정보 보여주는 일
-		aDAO.getAccount(a, req);
+		// 구매이력 불러오기
+		if (aDAO.loginCheck(req)) {
+			aDAO.getAccount(a, req);
+			// 구매이력 불러오기
+			pDAO.showAllOrders(o, req, p);
+			// 찜 목록 게시글 따로 조회하기
+			pDAO.showClientFavors(req, p);
+			// 찜하기 페이징
+			pDAO.paging(1, req, p);
+			
+			return "kmj/myPage";
+		}
 
 		return "kmj/myPage";
 	}
@@ -233,32 +241,6 @@ public class AccountController {
 		aDAO.showRequest(req);
 		return "kmj/adminPage";
 	}
-
-	/*
-	 * // 구매이력 불러오기
-	 * 
-	 * @RequestMapping(value = "showAllOrders.do", method = RequestMethod.GET)
-	 * public String showAllOrders(OrderList o, Product p, Account a,
-	 * HttpServletRequest req) { aDAO.loginCheck(req);
-	 * 
-	 * // 구매이력 불러오기 pDAO.showAllOrders(o, req, p);
-	 * 
-	 * return "kmj/myPage"; }
-	 */
-
-	/*
-	 * // 찜한거 불러오기
-	 * 
-	 * @RequestMapping(value = "showAllFavors.do", method = RequestMethod.GET)
-	 * public String showAllFavors(Product p, Account a, HttpServletRequest req) {
-	 * aDAO.loginCheck(req);
-	 * 
-	 * // 찜 목록 게시글 따로 조회하기 pDAO.showClientFavors(req, p);
-	 * 
-	 * // 회원 정보 보여주는 일 aDAO.getAccount(a, req);
-	 * 
-	 * return "kmj/myPage"; }
-	 */
 
 	@ResponseBody
 	@RequestMapping(value = "/kakaoPay2")

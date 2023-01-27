@@ -9,7 +9,7 @@
 	;
 
 body {
-	font-family: "Raleway";
+	/* font-family: "Raleway"; */
 }
 
 .profile-div {
@@ -85,6 +85,7 @@ body {
 .favorites-div {
 	flex-wrap: wrap;
 	display: flex;
+	justify-content: center;
 }
 
 #favorimg {
@@ -99,6 +100,7 @@ body {
 #favorSec {
 	width: 100px;
 	cursor: pointer;
+	margin-right: 30px;
 }
 
 #favorSec:hover {
@@ -191,7 +193,8 @@ body {
 
 .tabs .tab-content>div.active {
 	top: 0px;
-	width: 100%;
+	width: 100%;  
+	/* margin-left: 70px; */
 }
 
 .tabs .tab-indicator {
@@ -360,6 +363,83 @@ body {
   letter-spacing: .05em;
   margin: 2em 0 0 0;
 }
+.btn {
+  display: inline-block;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  color: black;
+  border-radius: 0;
+  padding: 18px 20px 20px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(331deg, #212121, #404040, rgba(34,34,34,0), rgba(34,34,34,0));
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+  border: 1px solid rgba(223,190,106,0.3);
+}
+
+.btn:hover {
+  color: #fff;
+  border: 1px solid rgba(223,190,106,0);
+  color: $white;
+  background-position: 99% 50%;
+}
+.favorbtn {
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:16px;
+	border:3px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 100px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+
+.favorbtn:hover {
+  background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+
+.favorbtn:active {
+  position:relative;
+	top:1px;
+  }
+#olbtn{
+	position: relative;
+    display: inline-block;
+    padding: 15px 10px;
+    margin: 40px 0;
+    color: #050801;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    border: none;
+    border-radius: 5px;
+}
+#olbtn:hover{
+    background: #050801;
+    color: white;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}	
+
 @media ( max-width : 580px) {
 	.nav {
 		overflow: auto;

@@ -202,17 +202,38 @@ $(function() {
 				</c:when>	
 				<c:when test="${loginCheck == 0 }">
 					<form action="myPage.go" method="get">
-					<button type="button" class="logout-btn" onclick="location.href='logout.do'">Logout</button>
+					<button type="button" id="logout-btn" class="logout-btn" onclick="location.href='logout.do'">
+    					<span class="circle" aria-hidden="true">
+     						<span class="icon arrow"></span>
+    					</span>
+    					<span class="button-text">Logout</span>
+  					</button>
+					
 					<input type="hidden" value="${loginAccount.a_id }">
 					
 					<c:if test="${loginAccount.a_userType == 3 }">
-						<button type="button" onclick="location.href ='adminPage.go'" class="myPage-btn">고객 관리</button>
+						<button type="button" onclick="location.href ='adminPage.go'" class="logout-btn">
+							<span class="circle" aria-hidden="true">
+     							<span class="icon arrow"></span>
+    						</span>
+    						<span class="button-text">Admin Page</span>
+						</button>
 					</c:if>
-						<button name="a_id" value="${loginAccount.a_id }" class="myPage-btn">${loginAccount.a_nickname }님의 정보</button>
+						<button name="a_id" value="${loginAccount.a_id }" class="logout-btn">
+							<span class="circle" aria-hidden="true">
+     							<span class="icon arrow"></span>
+    						</span>
+    						<span class="button-text">${loginAccount.a_nickname }님의 정보</span>
+						</button>
 					</form>
 
 					<c:if test="${loginAccount.a_userType == 2 }">
-						<button id="regBtn" onclick="location.href='productReg.go'">상품 등록</button>
+						<button id="regBtn" class="logout-btn"  onclick="location.href='productReg.go'">
+							<span class="circle" aria-hidden="true">
+     							<span class="icon arrow"></span>
+    						</span>
+    						<span class="button-text">상품 등록</span>
+						</button>
 					</c:if>	
 
 				</c:when>

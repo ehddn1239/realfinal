@@ -436,13 +436,18 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/buy.do", method = RequestMethod.POST)
-	public String doBuyPage(Product p, Account a, HttpServletRequest req, CartDTO cart) {
+	public String doBuyPage(Product p, Account a, HttpServletRequest req, CartDTO cart, Review r) {
 		aDAO.loginCheck(req);
 		// 구매하는 일
 		pDAO.buyProduct(p, cart, req);
 		// 구매이력 남기는 일
 		pDAO.regOrderList(p, cart, a, req);
 
+		if(aDAO.loginCheck(req)) {
+			aDAO.setFavorites(p, a, req);
+		}
+		rDAO.getReviewCount(req,r,p);
+		rDAO.productReviewSelect(req, r, p, a);
 		// 디테일 구하기
 		pDAO.goDetail(p, req);
 		pDAO.getDetail(p, req);
