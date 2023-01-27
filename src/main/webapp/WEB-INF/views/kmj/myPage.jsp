@@ -271,10 +271,16 @@ function goChargeCash(id) {
 					<section>
 						<c:choose>
 							<c:when test="${pageCount eq null }">
-									<h1>보여줄게없음</h1>
+									<section class="box" style="background: #BDBDBD;">
+										<img class="profile" src="resources/imgs/noresult.png">
+									</section>
+									<h2>찜 목록이 없습니다!</h2>
 							</c:when>
 							<c:when test="${pageCount eq 0 }">
-									<h1>보여줄게없음</h1>
+									<section class="box" style="background: #BDBDBD;">
+										<img class="profile" src="resources/imgs/noresult.png">
+									</section>
+									<h2>찜 목록이 없습니다!</h2>
 							</c:when>
 							<c:otherwise>
 								<input id="a_id" value="${loginAccount.a_id }" type="hidden">
