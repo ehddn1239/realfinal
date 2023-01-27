@@ -48,7 +48,7 @@
 <script type="text/javascript">
 	function deleteProduct(n, c) {
 		let a = confirm('삭제하시겠습니까?')
-		if (a == 1) {
+		if (a == 1) {		
 			location.href = 'product.delete.do?p_no=' + n + '&p_category=' + c;
 		}
 	}
@@ -145,9 +145,13 @@
 			return false;
 		}
 	}
-	function confirmPay(pno, aid) {
+	function confirmPay(pno, aid, psize) {
 		if (confirm('결제 페이지로 이동하시겠습니까?')) {
-			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid;
+			
+			let s = document.getElementById('selectedSize').value;
+			let q = document.getElementById('qtyBox').value;
+			
+			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid + '&p_size=' + s + '&cart_qty=' + q;
 			return true;
 		} else {
 			return false;
@@ -159,23 +163,7 @@
 			location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
 		}
 	}
-	function count(type) {
-		// 결과를 표시할 element
-		/* 	const resultElement = document.getElementById("qtyBox"); */
-
-		// 현재 화면에 표시된 값
-		let number = document.getElementById("qtyBox").value;
-
-		// 더하기/빼기
-		if (type === 'plus') {
-			number = parseInt(number) + 1;
-		} else if (type === 'minus') {
-			number = parseInt(number) - 1;
-		}
-
-		// 결과 출력
-		/* resultElement = number; */
-	}
+	
 </script>
 </head>
 <body>
@@ -283,7 +271,7 @@
 							</div>
 							<div class="sizeSelect">
 
-								<span>사이즈 </span><select class="selectbox" name="p_size">
+								<span>사이즈 </span><select class="selectbox" id="selectedSize" name="p_size">
 									<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 									<c:forEach items="${sizes}" var="i">
 										<option value="${i}">${i }</option>

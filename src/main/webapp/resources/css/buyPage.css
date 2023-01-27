@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+
+#mainImg>img {
+	width: 10vw;
+	/* height: 100vh; */
+
+}
+
+.Maintxt1, .Maintxt2{
+	font-size:15pt;
+	font-weight:600;
+	margin-bottom:15px;
+}
+
+#detailWrapper {
+	width: 100%;
+
+}
+#detailWrap{
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.div1{
+	border:0.5px solid #777;
+	margin-bottom:30px;
+	padding:5px;
+}
+
+.div2{
+	border:0.5px solid #777;
+	padding:5px;
+}
+
+.title_{
+	display:inline-block;
+	width:300px;
+	margin-left:10px;
+
+}
+
+.addrInput{
+	width:250px;
+}
+
+.div2 input{
+	border:none;
+	outline:none;
+}
+
+.dd{
+	font-size:11pt;
+	margin-bottom:10px;
+}
+
+.select-addr{
+	margin-left:10px;
+}
+
