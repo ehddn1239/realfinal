@@ -38,8 +38,6 @@ public class ReviewController {
 
 		return "ldw/review";
 	}
-	
-
 
 	@RequestMapping(value = "/regReview.do", method = RequestMethod.POST)
 	public String regReviewDo(Review r, HttpServletRequest req, MultipartHttpServletRequest file) {
@@ -54,13 +52,16 @@ public class ReviewController {
 	public String reviewDeleteDo(Account a, Product p, Review r, HttpServletRequest req, Criteria cri) {
 
 		rDAO.deleteReview(req, r, cri);
-//		if(aDAO.loginCheck(req)) {
-//			aDAO.setFavorites(p, a, req);
-//		}
+    
+		if (aDAO.loginCheck(req)) {
+			aDAO.setFavorites(p, a, req);
+		}
 		pDAO.goDetail(p, req);
-//		pDAO.getDetail(p, req);
+		pDAO.getDetail(p, req);
+		rDAO.getReviewCount(req, r, p);
+
 		rDAO.productReviewSelect(req, r, p, a);
-		
+
 		return "sh/detail";
 
 	}

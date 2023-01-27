@@ -196,7 +196,7 @@ $(function() {
     					<span class="circle" aria-hidden="true">
      					<span class="icon arrow"></span>
     					</span>
-    					<span class="button-text">로그인</span>
+    					<span class="button-text">Login</span>
   					</button>
 					
 				</c:when>	

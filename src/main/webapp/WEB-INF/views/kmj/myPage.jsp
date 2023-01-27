@@ -337,6 +337,8 @@ function goChargeCash(id) {
       					<span>구매 사이즈 : ${o.o_p_size }</span> <br>
       					<span>구매 수량 : ${o.o_qty }</span> <br>
       				</div>
+      				<button onclick="location.href='review.go?o_no=${o.o_no}'">리뷰 작성하러
+									가기</button>
     			</div>
   			</div>
 		</c:forEach>
