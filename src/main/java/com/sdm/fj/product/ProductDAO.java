@@ -565,7 +565,6 @@ public class ProductDAO {
 		req.setAttribute("oo", oo);
 
 	}
-
 	public ProductForFavorites paging(int page, HttpServletRequest request, Product p) {
 		System.out.println("--------페이징---------");
 		request.setAttribute("curPageNo", page);
@@ -592,5 +591,6 @@ public class ProductDAO {
 		
 		return new ProductForFavorites(products2);
 	}
+
 
 }

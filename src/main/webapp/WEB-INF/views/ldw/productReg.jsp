@@ -63,7 +63,7 @@ function setDetailImage(event){
 
 
 				<div id="regCategory">
-					<span>카테고리</span> <select name="p_category" class="regSelect">
+					<span class="regSpan">카테고리</span> <select name="p_category" class="regSelect">
 						<option disabled="disabled">Outer</option>
 						<option value="1">padding&jacket</option>
 						<option value="2">coat</option>
@@ -84,13 +84,13 @@ function setDetailImage(event){
 				</div>
 
 				<div class="regProductName">
-					<span>상품 이름</span> <input name="p_name">
+					<span class="regSpan">상품 이름</span> <input class="regInput" name="p_name">
 				</div>
 				<div class="regProductColor">
-					<span>상품 색상</span><input name="p_color">
+					<span class="regSpan">상품 색상</span><input class="regInput" name="p_color">
 				</div>
 				<div class="regSize">
-					<span>사이즈 </span>
+					<span class="regSpan">사이즈 </span>
 					<div class="regSizeCheckbox">
 						<input type="checkbox" name="p_size" value="selectAll"
 							onclick='selectAll(this)'>All <input
@@ -101,10 +101,10 @@ function setDetailImage(event){
 					</div>
 				</div>
 				<div class="regProductPrice">
-					<span>가격</span><input name="p_price" type="number">
+					<span class="regSpan">가격</span><input class="regInput" name="p_price" type="number">
 				</div>
 				<div class="regProductInfo">
-					<span id="productSpan">상품 설명</span>
+					<span id="productSpan" class="regSpan">상품 설명</span>
 					<textarea name="p_description"></textarea>
 				</div>
 				<div class="regBtn">
@@ -115,5 +115,6 @@ function setDetailImage(event){
 			</form>
 		</div>
 	</div>
+	
 </body>
 </html>
