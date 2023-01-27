@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -175,11 +176,17 @@ $(function() {
 			}); 
 	 });
 	 
+	 $('.wrapper').css('display','none');
 	 $('#olbtn').click(function() {
-		$('.wrapper').css('display','block');
-	});
-	 
-})
+		 if($('.wrapper').css('display') == 'flex'){
+			$('.wrapper').css('display','none');
+			$("#olbtn").html('추억 펼치기');
+		 }else{
+			$('.wrapper').css('display','flex');
+			$("#olbtn").html('구매이력 접기');
+		 }
+		});
+});
 </script>
 <script type="text/javascript">
 function goChargeCash(id) {
@@ -310,10 +317,10 @@ function goChargeCash(id) {
 			<div class="item">
     			<div class="polaroid"><img class="order-img" src="resources/imgs/${o.o_p_img}">
       				<div class="caption">
-      					<p>구매 날짜 : ${o.o_date }</p>
-      					<p>상품 명 : ${o.o_p_name }</p>
-      					<p>구매 사이즈 : ${o.o_p_size }</p>
-      					<p>구매 수량 : ${o.o_qty }</p>
+      					<h1 class="older-h1">${o.o_p_name }</h1>
+      					<span>구매 날짜 : <fmt:formatDate value="${o.o_date }" pattern="yyyy년 MM월  dd일"/></span> <br>
+      					<span>구매 사이즈 : ${o.o_p_size }</span> <br>
+      					<span>구매 수량 : ${o.o_qty }</span> <br>
       				</div>
     			</div>
   			</div>

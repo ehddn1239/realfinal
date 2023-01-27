@@ -70,6 +70,7 @@ body {
 .nav-item:not (.is-active ):hover {
 	color: #333;
 }
+
 .nav-indicator {
 	position: absolute;
 	left: 0;
@@ -85,10 +86,12 @@ body {
 	flex-wrap: wrap;
 	display: flex;
 }
-#favorimg{
+
+#favorimg {
 	width: 50px;
 	height: 50px;
 }
+
 .orderlist-div {
 	display: block;
 }
@@ -238,34 +241,40 @@ body {
 
 /* 구매 리스트 보여주는곳  */
 .order-img {
-  max-width: 100%;
-  height: auto;
+	max-width: 100%;
+	height: auto;
 }
 
 .polaroid {
-  background: #fff;
-  width: 350px;
-  height: 700px;
-  padding: 1rem;
-  box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.2);
+	background: #fff;
+	text-align:left;
+	width: 280px;
+	height: 600px; 
+	padding : 1rem;
+	box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+	padding: 1rem;
 }
+
 .caption {
-  font-size: 1.125rem;
-  text-align: center;
-  line-height: 2em;
+	font-size: 1.125rem;
+	text-align: center;
+	line-height: 2em;
 }
+
 .item {
-  display: inline-block;
-  margin-top: 2rem;
-  filter: grayscale(100%);
+	display: inline-block;
+	margin-top: 2rem;
+	filter: grayscale(100%);
+	margin-right: 30px;
 }
+
 .item .polaroid:before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  transition: all 0.35s;
+	content: '';
+	position: absolute;
+	z-index: -1;
+	transition: all 0.35s;
 }
-.item:nth-of-type(4n+1) {
+/* .item:nth-of-type(4n+1) {
   transform: scale(0.8, 0.8) rotate(5deg);
   transition: all 0.35s;
 }
@@ -312,29 +321,44 @@ body {
   bottom: 30px;
   left: 12px;
   box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.3);
-}
+} */
 .item:hover {
   filter: none;
   transform: scale(1, 1) rotate(0deg) !important;
   transition: all 0.35s;
 }
 .item:hover .polaroid:before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  transform: rotate(0deg);
-  height: 90%;
-  width: 90%;
-  bottom: 0%;
-  right: 5%;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
-  transition: all 0.35s;
+	content: '';
+	position: absolute;
+	z-index: -1;
+	transform: rotate(0deg);
+	height: 90%;
+	width: 90%;
+	bottom: 0%;
+	right: 5%;
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+	transition: all 0.35s;
 }
+
 .wrapper {
-  display: none;
-  width: 100%;
-  padding: 0 2rem;
-  text-align: center;
+	display: flex;
+	flex-wrap: wrap; width : 100%;
+	text-align: center;
+	width: 100%;
+}
+.older-h1{
+	font-size: 18pt;
+  	margin: 0;
+  	color: #333;
+}
+
+.item span {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 2em 0 0 0;
 }
 @media ( max-width : 580px) {
 	.nav {
