@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -174,8 +175,18 @@ $(function() {
 				} 
 			}); 
 	 });
-		
-})
+	 
+	 $('.wrapper').css('display','none');
+	 $('#olbtn').click(function() {
+		 if($('.wrapper').css('display') == 'flex'){
+			$('.wrapper').css('display','none');
+			$("#olbtn").html('추억 펼치기');
+		 }else{
+			$('.wrapper').css('display','flex');
+			$("#olbtn").html('구매이력 접기');
+		 }
+		});
+});
 </script>
 <script type="text/javascript">
 function goChargeCash(id) {
@@ -291,38 +302,30 @@ function goChargeCash(id) {
 				<div>
 					<c:if test="${orderList22 != null }">
 						<section class="orderlist-div">
-							<!-- 구매목록 보여주기 -->
-							<table border="1" class="orderlist-tbl">
-								<tr>
-									<td>사진</td>
-									<td>이름</td>
-									<td>수량</td>
-									<td>구매 날짜</td>
-									<td>사이즈</td>
-									<td>색상</td>
-									<td>작성 여부</td>
-								</tr>
-								<c:forEach items="${orderList22 }" var="o">
-									<tr>
-										<td><img id="favorimg" src="resources/imgs/${o.o_p_img}"></td>
-										<td>${o.o_p_name }</td>
-										<td>${o.o_qty }</td>
-										<td>${o.o_date}</td>
-										<td>${o.o_p_size}</td>
-										<td>${o.o_p_color}</td>
-										<td><button
-												onclick="location.href='review.go?o_no=${o.o_no}'">작성하러
-												가기</button></td>
-									</tr>
-								</c:forEach>
-							</table>
+							<i class="fa fa-cart"></i>
+							<h2>구매 이력</h2>
+							<p>구매 이력을 확인 하시겠습니까?</p>
+							<button id="olbtn">추억 펼치기..</button>
 						</section>
 					</c:if>
 				</div>
 
 			</div>
 		</div>
-		<div style="height: 300px;"></div>
+		<div class="wrapper">
+		<c:forEach items="${orderList22 }" var="o">
+			<div class="item">
+    			<div class="polaroid"><img class="order-img" src="resources/imgs/${o.o_p_img}">
+      				<div class="caption">
+      					<h1 class="older-h1">${o.o_p_name }</h1>
+      					<span>구매 날짜 : <fmt:formatDate value="${o.o_date }" pattern="yyyy년 MM월  dd일"/></span> <br>
+      					<span>구매 사이즈 : ${o.o_p_size }</span> <br>
+      					<span>구매 수량 : ${o.o_qty }</span> <br>
+      				</div>
+    			</div>
+  			</div>
+		</c:forEach>
+		</div>
 
 
 		<%-- <!-- 메뉴 리스트 -->

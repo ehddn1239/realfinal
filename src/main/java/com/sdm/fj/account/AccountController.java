@@ -50,7 +50,7 @@ public class AccountController {
 		aDAO.register(a, req);
 		
 		aDAO.loginCheck(req);
-		return "index";
+		return "pop";
 	}
 	
 	@RequestMapping(value = "/account.login.do2", method = RequestMethod.POST)
@@ -95,7 +95,6 @@ public class AccountController {
 		}
 		return "index";
 	}
-	
 	
 	@RequestMapping(value = "/favorsPaging2", method = RequestMethod.GET,
 	produces="application/json; charset=utf-8")

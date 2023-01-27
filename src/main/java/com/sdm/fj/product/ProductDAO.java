@@ -571,25 +571,38 @@ public class ProductDAO {
 		System.out.println("page = " + page);
 		ArrayList<ProductForFavorite> products = new ArrayList<ProductForFavorite>();
 		products = (ArrayList<ProductForFavorite>) request.getAttribute("favorsPNO");
-		int cnt = 4; 
-		int total = products.size();
-		System.out.println("total = " + total);
-		
-		int pageCount = (int) Math.ceil(((double)total/cnt));
-		System.out.println("pageCount = " + pageCount);
-		request.setAttribute("pageCount", pageCount);
-		int start = total - (cnt *(page - 1));
-		int end = (page == pageCount) ? -1 : start - (cnt +1);
-		System.out.println("start = " + start);
-		System.out.println("end = " + end);
-		ArrayList<ProductForFavorite> products2 = new ArrayList<ProductForFavorite>();
-		
-		for(int i=start-1; i> end; i--) {
-			products2.add(products.get(i));
+		if(products != null ) {
+			if(!products.equals("")) {
+				int cnt = 4; 
+				int total = products.size();
+				System.out.println("total = " + total);
+				
+				int pageCount = (int) Math.ceil(((double)total/cnt));
+				System.out.println("pageCount = " + pageCount);
+				request.setAttribute("pageCount", pageCount);
+				int start = total - (cnt *(page - 1));
+				int end = (page == pageCount) ? -1 : start - (cnt +1);
+				System.out.println("start = " + start);
+				System.out.println("end = " + end);
+				ArrayList<ProductForFavorite> products2 = new ArrayList<ProductForFavorite>();
+				if(total != 0) {
+					for(int i=start-1; i> end; i--) {
+						products2.add(products.get(i));
+					}
+					request.setAttribute("favorsPNO", products2);
+					return new ProductForFavorites(products2);
+				}
+				
+				
+				return new ProductForFavorites(products);
+				
+			}
+			
+		}else {
+			return new ProductForFavorites(products);
 		}
-		request.setAttribute("favorsPNO", products2);
+		return null;
 		
-		return new ProductForFavorites(products2);
 	}
 
 
