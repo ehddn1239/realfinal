@@ -35,30 +35,30 @@ function page_back(){
    <div class="changeInfoWrapper">
       <form action="changeInfo.do" method="post" onsubmit="return changeInfoCheck()">
          <div class="wholeInput">
-         <div class="titleEdit">Edit Profile</div>
+         <div class="titleEdit">프로필 수정</div>
             <div>
-               <div class="infos">ID</div>
+               <div class="infos">아이디</div>
                <div><input id="id" disabled="disabled" class="changeInfoInput" value="${loginAccount.a_id }"></div>
             </div>
             <div>
-               <div class="infos">Password</div>
+               <div class="infos">비밀번호</div>
                <div><input id="pw" type="password" name="pw" class="changeInfoInput" value="${loginAccount.a_pw }"></div>
             </div>
             <div>
-               <div class="infos">Confirm Password</div>
+               <div class="infos">비밀번호 재확인</div>
                <div><input id="pw2" type="password" class="changeInfoInput"></div>
             </div>
             <div>
-               <div class="infos">Nickname</div>
+               <div class="infos">닉네임</div>
                <div><input id="nick" name="nickname" value="${loginAccount.a_nickname }" class="changeInfoInput"></div>
             </div>
             <div>
-               <div class="infos">Address</div>
+               <div class="infos">주소</div>
                
                <div><input id="addr" name="addr" value="${loginAccount.a_addr }" class="changeInfoInput"></div>
             </div>
             <div>
-               <div class="infos">Phone</div>
+               <div class="infos">핸드폰 번호</div>
                <div><input type="tel" id="phone" name="phone" value="${loginAccount.a_phone }" class="changeInfoInput"></div>
             </div>
             <div class="btns">

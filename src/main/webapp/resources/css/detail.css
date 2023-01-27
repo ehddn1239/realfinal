@@ -136,7 +136,7 @@
 	width: 40vw;
 	height: 6vh;
 	margin-bottom: 30px;
-	background-color: #ececec;
+	background-color: #f5f5f5;
 	border: none;
 }
 
@@ -149,44 +149,17 @@
 	font-size:11pt;
 
 }
-#scrollBar{
-	position:fixed;
-	right:8px;
-	bottom: 3%;
-	width: 30px;
-	text-align: center;
-/* 	display:block; */
-}
 
-.scrolltop{
-	border:1px solid black;
-	border-radius: 50px;
-	background-color: black;
-	opacity: 30%;
-}
-.scrolltop:hover{
-	opacity: inherit;
-}
-.scrollbottom:hover{
-	opacity: inherit;
-}
-
-.scrollbottom{
-	border:1px solid black;
-	border-radius: 50px;
-	background-color: black;
-	opacity: 30%;
-	margin-top: 5px;
-	}
 
 #back-to-top > span{
-	font-size:15pt;
-	color: white;
+	font-size:17pt;
+	color: black;
+	
 }
 
 #back-to-bottom > span{
-	font-size:15pt;
-	color: white;
+	font-size:17pt;
+	color: black;
 }
 
 #detailImgs {
@@ -224,10 +197,9 @@
 	width: 50px;
 	height: 70px;
 }
-#reviewImg{
-	width: 150px;
-	height: 170px;
-}
+ .reviewImg{
+	cursor: pointer;
+} 
 #reviewTitle{
 	margin-bottom: 15px;
 	font-size: 17pt;
@@ -235,7 +207,15 @@
 	margin-left: 280px;
 }
 #reviewDel{
-	margin-left: 750px;	
+	
+	margin-left: 740px;	
+}
+#reviewDel button{
+	all:unset;
+	font-size:10pt;
+	cursor: pointer;
+	color: #777;
+	font-weight: 700;
 }
 .reviewId{
 	margin-bottom: 30px;
@@ -326,9 +306,8 @@
 /* The Close Button */
 .close {
   position: absolute;
-  top: 15px;
   right: 35px;
-  color: #f1f1f1;
+  color: #black;
   font-size: 40px;
   font-weight: bold;
   transition: 0.3s;
@@ -336,7 +315,7 @@
 
 .close:hover,
 .close:focus {
-  color: #bbb;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
@@ -346,4 +325,35 @@
   .modal-content {
     width: 100%;
   }
+}
+
+
+.scrolltop{
+	border: 1px solid #ddd;
+	height:50px;
+}
+
+
+.scrollbottom{
+	border: 1px solid #ddd;
+	height:50px;
+	}
+.scrollMenu{
+	text-align:center;
+	width:52px;
+	border: 1px solid #ddd;
+	position: fixed;
+	right: 0;
+	bottom: 10px;
+	display: block;
+	line-height:50px;
+	
+}
+.scrollMyPage{
+	height:50px;
+	border: 1px solid #ddd;
+}
+.scrollMyCart{
+	height:50px;
+	border: 1px solid #ddd;
 }

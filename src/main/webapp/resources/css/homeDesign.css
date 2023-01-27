@@ -406,6 +406,8 @@ button.login-btn {
   width: 12rem;
   height: auto;
   margin-left: 50px;
+  margin-top: 15px;
+  
 }
 button.login-btn .circle {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -416,6 +418,7 @@ button.login-btn .circle {
   height: 3rem;
   background: #282936;
   border-radius: 1.625rem;
+  margin-top: 15px;
 }
 button.login-btn .circle .icon {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -424,6 +427,7 @@ button.login-btn .circle .icon {
   bottom: 0;
   margin: auto;
   background: #fff;
+
 }
 button.login-btn .circle .icon.arrow {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -431,6 +435,7 @@ button.login-btn .circle .icon.arrow {
   width: 1.125rem;
   height: 0.125rem;
   background: none;
+ 
 }
 button.login-btn .circle .icon.arrow::before {
   position: absolute;
@@ -457,6 +462,7 @@ button.login-btn .button-text {
   line-height: 1.6;
   text-align: center;
   text-transform: uppercase;
+  margin-top: 15px;
 }
 button:hover .circle {
   width: 100%;

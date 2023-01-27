@@ -26,16 +26,17 @@
 	flex-direction: column;
 	margin: 20px 0;
 	width: 33%;
+	position: relative;
 }
 
 .itemspan1 {
-	margin-left: 50px;
+	margin-left: 60px;
 	text-align: left;
 	margin-bottom: 8px;
 }
 
 .itemspan2 {
-	margin-left: 50px;
+	margin-left: 60px;
 	text-align: left;
 	font-size: 10pt;
 	font-weight: 500;
@@ -57,18 +58,18 @@
 	list-style: none;
 }
 
-.lookupList a{
+.lookupList a {
 	text-decoration: none;
 	color: #999;
 }
-.lookup{
-	 
+
+.lookup {
+	
 }
+
 .lookupList {
 	display: flex;
-	float:right;
-	
-	
+	float: right;
 }
 
 .newProduct {
@@ -92,4 +93,56 @@
 #pageLi {
 	float: left;
 	margin-right: 20px;
+}
+
+.sellerbtn {
+	position: absolute;
+	left: 340px;
+	bottom: 24px;
+	
+}
+.sellerbtn button{
+	all:unset;
+	font-size:10pt;
+	cursor: pointer;
+	color: #777;
+}
+.scrolltop{
+	border: 1px solid #ddd;
+	height:50px;
+}
+
+
+.scrollbottom{
+	border: 1px solid #ddd;
+	height:50px;
+	}
+.scrollMenu{
+	text-align:center;
+	width:52px;
+	border: 1px solid #ddd;
+	position: fixed;
+	right: 0;
+	bottom: 10px;
+	display: block;
+	line-height:50px;
+	
+}
+.scrollMyPage{
+	height:50px;
+	border: 1px solid #ddd;
+}
+.scrollMyCart{
+	height:50px;
+	border: 1px solid #ddd;
+}
+#back-to-top > span{
+	font-size:17pt;
+	color: black;
+	
+}
+
+#back-to-bottom > span{
+	font-size:17pt;
+	color: black;
 }
