@@ -55,6 +55,34 @@
 	// scroll
 
 	$(function() {
+		//수량 옵션
+		$('._count :button').on({
+			'click' : function(e) {
+				e.preventDefault();
+				var $count = $(this).parent('._count').find('.inp');
+				var now = parseInt($count.val());
+				var min = 1;
+				var max = 999;
+				var num = now;
+				if ($(this).hasClass('minus')) {
+					var type = 'm';
+				} else {
+					var type = 'p';
+				}
+				if (type == 'm') {
+					if (now > min) {
+						num = now - 1;
+					}
+				} else {
+					if (now < max) {
+						num = now + 1;
+					}
+				}
+				if (num != now) {
+					$count.val(num);
+				}
+			}
+		});
 		$('#back-to-top').on('click', function(e) {
 			e.preventDefault();
 			$('html,body').animate({
@@ -131,40 +159,23 @@
 			location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
 		}
 	}
-	/* function count(type)  {
-		  // 결과를 표시할 element
-		  const resultElement = document.getElementById('qtyBox');
-		 
-		  // 현재 화면에 표시된 값
-		  let number = resultElement.innerText;
-		  
-		  // 더하기/빼기
-		  if(type === 'plus') {
-		    number = parseInt(number) + 1;
-		  }else if(type === 'minus')  {
-		    number = parseInt(number) - 1;
-		  }
-		  
-		  // 결과 출력
-		  resultElement.innerText = number;
-		} */
-		var count = 0;
-		var inter;
-		 
-		function add(){
-		    count += 1;
-		    $('#qtyBox').html(count)
+	function count(type) {
+		// 결과를 표시할 element
+		/* 	const resultElement = document.getElementById("qtyBox"); */
+
+		// 현재 화면에 표시된 값
+		let number = document.getElementById("qtyBox").value;
+
+		// 더하기/빼기
+		if (type === 'plus') {
+			number = parseInt(number) + 1;
+		} else if (type === 'minus') {
+			number = parseInt(number) - 1;
 		}
-		 
-		    $(document).ready(function(){
-		        $('#plus').on('mousedown',function(){
-		            inter = setInterval(add , 70)
-		        })
-		 
-		        $('#plus').on('mouseup',function(){
-		            clearInterval(inter)
-		        })
-		    })
+
+		// 결과 출력
+		/* resultElement = number; */
+	}
 </script>
 </head>
 <body>
@@ -279,11 +290,13 @@
 									</c:forEach>
 								</select>
 							</div>
-							<div class="SelectQty">
-								<span>수량 &nbsp;&nbsp;</span><input id="qtyBox" name="cart_qty"
-									type="number" value="1"> <input type='button'
-									id="plus" value='+' /> <input type='button'
-									id="minus" value='-' />
+							<div class="SelectQty _count">
+								<span>수량 &nbsp;&nbsp;</span>
+								
+									<input type="text" name="cart_qty" id="qtyBox" class="inp"
+										value="1" />
+									<button type="button" class="plus">+</button>
+									<button type="button" class="minus">-</button>
 							</div>
 							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 						</div>
@@ -346,62 +359,59 @@
 
 				<div>Review (${reviewCount })</div>
 				<c:forEach items="${reviews }" var="r">
-				<div class="reveiws">
-				<fmt:formatDate pattern="yyyy-MM-dd" value="${r.r_date }"/>
-				<div>${r.r_a_id }</div>
-				<c:forEach items="${imgs[0]}" var="i">
+					<div class="reveiws">
+						<fmt:formatDate pattern="yyyy-MM-dd" value="${r.r_date }" />
+						<div>${r.r_a_id }</div>
+						<c:forEach items="${imgs[0]}" var="i">
 							<img id="reviewMainImg" src="resources/imgs/${i}">
 							<span>${p.p_name }(${p.p_color })</span>
-							<span style="color:#777;">(구매확정)</span>
+							<span style="color: #777;">(구매확정)</span>
 						</c:forEach>
 						<c:choose>
-					<c:when test="${r.r_grade  eq 1}">
-					<div>
-					평점${r.r_grade}
-					<span class="star-rating">
-							<span style="width:20%"></span>
-						</span>
-					</div>
-					</c:when>
-					<c:when test="${r.r_grade  eq 2}">
-					<div>
-					평점${r.r_grade}
-					<span class="star-rating">
-							<span style="width:40%"></span>
-						</span>
-					</div>
-					</c:when>
-					<c:when test="${r.r_grade  eq 3}">
-					<div>
-					평점${r.r_grade}
-					<span class="star-rating">
-							<span style="width:60%"></span>
-						</span>
-					</div>
-					
-					</c:when>
-					<c:when test="${r.r_grade  eq 4}">
-					<div>
-					평점${r.r_grade}
-					<span class="star-rating">
-							<span style="width:80%"></span>
-						</span>
-					</div>
-					</c:when>
-					<c:when test="${r.r_grade  eq 5}">
-					<div>
-					평점${r.r_grade}
-					<span class="star-rating">
-							<span style="width:100%"></span>
-						</span>
-					</div>
-					</c:when>
-					</c:choose>
-					<div><img src="resources/imgs/${r.r_img}" id="reviewImg"></div>
+							<c:when test="${r.r_grade  eq 1}">
+								<div>
+									평점${r.r_grade} <span class="star-rating"> <span
+										style="width: 20%"></span>
+									</span>
+								</div>
+							</c:when>
+							<c:when test="${r.r_grade  eq 2}">
+								<div>
+									평점${r.r_grade} <span class="star-rating"> <span
+										style="width: 40%"></span>
+									</span>
+								</div>
+							</c:when>
+							<c:when test="${r.r_grade  eq 3}">
+								<div>
+									평점${r.r_grade} <span class="star-rating"> <span
+										style="width: 60%"></span>
+									</span>
+								</div>
 
-					
-						
-						
+							</c:when>
+							<c:when test="${r.r_grade  eq 4}">
+								<div>
+									평점${r.r_grade} <span class="star-rating"> <span
+										style="width: 80%"></span>
+									</span>
+								</div>
+							</c:when>
+							<c:when test="${r.r_grade  eq 5}">
+								<div>
+									평점${r.r_grade} <span class="star-rating"> <span
+										style="width: 100%"></span>
+									</span>
+								</div>
+							</c:when>
+						</c:choose>
+						<div>
+							<img src="resources/imgs/${r.r_img}" id="reviewImg">
+						</div>
+
+
+
+
 						<div>${r.r_txt }</div>
 
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
@@ -421,5 +431,6 @@
 			<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
 		</c:if>
 	</div>
+	
 </body>
 </html>
