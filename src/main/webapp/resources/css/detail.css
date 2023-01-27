@@ -66,7 +66,6 @@
 }
 
 #orderDiv {
-	border: 1px solid #942092;
 }
 
 #detailWrap {
@@ -81,7 +80,7 @@
 	padding: 20px 0;
 }
 .sellerbtn{
-	margin-left: 70px;
+	margin-left: 360px;
 }
 .productDescription{
 	position: absolute;
@@ -98,10 +97,10 @@
 
 #detailImgs {
 	margin-top: 100px;
-	border: 1px solid red;
 	padding: 10px;
 	display: flex; 
 	justify-content:center;
+	margin-bottom: 100px;
 }
 
 .productImg>img {
@@ -112,7 +111,6 @@
 }
 
 #details {
-	border: 1px solid blue;
 	width: 35%
 }
 
@@ -196,6 +194,7 @@
 	justify-content:center;
 	align-items: center;
 	 flex-direction: column;
+	 border-bottom: 1px solid #ddd;
 }
 
 /* #inputspan{
@@ -213,8 +212,13 @@
 	
 }
 .reveiws{
-	margin-bottom: 50px;
-	border: 1px solid #777;
+	position:relative;
+	margin-bottom: 15px;
+	border: 2px solid #ddd;
+	padding: 5px;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
 #reviewMainImg{
 	width: 50px;
@@ -223,4 +227,123 @@
 #reviewImg{
 	width: 150px;
 	height: 170px;
+}
+#reviewTitle{
+	margin-bottom: 15px;
+	font-size: 17pt;
+	font-weight: 500;
+	margin-left: 280px;
+}
+#reviewDel{
+	margin-left: 750px;	
+}
+.reviewId{
+	margin-bottom: 30px;
+	
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 23px;
+    color: #000;
+
+}
+.reviewName{
+	position: absolute;
+	top: 60px;
+	left: 60px;
+	color: #777;
+	line-height: 18px;
+}
+.reviewDate{
+	position: absolute;
+	right: 10px;
+	color: #777;
+}
+.rating{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	position: absolute;
+	top: 80px;
+	left: 60px;
+}
+.r_txt{
+	margin-bottom: 20px;
+}
+/* Style the Image Used to Trigger the Modal */
+#reviewImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#reviewImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
 }
