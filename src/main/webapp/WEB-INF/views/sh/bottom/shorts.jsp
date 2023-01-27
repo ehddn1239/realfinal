@@ -24,7 +24,7 @@
 
 		</div>
 <div class="contentWrap">
-		<h1>쇼츠</h1>
+		<div class="cate_"><span>Shorts</span></div>
 		<div class="content">
 			<c:forEach items="${products}" var="s">
 				<div class="item">
