@@ -167,7 +167,7 @@ $(function() {
 					<ul class="big_menu">
 						<li>Top<i class="arrow fas fa-angle-right"></i></li>
 						<ul class="small_menu">
-							<li onclick="location.href='showByCategory?p_category=4'">Kniet
+							<li onclick="location.href='showByCategory?p_category=4'">Knit
 								& Cardigan</li>
 							<li onclick="location.href='showByCategory?p_category=5'">Shirt</li>
 							<li onclick="location.href='showByCategory?p_category=6'">Tee</li>

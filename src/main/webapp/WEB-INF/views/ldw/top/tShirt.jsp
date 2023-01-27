@@ -24,6 +24,7 @@
 
 		</div>
 <div class="contentWrap">
+<div class="cate_"><span>Tee</span></div>
 	<div class="content">
 	<c:forEach items="${products }" var="t">
 	<div class="item">
