@@ -377,7 +377,7 @@ public class AccountDAO {
 			con.setDoOutput(true);
 			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount="+ a_cash +"&vat_amount=200&tax_free_amount=0&approval_url="
 					+ approval_url
-					+ "&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/goFail.go";
+					+ "&fail_url=http://localhost:8080/fj/goFail.go&cancel_url=http://localhost:8080/fj/goFail.go";
 			OutputStream out = con.getOutputStream(); // 주는 역할
 			DataOutputStream dos = new DataOutputStream(out); // 데이터 주는 역할
 			dos.writeBytes(param);

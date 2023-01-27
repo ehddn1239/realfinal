@@ -259,6 +259,7 @@ public class AccountController {
 	// 카카오 결제 실패 페이지
 	@RequestMapping(value = "/goFail.go", method = RequestMethod.GET)
 	public String failCharge(Account a, HttpServletRequest req) {
+		aDAO.loginCheck(req);
 		return "kmj/failPage";
 	}
 

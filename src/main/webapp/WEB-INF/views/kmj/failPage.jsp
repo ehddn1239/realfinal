@@ -9,12 +9,14 @@
 	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
-	alert('결제에 실패 했습니다');
-	history.go(-3);
+	$(function() {
+		alert('결제에 실패했습니다');
+		var id = $('#id').val();
+		location.href = "myPage.go?a_id="+id;
+	})
 </script>
 </head>
 <body>
-<h1>실패 페이지 입니다!</h1>
-<button onclick="location.href='gohome.go'">메인으로 이동</button>
+<input id="id" value="${loginAccount.a_id }" type="hidden">
 </body>
 </html>
