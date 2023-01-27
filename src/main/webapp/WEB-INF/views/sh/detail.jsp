@@ -164,7 +164,6 @@ $(function () {
 	<div class="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
-
 	<div id="detailWrapper">
 		<div id="detailWrap">
 			<div class="scrollMenu">
