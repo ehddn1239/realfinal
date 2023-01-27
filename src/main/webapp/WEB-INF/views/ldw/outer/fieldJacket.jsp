@@ -82,6 +82,7 @@ $(function () {
 
 		</div>
 <div class="contentWrap">
+<div class="cate_"><span>FieldJacket</span></div>
 	<div class="content">
 	<c:forEach items="${products }" var="j">
 	<div class="item">

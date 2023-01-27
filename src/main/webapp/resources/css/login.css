@@ -68,8 +68,8 @@
 
 .modal-button {
   border-radius: 20px;
-  border: 1px solid #FF4B2B;
-  background-color: #FF4B2B;
+  border: 1px solid #282936;
+  background-color: #282936;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -89,7 +89,7 @@
 
 .ghost {
 	border-radius: 20px;
-  border: 1px solid #FF4B2B;
+  border: 1px solid #282936;
   background-color: transparent;
   border-color: #FFFFFF;
   font-size: 12px;
@@ -204,9 +204,9 @@
 
 .overlay {
 	/* 여기가 빨간  오버레이  색임!!! */
-  background: #FF416C;
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+  background: #282936;
+  background: -webkit-linear-gradient(to right, #0d0d0d, #282936);
+  background: linear-gradient(to right, #0d0d0d, #282936);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

@@ -239,7 +239,8 @@ public class AccountDAO {
 	public void changeInfo(Account a, HttpServletRequest req) {
 
 		String pw = req.getParameter("pw");
-		String addr = req.getParameter("addr");
+		String addr = req.getParameter("a_addr");
+		String post = req.getParameter("a_post");
 		String nickname = req.getParameter("nickname");
 		String phone = req.getParameter("phone");
 
@@ -250,6 +251,7 @@ public class AccountDAO {
 		value.put("n_nickname", nickname);
 		value.put("n_nowID", a.getA_id());
 		value.put("n_phone", phone);
+		value.put("n_post", post);
 
 		if (ss.getMapper(AccountMapper.class).changeInfo(value) == 1) {
 			System.out.println("정보 수정 완료!");
