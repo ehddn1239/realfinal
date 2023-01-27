@@ -52,12 +52,14 @@ public class ReviewController {
 	public String reviewDeleteDo(Account a, Product p, Review r, HttpServletRequest req, Criteria cri) {
 
 		rDAO.deleteReview(req, r, cri);
+    
 		if (aDAO.loginCheck(req)) {
 			aDAO.setFavorites(p, a, req);
 		}
 		pDAO.goDetail(p, req);
 		pDAO.getDetail(p, req);
 		rDAO.getReviewCount(req, r, p);
+
 		rDAO.productReviewSelect(req, r, p, a);
 
 		return "sh/detail";

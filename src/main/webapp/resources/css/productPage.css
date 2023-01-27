@@ -9,6 +9,7 @@
 	/* display: flex; */
 	width: 100%;
 	height: 100%;
+	position:relative;
 }
 
 .content {
@@ -145,4 +146,12 @@
 #back-to-bottom > span{
 	font-size:17pt;
 	color: black;
+
+.cate_{
+	border-bottom:1px solid #212121;
+	position: absolute;
+	left:47%;
+	font-weight:600;
+	font-size:14pt;
+
 }

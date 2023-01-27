@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +9,18 @@
 	integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4="
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
-	alert('결제에 성공했습니다');
+	$(function() {
+		alert('결제에 성공했습니다');
+		var id = $('#id').val();
+		location.href = "myPage.go?a_id="+id;
+	})
+</script>
+<script type="text/javascript">
+	
 </script>
 </head>
 <body>
-<h1>성공페이지</h1>
-<button onclick="location.href='orderDetail'">주문 상세페이지로</button>
-<button onclick="location.href='gohome.go'">홈 화면으로</button>
+<input id="id" value="${loginAccount.a_id }" type="hidden">
 
 </body>
 </html>

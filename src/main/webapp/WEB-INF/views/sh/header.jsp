@@ -97,7 +97,7 @@ $(function() {
 					</ul></li>
 				<li><a href="#">Top</a>
 					<ul class="submenu">
-						<li><a href="showByCategory?p_category=4">KnitWear</a></li>
+						<li><a href="showByCategory?p_category=4">Knit</a></li>
 						<li><a href="showByCategory?p_category=5">Shirt</a></li>
 						<li><a href="showByCategory?p_category=6">Tee</a></li>
 					</ul></li>

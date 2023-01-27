@@ -82,7 +82,7 @@ $(function () {
 
 		</div>
 	<div class="contentWrap">
-		<h1>데님</h1>
+		<div class="cate_"><span>Denim</span></div>
 		<div class="content">
 			<c:forEach items="${products}" var="d">
 				<div class="item">
