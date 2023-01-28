@@ -72,6 +72,7 @@
 		</div>
 	</div>
 	<div class="contentWrap">
+	<div class="cate_"><span>All</span></div>
 		<div class="lookup">
 
 			<ul class="lookupList">

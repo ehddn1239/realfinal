@@ -80,10 +80,15 @@
 		});
 
 		$("#containBagBtn").click(function() {
+		
+			let sizeVal = $('#selectedSize').val();
+			if(sizeVal == ""){
+				alert('사이즈를 선택해주세요');
+				return false;
+			}
 			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
-			if (check) {
+			if(check) {
 				location.href = '/cart.go?'
-
 			}
 		});
 
@@ -276,7 +281,6 @@
 							<div class="colorSelect">
 								<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
 									name="p_color">
-									<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 									<option value="${p.p_color }">${p.p_color }</option>
 								</select>
 							</div>
@@ -454,42 +458,5 @@
 
 		});
 	</script>
-
-
-	<!-- 
-	 
-	  <script>
-	 
-	 function viewPic(e) {
-		// 동우씨 일단 실행해서 이거 콘솔 찍히나 함 보죠 id는 지워야하죠 위에는
-		console.log(e);
-		// Get the modal   근데 이거는 이제 클릭당한 그 이미지태그를 가져온걸 시작으로 그거에 해당하는 mymodal이라는 클래스명을 가진애를 찾아나서야되는거니까
-							// getelemenet로 가져오지말고 찾아가야돼요 함 보죠
-		var modal = document.getElementById("myModal");
-
-		// Get the image and insert it inside the modal - use its "alt" text as a caption
-		// 여기서 그냥 img01 만 받기 때문에 쟤만 되는거임
-		var img = e;
-
-		// 여기서도 img01대신  선택한 그 id를 받아야하고
-		var modalImg = document.getElementById("img01");
-		var captionText = document.getElementById("caption");
-		img.onclick = function() {
-			modal.style.display = "block";
-			modalImg.src = this.src;
-			captionText.innerHTML = this.alt;
-		}
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-		
-	 }
-	</script>
-	-->
 </body>
 </html>
