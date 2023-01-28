@@ -79,10 +79,15 @@
 		});
 
 		$("#containBagBtn").click(function() {
+		
+			let sizeVal = $('#selectedSize').val();
+			if(sizeVal == ""){
+				alert('사이즈를 선택해주세요');
+				return false;
+			}
 			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
-			if (check) {
+			if(check) {
 				location.href = '/cart.go?'
-
 			}
 		});
 
@@ -162,6 +167,8 @@ $(function () {
 					+ '&p_no=' + p;
 		}
 	}
+	
+	
 </script>
 </head>
 <body>
@@ -270,7 +277,6 @@ $(function () {
 							<div class="colorSelect">
 								<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
 									name="p_color">
-									<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 									<option value="${p.p_color }">${p.p_color }</option>
 								</select>
 							</div>

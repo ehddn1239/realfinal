@@ -29,6 +29,12 @@ window.onload= function() {
 	    }).open();
 	});
 }
+
+function page_back(){
+
+	history.go(-1)();
+
+}
 </script>
 <script type="text/javascript">
 $(function() {
@@ -58,14 +64,14 @@ function checkMoney(cash, price) {
 </script>
 </head>
 <body>
-	<div class="header">
-		<jsp:include page="../sh/header.jsp"></jsp:include>
-	</div>
-	
+
 	<div id="detailWrapper">
+	
 		<div id="detailWrap">
-			
+			<div class="order_">주문하기</div>
 			<form action="buy.do" method="post" onsubmit="return checkMoney('${loginAccount.a_cash}', ${p.p_price })">
+			<div class="Wrapper3">
+			<div class="div_div2">
 			
 			<div class="div1">
 				<div class="Maintxt1">배송 정보</div>
@@ -83,8 +89,6 @@ function checkMoney(cash, price) {
 			<div class="div2">
 		<div class="Maintxt2">상품 정보</div>
 		
-		
-		
 		<div id="mainImg">
 					<c:forEach items="${imgs[0]}" var="i">
 						<img src="resources/imgs/${i}">
@@ -101,12 +105,14 @@ function checkMoney(cash, price) {
 				</div>
 				
 				</div>
-				
+				</div>
 	
 					
-					<div class="detailPrice">
-						<div>보유 캐시 : ${loginAccount.a_cash }원</div>
+					<div class="div3">
+						<div class="myCash">나의 보유 캐시 : ${loginAccount.a_cash }원</div>
 						
+						<div class="price_order">주문금액</div>
+						<div class="price_">
 						<c:choose>
 								<c:when test="${loginAccount.a_rank eq 'Bronze'}">
 									정상가
@@ -164,8 +170,18 @@ function checkMoney(cash, price) {
 										currencySymbol="\\" />
 								</c:otherwise>
 							</c:choose>
+							</div>
 					</div>
-
+					
+					
+					<div class="detailBtns">
+						<div>
+							<button id="buyBtn">구매하기</button>
+						</div>
+				<div><button type="button" onclick="page_back();" class="buyCancle">취소</button></div>
+					</div>
+					
+</div>
 							
 
 							<input name="p_no" value="${p.p_no}" type="hidden">
@@ -175,19 +191,11 @@ function checkMoney(cash, price) {
 					
 					
 				
-					<div class="detailBtns">
-						<div>
-							<button id="buyBtn">구매하기</button>
-						</div>
-				
-					</div>
 			
 				</form>
 			</div>
 		</div>
-
-	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">뒤로가기</button>
-	<button onclick="location.href='product.update.go?p_no=${p.p_no}'">취소</button>
+	
 
 </body>
 </html>
