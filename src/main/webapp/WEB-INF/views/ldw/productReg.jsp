@@ -10,7 +10,8 @@
 	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
 	crossorigin="anonymous">
 </script>
-
+<script type="text/javascript" src="resources/js/check.js"></script>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script type="text/javascript">
 	
 function setDetailImage(event){
@@ -44,7 +45,14 @@ function setDetailImage(event){
 		};
 </script>
 
-
+<script>
+function check() {
+	if ($("input:checkbox[name='p_size']").is(":checked")==false) {
+		alert("사이즈를 적어도 하나는 선택하여 주세요.");
+		return;
+	}
+}
+</script>
 
 </head>
 <body>
@@ -53,7 +61,7 @@ function setDetailImage(event){
 		<div id="regtitle">SDMALL</div>
 		<div id="regContainer">
 			<form action="reg.products.do" method="post"
-				enctype="multipart/form-data" name="fileForm">
+				enctype="multipart/form-data" name="fileForm" onsubmit="return regProduct()">
 				<div id="regImg">
 					<input id="imgforLabel" type="file" multiple="multiple" name="files"
 						onchange="setDetailImage(event);"><label for="imgforLabel" class="imgLabel">이미지 업로드</label>
@@ -63,7 +71,7 @@ function setDetailImage(event){
 
 
 				<div id="regCategory">
-					<span class="regSpan">카테고리</span> <select name="p_category" class="regSelect">
+					<span class="regSpan">카테고리</span> <select id="regCatego" name="p_category" class="regSelect">
 						<option disabled="disabled">Outer</option>
 						<option value="1">padding&jacket</option>
 						<option value="2">coat</option>
@@ -84,16 +92,16 @@ function setDetailImage(event){
 				</div>
 
 				<div class="regProductName">
-					<span class="regSpan">상품 이름</span> <input class="regInput" name="p_name">
+					<span class="regSpan">상품 이름</span> <input id="regName" class="regInput" name="p_name">
 				</div>
 				<div class="regProductColor">
-					<span class="regSpan">상품 색상</span><input class="regInput" name="p_color">
+					<span class="regSpan">상품 색상</span><input id="regColor" class="regInput" name="p_color">
 				</div>
 				<div class="regSize">
 					<span class="regSpan">사이즈 </span>
 					<div class="regSizeCheckbox">
 						<input type="checkbox" name="p_size" value="selectAll"
-							onclick='selectAll(this)'>All <input
+							onclick='selectAll(this)' id="regSize">All <input
 							type="checkbox" name="p_size" value="XL">XL <input
 							type="checkbox" name="p_size" value="L">L <input
 							type="checkbox" name="p_size" value="M">M <input
@@ -101,14 +109,14 @@ function setDetailImage(event){
 					</div>
 				</div>
 				<div class="regProductPrice">
-					<span class="regSpan">가격</span><input class="regInput" name="p_price" type="number">
+					<span class="regSpan">가격</span><input id="regPrice" class="regInput" name="p_price" type="number">
 				</div>
 				<div class="regProductInfo">
 					<span id="productSpan" class="regSpan">상품 설명</span>
 					<textarea name="p_description"></textarea>
 				</div>
 				<div class="regBtn">
-					<button>등록</button>
+					<button onclick='check()'>등록</button>
 					<button type="button" onclick="location.href='/fj'">메인으로</button>
 
 				</div>

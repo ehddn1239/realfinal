@@ -70,13 +70,14 @@
 
 .lookupList {
 	display: flex;
-	float: right;
+	float: right;	
 }
 
 .newProduct {
 	margin-right: 11px;
 	font-size: 9pt;
 	font-weight: 500;
+	
 }
 
 .lowPrice {
@@ -98,15 +99,16 @@
 
 .sellerbtn {
 	position: absolute;
-	left: 340px;
-	bottom: 24px;
+	left: 408px;
+	bottom: 50px;
 	
 }
 .sellerbtn button{
 	all:unset;
-	font-size:10pt;
+	font-size:9pt;
 	cursor: pointer;
-	color: #777;
+	color: black;
+	font-weight: 700;
 }
 .scrolltop{
 	border: 1px solid #ddd;
@@ -127,7 +129,7 @@
 	bottom: 10px;
 	display: block;
 	line-height:50px;
-	
+	z-index: 1;
 }
 .scrollMyPage{
 	height:50px;
@@ -146,9 +148,7 @@
 #back-to-bottom > span{
 	font-size:17pt;
 	color: black;
-	
-}
-
+  }
 .cate_{
 	border-bottom:1px solid #212121;
 	position: absolute;

@@ -44,7 +44,6 @@
 	width:140px;
 	margin-left:auto;
 	margin-right:auto;
-	border:1px solid red;
 	margin-top:20px;
 
 
@@ -52,6 +51,26 @@
 
 .editInfoBtn1{
 	margin-right:10px;
+	background-color: #212121;
+	color: white;
+	min-width: 100px;
+	height: 40px;
+	box-sizing: border-box;
+	font-size: 10pt;
+	text-align: center;
+	cursor: pointer;
 }
+.editInfoBtn2{
+	margin-right:10px;
+	background-color: #212121;
+	color: white;
+	min-width: 100px;
+	height: 40px;
+	box-sizing: border-box;
+	font-size: 10pt;
+	text-align: center;
+	cursor: pointer;
+}
+
 
 
