@@ -82,7 +82,7 @@ function page_back(){
             </div>
             <div class="btns">
             <div><button class="editInfoBtn1">수정하기</button></div>
-            <div><button class="editInfoBtn2" onclick="page_back();'">뒤로가기</button></div>
+            <div><button class="editInfoBtn2" onclick="page_back();">뒤로가기</button></div>
             <input name="a_id" value="${loginAccount.a_id }" type="hidden">
             </div>
          </div>

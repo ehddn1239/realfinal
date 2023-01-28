@@ -336,14 +336,15 @@ function goChargeCash(id) {
       					<span>구매 날짜 : <fmt:formatDate value="${o.o_date }" pattern="yyyy년 MM월  dd일"/></span> <br>
       					<span>구매 사이즈 : ${o.o_p_size }</span> <br>
       					<span>구매 수량 : ${o.o_qty }</span> <br>
+      					<span><button id="orderBtn" onclick="location.href='review.go?o_no=${o.o_no}&p_no=${p.p_no }'">리뷰 작성하러
+									가기</button></span>
       				</div>
-      				<button onclick="location.href='review.go?o_no=${o.o_no}'">리뷰 작성하러
-									가기</button>
+      				
     			</div>
   			</div>
 		</c:forEach>
 		</div>
-	</div>
+	
 </body>
 <script type="text/javascript" src="resources/js/myPage.js"></script>
 <script type="text/javascript">

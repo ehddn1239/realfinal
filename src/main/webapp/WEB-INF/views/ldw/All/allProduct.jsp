@@ -16,37 +16,37 @@
 <link rel="stylesheet" href="resources/css/productPage.css">
 
 <script type="text/javascript">
-$(function () {
-	
-	$('#back-to-top').on('click', function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : 0
-				}, 300);
-			});
+	$(function() {
 
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-top').addClass('show');
-				} else {
-					$('#back-to-top').removeClass('show');
-				}
-			});
+		$('#back-to-top').on('click', function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : 0
+			}, 300);
+		});
 
-			$('#back-to-bottom').click(function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : $(document).height()
-				}, 300);
-			});
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-top').addClass('show');
+			} else {
+				$('#back-to-top').removeClass('show');
+			}
+		});
 
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-bottom').removeClass('show');
-				} else {
-					$('#back-to-bottom').addClass('show');
-				}
-			});
+		$('#back-to-bottom').click(function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(document).height()
+			}, 300);
+		});
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-bottom').removeClass('show');
+			} else {
+				$('#back-to-bottom').addClass('show');
+			}
+		});
 
 	});
 </script>
@@ -55,22 +55,22 @@ $(function () {
 	<div class="header">
 		<jsp:include page="../../sh/header.jsp"></jsp:include>
 	</div>
-<div class="scrollMenu">
-				<div class="scrollMyPage">
-					<a href="myPage.go?a_id=${loginAccount.a_id }"><span
-						class="header_mypage"></span></a>
-				</div>
-				<div class="scrollMyCart">
-					<a href="go.cart?a_id=${loginAccount.a_id }"><span
-						class="header_bag"></span></a>
-				</div>
-				<div class="scrolltop">
-					<a id="back-to-top"><span>🡅</span></a>
-				</div>
-				<div class="scrollbottom">
-					<a id="back-to-bottom"><span>🡇</span></a>
-				</div>
-			</div>
+	<div class="scrollMenu">
+		<div class="scrollMyPage">
+			<a href="myPage.go?a_id=${loginAccount.a_id }"><span
+				class="header_mypage"></span></a>
+		</div>
+		<div class="scrollMyCart">
+			<a href="go.cart?a_id=${loginAccount.a_id }"><span
+				class="header_bag"></span></a>
+		</div>
+		<div class="scrolltop">
+			<a id="back-to-top"><span>🡅</span></a>
+		</div>
+		<div class="scrollbottom">
+			<a id="back-to-bottom"><span>🡇</span></a>
+		</div>
+	</div>
 	<div class="contentWrap">
 		<div class="lookup">
 
@@ -101,7 +101,8 @@ $(function () {
 					</div>
 					<div class="sellerbtn">
 						<c:if test="${loginAccount.a_userType == 2}">
-							<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제 /</button>
+							<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제
+								/</button>
 							<button
 								onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
 						</c:if>

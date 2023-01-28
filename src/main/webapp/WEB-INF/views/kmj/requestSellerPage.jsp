@@ -7,6 +7,7 @@
 <title>판매자 신청 페이지</title>
 <link rel="stylesheet" href="resources/css/requestSeller.css">
 <script type="text/javascript">
+
 function page_back(){
 
 	history.go(-1)();
@@ -54,7 +55,7 @@ function page_back(){
 					<div>
 						<div class="infos">판매자 권한 요청 사유</div>
 						<div class="changeInfoInput">
-							<textarea name="r_description" rows="" cols=""></textarea>
+							<textarea name="r_description" rows="7" cols="80"></textarea>
 						</div>
 					</div>
 					<div class="btns">
@@ -62,7 +63,7 @@ function page_back(){
 							<button class="editInfoBtn1">신청하기</button>
 						</div>
 						<div>
-							<button class="editInfoBtn2" onclick="page_back();'">뒤로가기</button>
+							<button type="button" class="editInfoBtn2" onclick="page_back();">뒤로가기</button>
 						</div>
 					</div>
 				</div>
