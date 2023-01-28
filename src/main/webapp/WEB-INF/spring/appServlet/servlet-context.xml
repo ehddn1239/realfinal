@@ -40,6 +40,10 @@
 		<!-- value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" 
 			/> -->
 
+		value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=/Users/breakki/Wallet_DB202204301707" /> 
+
+		<!-- 	value="jdbc:oracle:thin:@DB202204301707_high?TNS_ADMIN=C:/Users/moon/Desktop/Study/Wallet_DB202204301707"  /> -->
+
 
 
 		<beans:property name="username" value="SHMAC" />

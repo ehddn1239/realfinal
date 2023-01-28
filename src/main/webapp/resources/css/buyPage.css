@@ -21,6 +21,7 @@
 	width:1000px;
 	margin-left: auto;
 	margin-right: auto;
+	
 }
 
 
@@ -33,6 +34,14 @@
 .div2{
 	border:0.5px solid #777;
 	padding:5px;
+}
+
+.div_div2{
+	width:700px;
+}
+.div3{
+	width:300px;
+	position:relative;
 }
 
 .title_{
@@ -60,3 +69,71 @@
 	margin-left:10px;
 }
 
+.Wrapper3{
+	display:flex;
+	margin-top:85px;
+	
+}
+
+.myCash{
+	font-size:17pt;
+	font-weight:600;
+	position:absolute;
+	left:20px;
+	top:350px;
+	border-bottom:1px solid #777
+}
+
+.price_{
+		font-size:11pt;
+		float:right;
+		position :absolute;
+		top:400px;
+		right: 10px;
+		font-size:14pt;
+		
+}
+
+.detailBtns{
+	display:flex;
+	position:absolute;
+	right:200px;
+	bottom:20px;
+	
+}
+
+.detailBtns button{
+	color:white;
+	background-color: #212121;
+	outline:none;
+	height:60px;
+	
+}
+
+.buyCancle{
+	width:80px;
+	margin-left:20px;
+}
+
+.price_order{
+	font-size:14pt;
+	display: inline-block;
+position: absolute;
+left:25px;
+top:400px;
+
+	
+	
+	
+}
+
+#buyBtn{
+	width:200px;
+}
+
+.order_{
+	font-size:20pt;
+	position:relative;
+	top:50px;
+	
+}

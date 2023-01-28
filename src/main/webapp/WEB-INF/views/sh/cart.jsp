@@ -33,9 +33,9 @@ function selectAll(selectAll)  {
 	}
 	
 	
-	function confirmPay(pno, aid, cid, opsize,color){
+	function confirmPay(pno, aid, cid, opsize,color,qty){
 		if(confirm('결제 하시겠습니까?')){
-			location.href='cart.buy.go?p_no='+pno+'&a_id='+aid+'&cartId='+cid+"&p_size="+opsize+"&p_color="+color;
+			location.href='buy.go?p_no='+pno+'&a_id='+aid+'&cartId='+cid+"&p_size="+opsize+"&p_color="+color+"&cart_qty=" + qty;
 			return true;
 		}else{
 			return false;
@@ -98,7 +98,7 @@ function selectAll(selectAll)  {
 					</c:choose>
 					<span>상품 가격 : ${c.p_price }</span>
 					<span>상품 구매 수량 : ${c.cart_qty }</span>
-					<button onclick="return confirmPay('${c.p_no}','${loginAccount.a_id }','${c.cartId }', '${c.p_size }','${c.p_color }')">구매</button>
+					<button onclick="return confirmPay('${c.p_no}','${loginAccount.a_id }','${c.cartId }','${c.p_size }','${c.p_color }','${c.cart_qty }')">구매</button>
 					
 					<button onclick="deleteCartItem('${c.a_id}','${c.cartId}')">삭제</button>
 				</article>
