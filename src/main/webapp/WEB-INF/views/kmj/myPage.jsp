@@ -183,7 +183,7 @@ $(function() {
 			$("#olbtn").html('추억 펼치기');
 		 }else{
 			$('.wrapper').css('display','flex');
-			$("#olbtn").html('구매이력 접기');
+			$("#olbtn").html('추억 접기');
 		 }
 		});
 });
@@ -210,13 +210,9 @@ function goChargeCash(id) {
 				<h4>당신의 회원 등급은 ${rank} 입니다!</h4>
 				<h5>누적 포인트 ${loginAccount.a_exp }점</h5>
 				<h5>보유 캐시 ${loginAccount.a_cash }원</h5>
-				<button
-					onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보
-					수정</button>
-				<button onclick="return deleteInfo('${loginAccount.a_id}')">계정
-					삭제</button>
-				<button onclick="return goChargeCash('${loginAccount.a_id}')">캐시
-					충전</button>
+				<button class="btn" onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
+				<button class="btn" onclick="return deleteInfo('${loginAccount.a_id}')">계정 삭제</button>
+				<button class="btn" onclick="return goChargeCash('${loginAccount.a_id}')">캐시 충전</button>
 			</div>
 			<div class="my-info2">
 				<h4>도로명 주소 : ${loginAccount.a_post }</h4>
@@ -259,33 +255,52 @@ function goChargeCash(id) {
 				</div>
 				<div>
 					<section class="favorites-div">
-						<!-- 찜목록 보여주기 -->
-						<c:forEach items="${favorsPNO }" var="f">
+							<!-- 찜목록 보여주기 -->
+								<c:forEach items="${favorsPNO }" var="f">
 
-							<section id="favorSec" class="favorSec favorSec-${f.p_no }"
-								onclick="location.href='detail.go?p_no=${f.p_no}'">
-								<img id="favorSecImg" src="resources/imgs/${f.p_img}">
-								<h3>${f.p_no }</h3>
-								<h3>${f.p_name }</h3>
-								<h3>${f.p_price }</h3>
-							</section>
-						</c:forEach>
+									<section id="favorSec" class="favorSec favorSec-${f.p_no }"
+										onclick="location.href='detail.go?p_no=${f.p_no}'">
+										<img id="favorSecImg" src="resources/imgs/${f.p_img}">
+										<h3>${f.p_no }</h3>
+										<h3>${f.p_name }</h3>
+										<h3>${f.p_price }</h3>
+									</section>
+								</c:forEach>
 						<br>
 					</section>
 					<section>
-						<input id="a_id" value="${loginAccount.a_id }" type="hidden">
-						<input id="curPageNo" value="${curPageNo }" type="hidden">
-						<input id="pageCount" value="${pageCount }" type="hidden">
-						<button id="previousbtn">이전</button>
-						<button id="nextbtn">이후</button>
+						<c:choose>
+							<c:when test="${pageCount eq null }">
+									<section class="box" style="background: #BDBDBD;">
+										<img class="profile" src="resources/imgs/noresult.png">
+									</section>
+									<h2>찜 목록이 없습니다!</h2>
+							</c:when>
+							<c:when test="${pageCount eq 0 }">
+									<section class="box" style="background: #BDBDBD;">
+										<img class="profile" src="resources/imgs/noresult.png">
+									</section>
+									<h2>찜 목록이 없습니다!</h2>
+							</c:when>
+							<c:otherwise>
+								<input id="a_id" value="${loginAccount.a_id }" type="hidden">
+								<input id="curPageNo" value="${curPageNo }" type="hidden">
+								<input id="pageCount" value="${pageCount }" type="hidden">
+								<button class="favorbtn" id="previousbtn">Previous</button>
+								<button class="favorbtn" id="nextbtn">Next</button>
+							</c:otherwise>
+						</c:choose>
+						
 					</section>
 				</div>
 
 				<div>
-					<i class="fa fa-cart"></i>
+					<section class="box" style="background: #BDBDBD;">
+						<img class="profile" src="resources/imgs/cart.png">
+					</section>
 					<h2>장바구니</h2>
 					<p>장바구니로 이동하시겠습니까?</p>
-					<button
+					<button class="favorbtn"
 						onclick="location.href='go.cart?a_id=${loginAccount.a_id }'">이동</button>
 				</div>
 
@@ -297,7 +312,7 @@ function goChargeCash(id) {
 					<p>판매자 전환 요청하러 가기</p>
 					<button
 						onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')"
-						class="nav-item" active-color="blue">판매자 등록</button>
+						class="favorbtn" active-color="blue">판매자 등록</button>
 				</div>
 				<div>
 					<c:if test="${orderList22 != null }">
@@ -314,7 +329,7 @@ function goChargeCash(id) {
 		</div>
 		<div class="wrapper">
 		<c:forEach items="${orderList22 }" var="o">
-			<div class="item">
+			<div class="item" onclick="location.href='review.go?o_no=${o.o_no}'" >
     			<div class="polaroid"><img class="order-img" src="resources/imgs/${o.o_p_img}">
       				<div class="caption">
       					<h1 class="older-h1">${o.o_p_name }</h1>
@@ -322,59 +337,12 @@ function goChargeCash(id) {
       					<span>구매 사이즈 : ${o.o_p_size }</span> <br>
       					<span>구매 수량 : ${o.o_qty }</span> <br>
       				</div>
+      				<button onclick="location.href='review.go?o_no=${o.o_no}'">리뷰 작성하러
+									가기</button>
     			</div>
   			</div>
 		</c:forEach>
 		</div>
-
-
-		<%-- <!-- 메뉴 리스트 -->
-		<nav class="nav">
-			<a href="deliveryTrackingGo" class="nav-item is-active" active-color="orange">배송 조회</a> 
-			<a class="favors" class="nav-item" active-color="green">찜한 목록</a> 
-			<input id="aid"value="${loginAccount.a_id }" type="hidden"> 
-			<a href="go.cart?a_id=${loginAccount.a_id }" class="nav-item" active-color="red">장바구니</a> 
-			<a onclick="return checkReq('${loginAccount.a_reqStatus}','${loginAccount.a_id }')" class="nav-item" active-color="blue">판매자 등록</a> 
-			<a id="orderlist" class="nav-item" active-color="violet" >구매이력</a>
-			<span class="nav-indicator"></span>
-		</nav>
-		<div class="favorites-div" >
-			<!-- 찜목록 보여주기 -->
-			<c:forEach items="${favorsPNO }" var="f">
-				<div>
-					<h3>${f.p_no }</h3>
-					<h3>${f.p_name }</h3>
-					<h3>${f.p_price }</h3>
-					<img src="resources/imgs/${f.p_img}">
-				</div>
-			</c:forEach>
-		</div>
-		<c:if test="${orderList22 != null }">
-			<div class="orderlist-div">
-				<!-- 구매목록 보여주기 -->
-				<table border="1" class="orderlist-tbl">
-					<tr class="orderlist-header">
-						<c:forEach items="${orderList22 }" var="o">
-							<tr>
-								<td>사진</td>
-								<td>이름</td>
-								<td>구매 날짜</td>
-								<td>작성 여부</td>
-							</tr>
-
-							<div>
-								<h3>${o.o_p_name }</h3>
-								<h3>${o.o_qty }</h3>
-								<h3>${o.o_date}</h3>
-								<h3>${o.o_p_size}</h3>
-								<h3>${o.o_p_color}</h3>
-								<button onclick="location.href='review.go?o_no=${o.o_no}'">작성하러
-									가기</button>
-							</div>
-						</c:forEach>
-				</table>
-			</div>
-		</c:if> --%>
 	</div>
 </body>
 <script type="text/javascript" src="resources/js/myPage.js"></script>

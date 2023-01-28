@@ -8,11 +8,69 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/productPage.css">
+<script type="text/javascript" src="resources/js/deleteProduct.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+	crossorigin="anonymous">
+	
+</script>
+<script type="text/javascript">
+$(function () {
+	
+	$('#back-to-top').on('click', function(e) {
+				e.preventDefault();
+				$('html,body').animate({
+					scrollTop : 0
+				}, 300);
+			});
+
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > 100) {
+					$('#back-to-top').addClass('show');
+				} else {
+					$('#back-to-top').removeClass('show');
+				}
+			});
+
+			$('#back-to-bottom').click(function(e) {
+				e.preventDefault();
+				$('html,body').animate({
+					scrollTop : $(document).height()
+				}, 300);
+			});
+
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > 100) {
+					$('#back-to-bottom').removeClass('show');
+				} else {
+					$('#back-to-bottom').addClass('show');
+				}
+			});
+
+	});
+
+</script>
 </head>
 <body>
 <div class="header">
 		<jsp:include page="../header.jsp"></jsp:include>
 	</div>
+	<div class="scrollMenu">
+				<div class="scrollMyPage">
+					<a href="myPage.go?a_id=${loginAccount.a_id }"><span
+						class="header_mypage"></span></a>
+				</div>
+				<div class="scrollMyCart">
+					<a href="go.cart?a_id=${loginAccount.a_id }"><span
+						class="header_bag"></span></a>
+				</div>
+				<div class="scrolltop">
+					<a id="back-to-top"><span>🡅</span></a>
+				</div>
+				<div class="scrollbottom">
+					<a id="back-to-bottom"><span>🡇</span></a>
+				</div>
+			</div>
 	<div class="lookup">
 
 			<ul class="lookupList">
@@ -38,8 +96,13 @@
 						<fmt:formatNumber value="${a.p_price}" type="currency"
 							currencySymbol="\\" />
 					</div>
-					<fmt:formatDate var="resultRegDt" value="${p.p_date}" pattern="yyyy-MM-dd"/>
-					<span>${resultRegDt}</span>
+					<div class="sellerbtn">
+						<c:if test="${loginAccount.a_userType == 2}">
+							<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제 /</button>
+							<button
+								onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
+						</c:if>
+					</div>
 				</div>
 			</c:forEach>
 		</div>

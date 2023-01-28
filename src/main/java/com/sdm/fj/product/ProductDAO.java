@@ -214,7 +214,7 @@ public class ProductDAO {
 		// System.out.println(imgs);
 
 		String[] splitSizes = pp.getP_size().split("!");
-
+		
 		ArrayList<String> sizes = new ArrayList<String>();
 		for (String s : splitSizes) {
 			sizes.add(s);
