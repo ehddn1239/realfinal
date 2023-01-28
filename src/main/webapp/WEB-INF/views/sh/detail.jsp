@@ -44,7 +44,8 @@
 	crossorigin="anonymous">
 	
 </script>
-
+<script type="text/javascript" src="resources/js/check.js"></script>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script type="text/javascript">
 	// scroll
 
@@ -90,37 +91,37 @@
 </script>
 
 <script type="text/javascript">
-$(function () {
-	
-	$('#back-to-top').on('click', function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : 0
-				}, 300);
-			});
+	$(function() {
 
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-top').addClass('show');
-				} else {
-					$('#back-to-top').removeClass('show');
-				}
-			});
+		$('#back-to-top').on('click', function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : 0
+			}, 300);
+		});
 
-			$('#back-to-bottom').click(function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : $(document).height()
-				}, 300);
-			});
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-top').addClass('show');
+			} else {
+				$('#back-to-top').removeClass('show');
+			}
+		});
 
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-bottom').removeClass('show');
-				} else {
-					$('#back-to-bottom').addClass('show');
-				}
-			});
+		$('#back-to-bottom').click(function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(document).height()
+			}, 300);
+		});
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-bottom').removeClass('show');
+			} else {
+				$('#back-to-bottom').addClass('show');
+			}
+		});
 
 	});
 	function checkLogin(a_id, p_no) {
@@ -144,12 +145,17 @@ $(function () {
 		}
 	}
 	function confirmPay(pno, aid, psize) {
+		if (document.getElementById('selectedSize').value == '') {
+			alert('사이즈를 선택해주세요');
+			return false;
+		}
 		if (confirm('결제 페이지로 이동하시겠습니까?')) {
 			
 			let s = document.getElementById('selectedSize').value;
 			let q = document.getElementById('qtyBox').value;
-			
-			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid + '&p_size=' + s + '&cart_qty=' + q;
+
+			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid + '&p_size='
+					+ s + '&cart_qty=' + q;
 			return true;
 		} else {
 			return false;
@@ -162,13 +168,13 @@ $(function () {
 					+ '&p_no=' + p;
 		}
 	}
+	
 </script>
 </head>
 <body>
 	<div class="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
-
 	<div id="detailWrapper">
 		<div id="detailWrap">
 			<div class="scrollMenu">
@@ -276,7 +282,8 @@ $(function () {
 							</div>
 							<div class="sizeSelect">
 
-								<span>사이즈 </span><select class="selectbox" id="selectedSize" name="p_size">
+								<span>사이즈 </span><select class="selectbox" id="selectedSize"
+									name="p_size">
 									<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 									<c:forEach items="${sizes}" var="i">
 										<option value="${i}">${i }</option>
@@ -293,6 +300,7 @@ $(function () {
 						</div>
 						<div class="detailBtns">
 							<div>
+							
 								<button type="button" id="buyBtn"
 									onclick="return confirmPay('${p.p_no}','${loginAccount.a_id }')">바로
 									구매</button>
@@ -346,7 +354,8 @@ $(function () {
 				</div>
 
 			</div>
-			<div id="reviewDiv">
+			<div id="reviewDiv"></div>
+			<div>
 
 				<div id="reviewTitle">Review (${reviewCount })</div>
 				<c:forEach items="${reviews }" var="r">
@@ -398,14 +407,16 @@ $(function () {
 						<div class="r_txt">${r.r_txt }</div>
 
 						<!-- img01이 선택되고 다음에는 img02가 선택되고 그런방식으로 해야함 이것도 마찬가지 -->
-						<div class="myModal" style="display: none; background-color: #white; text-align: center;">
+						<div class="myModal"
+							style="display: none; background-color: #white; text-align: center;">
 							<img src="resources/imgs/${r.r_img}" style="width: 500px;">
 							<span class="close">&times;</span> <img class="modal-content"
 								id="img01">
 							<div id="caption"></div>
 						</div>
-						<img src="resources/imgs/${r.r_img}" class="reviewImg" style="max-width: 200px;">
-						
+						<img src="resources/imgs/${r.r_img}" class="reviewImg"
+							style="max-width: 200px;" onerror="this.style.display='none'">
+
 
 
 
@@ -435,12 +446,12 @@ $(function () {
 			console.log(this);
 
 		});
-		
+
 		$(".close").click(function() {
 			console.log(this);
 			let reviewContainer = $(this).parent();
 			$(reviewContainer).css("display", "none");
-			
+
 		});
 	</script>
 

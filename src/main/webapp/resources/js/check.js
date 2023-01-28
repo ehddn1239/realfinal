@@ -99,3 +99,50 @@ function changeInfoCheck(){
 	return true;
 }
 
+function regProduct(){
+	var imgInput = document.getElementById("imgforLabel");
+	var regCate = document.getElementById("regCatego");
+	var nameInput = document.getElementById("regName");
+	var colorInput = document.getElementById("regColor");
+	var sizeInput = document.getElementById("regSize");
+	var priceInput = document.getElementById('regPrice');
+	
+	if (isEmpty(nameInput)) {
+		alert("상품 이름을 입력해주십시요");
+		nameInput.value = "";
+		nameInput.focus();
+		return false;
+	} else if (isEmpty(colorInput)) {
+		alert("색상을 선택해주세요");
+		return false;
+	}else if (isEmpty(sizeInput)) {
+		alert("사이즈를 선택해주세요");
+		return false;
+	}else if (isEmpty(priceInput)){
+		alert('가격을 입력해주세요')
+		return false;
+	}else if (isEmpty(imgInput)){
+		alert('상품 이미지를 선택해주세요')
+		return false;
+	}
+	return true;
+}
+function reviewProduct(){
+	var reviewTxt = document.getElementById("rvTxt");
+	var marketInput = document.getElementById("marketing");
+	if ($("input:radio[name='r_grade']").is(":checked")==false) {
+		alert("별점을 선택해주세요.");
+		return false;
+	}else if (isEmpty(reviewTxt)) {
+		alert("리뷰 내용을 입력해주십시요");
+		reviewTxt.value = "";
+		reviewTxt.focus();
+		return false;
+	}else if ($("input:checkbox[id='marketing']").is(":checked")==false) {
+		alert("필수 항목을 체크하세요");
+		return false;
+	}
+	return true;
+}
+
+
