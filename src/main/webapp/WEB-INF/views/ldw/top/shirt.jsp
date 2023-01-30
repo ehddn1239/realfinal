@@ -97,9 +97,9 @@ $(function () {
 	</div>
 	<div class="sellerbtn">
 						<c:if test="${loginAccount.a_userType == 2}">
-							<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제 /</button>
+							<button onclick="deleteProduct('${s.p_no}','${s.p_category}')">삭제 /</button>
 							<button
-								onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
+								onclick="location.href='product.update.go?p_no=${s.p_no}'">수정</button>
 						</c:if>
 					</div>
 	</div>
