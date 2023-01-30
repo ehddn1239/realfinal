@@ -29,7 +29,9 @@ function page_back(){
 					</div>
 					<div>
 						<div class="infos">매장 이름</div>
-						<div class="changeInfoInput"><input name="r_marketname" value="${loginAccount.a_nickname }"></div>
+						<div class="changeInfoInput"><input name="r_marketname" value="SDMall" type="hidden">
+							<span>SDMall</span>
+						</div>
 					</div>
 					<div>
 						<div class="infos">회원 아이디</div>

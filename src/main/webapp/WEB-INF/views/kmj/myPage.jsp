@@ -286,8 +286,11 @@ function goChargeCash(id) {
 									<br>
 									
 								</section>
+								<input id="a_id" value="${loginAccount.a_id }" type="hidden">
+                                <input id="curPageNo" value="${curPageNo }" type="hidden">
+                                <input id="pageCount" value="${pageCount }" type="hidden">
 								<button class="favorbtn" id="previousbtn">Previous</button>
-                                	<button class="favorbtn" id="nextbtn">Next</button>
+                                <button class="favorbtn" id="nextbtn">Next</button>
 							</c:otherwise>
 						</c:choose>
 						
