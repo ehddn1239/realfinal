@@ -82,7 +82,9 @@
 		set a_rank = #{a_rank}
 		where a_id = #{a_id}
 	</update>
-
+	<select id="checkMoney" parameterType="map" resultType="com.sdm.fj.account.Account">
+		select * from final_account where a_id = #{re_id}
+	</select>
 	<update id="chargeMoney" parameterType="com.sdm.fj.account.Charger">
 		update final_account
 		set a_cash = a_cash + #{money}

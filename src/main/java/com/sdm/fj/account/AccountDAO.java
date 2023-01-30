@@ -197,7 +197,7 @@ public class AccountDAO {
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com"; // 네이버 이용시 smtp.naver.com //구글 smtp.gmail.com
 		String hostSMTPid = "gmlwhd43@gmail.com"; // 서버 이메일 쓰기 (보내는 사람)
-		String hostSMTPpwd = "wxrlicuhmwjztclt"; // 서버 이메일 비번
+		String hostSMTPpwd = "lxxupkfshbdmvvpt"; // 서버 이메일 비번
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "SDMProject@naver.com";
@@ -408,9 +408,15 @@ public class AccountDAO {
 		Charger c = new Charger();
 		c.setId(id);
 		c.setMoney(money);
-
+		HashMap<String, String> val = new HashMap<String, String>();
+		
+		val.put("re_id", id);
 		if (ss.getMapper(AccountMapper.class).chargeMoney(c) == 1) {
 			System.out.println("충전 성공");
+			Account re = ss.getMapper(AccountMapper.class).checkMoney(val);
+			req.getSession().setAttribute("loginAccount", re);
+			req.getSession().setMaxInactiveInterval(60 * 10);
+			
 		}
 
 	}

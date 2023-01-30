@@ -24,11 +24,12 @@ function page_back(){
 					<div class="titleEdit">판매자 신청</div>
 					<div>
 						<div class="infos">회원 닉네임</div>
+						<input name="r_nickname" value="${loginAccount.a_nickname }" type="hidden"> 
 						<div class="changeInfoInput">${loginAccount.a_nickname }</div>
 					</div>
 					<div>
 						<div class="infos">매장 이름</div>
-						<div class="changeInfoInput">SDMall</div>
+						<div class="changeInfoInput"><input name="r_marketname" value="${loginAccount.a_nickname }"></div>
 					</div>
 					<div>
 						<div class="infos">회원 아이디</div>

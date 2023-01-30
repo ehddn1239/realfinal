@@ -87,11 +87,12 @@ body {
 	flex-wrap: wrap;
 	display: flex;
 	justify-content: center;
+	height: 300px;
 }
 
 #favorimg {
-	width: 50px;
-	height: 50px;
+	width: 100%;
+	height: 50%;
 }
 
 .orderlist-div {
@@ -99,20 +100,25 @@ body {
 }
 
 #favorSec {
-	width: 100px;
+	width: 120px;
+	height: 280px;
 	cursor: pointer;
 	margin-right: 30px;
+	filter: grayscale(100%);
+	box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+	background: #fff;
+	padding: 5px;
 }
 
 #favorSec:hover {
-	width: 110px;
-	height: 110px;
+	/* width: 110px; */
+	filter: none;
 	transition: all 0.5s;
 }
 
 #favorSecImg {
-	width: 50px;
-	height: 50px;
+	width: 100%;
+	height: 50%;
 }
 
 .whole-div {
