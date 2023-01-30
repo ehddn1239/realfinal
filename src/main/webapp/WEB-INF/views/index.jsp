@@ -203,7 +203,7 @@ $(function() {
 						</c:when>
 						<c:when test="${loginCheck == 0 }">
 							<form action="myPage.go" method="get">
-								<button type="button" id="logout-btn" class="login-btn"
+								<button type="button" id="logout-btn" class="logout-btn"
 									onclick="location.href='logout.do'">
 									<span class="circle" aria-hidden="true"> <span
 										class="icon arrow"></span>
@@ -214,14 +214,14 @@ $(function() {
 
 								<c:if test="${loginAccount.a_userType == 3 }">
 									<button type="button" onclick="location.href ='adminPage.go'"
-										class="login-btn">
+										class="logout-btn">
 										<span class="circle" aria-hidden="true"> <span
 											class="icon arrow"></span>
 										</span> <span class="button-text">Admin Page</span>
 									</button>
 								</c:if>
 								<button name="a_id" value="${loginAccount.a_id }"
-									class="login-btn">
+									class="logout-btn">
 									<span class="circle" aria-hidden="true"> <span
 										class="icon arrow"></span>
 									</span> <span class="button-text">My Page</span>
@@ -229,7 +229,7 @@ $(function() {
 							</form>
 
 							<c:if test="${loginAccount.a_userType == 2 }">
-								<button id="regBtn" class="login-btn"
+								<button id="regBtn" class="logout-btn"
 									onclick="location.href='productReg.go'">
 									<span class="circle" aria-hidden="true"> <span
 										class="icon arrow"></span>

@@ -201,7 +201,7 @@ public class AccountDAO {
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "SDMProject@naver.com";
-		String fromName = "프로젝트이름";
+		String fromName = "SDMall 임시비밀번호 발송";
 		String subject = "";
 		String msg = "";
 
