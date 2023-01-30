@@ -59,18 +59,21 @@ public class CartController {
 	@RequestMapping(value = "/cart.buy.go", method = RequestMethod.GET)
 	public String doBuyPage(Product p, Account a, HttpServletRequest req, CartDTO cart) {
 		aDAO.loginCheck(req);
-		//구매하는 일
-		pDAO.buyProduct(p,cart,req);
-		//구매이력 남기는 일
-		pDAO.regOrderList(p,cart,a,req);
+//		//구매하는 일
+//		pDAO.buyProduct(p,cart,req);
+//		//구매이력 남기는 일
+//		pDAO.regOrderList(p,cart,a,req);
+//		
+//		//카트에서 삭제
+//		cDAO.deleteCart(cart, req);
+//		
+//		//디테일 구하기
+//		cDAO.getAllCart(cart, req);
 		
-		//카트에서 삭제
-		cDAO.deleteCart(cart, req);
-		
-		//디테일 구하기
-		cDAO.getAllCart(cart, req);
-		
-		return "sh/cart";
+		pDAO.goDetail(p, req);
+		pDAO.getDetail(p, req);
+
+		return "kmj/buyPage";
 	}
 
 }
