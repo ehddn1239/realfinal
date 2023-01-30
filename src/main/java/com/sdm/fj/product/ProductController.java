@@ -430,8 +430,6 @@ public class ProductController {
 
 	@RequestMapping(value = "/buy.go", method = RequestMethod.GET)
 	public String goBuyPage(Product p, Account a, HttpServletRequest req) {
-		
-		
 
 		// 디테일 구하기
 		pDAO.goDetail(p, req);
@@ -441,8 +439,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/buy.do", method = RequestMethod.POST)
-	public String doBuyPage(Product p, Account a, HttpServletRequest req, CartDTO cart) {
-		aDAO.loginCheck(req);
+	public String doBuyPage(Product p, Account a, HttpServletRequest req, CartDTO cart, Review r) {
 		// 구매하는 일
 		pDAO.buyProduct(p, cart, req);
 		
@@ -450,10 +447,15 @@ public class ProductController {
 		cDAO.getAllCart(cart, req);
 		// 구매이력 남기는 일
 		pDAO.regOrderList(p, cart, a, req);
-
+		
+		if(aDAO.loginCheck(req)) {
+			aDAO.setFavorites(p, a, req);
+		}
 		// 디테일 구하기
 		pDAO.goDetail(p, req);
 		pDAO.getDetail(p, req);
+		rDAO.getReviewCount(req,r,p);
+		rDAO.productReviewSelect(req, r, p, a);
 
 		return "sh/detail";
 	}

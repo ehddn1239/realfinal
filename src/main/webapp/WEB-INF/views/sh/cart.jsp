@@ -82,7 +82,7 @@ function selectAll(selectAll)  {
 	<div class="band">
 		<c:forEach items="${cart }" var="c">
 		<div class="item">
-			<a href="#" class="card">
+			<div class="card">
 				<div class="thumb"
 					style="background-image: url(resources/imgs/${c.p_img});"></div>
 				<article>
@@ -98,11 +98,12 @@ function selectAll(selectAll)  {
 					</c:choose>
 					<span>상품 가격 : ${c.p_price }</span>
 					<span>상품 구매 수량 : ${c.cart_qty }</span>
-					<button onclick="return confirmPay('${c.p_no}','${loginAccount.a_id }','${c.cartId }','${c.p_size }','${c.p_color }','${c.cart_qty }')">구매</button>
-					
-					<button onclick="deleteCartItem('${c.a_id}','${c.cartId}')">삭제</button>
+					<span style="text-align: center;">
+						<button class="btn" onclick="return confirmPay('${c.p_no}','${loginAccount.a_id }','${c.cartId }','${c.p_size }','${c.p_color }','${c.cart_qty }')">구매</button>
+						<button class="btn" onclick="deleteCartItem('${c.a_id}','${c.cartId}')">삭제</button>
+					</span>
 				</article>
-			</a>
+			</div>
 		</div>
 		</c:forEach>
 	</div>

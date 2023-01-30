@@ -86,9 +86,11 @@
 				alert('사이즈를 선택해주세요');
 				return false;
 			}
-			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
+			var check = confirm("상품을 장바구니에 담으시겠습니까?");
 			if(check) {
 				location.href = '/cart.go?'
+			}else{
+				return false;
 			}
 		});
 

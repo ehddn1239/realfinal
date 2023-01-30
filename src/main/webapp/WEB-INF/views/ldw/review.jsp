@@ -85,7 +85,8 @@
 			</div>
 				<div><input type="checkbox" id="marketing">작성된 후기는 SDMall 홍보 콘텐츠로 사용될 수 있습니다.(필수)</div>
 <div class="reviewbtn">
-			<button id="regbtn">등록</button>
+			<input name="a_id" value="${loginAccount.a_id }" type="hidden">
+			<button id="regbtn" >등록</button>
 			<button type="button" id="regbtn" onclick="page_back();">뒤로가기</button>
 </div>
 

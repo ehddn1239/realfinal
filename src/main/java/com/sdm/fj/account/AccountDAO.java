@@ -197,7 +197,7 @@ public class AccountDAO {
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com"; // 네이버 이용시 smtp.naver.com //구글 smtp.gmail.com
 		String hostSMTPid = "gmlwhd43@gmail.com"; // 서버 이메일 쓰기 (보내는 사람)
-		String hostSMTPpwd = "wxrlicuhmwjztclt"; // 서버 이메일 비번
+		String hostSMTPpwd = "lxxupkfshbdmvvpt"; // 서버 이메일 비번
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "SDMProject@naver.com";
@@ -377,7 +377,7 @@ public class AccountDAO {
 			con.setDoOutput(true);
 			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=kimmoonjong&quantity=1&total_amount="+ a_cash +"&vat_amount=200&tax_free_amount=0&approval_url="
 					+ approval_url
-					+ "&fail_url=http://localhost:8080/fj/gohome.go&cancel_url=http://localhost:8080/fj/goFail.go";
+					+ "&fail_url=http://localhost:8080/fj/goFail.go&cancel_url=http://localhost:8080/fj/goFail.go";
 			OutputStream out = con.getOutputStream(); // 주는 역할
 			DataOutputStream dos = new DataOutputStream(out); // 데이터 주는 역할
 			dos.writeBytes(param);
@@ -408,9 +408,15 @@ public class AccountDAO {
 		Charger c = new Charger();
 		c.setId(id);
 		c.setMoney(money);
-
+		HashMap<String, String> val = new HashMap<String, String>();
+		
+		val.put("re_id", id);
 		if (ss.getMapper(AccountMapper.class).chargeMoney(c) == 1) {
 			System.out.println("충전 성공");
+			Account re = ss.getMapper(AccountMapper.class).checkMoney(val);
+			req.getSession().setAttribute("loginAccount", re);
+			req.getSession().setMaxInactiveInterval(60 * 10);
+			
 		}
 
 	}

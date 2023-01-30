@@ -49,5 +49,7 @@ public interface AccountMapper {
 
 	String getFavor(HashMap<String, String> val);
 
+	Account checkMoney(HashMap<String, String> val);
+
 
 }

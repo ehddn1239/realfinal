@@ -19,7 +19,8 @@
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
 
 <!-- 우편번호 -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 window.onload = function(){
 	document.getElementById("a_post").addEventListener("click", function() {
@@ -147,7 +148,7 @@ $(function() {
 			<div class="left_sub_menu">
 				<div class="sub_menu">
 					<form action="product.search">
-					<input type="search" name="p_name" placeholder="SEARCH">
+						<input type="search" name="p_name" placeholder="SEARCH">
 					</form>
 					<h2>SDMALL</h2>
 					<ul class="big_menu">
@@ -190,55 +191,55 @@ $(function() {
 						</ul>
 					</ul>
 
-						<c:choose>
-				<c:when test="${loginCheck == 1 }">
-					<button class="login-btn">
-    					<span class="circle" aria-hidden="true">
-     					<span class="icon arrow"></span>
-    					</span>
-    					<span class="button-text">Login</span>
-  					</button>
-					
-				</c:when>	
-				<c:when test="${loginCheck == 0 }">
-					<form action="myPage.go" method="get">
-					<button type="button" id="logout-btn" class="logout-btn" onclick="location.href='logout.do'">
-    					<span class="circle" aria-hidden="true">
-     						<span class="icon arrow"></span>
-    					</span>
-    					<span class="button-text">Logout</span>
-  					</button>
-					
-					<input type="hidden" value="${loginAccount.a_id }">
-					
-					<c:if test="${loginAccount.a_userType == 3 }">
-						<button type="button" onclick="location.href ='adminPage.go'" class="logout-btn">
-							<span class="circle" aria-hidden="true">
-     							<span class="icon arrow"></span>
-    						</span>
-    						<span class="button-text">Admin Page</span>
-						</button>
-					</c:if>
-						<button name="a_id" value="${loginAccount.a_id }" class="logout-btn">
-							<span class="circle" aria-hidden="true">
-     							<span class="icon arrow"></span>
-    						</span>
-    						<span class="button-text">${loginAccount.a_nickname }님의 정보</span>
-						</button>
-					</form>
+					<c:choose>
+						<c:when test="${loginCheck == 1 }">
+							<button class="login-btn">
+								<span class="circle" aria-hidden="true"> 
+									<span class="icon arrow"></span>
+								</span> 
+								<span class="button-text">Login</span>
+							</button>
 
-					<c:if test="${loginAccount.a_userType == 2 }">
-						<button id="regBtn" class="logout-btn"  onclick="location.href='productReg.go'">
-							<span class="circle" aria-hidden="true">
-     							<span class="icon arrow"></span>
-    						</span>
-    						<span class="button-text">상품 등록</span>
-						</button>
-					</c:if>	
+						</c:when>
+						<c:when test="${loginCheck == 0 }">
+							<form action="myPage.go" method="get">
+								<button type="button" id="logout-btn" class="login-btn"
+									onclick="location.href='logout.do'">
+									<span class="circle" aria-hidden="true"> <span
+										class="icon arrow"></span>
+									</span> <span class="button-text">Logout</span>
+								</button>
 
-				</c:when>
-			</c:choose>
-			
+								<input type="hidden" value="${loginAccount.a_id }">
+
+								<c:if test="${loginAccount.a_userType == 3 }">
+									<button type="button" onclick="location.href ='adminPage.go'"
+										class="login-btn">
+										<span class="circle" aria-hidden="true"> <span
+											class="icon arrow"></span>
+										</span> <span class="button-text">Admin Page</span>
+									</button>
+								</c:if>
+								<button name="a_id" value="${loginAccount.a_id }"
+									class="login-btn">
+									<span class="circle" aria-hidden="true"> <span
+										class="icon arrow"></span>
+									</span> <span class="button-text">My Page</span>
+								</button>
+							</form>
+
+							<c:if test="${loginAccount.a_userType == 2 }">
+								<button id="regBtn" class="login-btn"
+									onclick="location.href='productReg.go'">
+									<span class="circle" aria-hidden="true"> <span
+										class="icon arrow"></span>
+									</span> <span class="button-text">상품 등록</span>
+								</button>
+							</c:if>
+
+						</c:when>
+					</c:choose>
+
 
 				</div>
 
@@ -246,35 +247,33 @@ $(function() {
 		</div>
 	</div>
 	<div class="slider js-slider">
-      <div class="slide js-slide">
-        <div class="slide__content">
-          <figure class="slide__img js-slide__img">
-            <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo1.jpg"
-            />
-          </figure>
-          <figure class="slide__img js-slide__img">
-            <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo2.jpg"
-            />
-          </figure>
-        </div>
-        <div class="slider__text js-slider__text">
-          <div class="slider__text-line js-slider__text-line">
-            <div>Black is</div>
-          </div>
-          <div class="slider__text-line js-slider__text-line">
-            <div>timeless. Black is</div>
-          </div>
-          <div class="slider__text-line js-slider__text-line">
-            <div>the color of</div>
-          </div>
-          <div class="slider__text-line js-slider__text-line">
-            <div>Eternity.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+		<div class="slide js-slide">
+			<div class="slide__content">
+				<figure class="slide__img js-slide__img">
+					<img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo1.jpg" />
+				</figure>
+				<figure class="slide__img js-slide__img">
+					<img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/58281/photo2.jpg" />
+				</figure>
+			</div>
+			<div class="slider__text js-slider__text">
+				<div class="slider__text-line js-slider__text-line">
+					<div>Black is</div>
+				</div>
+				<div class="slider__text-line js-slider__text-line">
+					<div>timeless. Black is</div>
+				</div>
+				<div class="slider__text-line js-slider__text-line">
+					<div>the color of</div>
+				</div>
+				<div class="slider__text-line js-slider__text-line">
+					<div>Eternity.</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- 여기는 모달창 부분 -->
 	<div class="modal">
 		<div class="modal_content">
@@ -287,19 +286,25 @@ $(function() {
 					<form class="modal-form" action="account.reg.do" method="post"
 						name="joinForm" onsubmit="return joinCheck()">
 						<h1 class="modal-h1">Create Account</h1>
-						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
+						<span class="modal-span">회원 가입을 시작하겠습니다!</span>
 						<div>
-						<input id="a_id" class="modal-input-id" name="a_id" type="text" placeholder="UserID" />
-						<div><button type="button" class="checkId">중복검사</button></div>
+							<input id="a_id" class="modal-input-id" name="a_id" type="text"
+								placeholder="UserID" />
+							<button type="button" class="checkId">중복검사</button>
 						</div>
-						<input id="a_nickname" class="modal-input" name="a_nickname"type="text" placeholder="사용하실 닉네임" />
-						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
-						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 
-						<span id="pw2_span" style="font-size: 8pt; color: red;">비밀번호가 일치하지않음</span> 
-						<input id="a_post" class="modal-input" name="a_post" type="text"placeholder="우편번호" /> 
-						<input id="a_addr" class="modal-input" name="a_addr" type="text"placeholder="상세주소" /> 
-						<input id="a_email" class="modal-input" name="a_email" type="email" placeholder="이메일" /> 
-						<input id="a_phone" class="modal-input" name="a_phone" type="tel" placeholder="전화번호" />
+						<input id="a_nickname" class="modal-input" name="a_nickname"
+							type="text" placeholder="사용하실 닉네임" /> <input id="a_pw"
+							class="modal-input" name="a_pw" type="password"
+							placeholder="5자 이상, 대문자 포함" /> <input id="a_pw2"
+							class="modal-input" name="a_pw2" type="password"
+							placeholder="Password Confirm" /> <span id="pw2_span"
+							style="font-size: 8pt; color: red;">비밀번호가 일치하지않음</span> <input
+							id="a_post" class="modal-input" name="a_post" type="text"
+							placeholder="우편번호" /> <input id="a_addr" class="modal-input"
+							name="a_addr" type="text" placeholder="상세주소" /> <input
+							id="a_email" class="modal-input" name="a_email" type="email"
+							placeholder="이메일" /> <input id="a_phone" class="modal-input"
+							name="a_phone" type="tel" placeholder="전화번호" />
 						<button class="modal-button">Sign Up</button>
 					</form>
 				</div>
@@ -313,10 +318,12 @@ $(function() {
 							<a class="modal-a" href="#" class="social"><i class="fab fa-google-plus-g"></i></a> 
 							<a class="modal-a" href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 						</div> -->
-						<span>or use your account</span> 
-						<input class="modal-input" name="a_id" type="text" placeholder="UserID" /> 
-						<input class="modal-input" name="a_pw" type="password" placeholder="Password" /> 
-						<span id="span" style="visibility: hidden; margin-right: auto; font-size: 9pt;">입력하지 않은 항목이 있습니다</span>
+						<span>or use your account</span> <input class="modal-input"
+							name="a_id" type="text" placeholder="UserID" /> <input
+							class="modal-input" name="a_pw" type="password"
+							placeholder="Password" /> <span id="span"
+							style="visibility: hidden; margin-right: auto; font-size: 9pt;">입력하지
+							않은 항목이 있습니다</span>
 						<!-- 비밀번호찾기 기능 -->
 						<a class="modal-a" href="findpw.go">Forgot your password?</a>
 						<button class="modal-button">Sign In</button>

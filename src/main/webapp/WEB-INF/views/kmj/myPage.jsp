@@ -108,7 +108,6 @@ $(function() {
 					$('.favorites-div').append( 
 							'<section id="favorSec" class="favorSec favorSec-'+ f[i].p_no + '" onclick="goDetail(' + f[i].p_no + ')">' +	
 							'<img id="favorSecImg" src="resources/imgs/' + f[i].p_img + '">'		 +
-							'<h3>' + f[i].p_no + '</h3>' + 
 							'<h3>' + f[i].p_name + '</h3>' + 
 							'<h3>' + f[i].p_price + '</h3>' + 
 							'</section>'		
@@ -158,7 +157,6 @@ $(function() {
 					$('.favorites-div').append( 
 							'<section id="favorSec" class="favorSec favorSec-'+ f[i].p_no + '" onclick="goDetail(' + f[i].p_no + ')">' +	
 							'<img id="favorSecImg" src="resources/imgs/' + f[i].p_img + '">'		 +
-							'<h3>' + f[i].p_no + '</h3>' + 
 							'<h3>' + f[i].p_name + '</h3>' + 
 							'<h3>' + f[i].p_price + '</h3>' + 
 							'</section>'		
@@ -180,10 +178,10 @@ $(function() {
 	 $('#olbtn').click(function() {
 		 if($('.wrapper').css('display') == 'flex'){
 			$('.wrapper').css('display','none');
-			$("#olbtn").html('추억 펼치기');
+			$("#olbtn").html('구매이력 펼치기');
 		 }else{
 			$('.wrapper').css('display','flex');
-			$("#olbtn").html('추억 접기');
+			$("#olbtn").html('구매이력 접기');
 		 }
 		});
 });
@@ -223,9 +221,14 @@ function godelivery() {
 				<h4>당신의 회원 등급은 ${rank} 입니다!</h4>
 				<h5>누적 포인트 ${loginAccount.a_exp }점</h5>
 				<h5>보유 캐시 ${loginAccount.a_cash }원</h5>
-				<button class="btn" onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보 수정</button>
-				<button class="btn" onclick="return deleteInfo('${loginAccount.a_id}')">계정 삭제</button>
-				<button class="btn" onclick="return goChargeCash('${loginAccount.a_id}')">캐시 충전</button>
+				<button class="btn"
+					onclick="location.href='changeInfo.go?a_id=${loginAccount.a_id}'">정보
+					수정</button>
+				<button class="btn"
+					onclick="return deleteInfo('${loginAccount.a_id}')">계정 삭제</button>
+				<button class="btn"
+					onclick="return goChargeCash('${loginAccount.a_id}')">캐시
+					충전</button>
 			</div>
 			<div class="my-info2">
 				<h4>도로명 주소 : ${loginAccount.a_post }</h4>
@@ -267,40 +270,40 @@ function godelivery() {
 					</p>
 				</div>
 				<div>
-					<section class="favorites-div">
-							<!-- 찜목록 보여주기 -->
-								<c:forEach items="${favorsPNO }" var="f">
-
-									<section id="favorSec" class="favorSec favorSec-${f.p_no }"
-										onclick="location.href='detail.go?p_no=${f.p_no}'">
-										<img id="favorSecImg" src="resources/imgs/${f.p_img}">
-										<h3>${f.p_no }</h3>
-										<h3>${f.p_name }</h3>
-										<h3>${f.p_price }</h3>
-									</section>
-								</c:forEach>
-						<br>
-					</section>
 					<section>
 						<c:choose>
 							<c:when test="${pageCount eq null }">
-									<section class="box" style="background: #BDBDBD;">
-										<img class="profile" src="resources/imgs/noresult.png">
-									</section>
-									<h2>찜 목록이 없습니다!</h2>
+								<section class="box" style="background: #BDBDBD;">
+									<img class="profile" src="resources/imgs/noresult.png">
+								</section>
+								<h2>찜 목록이 없습니다!</h2>
 							</c:when>
 							<c:when test="${pageCount eq 0 }">
-									<section class="box" style="background: #BDBDBD;">
-										<img class="profile" src="resources/imgs/noresult.png">
-									</section>
-									<h2>찜 목록이 없습니다!</h2>
+								<section class="box" style="background: #BDBDBD;">
+									<img class="profile" src="resources/imgs/noresult.png">
+								</section>
+								<h2>찜 목록이 없습니다!</h2>
 							</c:when>
 							<c:otherwise>
+								<section class="favorites-div">
+									<!-- 찜목록 보여주기 -->
+									<c:forEach items="${favorsPNO }" var="f">
+
+										<section id="favorSec" class="favorSec favorSec-${f.p_no }"
+											onclick="location.href='detail.go?p_no=${f.p_no}'">
+											<img id="favorSecImg" src="resources/imgs/${f.p_img}">
+											<h3>${f.p_name }</h3>
+											<h3>${f.p_price }</h3>
+										</section>
+									</c:forEach>
+									<br>
+									
+								</section>
 								<input id="a_id" value="${loginAccount.a_id }" type="hidden">
-								<input id="curPageNo" value="${curPageNo }" type="hidden">
-								<input id="pageCount" value="${pageCount }" type="hidden">
+                                <input id="curPageNo" value="${curPageNo }" type="hidden">
+                                <input id="pageCount" value="${pageCount }" type="hidden">
 								<button class="favorbtn" id="previousbtn">Previous</button>
-								<button class="favorbtn" id="nextbtn">Next</button>
+                                <button class="favorbtn" id="nextbtn">Next</button>
 							</c:otherwise>
 						</c:choose>
 						
@@ -333,7 +336,7 @@ function godelivery() {
 							<i class="fa fa-cart"></i>
 							<h2>구매 이력</h2>
 							<p>구매 이력을 확인 하시겠습니까?</p>
-							<button id="olbtn">추억 펼치기..</button>
+							<button id="olbtn">구매이력 펼치기</button>
 						</section>
 					</c:if>
 				</div>
@@ -341,23 +344,27 @@ function godelivery() {
 			</div>
 		</div>
 		<div class="wrapper">
-		<c:forEach items="${orderList22 }" var="o">
-			<div class="item" onclick="location.href='review.go?o_no=${o.o_no}'" >
-    			<div class="polaroid"><img class="order-img" src="resources/imgs/${o.o_p_img}">
-      				<div class="caption">
-      					<h1 class="older-h1">${o.o_p_name }</h1>
-      					<span>구매 날짜 : <fmt:formatDate value="${o.o_date }" pattern="yyyy년 MM월  dd일"/></span> <br>
-      					<span>구매 사이즈 : ${o.o_p_size }</span> <br>
-      					<span>구매 수량 : ${o.o_qty }</span> <br>
-      					<span><button id="orderBtn" onclick="location.href='review.go?o_no=${o.o_no}&p_no=${p.p_no }'">리뷰 작성하러
-									가기</button></span>
-      				</div>
-      				
-    			</div>
-  			</div>
-		</c:forEach>
+			<c:forEach items="${orderList22 }" var="o">
+				<div class="item">
+					<div class="polaroid">
+						<img  onclick="location.href='detail.go?p_no=${o.o_p_no}'" class="order-img" src="resources/imgs/${o.o_p_img}">
+						<div class="caption">
+							<h1 class="older-h1">${o.o_p_name }</h1>
+							<span>구매 날짜 : <fmt:formatDate value="${o.o_date }"
+									pattern="yyyy년 MM월  dd일" /></span> <br> <span>구매 사이즈 :
+								${o.o_p_size }</span> <br> <span>구매 수량 : ${o.o_qty }</span> <br>
+							<span><button id="orderBtn" 
+									onclick="location.href='review.go?o_no=${o.o_no}&p_no=${o.o_p_no}'">리뷰
+									작성하러 가기</button></span>
+						</div>
+
+					</div>
+				</div>
+			</c:forEach>
 		</div>
-	
+		<div style="height: 200px;">
+		
+		</div>
 </body>
 <script type="text/javascript" src="resources/js/myPage.js"></script>
 <script type="text/javascript">

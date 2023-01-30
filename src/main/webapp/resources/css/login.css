@@ -124,11 +124,14 @@
   background-color: #eee;
   border: none;
   padding: 12px 15px;
-  margin: 8px 0;
-  width: 50%;
+  margin: 8px -31px;
+  width: 285px;
+  margin-right: 8px;
 }
 .checkId{
-	width:80px;
+	width:70px;
+	height:30px;
+	margin-left: 5px;
 	border-radius: 10px;
 }
 
@@ -271,7 +274,7 @@
   width: 40px;
 }
 
-footer {
+/* footer {
     background-color: #222;
     color: #fff;
     font-size: 14px;
@@ -294,4 +297,4 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
-}
+} */

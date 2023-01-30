@@ -97,9 +97,8 @@
 .detailBtns{
 	display:flex;
 	position:absolute;
-	right:200px;
-	bottom:20px;
-	
+	right:-5px;
+	bottom: 0;
 }
 
 .detailBtns button{
