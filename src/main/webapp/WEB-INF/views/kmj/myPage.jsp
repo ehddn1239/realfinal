@@ -329,16 +329,16 @@ function goChargeCash(id) {
 		</div>
 		<div class="wrapper">
 			<c:forEach items="${orderList22 }" var="o">
-				<div class="item" onclick="location.href='review.go?o_no=${o.o_no}'">
+				<div class="item">
 					<div class="polaroid">
-						<img class="order-img" src="resources/imgs/${o.o_p_img}">
+						<img  onclick="location.href='detail.go?p_no=${o.o_p_no}'" class="order-img" src="resources/imgs/${o.o_p_img}">
 						<div class="caption">
 							<h1 class="older-h1">${o.o_p_name }</h1>
 							<span>구매 날짜 : <fmt:formatDate value="${o.o_date }"
 									pattern="yyyy년 MM월  dd일" /></span> <br> <span>구매 사이즈 :
 								${o.o_p_size }</span> <br> <span>구매 수량 : ${o.o_qty }</span> <br>
-							<span><button id="orderBtn"
-									onclick="location.href='review.go?o_no=${o.o_no}&p_no=${p.p_no }'">리뷰
+							<span><button id="orderBtn" 
+									onclick="location.href='review.go?o_no=${o.o_no}&p_no=${o.o_p_no}'">리뷰
 									작성하러 가기</button></span>
 						</div>
 

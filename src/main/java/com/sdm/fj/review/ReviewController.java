@@ -40,12 +40,24 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "/regReview.do", method = RequestMethod.POST)
-	public String regReviewDo(Review r, HttpServletRequest req, MultipartHttpServletRequest file) {
+	public String regReviewDo(Review r, HttpServletRequest req, MultipartHttpServletRequest file, Account a, OrderList o, Product p) {
 		System.out.println("---------regReview.do컨트롤러 시작------------");
 		// 리뷰 하는 일
 		rDAO.regReview(req, r, file);
 
-		return "kmj/myPage";
+		if (aDAO.loginCheck(req)) {
+			aDAO.getAccount(a, req);
+			// 구매이력 불러오기
+			pDAO.showAllOrders(o, req, p);
+			// 찜 목록 게시글 따로 조회하기
+			pDAO.showClientFavors(req, p);
+			// 찜하기 페이징
+			pDAO.paging(1, req, p);
+			
+			return "kmj/myPage";
+		}
+		
+		return "index";
 	}
 
 	@RequestMapping(value = "/review.delete.do", method = RequestMethod.GET)
