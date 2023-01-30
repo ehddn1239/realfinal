@@ -65,7 +65,8 @@
 }
 
 .lookup {
-	
+	position:relative;
+	z-index:1;
 }
 
 .lookupList {
@@ -127,6 +128,7 @@
 	bottom: 10px;
 	display: block;
 	line-height:50px;
+	z-index:1;
 	
 }
 .scrollMyPage{

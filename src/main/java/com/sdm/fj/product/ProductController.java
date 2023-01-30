@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.sdm.fj.account.Account;
 import com.sdm.fj.account.AccountDAO;
 import com.sdm.fj.account.OrderList;
+import com.sdm.fj.cart.CartDAO;
 import com.sdm.fj.cart.CartDTO;
 import com.sdm.fj.review.Review;
 import com.sdm.fj.review.ReviewDAO;
@@ -23,6 +24,8 @@ public class ProductController {
 	private AccountDAO aDAO;
 	@Autowired
 	private ReviewDAO rDAO;
+	@Autowired
+	private CartDAO cDAO;
 
 	@RequestMapping(value = "allProduct.go", method = RequestMethod.GET)
 	public String allProduct(Criteria cri, Product p, HttpServletRequest req) {
@@ -442,6 +445,9 @@ public class ProductController {
 		aDAO.loginCheck(req);
 		// 구매하는 일
 		pDAO.buyProduct(p, cart, req);
+		
+		cDAO.deleteCart(cart, req);
+		cDAO.getAllCart(cart, req);
 		// 구매이력 남기는 일
 		pDAO.regOrderList(p, cart, a, req);
 
