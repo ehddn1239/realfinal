@@ -35,7 +35,7 @@ function selectAll(selectAll)  {
 	
 	function confirmPay(pno, aid, cid, opsize,color,qty){
 		if(confirm('결제 하시겠습니까?')){
-			location.href='buy.go?p_no='+pno+'&a_id='+aid+'&cartId='+cid+"&p_size="+opsize+"&p_color="+color+"&cart_qty=" + qty;
+			location.href='cart.buy.go?p_no='+pno+'&a_id='+aid+'&cartId='+cid+"&p_size="+opsize+"&p_color="+color+"&cart_qty=" + qty;
 			return true;
 		}else{
 			return false;

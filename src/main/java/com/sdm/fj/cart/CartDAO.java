@@ -111,7 +111,7 @@ public class CartDAO {
 
 
 	public void deleteCart(CartDTO c,HttpServletRequest req) {
-		 
+	
 		CartMapper cm =  ss.getMapper(CartMapper.class);
 		if(cm.deleteCart(c) ==1) {
 			System.out.println("삭제완료");
