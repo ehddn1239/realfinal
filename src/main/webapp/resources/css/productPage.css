@@ -70,8 +70,10 @@
 }
 
 .lookupList {
-  display: flex;
-  float: right;
+	display: flex;
+	float: right;	
+	
+
 }
 
 .newProduct {
