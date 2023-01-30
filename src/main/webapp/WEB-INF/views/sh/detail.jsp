@@ -44,7 +44,8 @@
 	crossorigin="anonymous">
 	
 </script>
-
+<script type="text/javascript" src="resources/js/check.js"></script>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script type="text/javascript">
 	// scroll
 
@@ -95,37 +96,37 @@
 </script>
 
 <script type="text/javascript">
-$(function () {
-	
-	$('#back-to-top').on('click', function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : 0
-				}, 300);
-			});
+	$(function() {
 
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-top').addClass('show');
-				} else {
-					$('#back-to-top').removeClass('show');
-				}
-			});
+		$('#back-to-top').on('click', function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : 0
+			}, 300);
+		});
 
-			$('#back-to-bottom').click(function(e) {
-				e.preventDefault();
-				$('html,body').animate({
-					scrollTop : $(document).height()
-				}, 300);
-			});
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-top').addClass('show');
+			} else {
+				$('#back-to-top').removeClass('show');
+			}
+		});
 
-			$(window).scroll(function() {
-				if ($(document).scrollTop() > 100) {
-					$('#back-to-bottom').removeClass('show');
-				} else {
-					$('#back-to-bottom').addClass('show');
-				}
-			});
+		$('#back-to-bottom').click(function(e) {
+			e.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(document).height()
+			}, 300);
+		});
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > 100) {
+				$('#back-to-bottom').removeClass('show');
+			} else {
+				$('#back-to-bottom').addClass('show');
+			}
+		});
 
 	});
 	function checkLogin(a_id, p_no) {
@@ -149,12 +150,17 @@ $(function () {
 		}
 	}
 	function confirmPay(pno, aid, psize) {
+		if (document.getElementById('selectedSize').value == '') {
+			alert('사이즈를 선택해주세요');
+			return false;
+		}
 		if (confirm('결제 페이지로 이동하시겠습니까?')) {
 			
 			let s = document.getElementById('selectedSize').value;
 			let q = document.getElementById('qtyBox').value;
-			
-			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid + '&p_size=' + s + '&cart_qty=' + q;
+
+			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid + '&p_size='
+					+ s + '&cart_qty=' + q;
 			return true;
 		} else {
 			return false;
@@ -168,14 +174,12 @@ $(function () {
 		}
 	}
 	
-	
 </script>
 </head>
 <body>
 	<div class="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
-
 	<div id="detailWrapper">
 		<div id="detailWrap">
 			<div class="scrollMenu">
@@ -282,7 +286,8 @@ $(function () {
 							</div>
 							<div class="sizeSelect">
 
-								<span>사이즈 </span><select class="selectbox" id="selectedSize" name="p_size">
+								<span>사이즈 </span><select class="selectbox" id="selectedSize"
+									name="p_size">
 									<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 									<c:forEach items="${sizes}" var="i">
 										<option value="${i}">${i }</option>
@@ -299,6 +304,7 @@ $(function () {
 						</div>
 						<div class="detailBtns">
 							<div>
+							
 								<button type="button" id="buyBtn"
 									onclick="return confirmPay('${p.p_no}','${loginAccount.a_id }')">바로
 									구매</button>
@@ -352,7 +358,8 @@ $(function () {
 				</div>
 
 			</div>
-			<div id="reviewDiv">
+			<div id="reviewDiv"></div>
+			<div>
 
 				<div id="reviewTitle">Review (${reviewCount })</div>
 				<c:forEach items="${reviews }" var="r">
@@ -404,14 +411,16 @@ $(function () {
 						<div class="r_txt">${r.r_txt }</div>
 
 						<!-- img01이 선택되고 다음에는 img02가 선택되고 그런방식으로 해야함 이것도 마찬가지 -->
-						<div class="myModal" style="display: none; background-color: #white; text-align: center;">
+						<div class="myModal"
+							style="display: none; background-color: #white; text-align: center;">
 							<img src="resources/imgs/${r.r_img}" style="width: 500px;">
 							<span class="close">&times;</span> <img class="modal-content"
 								id="img01">
 							<div id="caption"></div>
 						</div>
-						<img src="resources/imgs/${r.r_img}" class="reviewImg" style="max-width: 200px;">
-						
+						<img src="resources/imgs/${r.r_img}" class="reviewImg"
+							style="max-width: 200px;" onerror="this.style.display='none'">
+
 
 
 
@@ -441,50 +450,13 @@ $(function () {
 			console.log(this);
 
 		});
-		
+
 		$(".close").click(function() {
 			console.log(this);
 			let reviewContainer = $(this).parent();
 			$(reviewContainer).css("display", "none");
-			
+
 		});
 	</script>
-
-
-	<!-- 
-	 
-	  <script>
-	 
-	 function viewPic(e) {
-		// 동우씨 일단 실행해서 이거 콘솔 찍히나 함 보죠 id는 지워야하죠 위에는
-		console.log(e);
-		// Get the modal   근데 이거는 이제 클릭당한 그 이미지태그를 가져온걸 시작으로 그거에 해당하는 mymodal이라는 클래스명을 가진애를 찾아나서야되는거니까
-							// getelemenet로 가져오지말고 찾아가야돼요 함 보죠
-		var modal = document.getElementById("myModal");
-
-		// Get the image and insert it inside the modal - use its "alt" text as a caption
-		// 여기서 그냥 img01 만 받기 때문에 쟤만 되는거임
-		var img = e;
-
-		// 여기서도 img01대신  선택한 그 id를 받아야하고
-		var modalImg = document.getElementById("img01");
-		var captionText = document.getElementById("caption");
-		img.onclick = function() {
-			modal.style.display = "block";
-			modalImg.src = this.src;
-			captionText.innerHTML = this.alt;
-		}
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-		
-	 }
-	</script>
-	-->
 </body>
 </html>

@@ -1,6 +1,11 @@
 @charset "UTF-8";
 #ReviewContainer{
-	border: 1px solid black;
+	width: 800px;
+	height: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	/* border:1px solid black;  */
+	position: relative;
 }
 .star-rating {
   display: flex;
@@ -30,32 +35,31 @@
 .star-rating label:hover ~ label {
   -webkit-text-fill-color: #fff58c;
 }
-/* #myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
+.reviewImg{
+	margin-top: 15px;
+	border-bottom: 1px solid #ddd;
 }
-#myform fieldset legend{
-    text-align: right;
+.ReviewTitle{
+	font-size: 20pt;
+	font-weight: 700;
 }
-
-#myform input[type=radio]{
-    display: none;
+.reviewOption{
+	margin-top: 15px;
+	border-bottom: 1px solid #ddd;
 }
-#myform label{
-    font-size: 3em;
-    color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
+.reviewON{
+	font-size: 15pt;
+	font-weight: 600;
 }
-#myform label:hover{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+.reviewRate{
+	margin-top: 15px;
+	border-bottom: 1px solid #ddd;
 }
-#myform label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}	
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-} */
+.reviewTxt{
+	margin-top: 15px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 20px;
+}
 #reviewContents {
     width: 100%;
     height: 150px;
@@ -66,6 +70,11 @@
     font-size: 16px;
     resize: none;
 }
+#preview{
+	width: 200px;
+	height: 200px;
+}
+
 #regbtn{
 	background-color: black;
 	color: white;
@@ -76,6 +85,8 @@
 	font-size: 14px;
 	text-align: center;
 	cursor: pointer;
+	margin-top: 20px;
+	
 }
 textArea{
 	width: 100%;
