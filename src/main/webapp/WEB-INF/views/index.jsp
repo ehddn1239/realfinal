@@ -194,15 +194,16 @@ $(function() {
 					<c:choose>
 						<c:when test="${loginCheck == 1 }">
 							<button class="login-btn">
-								<span class="circle" aria-hidden="true"> <span
-									class="icon arrow"></span>
-								</span> <span class="button-text">Login</span>
+								<span class="circle" aria-hidden="true"> 
+									<span class="icon arrow"></span>
+								</span> 
+								<span class="button-text">Login</span>
 							</button>
 
 						</c:when>
 						<c:when test="${loginCheck == 0 }">
 							<form action="myPage.go" method="get">
-								<button type="button" id="logout-btn" class="logout-btn"
+								<button type="button" id="logout-btn" class="login-btn"
 									onclick="location.href='logout.do'">
 									<span class="circle" aria-hidden="true"> <span
 										class="icon arrow"></span>
@@ -213,23 +214,22 @@ $(function() {
 
 								<c:if test="${loginAccount.a_userType == 3 }">
 									<button type="button" onclick="location.href ='adminPage.go'"
-										class="logout-btn">
+										class="login-btn">
 										<span class="circle" aria-hidden="true"> <span
 											class="icon arrow"></span>
 										</span> <span class="button-text">Admin Page</span>
 									</button>
 								</c:if>
 								<button name="a_id" value="${loginAccount.a_id }"
-									class="logout-btn">
+									class="login-btn">
 									<span class="circle" aria-hidden="true"> <span
 										class="icon arrow"></span>
-									</span> <span class="button-text">${loginAccount.a_nickname }님의
-										정보</span>
+									</span> <span class="button-text">My Page</span>
 								</button>
 							</form>
 
 							<c:if test="${loginAccount.a_userType == 2 }">
-								<button id="regBtn" class="logout-btn"
+								<button id="regBtn" class="login-btn"
 									onclick="location.href='productReg.go'">
 									<span class="circle" aria-hidden="true"> <span
 										class="icon arrow"></span>
