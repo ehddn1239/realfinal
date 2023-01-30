@@ -187,6 +187,7 @@ function checkMoney(cash, price) {
 							<input name="p_no" value="${p.p_no}" type="hidden">
 							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 							<input name="p_price" value="${p.p_price }" type="hidden">
+							<input name="cartId" value="${param.cartId }" type="hidden">
 						
 					
 					
