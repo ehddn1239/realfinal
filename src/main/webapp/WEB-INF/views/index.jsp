@@ -288,8 +288,10 @@ $(function() {
 						name="joinForm" onsubmit="return joinCheck()">
 						<h1 class="modal-h1">Create Account</h1>
 						<span class="modal-span">회원 가입을 시작하겠습니다!</span> 
+						<div>
 						<input id="a_id" class="modal-input-id" name="a_id" type="text" placeholder="UserID" />
-						<button type="button" class="checkId">중복검사</button>
+						<div><button type="button" class="checkId">중복검사</button></div>
+						</div>
 						<input id="a_nickname" class="modal-input" name="a_nickname"type="text" placeholder="사용하실 닉네임" />
 						<input id="a_pw" class="modal-input" name="a_pw" type="password" placeholder="5자 이상, 대문자 포함" /> 
 						<input id="a_pw2" class="modal-input" name="a_pw2" type="password" placeholder="Password Confirm" /> 

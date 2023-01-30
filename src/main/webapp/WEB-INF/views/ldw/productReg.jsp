@@ -45,14 +45,7 @@ function setDetailImage(event){
 		};
 </script>
 
-<script>
-function check() {
-	if ($("input:checkbox[name='p_size']").is(":checked")==false) {
-		alert("사이즈를 적어도 하나는 선택하여 주세요.");
-		return;
-	}
-}
-</script>
+
 
 </head>
 <body>

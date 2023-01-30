@@ -115,9 +115,10 @@ function regProduct(){
 	} else if (isEmpty(colorInput)) {
 		alert("색상을 선택해주세요");
 		return false;
-	}else if (isEmpty(sizeInput)) {
-		alert("사이즈를 선택해주세요");
+	}else if ($("input:checkbox[name='p_size']").is(":checked")==false) {
+		alert("사이즈를 적어도 하나는 선택하여 주세요.");
 		return false;
+	
 	}else if (isEmpty(priceInput)){
 		alert('가격을 입력해주세요')
 		return false;
