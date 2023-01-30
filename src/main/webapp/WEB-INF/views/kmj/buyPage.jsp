@@ -14,7 +14,7 @@
 </script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet" href="resources/css/detail.css">
+<link rel="stylesheet" href="resources/css/buyPage.css">
 <!-- 우편번호 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -28,6 +28,12 @@ window.onload= function() {
 	        }
 	    }).open();
 	});
+}
+
+function page_back(){
+
+	history.go(-1)();
+
 }
 </script>
 <script type="text/javascript">
@@ -54,43 +60,59 @@ function checkMoney(cash, price) {
 		return true;
 	}
 }
+
 </script>
 </head>
 <body>
-	<div class="header">
-		<jsp:include page="../sh/header.jsp"></jsp:include>
-	</div>
-	<div id="scrollBar">
-		<div class="scrolltop">
-			<a id="back-to-top"><span>🡅</span></a>
-		</div>
-		<div class="scrollbottom">
-			<a id="back-to-bottom"><span>🡇</span></a>
-		</div>
-	</div>
 
 	<div id="detailWrapper">
+	
 		<div id="detailWrap">
+			<div class="order_">주문하기</div>
 			<form action="buy.do" method="post" onsubmit="return checkMoney('${loginAccount.a_cash}', ${p.p_price })">
+			<div class="Wrapper3">
+			<div class="div_div2">
+			
+			<div class="div1">
+				<div class="Maintxt1">배송 정보</div>
 			<!-- name으로 p_color, p_size, cart_qty, p_price, p_no 넘겨줌 -->
-			<div id="orderDiv">
-			이름: ${loginAccount.a_id}
-				<div id="mainImg">
+			
+			<div class="dd"><div class="title_">이름</div>${loginAccount.a_id}</div>
+			<div class="dd"><div class="title_">연락처</div>${loginAccount.a_phone}</div>
+				<div class="title_" style="font-size:11pt;">주소</div><div class="select-addr">
+					
+								<input class="addrInput" name="o_post" id="o_post" placeholder="도로명주소" value="${loginAccount.a_post }"> <button type="button" id="postBtn">배송지 변경</button> <br>
+								<input class="addrInput" name="o_addr" id="o_addr" placeholder="상세 주소" value="${loginAccount.a_addr }">
+						</div>
+				</div>
+		
+			<div class="div2">
+		<div class="Maintxt2">상품 정보</div>
+		
+		<div id="mainImg">
 					<c:forEach items="${imgs[0]}" var="i">
 						<img src="resources/imgs/${i}">
 						<input name="p_img" value="${i }" type="hidden">			
 					</c:forEach>
 				</div>
-
-				<div id="orderDetail">
-
+				
+				
+				<div class="infos">
+			<div class="dd"><div class="title_">상품 이름</div>${p.p_name }</div>
+			<div class="dd"><div class="title_">상품 색상</div>${p.p_color }<input name="p_color" value="${p.p_color }" type="hidden"></div>
+				<div class="dd"><div class="title_">사이즈</div><input name="p_size" value="${param.p_size }" readonly="readonly"></div>
+				<div class="dd"><div class="title_">수량</div><input type="number" id="qty" name="cart_qty" value="${param.cart_qty}" readonly="readonly"></div>
+				</div>
+				
+				</div>
+				</div>
+	
 					
-					<div class="detailTitle">
-						<span>${p.p_name }</span>
-					</div>
-					<div class="detailPrice">
-						<h4>보유 캐시 : ${loginAccount.a_cash }원</h4>
+					<div class="div3">
+						<div class="myCash">나의 보유 캐시 : ${loginAccount.a_cash }원</div>
 						
+						<div class="price_order">주문금액</div>
+						<div class="price_">
 						<c:choose>
 								<c:when test="${loginAccount.a_rank eq 'Bronze'}">
 									정상가
@@ -148,61 +170,32 @@ function checkMoney(cash, price) {
 										currencySymbol="\\" />
 								</c:otherwise>
 							</c:choose>
+							</div>
 					</div>
-
-					<div id="orderOptionDiv">
-						<div class="colorSelect">
-							<span>색상</span> 
-								<input name="p_color" value="${p.p_color }" type="hidden"> 
-								${p.p_color }
+					
+					
+					<div class="detailBtns">
+						<div>
+							<button id="buyBtn">구매하기</button>
 						</div>
-						<div class="sizeSelect">
-
-							<span>사이즈 </span><select class="selectbox" name="p_size">
-								<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
-								<c:forEach items="${sizes}" var="i">
-									<option value="${i}">${i }</option>
-								</c:forEach>
-							</select>
+				<div><button type="button" onclick="page_back();" class="buyCancle">취소</button></div>
+					</div>
+					
+</div>
+							
 
 							<input name="p_no" value="${p.p_no}" type="hidden">
 							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
-						</div>
-						<div class="select-number">
-							<span>수량</span><input type="number" id="qty" name="cart_qty">
 							<input name="p_price" value="${p.p_price }" type="hidden">
-							<br>
-							<br>
-							<br>
-						</div>
-						<div class="select-addr">
-								배송주소 입력 <br>
-								<input name="o_post" id="o_post" placeholder="도로명주소" value="${loginAccount.a_post }"> <button type="button" id="postBtn">배송지 수정</button> <br>
-								<input name="o_addr" id="o_addr" placeholder="상세 주소" value="${loginAccount.a_addr }">
-						</div>
-					</div>
-					<div class="detailBtns">
-						<div>
-							<button id="buyBtn">구매 확정</button>
-						</div>
-					</div>
-				</div>
-			</div>
+						
+					
+					
+				
+			
 				</form>
-
-
-
-			<div id="detailImgs">
-				<div class="productImg">
-					<c:forEach items="${imgs }" var="i">
-						<img src="resources/imgs/${i}">
-					</c:forEach>
-				</div>
 			</div>
 		</div>
-	</div>
-	<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">뒤로가기</button>
-	<button onclick="location.href='product.update.go?p_no=${p.p_no}'">취소</button>
+	
 
 </body>
 </html>

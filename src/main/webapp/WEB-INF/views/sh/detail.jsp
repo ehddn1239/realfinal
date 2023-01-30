@@ -44,14 +44,9 @@
 	crossorigin="anonymous">
 	
 </script>
-
+<script type="text/javascript" src="resources/js/check.js"></script>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script type="text/javascript">
-	function deleteProduct(n, c) {
-		let a = confirm('삭제하시겠습니까?')
-		if (a == 1) {
-			location.href = 'product.delete.do?p_no=' + n + '&p_category=' + c;
-		}
-	}
 	// scroll
 
 	$(function() {
@@ -83,6 +78,26 @@
 				}
 			}
 		});
+
+		$("#containBagBtn").click(function() {
+		
+			let sizeVal = $('#selectedSize').val();
+			if(sizeVal == ""){
+				alert('사이즈를 선택해주세요');
+				return false;
+			}
+			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
+			if(check) {
+				location.href = '/cart.go?'
+			}
+		});
+
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+
 		$('#back-to-top').on('click', function(e) {
 			e.preventDefault();
 			$('html,body').animate({
@@ -113,18 +128,7 @@
 			}
 		});
 
-		$("#containBagBtn").click(function() {
-			var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
-			if (check) {
-				location.href = '/cart.go?'
-
-			}
-		});
-
 	});
-</script>
-
-<script type="text/javascript">
 	function checkLogin(a_id, p_no) {
 		if (a_id == '') {
 			alert('로그인 후 이용해주세요');
@@ -145,55 +149,55 @@
 			return false;
 		}
 	}
-	function confirmPay(pno, aid) {
+	function confirmPay(pno, aid, psize) {
+		if (document.getElementById('selectedSize').value == '') {
+			alert('사이즈를 선택해주세요');
+			return false;
+		}
 		if (confirm('결제 페이지로 이동하시겠습니까?')) {
-			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid;
+			
+			let s = document.getElementById('selectedSize').value;
+			let q = document.getElementById('qtyBox').value;
+
+			location.href = 'buy.go?p_no=' + pno + '&a_id=' + aid + '&p_size='
+					+ s + '&cart_qty=' + q;
 			return true;
 		} else {
 			return false;
 		}
 	}
-	function deleteReview(n, a) {
+	function deleteReview(p, n, a) {
 		let aa = confirm('삭제하시겠습니까?');
 		if (aa == 1) {
-			location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a;
+			location.href = 'review.delete.do?r_no=' + n + '&r_a_id=' + a
+					+ '&p_no=' + p;
 		}
 	}
-	function count(type) {
-		// 결과를 표시할 element
-		/* 	const resultElement = document.getElementById("qtyBox"); */
-
-		// 현재 화면에 표시된 값
-		let number = document.getElementById("qtyBox").value;
-
-		// 더하기/빼기
-		if (type === 'plus') {
-			number = parseInt(number) + 1;
-		} else if (type === 'minus') {
-			number = parseInt(number) - 1;
-		}
-
-		// 결과 출력
-		/* resultElement = number; */
-	}
+	
 </script>
 </head>
 <body>
 	<div class="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
-	<div id="scrollBar">
-		<div class="scrolltop">
-			<a id="back-to-top"><span>🡅</span></a>
-		</div>
-		<div class="scrollbottom">
-			<a id="back-to-bottom"><span>🡇</span></a>
-		</div>
-	</div>
-
 	<div id="detailWrapper">
 		<div id="detailWrap">
-
+			<div class="scrollMenu">
+				<div class="scrollMyPage">
+					<a href="myPage.go?a_id=${loginAccount.a_id }"><span
+						class="header_mypage"></span></a>
+				</div>
+				<div class="scrollMyCart">
+					<a href="go.cart?a_id=${loginAccount.a_id }"><span
+						class="header_bag"></span></a>
+				</div>
+				<div class="scrolltop">
+					<a id="back-to-top"><span>🡅</span></a>
+				</div>
+				<div class="scrollbottom">
+					<a id="back-to-bottom"><span>🡇</span></a>
+				</div>
+			</div>
 			<form action="add.cart">
 				<div id="orderDiv">
 					<div id="mainImg">
@@ -277,13 +281,13 @@
 							<div class="colorSelect">
 								<span>색상&nbsp;&nbsp;&nbsp;</span> <select class="selectbox"
 									name="p_color">
-									<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 									<option value="${p.p_color }">${p.p_color }</option>
 								</select>
 							</div>
 							<div class="sizeSelect">
 
-								<span>사이즈 </span><select class="selectbox" name="p_size">
+								<span>사이즈 </span><select class="selectbox" id="selectedSize"
+									name="p_size">
 									<option value="">&nbsp;&nbsp;&nbsp;선택해 주세요</option>
 									<c:forEach items="${sizes}" var="i">
 										<option value="${i}">${i }</option>
@@ -291,17 +295,16 @@
 								</select>
 							</div>
 							<div class="SelectQty _count">
-								<span>수량 &nbsp;&nbsp;</span>
-								
-									<input type="text" name="cart_qty" id="qtyBox" class="inp"
-										value="1" />
-									<button type="button" class="plus">+</button>
-									<button type="button" class="minus">-</button>
+								<span>수량 &nbsp;&nbsp;</span> <input type="text" name="cart_qty"
+									id="qtyBox" class="inp" value="1" />
+								<button type="button" class="plus">+</button>
+								<button type="button" class="minus">-</button>
 							</div>
 							<input name="a_id" value="${loginAccount.a_id}" type="hidden">
 						</div>
 						<div class="detailBtns">
 							<div>
+							
 								<button type="button" id="buyBtn"
 									onclick="return confirmPay('${p.p_no}','${loginAccount.a_id }')">바로
 									구매</button>
@@ -355,67 +358,79 @@
 				</div>
 
 			</div>
-			<div id="reviewDiv">
+			<div id="reviewDiv"></div>
+			<div>
 
-				<div>Review (${reviewCount })</div>
+				<div id="reviewTitle">Review (${reviewCount })</div>
 				<c:forEach items="${reviews }" var="r">
 					<div class="reveiws">
-						<fmt:formatDate pattern="yyyy-MM-dd" value="${r.r_date }" />
-						<div>${r.r_a_id }</div>
+						<div class="reviewDate">
+							<fmt:formatDate pattern="yyyy.MM.dd" value="${r.r_date }" />
+						</div>
+						<div class="reviewId">${r.r_a_id }</div>
 						<c:forEach items="${imgs[0]}" var="i">
 							<img id="reviewMainImg" src="resources/imgs/${i}">
-							<span>${p.p_name }(${p.p_color })</span>
-							<span style="color: #777;">(구매확정)</span>
+							<div class="reviewName">
+								<span>${p.p_name }(${p.p_color })</span> <span
+									style="color: #777;">(구매확정)</span>
+							</div>
 						</c:forEach>
 						<c:choose>
 							<c:when test="${r.r_grade  eq 1}">
-								<div>
-									평점${r.r_grade} <span class="star-rating"> <span
-										style="width: 20%"></span>
+								<div class="rating">
+									<span class="star-rating"> <span style="width: 20%"></span>
 									</span>
 								</div>
 							</c:when>
 							<c:when test="${r.r_grade  eq 2}">
-								<div>
-									평점${r.r_grade} <span class="star-rating"> <span
-										style="width: 40%"></span>
+								<div class="rating">
+									<span class="star-rating"> <span style="width: 40%"></span>
 									</span>
 								</div>
 							</c:when>
 							<c:when test="${r.r_grade  eq 3}">
-								<div>
-									평점${r.r_grade} <span class="star-rating"> <span
-										style="width: 60%"></span>
+								<div class="rating">
+									<span class="star-rating"> <span style="width: 60%"></span>
 									</span>
 								</div>
 
 							</c:when>
 							<c:when test="${r.r_grade  eq 4}">
-								<div>
-									평점${r.r_grade} <span class="star-rating"> <span
-										style="width: 80%"></span>
+								<div class="rating">
+									<span class="star-rating"> <span style="width: 80%"></span>
 									</span>
 								</div>
 							</c:when>
 							<c:when test="${r.r_grade  eq 5}">
-								<div>
-									평점${r.r_grade} <span class="star-rating"> <span
-										style="width: 100%"></span>
+								<div class="rating">
+									<span class="star-rating"> <span style="width: 100%"></span>
 									</span>
 								</div>
 							</c:when>
 						</c:choose>
-						<div>
-							<img src="resources/imgs/${r.r_img}" id="reviewImg">
+						<div class="r_txt">${r.r_txt }</div>
+
+						<!-- img01이 선택되고 다음에는 img02가 선택되고 그런방식으로 해야함 이것도 마찬가지 -->
+						<div class="myModal"
+							style="display: none; background-color: #white; text-align: center;">
+							<img src="resources/imgs/${r.r_img}" style="width: 500px;">
+							<span class="close">&times;</span> <img class="modal-content"
+								id="img01">
+							<div id="caption"></div>
 						</div>
+						<img src="resources/imgs/${r.r_img}" class="reviewImg"
+							style="max-width: 200px;" onerror="this.style.display='none'">
 
 
 
 
-						<div>${r.r_txt }</div>
 
 						<c:if test="${loginAccount.a_id eq r.r_a_id}">
-							<button onclick="deleteReview('${r.r_no}','${r.r_a_id}')">삭제</button>
+							<div id="reviewDel">
+								<button
+									onclick="deleteReview('${p.p_no}','${r.r_no}','${r.r_a_id}')">리뷰
+									삭제</button>
+							</div>
 						</c:if>
 					</div>
 				</c:forEach>
@@ -425,12 +440,23 @@
 
 		</div>
 	</div>
-	<div class="sellerbtn">
-		<c:if test="${loginAccount.a_userType == 2}">
-			<button onclick="deleteProduct('${p.p_no}','${p.p_category}')">삭제</button>
-			<button onclick="location.href='product.update.go?p_no=${p.p_no}'">수정</button>
-		</c:if>
-	</div>
-	
+	<script>
+		$('.reviewImg').click(function() {
+			console.log(this);
+			let reviewContainer = $(this).parent();
+			let myModal = $(reviewContainer).find('.myModal');
+
+			$(myModal).css("display", "block");
+			console.log(this);
+
+		});
+
+		$(".close").click(function() {
+			console.log(this);
+			let reviewContainer = $(this).parent();
+			$(reviewContainer).css("display", "none");
+
+		});
+	</script>
 </body>
 </html>

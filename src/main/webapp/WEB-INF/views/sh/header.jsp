@@ -43,7 +43,18 @@ $(function() {
 		window.open('loginPopup.go', "로그인/회원가입", "width=880, height=620,"+ "top="+positionY+", left="+positionX);
 	})
 })
+
+function checkSearchVal(){
+	let val1 = document.getElementById('searchBar_');
+	if(val1 == null){
+		alert('검색어를 입력해주세요');
+		return false;
+	}
+
+}
+
 </script>
+
 </head>
 <body>
 
@@ -53,8 +64,8 @@ $(function() {
 				<a href="\fj"><span class="hTitleSpan">SDMALL</span></a>
 			</div>
 			<div id="headerTitle">
-				<form action="product.search">
-					<input type="search" class="headerSearch" name="p_name"
+				<form action="product.search" onsubmit="return checkSearchVal()">
+					<input type="search" class="headerSearch" name="p_name" id="searchBar_"
 						placeholder="원하시는 상품을 검색하세요.">
 				</form>
 			</div>
@@ -97,7 +108,7 @@ $(function() {
 					</ul></li>
 				<li><a href="#">Top</a>
 					<ul class="submenu">
-						<li><a href="showByCategory?p_category=4">KnitWear</a></li>
+						<li><a href="showByCategory?p_category=4">Knit</a></li>
 						<li><a href="showByCategory?p_category=5">Shirt</a></li>
 						<li><a href="showByCategory?p_category=6">Tee</a></li>
 					</ul></li>
