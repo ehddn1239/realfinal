@@ -196,6 +196,19 @@ function goChargeCash(id) {
 	}
 	return false;
 }
+
+function godelivery() {
+	if(confirm('배송 조회 하러 가시겠습니까?')){
+		var new_window_width = 900;
+	    var new_window_height = 650;
+		var positionX = ( window.screen.width / 2 ) - ( new_window_width / 2 );
+	    var positionY = ( window.screen.height / 2 ) - ( new_window_height / 2 );
+			window.open('deliveryTrackingGo', "배송 조회", "width=880, height=620,"+ "top="+positionY+", left="+positionX);
+		return true;
+	}
+	return false;
+}
+
 </script>
 </head>
 <body>
@@ -249,7 +262,7 @@ function goChargeCash(id) {
 					</section>
 					<h2>배송 조회</h2>
 					<p>
-						<a href="deliveryTrackingGo" class="nav-item is-active"
+						<a onclick="return godelivery()" class="nav-item is-active"
 							active-color="orange">배송 조회 하러 가기!</a>
 					</p>
 				</div>
