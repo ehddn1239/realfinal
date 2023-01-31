@@ -354,7 +354,7 @@ function godelivery() {
 									pattern="yyyy년 MM월  dd일" /></span> <br> <span>구매 사이즈 :
 								${o.o_p_size }</span> <br> <span>구매 수량 : ${o.o_qty }</span> <br>
 							<span><button id="orderBtn" 
-									onclick="location.href='review.go?o_no=${o.o_no}&p_no=${o.o_p_no}'">리뷰
+									onclick="location.href='review.go?o_no=${o.o_no}&p_no=${o.o_p_no}'">후기
 									작성하러 가기</button></span>
 						</div>
 
